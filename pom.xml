@@ -338,7 +338,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>cyb</finalName>
+		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
