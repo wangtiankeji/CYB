@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	
 	public User getUser(String platId){
 		User user = new User();
-		user.setPlatId(platId);
+//		user.setPlatId(platId);
 		return userDao.getUser(user);
 	}
 	
@@ -88,12 +88,12 @@ public class UserServiceImpl implements UserService {
 	public void saveUserAndChannel(User user,ChannelCondition channelCondition,Integer roleId){
 		user.setCreateTime(new Date());
 		user.setUserType(1);
-		if(user.getBalance()==null){
-			user.setBalance(new Double(0));
-		}
-		if(user.getFlowBalance()==null){
-			user.setFlowBalance(new Double(0));
-		}
+//		if(user.getBalance()==null){
+//			user.setBalance(new Double(0));
+//		}
+//		if(user.getFlowBalance()==null){
+//			user.setFlowBalance(new Double(0));
+//		}
 		if(user.getVersion()==null){
 			user.setVersion(1);
 		}

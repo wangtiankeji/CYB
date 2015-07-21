@@ -113,12 +113,12 @@ public class RechargeConsumeServiceImpl implements RechargeConsumeService {
 	}
 	
 	private Double getTypeBalance(User user ,String type) throws Exception{
-		if(RMSConstant.PRODUCT_TYPE_FLOW.equals(type)){
-			return user.getFlowBalance();
-		}
-		if(RMSConstant.PRODUCT_TYPE_PHONE.equals(type)){
-			return user.getBalance();
-		}
+//		if(RMSConstant.PRODUCT_TYPE_FLOW.equals(type)){
+//			return user.getFlowBalance();
+//		}
+//		if(RMSConstant.PRODUCT_TYPE_PHONE.equals(type)){
+//			return user.getBalance();
+//		}
 		throw new Exception("type充值类型不能为空");
 	}
 	//	public List<Recharge> getSelective(Recharge recharge){
@@ -141,13 +141,13 @@ public class RechargeConsumeServiceImpl implements RechargeConsumeService {
 		user.setUserId(consume.getUserId());
 		user = userDao.getUser(user);
 
-		if(RMSConstant.PRODUCT_TYPE_PHONE.equals(consume.getConsumeType())){
-			consume.setDiscount(user.getDiscountPhone());
-		}else if(RMSConstant.PRODUCT_TYPE_FLOW.equals(consume.getConsumeType())){
-			consume.setDiscount(user.getDiscountFlow());
-		}else{
-			consume.setDiscount(RMSConstant.DEFAULT_DISCOUNT);
-		}
+//		if(RMSConstant.PRODUCT_TYPE_PHONE.equals(consume.getConsumeType())){
+//			consume.setDiscount(user.getDiscountPhone());
+//		}else if(RMSConstant.PRODUCT_TYPE_FLOW.equals(consume.getConsumeType())){
+//			consume.setDiscount(user.getDiscountFlow());
+//		}else{
+//			consume.setDiscount(RMSConstant.DEFAULT_DISCOUNT);
+//		}
 
 		double discountR = MathUtil.div(new Double(consume.getDiscount()), new Double(100), 2);
 		consume.setPayment(MathUtil.mul(consume.getConsumeAmount(), discountR, 2));
