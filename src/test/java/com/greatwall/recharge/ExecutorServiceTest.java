@@ -1,4 +1,4 @@
-package com.greatwall;
+package com.greatwall.recharge;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

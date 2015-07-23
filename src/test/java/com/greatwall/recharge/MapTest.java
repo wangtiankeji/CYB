@@ -1,4 +1,4 @@
-package com.greatwall;
+package com.greatwall.recharge;
 
 import java.util.HashMap;
 import java.util.Map;
