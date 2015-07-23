@@ -18,6 +18,23 @@
     from td_cyb_concern
     where CONCERN_ID = #{concernId,jdbcType=INTEGER}
   </select>
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Concern" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_concern
+    <where>
+    	<if test="concernId != null" >
+    		CONCERN_ID = #{concernId,jdbcType=INTEGER}
+    	</if>
+    	<if test="userId != null" >
+    		USER_ID = #{userId,jdbcType=INTEGER}
+    	</if>
+    	<if test="targetId != null" >
+    		TARGET_ID = #{targetId,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_concern
     where CONCERN_ID = #{concernId,jdbcType=INTEGER}
