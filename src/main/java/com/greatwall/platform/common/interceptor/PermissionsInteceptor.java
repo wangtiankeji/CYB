@@ -14,6 +14,8 @@ public class PermissionsInteceptor implements HandlerInterceptor  {
 //	private String loginUrl; //登录
 //	private String registUrl; //注册
 	private String redirectUrl; //重定向登录页
+	private String indexUrl; //
+	
 	private List<String> excludeUrl; //重定向登录页
 
 //	public void setRegistUrl(String registUrl) {
@@ -25,6 +27,15 @@ public class PermissionsInteceptor implements HandlerInterceptor  {
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
 	}
+	
+	public String getIndexUrl() {
+		return indexUrl;
+	}
+
+	public void setIndexUrl(String indexUrl) {
+		this.indexUrl = indexUrl;
+	}
+
 	public List<String> getExcludeUrl() {
 		return excludeUrl;
 	}
@@ -36,6 +47,9 @@ public class PermissionsInteceptor implements HandlerInterceptor  {
 			Object arg2) throws Exception {
 		//1、请求到登录页面 放行  
 		String urlPath = request.getServletPath();
+		if("/".equals(urlPath)){
+			return true;
+		}
 		if(excludeUrl!=null&&excludeUrl.size()>0){
 			for(String eurl : excludeUrl){
 				if(urlPath.startsWith(eurl)){

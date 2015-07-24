@@ -48,8 +48,8 @@
 		</javaClientGenerator>
 
 		<!-- 配置表信息 -->
-		<table schema="cyb" tableName="td_cyb_concern"
-			domainObjectName="Concern" enableCountByExample="false"
+		<table schema="cyb" tableName="td_sm_user"
+			domainObjectName="User" enableCountByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			enableUpdateByExample="false">
 			<!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample 

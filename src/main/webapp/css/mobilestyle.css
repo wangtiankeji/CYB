@@ -1,0 +1,68 @@
+/*整体设置*/
+html { height:100%;font-family: "Microsoft YaHei"}
+body { min-height: 100%; background-color: #f3f3f3; }
+.clear { height: 0; font-size: 0; line-height: 0; clear: both; }
+img { max-width: 100%; }
+ul{list-style: none;margin:0;padding:0}
+li,h2,p{margin:0;padding:0}
+h2{font-size:0.8rem;font-family: "Microsoft YaHei";color:#666666;font-weight: normal;}
+a{text-decoration:none;}
+/* 框架设置 */
+#header { min-width: 320px; }
+#container { min-width: 320px;}
+#footer { min-width: 320px; }
+/*头部设置*/
+.ui-bar-f{width: 100%;overflow: hidden;border: none;}
+.logo-bar{background-color: rgba(0,0,0,0.5);height:2.5rem;width:100%;
+    position: absolute;top:0;z-index: 100}
+.logo-bar .logo{float: left;margin:0.75rem;}
+.logo-bar .logo img{height:1rem;}
+.logo-bar .admin img{height: 1.2rem}
+.logo-bar .admin{float:right;margin:0.75rem;}
+/*焦点轮播图*/
+.swiper-container img{width:100%}
+.swiper-pagination-bullet { opacity:0.4; background: none; border:1.5px solid #ffffff;width:0.3rem;height:0.3rem;}
+.swiper-pagination-bullet-active { opacity: 1; background-color: #fff; }
+/*主体部分*/
+.ui-content-f{border: none;margin-top:-4px;}
+.content-item{width:100%;overflow: hidden;background: #ffffff;}
+.content-item ul{overflow: hidden;margin:0px auto;width: 90%;margin-top:0.4rem;}
+.content-item ul li{float:left;width:25%;text-align: center;margin:0.5rem 0px}
+.content-item ul li img{width:3.5rem;}
+.ui-content{padding: 0rem}
+
+.business-title{width:100%;margin:0.8rem 0 0 0;}
+.business-title span{display: inline-block;width:0.5rem;height: 0.5rem;background:#5cce49;margin-left:0.75rem;vertical-align: middle}
+.business-title h2{display: inline-block; color:#5cce49;font-size: 0.9rem;}
+
+.business-content{width: 90%;margin:0px auto;}
+.business-content ul{overflow: hidden;width:100%;}
+.business-content ul li{float: left;width:47%;height:10rem;background: #ffffff;text-align: center;margin:1%;border:1px solid #dddddd;}
+.business-content ul li img{width: 3rem;margin-top:1rem;}
+.business-content ul li h2{color:#333333;line-height: 1.2rem;font-weight: bold;}
+.business-content ul li p{font-size: 0.6rem; margin:0.4rem 0;color:#999999}
+.business-content ul li span{color:#5cce49;}
+
+/*底部信息*/
+.ui-footer-f{border: none;text-align: center;margin:0.8rem 0;}
+.ui-footer-f p{margin:0;font-size: 0.7rem;color:#999999;}
+
+
+/*login页面样式*/
+.login-content{width: 100%;border-top:1px solid #bbb;border-bottom: 1px solid #bbb;margin:1.2rem 0 2rem 0;background: #ffffff;}
+.ui-content-f2{text-align: center}
+.ui-content-f2 ul{padding-left:0.75rem;}
+.ui-content-f2 ul li{width: 100%;line-height: 3rem;padding-left:2rem;}
+.ui-content-f2 ul li:first-child{border-bottom: 1px solid #ddd;background: url("../img/icon_phonenumber.png")left center no-repeat;background-size: 1.5rem;}
+.ui-content-f2 ul li:last-child{background: url("../img/icon_repassword.png")left center no-repeat;background-size: 1.5rem;}
+.ui-content-f2 ul .password-box{border-bottom: 1px solid #ddd;background: url("../img/icon_password2.png")left center no-repeat;background-size: 1.5rem;}
+.ui-content-f2 ul li input{outline:none;border:none;border-shadow:none;width:100%;}
+.btn-login,.btn-regist{display:block;width:70%;height:2.8rem;background: #5cce49; border:none;color:#fff;margin:2rem auto;}
+.forget-password{color:#666666;text-align: center;font-size: 0.9rem}
+.ui-footer-f2{position: absolute;left:0;bottom:0;margin-bottom: 2rem;}
+.login-line{margin:1.5rem 0;width: 80%; margin: 0 auto;}
+.btn-regist{margin-bottom: 0.8rem;}
+.regist-item{font-size:0.7rem;color:#666666;font-family: "Microsoft YaHei"}
+.error{width: 35%;height:2rem;line-height:2rem;background: rgba(0,0,0,0.7);border-radius: 2px;position: absolute;color:#fff; font-size: 0.8rem;top:3rem;left:32%;}
+
+

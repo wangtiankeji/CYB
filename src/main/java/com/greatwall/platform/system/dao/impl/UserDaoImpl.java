@@ -15,26 +15,31 @@ import com.greatwall.platform.system.dto.User;
 @Repository
 public class UserDaoImpl extends MyBatisDao implements UserDao {
 
-	public User getUser(User user){
-		return this.get("userMapper.getUser",user);
+	public void saveUser(User user){
+		this.save("UserMapper.insert", user);
 	}
 	
-	public void saveUser(User user){
-		this.save("userMapper.insert", user);
+	
+	public User getUser(User user){
+		return this.get("UserMapper.getUser",user);
 	}
 	
 	public List<User> getUsers(User user,PageParameter page) throws DaoException{
-		return this.getListPage("userMapper.selectByQueryPage",user,page);
+		return this.getListPage("UserMapper.selectByQueryPage",user,page);
 	}
 	
 	public List<User> searchUsers(User user,PageParameter page) throws DaoException{
 		user.setLoginName("%"+user.getLoginName()+"%");
-		return this.getListPage("userMapper.searchUsersPage",user,page);
+		return this.getListPage("UserMapper.searchUsersPage",user,page);
 	}
 	
 	public int updateUser(User user){
-		return this.update("userMapper.updateByPrimaryKeySelective", user);
+		return this.update("UserMapper.updateByPrimaryKeySelective", user);
 	}
+	
+	
+	
+	
 	
 	public int updateBalance(Double amount,Integer version,Integer userId){
 		Map<String,Object> params = new HashMap<String,Object>();

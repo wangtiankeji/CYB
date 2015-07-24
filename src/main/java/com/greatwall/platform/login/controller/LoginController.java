@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.platform.login.service.LoginService;
@@ -27,6 +28,19 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@RequestMapping("/indexLogin")
+	public@ResponseBody String indexLogin(@RequestParam(value="loginName") String loginName,
+			@RequestParam(value="password") String password,HttpSession httpSession){
+		if(StringUtils.isBlank(loginName)||StringUtils.isBlank(password)){
+			return "用户名或密码为空";
+		}
+		
+		if(!loginService.checkLogin(loginName, password,httpSession)){
+			return "用户名或密码错误";
+		}
+		return "success";
+	}
 
 	@RequestMapping("/login")
 	public ModelAndView login() {

@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
  * @author fudk_k@sina.com
  * @update 2014-7-6
  */
-//@Controller
-//@RequestMapping("/mana/index")
+@Controller
+@RequestMapping("/index")
 public class IndexController {
 
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })

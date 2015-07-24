@@ -17,18 +17,20 @@
 
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
-	<!-- 当请求应用程序首页时，将执行/main请求，还可以设定成redirect -->
-	<mvc:view-controller path="/" view-name="forward:/main" />
+	<!-- 当请求应用程序首页时，将执行/main请求，还可以设定成redirect 
+	<mvc:view-controller path="/" view-name="forward:/index" />-->
+	<mvc:view-controller path="/" view-name="redirect:/index" />
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器,顺序执行 -->
 		<bean class="com.greatwall.platform.common.interceptor.PermissionsInteceptor">
 			<property name="redirectUrl" value="/login" />
+			<property name="indexUrl" value="/index" />
 			<property name="excludeUrl">
 				<list>
 					<value>/login</value>
 					<value>/regist</value>
-					<value>/rechargeapi</value>
+					<value>/index</value>
 				</list>
 			</property>
 		</bean>

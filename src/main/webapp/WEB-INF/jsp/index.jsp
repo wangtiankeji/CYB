@@ -4,420 +4,305 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8" />
-<title>短信系统</title>
-
-<link rel="stylesheet" href="${ctx}/styles/layout.css" type="text/css"
-	media="screen" />
-<!--[if lt IE 9]>
-	<link rel="stylesheet" href="${ctx}/styles/ie.css" type="text/css" media="screen" />
-	<![endif]-->
-	<script type="text/javascript" src="${ctx}/scripts/jquery-1.8.3.min.js"></script>
-<script src="${ctx}/scripts/hideshow.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/jquery.tablesorter.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="${ctx}/scripts/jquery.equalHeight.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() 
-    	{ 
-      	  $(".tablesorter").tablesorter(); 
-   	 } 
-	);
-	$(document).ready(function() {
-
-	//When page loads...
-	$(".tab_content").hide(); //Hide all content
-	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
-
-	//On Click Event
-	$("ul.tabs li").click(function() {
-
-		$("ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$(".tab_content").hide(); //Hide all tab content
-
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
-	});
-
-});
-    </script>
-<script type="text/javascript">
-    $(function(){
-        $('.column').equalHeight();
-    });
-</script>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="创客邦">
+    <meta name="keywords" content="创客邦">
+    <meta name="viewport" content="width=device-width" ,initial-scale="1" ,minium-scale="1" ,maximum-scale="1"
+          ,user-scalable="no">
+    <title>创客邦</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="${ctx}/css/jquery.mobile-1.4.5.min.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/css/swiper.min.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
 </head>
-
-
 <body>
+<!-- 首页-->
+<div data-role="page" id="page-index" data-theme="f" class="ui-body-f" id="page-home">
+    <div data-role="header" data-theme="f" class="ui-bar-f" id="header">
+        <div class="logo-bar">
+            <div class="logo"><a href="#page-index" id="a-index" data-transition="slide"><img src="img/logo.png" alt=""/></a></div>
+            <div class="admin"><a href="#page-login" data-transition="slide"><img src="img/icon-admin.png" alt=""/></a></div>
+        </div>
+        <!-- 焦点轮播图-->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div data-role="content" data-theme="f" class="ui-content-f" id="container">
+        <div class="content-item">
+            <ul>
+                <li><a href="javascript:void(0);"><img src="img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
+                <li><a href="javascript:void(0);"><img src="img/btn_table_pre.png" alt="众筹平台"/></a><h2>众筹平台</h2></li>
+            </ul>
+        </div>
+        <div class="business-title">
+            <span></span>
+            <h2>公司注册</h2>
+        </div>
+        <div class="business-content">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_signup.png" alt=""/>
+                        <h2>办公室</h2>
+                        <p>办公设施齐全直接入驻</p>
+                        <span>￥3000/间</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="img/icon_change.png" alt=""/>
+                        <h2>注册公司</h2>
+                        <p>快速帮您注册公司</p>
+                        <span>￥0元起</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_logoff.png" alt=""/>
+                        <h2>合伙协议</h2>
+                        <p>最大程度地保护创始人的<br>合法权益</p>
+                        <span>￥788元/份</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="img/icon_toget.png" alt=""/>
+                        <h2>创业咨询</h2>
+                        <p>各种创业问题专业<br>咨询解答</p>
+                        <span>￥0.1元/次</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="business-title">
+            <span></span>
+            <h2>找个会计代理记账</h2>
+        </div>
+        <div class="business-content">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_moon.png" alt=""/>
+                        <h2>代理记账</h2>
+                        <p>专业会计帮您记帐</p>
+                        <span>￥166起/月</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_year.png" alt=""/>
+                        <h2>代理记账（年付）</h2>
+                        <p>专业会计帮您记账</p>
+                        <span>￥2000/年</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="business-title">
+            <span></span>
+            <h2>资深法律顾问，保你创业无忧</h2>
+        </div>
+        <div class="business-content">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_ask.png" alt=""/>
+                        <h2>咨询律师</h2>
+                        <p>创业法律问题来咨询<br>专业律师</p>
+                        <span>￥56/小时</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_write.png" alt=""/>
+                        <h2>合同</h2>
+                        <p>专业律师帮您代写和<br>审核合同</p>
+                        <span>￥800</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_law.png" alt=""/>
+                        <h2>法律顾问</h2>
+                        <p>资深律师为创业公司提供<br>专业服务</p>
+                        <span>￥19800/年</span>
+                    </a>
+                </li>
 
-	<header id="header"> <hgroup>
-	<h1 class="site_title">
-		<a href="index.html">Website Admin</a>
-	</h1>
-	<h2 class="section_title">Dashboard</h2>
-	<div class="btn_view_site">
-		<a href="http://www.medialoot.com">View Site</a>
-	</div>
-	</hgroup> </header>
-	<!-- end of header bar -->
+            </ul>
+        </div>
+        <div class="business-title">
+            <span></span>
+            <h2>企业知识产权保护</h2>
+        </div>
+        <div class="business-content">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_continuer.png" alt=""/>
+                        <h2>商标注册</h2>
+                        <p>防止品牌名称被恶意盗用</p>
+                        <span>￥798/类</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="img/icon_apply.png" alt=""/>
+                        <h2>专利申请</h2>
+                        <p>保护技术研发成果</p>
+                        <span>￥988</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_book.png" alt=""/>
+                        <h2>著作权</h2>
+                        <p>保护作品版权</p>
+                        <span>￥788</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="business-title">
+            <span></span>
+            <h2>劳动人事解决方案</h2>
+        </div>
+        <div class="business-content">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_continuer.png" alt=""/>
+                        <h2>办理社保</h2>
+                        <p>为新员工办理五险一金</p>
+                        <span>￥16/人·月</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="img/icon_apply.png" alt=""/>
+                        <h2>人事</h2>
+                        <p>为您设计整体的劳动人事<br>解决方案</p>
+                        <span>￥1460</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="img/icon_book.png" alt=""/>
+                        <h2>人才外包</h2>
+                        <p>不再为找合伙人而烦恼</p>
+                        <span>￥3000起/人</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="footer" data-theme="f" class="ui-footer-f">
+        <p>创客邦科技（北京）有限公司</p>
+    </div>
+</div>
 
-	<section id="secondary_bar">
-	<div class="user">
-		<p>
-			John Doe (<a href="#">3 Messages</a>)
-		</p>
-		<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
-	</div>
-	<div class="breadcrumbs_container">
-		<article class="breadcrumbs">
-		<a href="index.html">Website Admin</a>
-		<div class="breadcrumb_divider"></div>
-		<a class="current">Dashboard</a></article>
-	</div>
-	</section>
-	<!-- end of secondary bar -->
+<!-- 登陆页-->
+<div data-role="page" id="page-login" data-theme="f">
+        <div data-role="content" data-theme="f" class="ui-content-f2">
+            <form id="frm-login" action="" method="post" class="validate">
+                <div class="login-content">
+                    <ul>
+                        <li><input type="tel" name="tel" id="logintel" class="required tel" data-role="none" placeholder="手机号"/></li>
+                        <li><input type="password" name="password" id="loginpassword" class="required password" data-role="none" placeholder="密码"/></li>
+                    </ul>
+                </div>
+                <button type="button" data-role="none" class="btn-login">登录</button>
+                <a href="tel:18612531150" class="forget-password">忘记密码？</a>
+                <div data-role="footer" data-theme="f" class="ui-footer-f2">
+                    <div class="login-line"><img src="img/login-line.png" alt=""/></div>
+                    <a href="#page-regist" data-role="none" class="forget-password" data-transition="slide">注册创客邦</a>
+                </div>
+                <!-- 错误状态-->
+                <div class="telerror error" style="display: none"><p>账号或密码错误</p></div>
+                <div class="noregist error" id="login-msg" style="display: none"><p>登录成功</p></div>
+            </form>
+        </div>
+</div>
 
-	<aside id="sidebar" class="column">
-	<form class="quick_search">
-		<input type="text" value="Quick Search"
-			onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-	</form>
-	<hr />
-	<h3>Content</h3>
-	<ul class="toggle">
-		<li class="icn_new_article"><a href="#">New Article</a></li>
-		<li class="icn_edit_article"><a href="#">Edit Articles</a></li>
-		<li class="icn_categories"><a href="#">Categories</a></li>
-		<li class="icn_tags"><a href="#">Tags</a></li>
-	</ul>
-	<h3>Users</h3>
-	<ul class="toggle">
-		<li class="icn_add_user"><a href="#">Add New User</a></li>
-		<li class="icn_view_users"><a href="#">View Users</a></li>
-		<li class="icn_profile"><a href="#">Your Profile</a></li>
-	</ul>
-	<h3>Media</h3>
-	<ul class="toggle">
-		<li class="icn_folder"><a href="#">File Manager</a></li>
-		<li class="icn_photo"><a href="#">Gallery</a></li>
-		<li class="icn_audio"><a href="#">Audio</a></li>
-		<li class="icn_video"><a href="#">Video</a></li>
-	</ul>
-	<h3>Admin</h3>
-	<ul class="toggle">
-		<li class="icn_settings"><a href="#">Options</a></li>
-		<li class="icn_security"><a href="#">Security</a></li>
-		<li class="icn_jump_back"><a href="#">Logout</a></li>
-	</ul>
-
-	<footer>
-	<hr />
-	<p>
-		<strong>Copyright &copy; 2011 Website Admin</strong>
-	</p>
-	<p>
-		Theme by <a href="http://www.medialoot.com">MediaLoot</a>
-	</p>
-	</footer> </aside>
-	<!-- end of sidebar -->
-
-	<section id="main" class="column">
-
-	<h4 class="alert_info">Welcome to the free MediaLoot admin panel
-		template, this could be an informative message.</h4>
-
-	<article class="module width_full"> <header>
-	<h3>Stats</h3>
-	</header>
-	<div class="module_content">
-		<article class="stats_graph">  </article>
-
-		<article class="stats_overview">
-		<div class="overview_today">
-			<p class="overview_day">Today</p>
-			<p class="overview_count">1,876</p>
-			<p class="overview_type">Hits</p>
-			<p class="overview_count">2,103</p>
-			<p class="overview_type">Views</p>
-		</div>
-		<div class="overview_previous">
-			<p class="overview_day">Yesterday</p>
-			<p class="overview_count">1,646</p>
-			<p class="overview_type">Hits</p>
-			<p class="overview_count">2,054</p>
-			<p class="overview_type">Views</p>
-		</div>
-		</article>
-		<div class="clear"></div>
-	</div>
-	</article><!-- end of stats article --> <article class="module width_3_quarter">
-	<header>
-	<h3 class="tabs_involved">Content Manager</h3>
-	<ul class="tabs">
-		<li><a href="#tab1">Posts</a></li>
-		<li><a href="#tab2">Comments</a></li>
-	</ul>
-	</header>
-
-	<div class="tab_container">
-		<div id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Entry Name</th>
-						<th>Category</th>
-						<th>Created On</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Lorem Ipsum Dolor Sit Amet</td>
-						<td>Articles</td>
-						<td>5th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Ipsum Lorem Dolor Sit Amet</td>
-						<td>Freebies</td>
-						<td>6th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Sit Amet Dolor Ipsum</td>
-						<td>Tutorials</td>
-						<td>10th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Dolor Lorem Amet</td>
-						<td>Articles</td>
-						<td>16th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Dolor Lorem Amet</td>
-						<td>Articles</td>
-						<td>16th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!-- end of #tab1 -->
-
-		<div id="tab2" class="tab_content">
-			<table class="tablesorter" cellspacing="0">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Comment</th>
-						<th>Posted by</th>
-						<th>Posted On</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Lorem Ipsum Dolor Sit Amet</td>
-						<td>Mark Corrigan</td>
-						<td>5th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Ipsum Lorem Dolor Sit Amet</td>
-						<td>Jeremy Usbourne</td>
-						<td>6th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Sit Amet Dolor Ipsum</td>
-						<td>Super Hans</td>
-						<td>10th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Dolor Lorem Amet</td>
-						<td>Alan Johnson</td>
-						<td>16th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>Dolor Lorem Amet</td>
-						<td>Dobby</td>
-						<td>16th April 2011</td>
-						<td><input type="image" src="${ctx}/images/icn_edit.png"
-							title="Edit"><input type="image"
-							src="${ctx}/images/icn_trash.png" title="Trash"></td>
-					</tr>
-				</tbody>
-			</table>
-
-		</div>
-		<!-- end of #tab2 -->
-
-	</div>
-	<!-- end of .tab_container --> </article><!-- end of content manager article -->
-
-	<article class="module width_quarter"> <header>
-	<h3>Messages</h3>
-	</header>
-	<div class="message_list">
-		<div class="module_content">
-			<div class="message">
-				<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-					dolor.</p>
-				<p>
-					<strong>John Doe</strong>
-				</p>
-			</div>
-			<div class="message">
-				<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-					dolor.</p>
-				<p>
-					<strong>John Doe</strong>
-				</p>
-			</div>
-			<div class="message">
-				<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-					dolor.</p>
-				<p>
-					<strong>John Doe</strong>
-				</p>
-			</div>
-			<div class="message">
-				<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-					dolor.</p>
-				<p>
-					<strong>John Doe</strong>
-				</p>
-			</div>
-			<div class="message">
-				<p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-					dolor.</p>
-				<p>
-					<strong>John Doe</strong>
-				</p>
-			</div>
-		</div>
-	</div>
-	<footer>
-	<form class="post_message">
-		<input type="text" value="Message"
-			onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-		<input type="submit" class="btn_post_message" value="" />
-	</form>
-	</footer> </article><!-- end of messages article -->
-
-	<div class="clear"></div>
-
-	<article class="module width_full"> <header>
-	<h3>Post New Article</h3>
-	</header>
-	<div class="module_content">
-		<fieldset>
-			<label>Post Title</label> <input type="text">
-		</fieldset>
-		<fieldset>
-			<label>Content</label>
-			<textarea rows="12"></textarea>
-		</fieldset>
-		<fieldset style="width: 48%; float: left; margin-right: 3%;">
-			<!-- to make two field float next to one another, adjust values accordingly -->
-			<label>Category</label> <select style="width: 92%;">
-				<option>Articles</option>
-				<option>Tutorials</option>
-				<option>Freebies</option>
-			</select>
-		</fieldset>
-		<fieldset style="width: 48%; float: left;">
-			<!-- to make two field float next to one another, adjust values accordingly -->
-			<label>Tags</label> <input type="text" style="width: 92%;">
-		</fieldset>
-		<div class="clear"></div>
-	</div>
-	<footer>
-	<div class="submit_link">
-		<select>
-			<option>Draft</option>
-			<option>Published</option>
-		</select> <input type="submit" value="Publish" class="alt_btn"> <input
-			type="submit" value="Reset">
-	</div>
-	</footer> </article><!-- end of post new article -->
-
-	<h4 class="alert_warning">A Warning Alert</h4>
-
-	<h4 class="alert_error">An Error Message</h4>
-
-	<h4 class="alert_success">A Success Message</h4>
-
-	<article class="module width_full"> <header>
-	<h3>Basic Styles</h3>
-	</header>
-	<div class="module_content">
-		<h1>Header 1</h1>
-		<h2>Header 2</h2>
-		<h3>Header 3</h3>
-		<h4>Header 4</h4>
-		<p>Cum sociis natoque penatibus et magnis dis parturient montes,
-			nascetur ridiculus mus. Cras mattis consectetur purus sit amet
-			fermentum. Maecenas faucibus mollis interdum. Maecenas faucibus
-			mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas
-			eget quam.</p>
-
-		<p>
-			Donec id elit non mi porta <a href="#">link text</a> gravida at eget
-			metus. Donec ullamcorper nulla non metus auctor fringilla. Cras
-			mattis consectetur purus sit amet fermentum. Aenean eu leo quam.
-			Pellentesque ornare sem lacinia quam venenatis vestibulum.
-		</p>
-
-		<ul>
-			<li>Donec ullamcorper nulla non metus auctor fringilla.</li>
-			<li>Cras mattis consectetur purus sit amet fermentum.</li>
-			<li>Donec ullamcorper nulla non metus auctor fringilla.</li>
-			<li>Cras mattis consectetur purus sit amet fermentum.</li>
-		</ul>
-	</div>
-	</article><!-- end of styles article -->
-	<div class="spacer"></div>
-	</section>
+<!--注册页-->
+<div data-role="page" id="page-regist" data-theme="f">
+    <div data-role="content" data-theme="f" class="ui-content-f2">
+        <form action="" method="post">
+            <div class="login-content">
+                <ul>
+                    <li><input type="tel" name="regist-tel"class="regist-tel" data-role="none" placeholder="手机号"/></li>
+                    <li class="password-box"><input type="password" name="password" class="password" data-role="none" placeholder="密码"/></li>
+                    <li><input type="password" name="password" class="password" data-role="none" placeholder="再次输入密码"/></li>
+                </ul>
+            </div>
+            <button type="button" data-role="none" class="btn-regist">提交</button>
+            <a class="regist-item" href="#" class="forget-password">提交注册即表示您同意<span style="color:#4b89dc">《创客邦服务条款》</span></a>
+            <div class="regist-format error" style="display: none"><p>手机号格式不正确</p></div>
+        </form>
+    </div>
+</div>
 
 
+
+<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
+<script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
+<script src="${ctx}/js/swiper.jquery.min.js"></script>
+<script type="text/javascript">
+$.mobile.ajaxEnabled=false
+//焦点轮播图
+    var swiper = new Swiper('.swiper-container', { autoplay: 3000, pagination: '.swiper-pagination', paginationClickable: true });
+//注册页手机号前端验证
+    $(".btn-regist").click(function(){
+        var sMobile = $(".regist-tel").val();
+        if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))){
+            $(".regist-format").show();
+            setTimeout(function(){
+                $(".regist-format").hide();
+            },1000)
+            return false;
+        }
+    });
+    
+    $(".btn-login").click(function(){
+    	var loginName = $("#logintel").val();
+    	var password = $("#loginpassword").val();
+    	$.ajax({
+			type : "POST",
+			url : "${ctx}/indexLogin",
+			data : {loginName:loginName,password:password},
+			success : function(msg) {
+				if (msg == 'success') {
+					$("#login-msg").attr("style","");
+					setTimeout(function() {
+						$("#a-index").click();
+					}, 500);
+					setTimeout(function() {
+						$("#login-msg").hide();
+					}, 1000);
+					
+				} else {
+					alert('查询失败！' + msg);
+				}
+			}
+		});
+	});
+</script>
 </body>
-
 </html>

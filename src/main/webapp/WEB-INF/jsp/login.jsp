@@ -6,7 +6,7 @@
 <head>
 <title>登录</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="${ctx}/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript"
 	src="${ctx}/js/validationEngine/jquery.validationEngine.js"></script>
 <script type="text/javascript"
