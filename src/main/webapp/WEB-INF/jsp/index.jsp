@@ -26,7 +26,19 @@
     <div data-role="header" data-theme="f" class="ui-bar-f" id="header">
         <div class="logo-bar">
             <div class="logo"><a href="#page-index" id="a-index" data-transition="slide"><img src="img/logo.png" alt=""/></a></div>
-            <div class="admin"><a href="#page-login" data-transition="slide"><img src="img/icon-admin.png" alt=""/></a></div>
+             <form id="frm-person" action="" method="post" class="validate">
+					<c:choose>
+						<c:when test="${not empty user}">   
+       					 	<div class="admin"><a href="#" id="a-person" data-transition="slide" data-ajax="false"><img src="img/icon-admin.png" alt="个人中心"/></a></div>
+      					</c:when>
+						<c:otherwise>   
+							<div class="admin"><a href="#page-login" id="a-login" data-transition="slide" ><img src="img/icon-admin.png" alt="登录"/></a></div>
+     			 		</c:otherwise>
+					</c:choose>
+					
+            
+            
+            </form>
         </div>
         <!-- 焦点轮播图-->
         <div class="swiper-container">
@@ -235,8 +247,7 @@
                     <a href="#page-regist" data-role="none" class="forget-password" data-transition="slide">注册创客邦</a>
                 </div>
                 <!-- 错误状态-->
-                <div class="telerror error" style="display: none"><p>账号或密码错误</p></div>
-                <div class="noregist error" id="login-msg" style="display: none"><p>登录成功</p></div>
+                <div class="telerror error" style="display: none"><p></p></div>
             </form>
         </div>
 </div>
@@ -247,62 +258,119 @@
         <form action="" method="post">
             <div class="login-content">
                 <ul>
-                    <li><input type="tel" name="regist-tel"class="regist-tel" data-role="none" placeholder="手机号"/></li>
-                    <li class="password-box"><input type="password" name="password" class="password" data-role="none" placeholder="密码"/></li>
-                    <li><input type="password" name="password" class="password" data-role="none" placeholder="再次输入密码"/></li>
+                    <li><input type="tel" name="regist-tel" id="regist-tel" class="regist-tel" data-role="none" placeholder="手机号"/></li>
+                    <li class="password-box"><input type="password" name="password" id="regist-password" class="password" data-role="none" placeholder="密码"/></li>
+                    <li><input type="password" name="password" id="regist-repassword" class="password" data-role="none" placeholder="再次输入密码"/></li>
                 </ul>
             </div>
             <button type="button" data-role="none" class="btn-regist">提交</button>
             <a class="regist-item" href="#" class="forget-password">提交注册即表示您同意<span style="color:#4b89dc">《创客邦服务条款》</span></a>
-            <div class="regist-format error" style="display: none"><p>手机号格式不正确</p></div>
+            <div class="regist-format error" style="display: none"><p></p></div>
         </form>
     </div>
 </div>
-
 
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.jquery.min.js"></script>
 <script type="text/javascript">
-$.mobile.ajaxEnabled=false
-//焦点轮播图
-    var swiper = new Swiper('.swiper-container', { autoplay: 3000, pagination: '.swiper-pagination', paginationClickable: true });
-//注册页手机号前端验证
-    $(".btn-regist").click(function(){
-        var sMobile = $(".regist-tel").val();
-        if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))){
-            $(".regist-format").show();
-            setTimeout(function(){
-                $(".regist-format").hide();
-            },1000)
-            return false;
-        }
-    });
-    
-    $(".btn-login").click(function(){
-    	var loginName = $("#logintel").val();
-    	var password = $("#loginpassword").val();
-    	$.ajax({
+
+	$(document).ready(function() {
+		
+		$("#a-person").click(function() {
+			$("#frm-person").attr("action","${ctx}/login");
+			$("#frm-person").submit();
+		});
+	});
+	$.mobile.ajaxEnabled = false
+	//焦点轮播图
+	var swiper = new Swiper('.swiper-container', {
+		autoplay : 3000,
+		pagination : '.swiper-pagination',
+		paginationClickable : true
+	});
+
+	function validate(sMobile, password, repassword) {
+		//注册页手机号前端验证
+		if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))) {
+			showTip(".regist-format", "手机号格式不正确");
+			return false;
+		}
+
+		if (password == '' || repassword == '') {
+			showTip(".regist-format", "密码不能为空");
+			return false;
+		}
+
+		if (password != repassword) {
+			showTip(".regist-format", "两次密码不一致");
+			return false;
+		}
+		return true;
+	}
+
+	$(".btn-login").click(function() {
+		var loginName = $("#logintel").val();
+		var password = $("#loginpassword").val();
+		$.ajax({
 			type : "POST",
 			url : "${ctx}/indexLogin",
-			data : {loginName:loginName,password:password},
+			data : {
+				loginName : loginName,
+				password : password
+			},
 			success : function(msg) {
 				if (msg == 'success') {
-					$("#login-msg").attr("style","");
+					showTip(".telerror", "登录成功");
 					setTimeout(function() {
-						$("#a-index").click();
+						//$.mobile.ajaxEnabled = false;
+						$("#frm-person").attr("action","${ctx}/index");
+						$("#frm-person").submit();
+						/* $("#a-index").click();
+						$("#a-index").hide();
+						$("#a-person").show(); */
 					}, 500);
-					setTimeout(function() {
-						$("#login-msg").hide();
-					}, 1000);
-					
 				} else {
-					alert('查询失败！' + msg);
+					showTip(".telerror", msg)
 				}
 			}
 		});
 	});
+
+	$(".btn-regist").click(function() {
+		var loginName = $(".regist-tel").val();
+		var password = $("#regist-password").val();
+		var repassword = $("#regist-repassword").val();
+		if (validate(loginName, password, repassword)) {
+			$.ajax({
+				type : "POST",
+				url : "${ctx}/regist",
+				data : {
+					loginName : loginName,
+					userPas : password
+				},
+				success : function(msg) {
+					if (msg == 'success') {
+						showTip(".regist-format", "注册成功");
+						setTimeout(function() {
+							$("#a-login").click();
+						}, 500);
+					} else {
+						showTip(".regist-format", msg)
+					}
+				}
+			});
+		}
+	});
+
+	function showTip(obj, msg) {
+		$(obj).find("p").text(msg);
+		$(obj).show();
+		setTimeout(function() {
+			$(obj).hide();
+		}, 1000);
+	}
 </script>
 </body>
 </html>

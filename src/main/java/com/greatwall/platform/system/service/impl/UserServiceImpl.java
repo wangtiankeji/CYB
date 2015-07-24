@@ -110,6 +110,14 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+	public void saveUser(User user){
+		user.setCreateTime(new Date());
+		user.setUserType(1);
+		if(user.getVersion()==null){
+			user.setVersion(1);
+		}
+		userDao.saveUser(user);
+	}
 	
 	public Boolean hasUser(User user){
 		User u = userDao.getUser(user);

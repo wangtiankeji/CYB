@@ -41,10 +41,6 @@
 
 <div class="left_side_bar">
 	<div class="msg_box">
-		话费余额：<span class="blue_num">${sessionScope.user.balance }</span>元<br /> 
-		流量余额：<span class="blue_num">${sessionScope.user.flowBalance }</span>元<br /> 
-		<%-- 话费折扣：<span class="blue_num"><fmt:formatNumber value="${sessionScope.user.discountPhone/10}" /></span>折<br /> 
-		流量折扣：<span class="blue_num"><fmt:formatNumber value="${sessionScope.user.discountFlow/10}" /></span>折<br />  --%>
 		<div class="left_button">
 			<a href="#"><img
 				src="${ctx}/images/Renew.jpg" alt="软件续费" width="73" height="28" /></a>

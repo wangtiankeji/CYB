@@ -11,8 +11,8 @@
 				<%-- <span style="color: red;font-size:16px;">${product.productPrice}元</span> --%> 
 				<span style="text-decoration:line-through">${product.productPrice}元</span>/
 				<span style="color: red;font-size:16px;">
-				<c:if test="${product.productType == 'phone'}"><fmt:formatNumber value="${product.productPrice*sessionScope.user.discountPhone/100}" /></c:if>
-				<c:if test="${product.productType == 'flow'}"><fmt:formatNumber value="${product.productPrice*sessionScope.user.discountFlow/100}" /></c:if>
+				<c:if test="${product.productType == 'phone'}"><fmt:formatNumber value="${product.productPrice}" /></c:if>
+				<c:if test="${product.productType == 'flow'}"><fmt:formatNumber value="${product.productPrice}" /></c:if>
 				元</span> 
 				</div>
 				

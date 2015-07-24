@@ -44,6 +44,7 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 
+	
 	@RequestMapping("/userManage")
 	public ModelAndView userManage(User user, ModelMap model) {
 		// model.addAttribute("roletree",
