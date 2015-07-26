@@ -19,8 +19,8 @@ public class ConcernDaoImpl extends MyBatisDao implements ConcernDao {
 	}
 
 	@Override
-	public int insert(Concern record) {
-		return this.save("ConcernMapper.insert",record);
+	public int insert(Concern concern) {
+		return this.save("ConcernMapper.insert",concern);
 	}
 
 	@Override
@@ -29,14 +29,14 @@ public class ConcernDaoImpl extends MyBatisDao implements ConcernDao {
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(Concern record) {
-		return this.update("ConcernMapper.updateByPrimaryKeySelective", record);
+	public int updateByPrimaryKeySelective(Concern concern) {
+		return this.update("ConcernMapper.updateByPrimaryKeySelective", concern);
 	}
 
 	@Override
-	public List<Concern> getPage(Concern complain, PageParameter page)
+	public List<Concern> getPage(Concern concern, PageParameter page)
 			throws DaoException {
-		return this.getListPage("ConcernMapper.selectPage", complain, page);
+		return this.getListPage("ConcernMapper.selectPage", concern, page);
 	}
 
 }

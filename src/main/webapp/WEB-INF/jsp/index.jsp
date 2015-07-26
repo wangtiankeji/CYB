@@ -74,7 +74,7 @@
                         <img src="img/icon_signup.png" alt=""/>
                         <h2>办公室</h2>
                         <p>办公设施齐全直接入驻</p>
-                        <span>￥3000/间</span>
+                        <span>${ infoParams.rentalOffice}</span>
                     </a>
                 </li>
                 <li>
@@ -82,7 +82,7 @@
                         <img src="img/icon_change.png" alt=""/>
                         <h2>注册公司</h2>
                         <p>快速帮您注册公司</p>
-                        <span>￥0元起</span>
+                        <span>${ infoParams.companyRegiste}</span>
                     </a>
                 </li>
                 <li>
@@ -90,7 +90,7 @@
                         <img src="img/icon_logoff.png" alt=""/>
                         <h2>合伙协议</h2>
                         <p>最大程度地保护创始人的<br>合法权益</p>
-                        <span>￥788元/份</span>
+                        <span>${ infoParams.cooperation}</span>
                     </a>
                 </li>
                 <li>
@@ -98,7 +98,7 @@
                         <img src="img/icon_toget.png" alt=""/>
                         <h2>创业咨询</h2>
                         <p>各种创业问题专业<br>咨询解答</p>
-                        <span>￥0.1元/次</span>
+                        <span>${ infoParams.consultation}</span>
                     </a>
                 </li>
             </ul>
@@ -114,7 +114,7 @@
                         <img src="img/icon_moon.png" alt=""/>
                         <h2>代理记账</h2>
                         <p>专业会计帮您记帐</p>
-                        <span>￥166起/月</span>
+                        <span>${ infoParams.accounting}</span>
                     </a>
                 </li>
                 <li>
@@ -122,7 +122,7 @@
                         <img src="img/icon_year.png" alt=""/>
                         <h2>代理记账（年付）</h2>
                         <p>专业会计帮您记账</p>
-                        <span>￥2000/年</span>
+                        <span>${ infoParams.accountingYear}</span>
                     </a>
                 </li>
             </ul>
@@ -138,7 +138,7 @@
                         <img src="img/icon_ask.png" alt=""/>
                         <h2>咨询律师</h2>
                         <p>创业法律问题来咨询<br>专业律师</p>
-                        <span>￥56/小时</span>
+                        <span>${ infoParams.consultLawyer}</span>
                     </a>
                 </li>
                 <li>
@@ -146,7 +146,7 @@
                         <img src="img/icon_write.png" alt=""/>
                         <h2>合同</h2>
                         <p>专业律师帮您代写和<br>审核合同</p>
-                        <span>￥800</span>
+                        <span>${ infoParams.contract}</span>
                     </a>
                 </li>
                 <li>
@@ -154,7 +154,7 @@
                         <img src="img/icon_law.png" alt=""/>
                         <h2>法律顾问</h2>
                         <p>资深律师为创业公司提供<br>专业服务</p>
-                        <span>￥19800/年</span>
+                        <span>${ infoParams.counselor}</span>
                     </a>
                 </li>
 
@@ -171,7 +171,7 @@
                         <img src="img/icon_continuer.png" alt=""/>
                         <h2>商标注册</h2>
                         <p>防止品牌名称被恶意盗用</p>
-                        <span>￥798/类</span>
+                        <span>${ infoParams.registrations}</span>
                     </a>
                 </li>
                 <li>
@@ -179,7 +179,7 @@
                         <img src="img/icon_apply.png" alt=""/>
                         <h2>专利申请</h2>
                         <p>保护技术研发成果</p>
-                        <span>￥988</span>
+                        <span>${ infoParams.patentApplication}</span>
                     </a>
                 </li>
                 <li>
@@ -187,7 +187,7 @@
                         <img src="img/icon_book.png" alt=""/>
                         <h2>著作权</h2>
                         <p>保护作品版权</p>
-                        <span>￥788</span>
+                        <span>${ infoParams.copyright}</span>
                     </a>
                 </li>
             </ul>
@@ -203,7 +203,7 @@
                         <img src="img/icon_continuer.png" alt=""/>
                         <h2>办理社保</h2>
                         <p>为新员工办理五险一金</p>
-                        <span>￥16/人·月</span>
+                        <span>${ infoParams.socialSecurity}</span>
                     </a>
                 </li>
                 <li>
@@ -211,7 +211,7 @@
                         <img src="img/icon_apply.png" alt=""/>
                         <h2>人事</h2>
                         <p>为您设计整体的劳动人事<br>解决方案</p>
-                        <span>￥1460</span>
+                        <span>${ infoParams.personnel}</span>
                     </a>
                 </li>
                 <li>
@@ -219,7 +219,7 @@
                         <img src="img/icon_book.png" alt=""/>
                         <h2>人才外包</h2>
                         <p>不再为找合伙人而烦恼</p>
-                        <span>￥3000起/人</span>
+                        <span>${ infoParams.outsourcing}</span>
                     </a>
                 </li>
             </ul>

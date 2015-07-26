@@ -10,13 +10,13 @@ import com.greatwall.platform.domain.PageParameter;
 public interface ConcernDao {
     int deleteByPrimaryKey(Integer concernId);
 
-    int insert(Concern record);
+    int insert(Concern concern);
 
     Concern selectByPrimaryKey(Integer concernId);
 
-    int updateByPrimaryKeySelective(Concern record);
+    int updateByPrimaryKeySelective(Concern concern);
     
-    public List<Concern> getPage(Concern complain, PageParameter page) throws DaoException;
+    public List<Concern> getPage(Concern concern, PageParameter page) throws DaoException;
     
 //
 //    int updateByPrimaryKey(Concern record);

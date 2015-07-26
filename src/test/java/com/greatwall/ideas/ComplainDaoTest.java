@@ -32,13 +32,12 @@ public class ComplainDaoTest {
         try  
         {  
         	Complain complain = new Complain();
-        	complain.setComplainContent("2222222");
+        	complain.setComplainContent("电饭锅电饭锅");
         	complain.setCreateTime(new Date());
         	complain.setState("enable");
         	complain.setUserId(123);
         	
         	complainDao.insert(complain);
-            System.out.println("=========");
         }  
         catch (Exception e)  
         {  
@@ -71,7 +70,12 @@ public class ComplainDaoTest {
         	Complain complain = new Complain();
         	
         	List<Complain> colist = complainDao.getPage(complain, page);
-            System.out.println("=========");
+        	if(colist!=null){
+        		for(Complain compl:colist){
+        			 System.out.println("========="+compl.getComplainContent());
+        		}
+        	}
+           
         }  
         catch (Exception e)  
         {  
