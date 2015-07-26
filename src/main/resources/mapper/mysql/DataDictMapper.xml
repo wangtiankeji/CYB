@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DataDictMapper" >
+  <resultMap id="BaseResultMap" type="com.greatwall.platform.system.dto.DataDict" >
+    <id column="DATA_ID" property="dataId" jdbcType="INTEGER" />
+    <result column="DATE_TYPE" property="dateType" jdbcType="VARCHAR" />
+    <result column="DATE_KEY" property="dateKey" jdbcType="VARCHAR" />
+    <result column="DATA_VALUE" property="dataValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DATA_ID, DATE_TYPE, DATE_KEY, DATA_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_sm_datadict
+    where DATA_ID = #{dataId,jdbcType=INTEGER}
+  </select>
+  <select id="select" resultMap="BaseResultMap" parameterType="com.greatwall.platform.system.dto.DataDict" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_sm_datadict
+    <where>
+    	<if test="dataId != null">
+    		DATA_ID = #{dataId,jdbcType=INTEGER}
+    	</if>
+    	<if test="dateType != null">
+    		DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+    	</if>
+    	<if test="dateKey != null">
+    		DATE_KEY = #{dateKey,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from td_sm_datadict
+    where DATA_ID = #{dataId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greatwall.platform.system.dto.DataDict" >
+    insert into td_sm_datadict (DATA_ID, DATE_TYPE, DATE_KEY, 
+      DATA_VALUE)
+    values (#{dataId,jdbcType=INTEGER}, #{dateType,jdbcType=VARCHAR}, #{dateKey,jdbcType=VARCHAR}, 
+      #{dataValue,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.platform.system.dto.DataDict" >
+    update td_sm_datadict
+    <set >
+      <if test="dateType != null" >
+        DATE_TYPE = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="dateKey != null" >
+        DATE_KEY = #{dateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dataValue != null" >
+        DATA_VALUE = #{dataValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DATA_ID = #{dataId,jdbcType=INTEGER}
+  </update>
+</mapper>
