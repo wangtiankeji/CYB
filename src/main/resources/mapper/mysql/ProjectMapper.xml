@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Project" >
+    <id column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
+    <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
+    <result column="PROJECT_STATE" property="projectState" jdbcType="VARCHAR" />
+    <result column="PROJECT_AREA" property="projectArea" jdbcType="INTEGER" />
+    <result column="PROJECT_DES" property="projectDes" jdbcType="VARCHAR" />
+    <result column="PROJECT_INTRO" property="projectIntro" jdbcType="VARCHAR" />
+    <result column="PEOPLE_NUM" property="peopleNum" jdbcType="INTEGER" />
+    <result column="MARKET_OUTLOOK" property="marketOutlook" jdbcType="VARCHAR" />
+    <result column="ADVANTAGE" property="advantage" jdbcType="VARCHAR" />
+    <result column="REQUIREMENTS_TYPE" property="requirementsType" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="PERSONAL_INTRO" property="personalIntro" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="HITS" property="hits" jdbcType="INTEGER" />
+    <result column="PROJECT_IMG" property="projectImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PROJECT_ID, PROJECT_NAME, PROJECT_STATE, PROJECT_AREA, PROJECT_DES, PROJECT_INTRO, 
+    PEOPLE_NUM, MARKET_OUTLOOK, ADVANTAGE, REQUIREMENTS_TYPE, CONTACT_PHONE, PERSONAL_INTRO, 
+    CREATE_TIME, USER_ID, HITS, PROJECT_IMG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_project
+    where PROJECT_ID = #{projectId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Project" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_project
+    <where>
+    	<if test="projectId != null">
+    	PROJECT_ID = #{projectId,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from td_cyb_project
+    where PROJECT_ID = #{projectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greatwall.ideas.dto.Project" >
+    insert into td_cyb_project (PROJECT_NAME, PROJECT_STATE, 
+      PROJECT_AREA, PROJECT_DES, PROJECT_INTRO, 
+      PEOPLE_NUM, MARKET_OUTLOOK, ADVANTAGE, 
+      REQUIREMENTS_TYPE, CONTACT_PHONE, PERSONAL_INTRO, 
+      CREATE_TIME, USER_ID, HITS, 
+      PROJECT_IMG)
+    values (#{projectName,jdbcType=VARCHAR}, #{projectState,jdbcType=VARCHAR}, 
+      #{projectArea,jdbcType=INTEGER}, #{projectDes,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
+      #{peopleNum,jdbcType=INTEGER}, #{marketOutlook,jdbcType=VARCHAR}, #{advantage,jdbcType=VARCHAR}, 
+      #{requirementsType,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{personalIntro,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{hits,jdbcType=INTEGER}, 
+      #{projectImg,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Project" >
+    update td_cyb_project
+    <set >
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectState != null" >
+        PROJECT_STATE = #{projectState,jdbcType=VARCHAR},
+      </if>
+      <if test="projectArea != null" >
+        PROJECT_AREA = #{projectArea,jdbcType=INTEGER},
+      </if>
+      <if test="projectDes != null" >
+        PROJECT_DES = #{projectDes,jdbcType=VARCHAR},
+      </if>
+      <if test="projectIntro != null" >
+        PROJECT_INTRO = #{projectIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null" >
+        PEOPLE_NUM = #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="marketOutlook != null" >
+        MARKET_OUTLOOK = #{marketOutlook,jdbcType=VARCHAR},
+      </if>
+      <if test="advantage != null" >
+        ADVANTAGE = #{advantage,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementsType != null" >
+        REQUIREMENTS_TYPE = #{requirementsType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personalIntro != null" >
+        PERSONAL_INTRO = #{personalIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        HITS = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="projectImg != null" >
+        PROJECT_IMG = #{projectImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROJECT_ID = #{projectId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="EventsMapper" >
+  <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Events" >
+    <id column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="EVENT_NAME" property="eventName" jdbcType="VARCHAR" />
+    <result column="EVENT_DES" property="eventDes" jdbcType="VARCHAR" />
+    <result column="EVENT_TYPE" property="eventType" jdbcType="VARCHAR" />
+    <result column="EVENT_TIME" property="eventTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="EVENT_ADDRESS" property="eventAddress" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="EVENT_TEL" property="eventTel" jdbcType="VARCHAR" />
+    <result column="EVENT_COST" property="eventCost" jdbcType="DOUBLE" />
+    <result column="AUTH" property="auth" jdbcType="VARCHAR" />
+    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="EVENT_IMG" property="eventImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EVENT_ID, EVENT_NAME, EVENT_DES, EVENT_TYPE, EVENT_TIME, CREATE_TIME, EFFECTIVE_TIME, 
+    EVENT_ADDRESS, USER_ID, EVENT_TEL, EVENT_COST, AUTH, ENABLE, EVENT_IMG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_events
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Events" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_events
+    <where>
+    	<if test="eventId != null" >
+        	EVENT_ID = #{eventId,jdbcType=INTEGER}
+      	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from td_cyb_events
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greatwall.ideas.dto.Events" >
+    insert into td_cyb_events (EVENT_NAME, EVENT_DES, 
+      EVENT_TYPE, EVENT_TIME, CREATE_TIME, 
+      EFFECTIVE_TIME, EVENT_ADDRESS, USER_ID, 
+      EVENT_TEL, EVENT_COST, AUTH, 
+      ENABLE, EVENT_IMG)
+    values (#{eventName,jdbcType=VARCHAR}, #{eventDes,jdbcType=VARCHAR}, 
+      #{eventType,jdbcType=VARCHAR}, #{eventTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{effectiveTime,jdbcType=TIMESTAMP}, #{eventAddress,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{eventTel,jdbcType=VARCHAR}, #{eventCost,jdbcType=DOUBLE}, #{auth,jdbcType=VARCHAR}, 
+      #{enable,jdbcType=VARCHAR}, #{eventImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.greatwall.ideas.dto.Events" >
+    insert into td_cyb_events
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="eventName != null" >
+        EVENT_NAME,
+      </if>
+      <if test="eventDes != null" >
+        EVENT_DES,
+      </if>
+      <if test="eventType != null" >
+        EVENT_TYPE,
+      </if>
+      <if test="eventTime != null" >
+        EVENT_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME,
+      </if>
+      <if test="eventAddress != null" >
+        EVENT_ADDRESS,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="eventTel != null" >
+        EVENT_TEL,
+      </if>
+      <if test="eventCost != null" >
+        EVENT_COST,
+      </if>
+      <if test="auth != null" >
+        AUTH,
+      </if>
+      <if test="enable != null" >
+        ENABLE,
+      </if>
+      <if test="eventImg != null" >
+        EVENT_IMG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="eventName != null" >
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventDes != null" >
+        #{eventDes,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null" >
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventAddress != null" >
+        #{eventAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="eventTel != null" >
+        #{eventTel,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCost != null" >
+        #{eventCost,jdbcType=DOUBLE},
+      </if>
+      <if test="auth != null" >
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="eventImg != null" >
+        #{eventImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Events" >
+    update td_cyb_events
+    <set >
+      <if test="eventName != null" >
+        EVENT_NAME = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventDes != null" >
+        EVENT_DES = #{eventDes,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        EVENT_TYPE = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        EVENT_TIME = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventAddress != null" >
+        EVENT_ADDRESS = #{eventAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="eventTel != null" >
+        EVENT_TEL = #{eventTel,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCost != null" >
+        EVENT_COST = #{eventCost,jdbcType=DOUBLE},
+      </if>
+      <if test="auth != null" >
+        AUTH = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        ENABLE = #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="eventImg != null" >
+        EVENT_IMG = #{eventImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
