@@ -26,7 +26,7 @@
 
 	$(document).ready(function() {
 		searchPage("${ctx}/system/user/getUsers");
-		trCss();
+		//trCss();
 		autoUser();
 	});
 

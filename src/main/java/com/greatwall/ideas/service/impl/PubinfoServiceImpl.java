@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.greatwall.ideas.dao.PubinfoDao;
 import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.ideas.service.PubinfoService;
+import com.greatwall.platform.base.dao.DaoException;
+import com.greatwall.platform.domain.PageParameter;
 
 /** 
  * @ClassName: PubinfoServiceImpl 
@@ -34,5 +36,10 @@ public class PubinfoServiceImpl implements PubinfoService {
 			}
 		}
 		return map;
+	}
+	
+	@Override
+	public List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page) throws DaoException{
+		return pubinfoDao.getPage(pubinfo, page);
 	}
 }

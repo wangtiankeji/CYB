@@ -15,7 +15,7 @@
 
 	$(document).ready(function() {
 		var searchData = {pageSize:8};
-		searchPage("${ctx}/product/getProductsMain",searchData,"","ul");
+		//searchPage("${ctx}/product/getProductsMain",searchData,"","ul");
 	});
 
 	var consumeDialog;
