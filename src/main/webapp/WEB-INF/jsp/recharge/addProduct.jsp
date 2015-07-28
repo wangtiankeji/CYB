@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>志晴CRM</title>
+<title>创客邦</title>
 
 <%@ include file="../common/head.jsp"%>
 

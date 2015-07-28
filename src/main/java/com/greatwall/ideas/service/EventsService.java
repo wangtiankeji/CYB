@@ -3,21 +3,21 @@ package com.greatwall.ideas.service;
 import java.util.List;
 import java.util.Map;
 
+import com.greatwall.ideas.dto.Events;
 import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
 
-public interface PubinfoService {
+public interface EventsService {
 
-	Map<String, String> getPubinfos(Pubinfo pubinfo);
 
-	List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page)
+	List<Events> getPage(Events events, PageParameter page)
 			throws DaoException;
 
-	int save(Pubinfo pubinfo);
+	int save(Events events);
 
-	Pubinfo getPubinfo(Integer infoId);
+	Events getEvents(Integer eventId);
 
-	int updatePubinfoByKey(Pubinfo pubinfo);
+	int updateEventsByKey(Events events);
 
 }

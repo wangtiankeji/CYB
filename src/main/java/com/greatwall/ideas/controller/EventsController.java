@@ -25,10 +25,10 @@ import com.greatwall.platform.domain.PageParameter;
  * @update 2014-7-6
  */
 @Controller
-@RequestMapping("/pubinfo")
-public class PubinfoController {
+@RequestMapping("/events")
+public class EventsController {
 	
-	Logger logger = Logger.getLogger(PubinfoController.class);
+	Logger logger = Logger.getLogger(EventsController.class);
 	
 	@Autowired
 	private PubinfoService pubinfoService;

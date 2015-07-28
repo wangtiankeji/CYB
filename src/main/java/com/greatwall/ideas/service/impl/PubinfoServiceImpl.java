@@ -42,4 +42,21 @@ public class PubinfoServiceImpl implements PubinfoService {
 	public List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page) throws DaoException{
 		return pubinfoDao.getPage(pubinfo, page);
 	}
+	
+	@Override
+	public int save(Pubinfo pubinfo){
+		return pubinfoDao.insert(pubinfo);
+	}
+	
+	@Override
+	public Pubinfo getPubinfo(Integer infoId){
+		return pubinfoDao.selectByPrimaryKey(infoId);
+	}
+	
+	@Override
+	public int updatePubinfoByKey(Pubinfo pubinfo){
+		return pubinfoDao.updateByPrimaryKey(pubinfo);
+	}
+	
+	
 }

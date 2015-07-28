@@ -16,7 +16,7 @@
 			<td><c:out value="${pubinfo.type}"/></td>
 			<td><c:out value="${pubinfo.valueKey}"/></td>
 			<td><c:out value="${pubinfo.noticeStr}"/></td>
-   			<td><a href="javascript:addOrUpdate('updateInit/${pubinfo.infoId}')">编辑</a>	</td>
+   			<td><a href="javascript:updatePubinfo('${pubinfo.infoId}')">编辑</a>	</td>
 		</tr>
 	</c:forEach>
 </table>

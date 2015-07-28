@@ -31,6 +31,14 @@ public class Events {
 
     private String eventImg;
 
+    private Integer concernCount;
+
+    private Integer commentLevel;
+
+    private Integer hits;
+
+    private String provider;
+
     public Integer getEventId() {
         return eventId;
     }
@@ -141,5 +149,37 @@ public class Events {
 
     public void setEventImg(String eventImg) {
         this.eventImg = eventImg == null ? null : eventImg.trim();
+    }
+
+    public Integer getConcernCount() {
+        return concernCount;
+    }
+
+    public void setConcernCount(Integer concernCount) {
+        this.concernCount = concernCount;
+    }
+
+    public Integer getCommentLevel() {
+        return commentLevel;
+    }
+
+    public void setCommentLevel(Integer commentLevel) {
+        this.commentLevel = commentLevel;
+    }
+
+    public Integer getHits() {
+        return hits;
+    }
+
+    public void setHits(Integer hits) {
+        this.hits = hits;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider == null ? null : provider.trim();
     }
 }

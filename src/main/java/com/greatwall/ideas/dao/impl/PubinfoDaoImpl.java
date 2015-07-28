@@ -40,7 +40,7 @@ public class PubinfoDaoImpl extends MyBatisDao implements PubinfoDao {
 
 	@Override
 	public int updateByPrimaryKey(Pubinfo pubinfo) {
-		return this.update("PubinfoMapper.updateByPrimaryKey", pubinfo);
+		return this.update("PubinfoMapper.updateByPrimaryKeySelective", pubinfo);
 	}
 
 }

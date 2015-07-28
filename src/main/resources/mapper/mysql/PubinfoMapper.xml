@@ -36,10 +36,10 @@
     <include refid="Base_Column_List" />
     from td_cyb_pubinfo
     <where>
-    	<if test="type != null" >
+    	<if test="type != null and type != ''" >
     		TYPE = #{type,jdbcType=VARCHAR}
     	</if>
-    	<if test="valueKey != null" >
+    	<if test="valueKey != null and valueKey != ''" >
     		VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
     	</if>
     </where>
