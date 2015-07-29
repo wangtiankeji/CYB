@@ -1,16 +1,12 @@
 package com.greatwall.ideas.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.greatwall.ideas.dao.EventsDao;
-import com.greatwall.ideas.dao.PubinfoDao;
 import com.greatwall.ideas.dto.Events;
-import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.ideas.service.EventsService;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
@@ -22,7 +18,7 @@ import com.greatwall.platform.domain.PageParameter;
  * @date 2015年7月26日 下午2:19:10 
  *  
  */
-@Service("pubinfoService")
+@Service("eventsService")
 public class EventsServiceImpl implements EventsService {
 
 	@Autowired

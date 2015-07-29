@@ -108,7 +108,7 @@
 					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 			</list>
 		</property>
-		<!-- <property name="webBindingInitializer">
+		<property name="webBindingInitializer">
 			<bean
 				class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
 				<property name="conversionService">
@@ -116,7 +116,7 @@
 						class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
 				</property>
 			</bean>
-		</property> -->
+		</property>
 	</bean>
 
 	<!-- 多视图处理器 -->

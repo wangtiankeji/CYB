@@ -2,6 +2,8 @@ package com.greatwall.ideas.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Events {
     private Integer eventId;
 
@@ -11,6 +13,7 @@ public class Events {
 
     private String eventType;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date eventTime;
 
     private Date createTime;
