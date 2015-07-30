@@ -1,8 +1,6 @@
 package com.greatwall.ideas.controller;
 
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,27 +25,27 @@ import com.greatwall.platform.domain.PageParameter;
 @Controller
 @RequestMapping("/pubinfo")
 public class PubinfoController {
-	
+
 	Logger logger = Logger.getLogger(PubinfoController.class);
-	
+
 	@Autowired
 	private PubinfoService pubinfoService;
 
-	
+
 	@RequestMapping("/showPubinfos")
 	public ModelAndView showPubinfos(){
 		return new ModelAndView("/ideas/pubinfo/showPubinfos.jsp");
 	}
-	
+
 	/**
-	* @Title: getPubinfos
-	* @Description: 得到参数信息列表
-	* @param pubinfo
-	* @param page
-	* @param model
-	* @return ModelAndView    返回类型
-	* @throws
-	*/ 
+	 * @Title: getPubinfos
+	 * @Description: 得到参数信息列表
+	 * @param pubinfo
+	 * @param page
+	 * @param model
+	 * @return ModelAndView    返回类型
+	 * @throws
+	 */ 
 	@RequestMapping("/getPubinfos")
 	public ModelAndView getPubinfos(Pubinfo pubinfo,PageParameter page,ModelMap model){
 		try {
@@ -65,7 +63,7 @@ public class PubinfoController {
 	public ModelAndView addInit(Model model) {
 		return new ModelAndView("/ideas/pubinfo/pubinfo.jsp");
 	}
-	
+
 	@RequestMapping("/updateInit/{infoId}")
 	public ModelAndView updateInit(@PathVariable Integer infoId,ModelMap model){
 		if(infoId>0){
@@ -73,7 +71,7 @@ public class PubinfoController {
 		}
 		return new ModelAndView("/ideas/pubinfo/pubinfo.jsp");
 	}
-	
+
 	@RequestMapping("/addPubinfo")
 	public@ResponseBody String addPubinfo(Pubinfo pubinfo){
 		try {
@@ -86,7 +84,7 @@ public class PubinfoController {
 			logger.error("保存错误", e);
 			return "保存错误";
 		}
-		
+
 	}
 	@RequestMapping("/updatePubinfo")
 	public@ResponseBody String updatePubinfo(Pubinfo pubinfo){
@@ -100,7 +98,7 @@ public class PubinfoController {
 			logger.error("保存错误", e);
 			return "保存错误";
 		}
-		
+
 		return "保存失败";
 	}
 }
