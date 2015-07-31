@@ -2,6 +2,9 @@ package com.greatwall.ideas.controller;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.ideas.dto.Events;
 import com.greatwall.ideas.service.EventsService;
+import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
 
 
@@ -25,10 +29,10 @@ import com.greatwall.platform.domain.PageParameter;
  * @update 2014-7-6
  */
 @Controller
-@RequestMapping("/events")
-public class EventsController {
+@RequestMapping("index/events")
+public class IndexEventsController {
 	
-	Logger logger = Logger.getLogger(EventsController.class);
+	Logger logger = Logger.getLogger(IndexEventsController.class);
 	
 	@Autowired
 	private EventsService eventsService;
@@ -39,26 +43,7 @@ public class EventsController {
 		return new ModelAndView("/ideas/events/showEvents.jsp");
 	}
 	
-	/**
-	* @Title: getEvents
-	* @Description: 得到参数信息列表
-	* @param pubinfo
-	* @param page
-	* @param model
-	* @return ModelAndView    返回类型
-	* @throws
-	*/ 
-	@RequestMapping("/getEvents")
-	public ModelAndView getEvents(Events events,PageParameter page,ModelMap model){
-		try {
-			model.addAttribute("eventses",eventsService.getPage(events, page));
-			model.addAttribute("page", page);
-		} catch (Exception e) {
-			logger.error("查询公共信息错误",e);
-			return new ModelAndView("/common/error.jsp");
-		}
-		return new ModelAndView("/ideas/events/events.jsp");
-	}
+	
 
 
 	@RequestMapping("/addInit")
@@ -107,8 +92,40 @@ public class EventsController {
 	
 	@RequestMapping("/showIndexEvents/{type}")
 	public ModelAndView showIndexEvents(@PathVariable String type){
+		String gotopage = "";
+		if("activity".equals(type)){
+			gotopage = "index/activity/showActivitys.jsp";
+		}
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(type+".jsp");
+		mav.setViewName(gotopage);
+		return mav;
+	}
+	@RequestMapping("/getIndexEvents")
+	public@ResponseBody Map<String,Object> getIndexEvents(Events events,PageParameter page,ModelMap model){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			map.put("events", eventsService.getPage(events, page));
+			map.put("page", page);
+			
+		} catch (DaoException e) {
+			logger.error("查询公共信息错误",e);
+		}
+		return map;
+//		try {
+//			model.addAttribute("eventses",eventsService.getPage(events, page));
+//			model.addAttribute("page", page);
+//		} catch (Exception e) {
+//			logger.error("查询公共信息错误",e);
+//			return new ModelAndView("/common/error.jsp");
+//		}
+//		return new ModelAndView("/ideas/events/events.jsp");
+	}
+	
+	@RequestMapping("/getIndexEvents/{type}/{eventId}")
+	public ModelAndView getIndexEvent(@PathVariable String type,
+			@PathVariable Integer eventId,ModelMap model){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index/"+type+"/details.jsp");
 		return mav;
 	}
 }

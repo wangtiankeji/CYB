@@ -12,7 +12,6 @@
     <th>团队人数</th>
     <th>需求合伙人</th>
     <th>发布日期</th>
-    <th>发布地点</th>
     <th>操作</th>
   </tr>
 	<c:forEach items="${projects}" var="project" varStatus="status">
@@ -25,11 +24,9 @@
 			</td>
 			<td><c:out value="${project.projectArea}"/></td>
 			<td><c:out value="${project.peopleNum}"/></td>
+			<td><c:out value="${project.projectDes}"/></td>
 			<td><c:out value="${project.requirementsType}"/></td>
-			<td></td>
-			<td><c:out value="${event.provider}"/></td>
-			<td><c:choose><c:when test="${event.enable == 'enable'}">有效</c:when>
-			<c:otherwise>无效</c:otherwise></c:choose></td>
+			<td><fmt:formatDate value="${project.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
    			<td><a href="javascript:updateEvents('${event.eventId}')">编辑</a>	</td>
 		</tr>
 	</c:forEach>

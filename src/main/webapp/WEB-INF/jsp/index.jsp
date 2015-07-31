@@ -56,7 +56,7 @@
                 <li><a href="javascript:void(0);"><img src="img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
                 <li><a href="javascript:void(0);"><img src="img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
                 <li><a href="javascript:void(0);"><img src="img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
+                <li><a href="index/events/showIndexEvents/activity" data-ajax=“false”><img src="img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
                 <li><a href="javascript:void(0);"><img src="img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
                 <li><a href="javascript:void(0);"><img src="img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
                 <li><a href="javascript:void(0);"><img src="img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
@@ -270,7 +270,12 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+$(document).bind("mobileinit", function() {
+                       //disable ajax nav
+                       $.mobile.ajaxEnabled=false
+               });
+</script>
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.jquery.min.js"></script>

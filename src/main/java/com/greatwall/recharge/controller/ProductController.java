@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.platform.domain.PageParameter;
-import com.greatwall.platform.system.dto.User;
 import com.greatwall.recharge.dto.Product;
 import com.greatwall.recharge.service.ProductService;
 
