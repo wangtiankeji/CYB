@@ -32,9 +32,6 @@
 	
     <div data-role="content" data-theme="f" class="pcenter-ac-content"  id="wrapper">
     <div id="scroller">
-    	<div id="pullDown">
-			<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
-		</div>
         <ul class="activity-box" id="thelist">
             <li>
                 <a href="${ctx }/index/events/getIndexEvents/activity/1" data-transition="slide" data-ajax=“false”> 
@@ -72,7 +69,7 @@
             </li>
         </ul>
         <div id="pullUp">
-			<span class="pullUpIcon"></span><span class="pullUpLabel">Pull up to refresh...</span>
+			<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 		</div>
        </div>
     </div>
@@ -111,175 +108,154 @@
     });
     
     
-    /**
-     * 下拉刷新 
-     * 
-     */
-    var myScroll,
-	pullDownEl, pullDownOffset,
-	pullUpEl, pullUpOffset,
-	generatedCount = 0 ,indexCurrentPage = 1;
+   
+	/**
+	 * 下拉刷新 
+	 * 
+	 */
+	var myScroll, pullUpEl, pullUpOffset;
 
-/**
- * 下拉刷新 （自定义实现此方法）
- * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
- */
-function pullDownAction () {
-	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-		/*
-		var el, li, i;
-		el = document.getElementById('thelist');
-
-		for (i=0; i<3; i++) {
-			li = document.createElement('li');
-			li.innerText = 'Generated row ' + (++generatedCount);
-			el.insertBefore(li, el.childNodes[0]);
-		}
-
-		<li><a href="#">
-				<img src="images/album-bb.jpg">
-				<h2>Broken Bells</h2>
-				<p>Broken Bells</p></a>
-			</li>
-		*/
-		$.ajax({
-			type : "POST",
-			dataType: "json",
-			url : "${ctx}/index/events/getIndexEvents",
-			data : {currentPage:(indexCurrentPage+1)},
-			success : function(data) {
-				 //var obj = jQuery.parseJSON(data);
-				 alert(data.page.currentPage);
-				 //indexCurrentPage = obj.page.currentPage;
-			}
-		});
+	var indexCurrentPage = 0;
+	/**
+	 * 滚动翻页 （自定义实现此方法）
+	 * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+	 */
+	function pullUpAction() {
+		setTimeout(function() { // <-- Simulate network congestion, remove setTimeout from production!
 
 			var content = "";
-			for (var i=1;i<3;i++){
-				content = content + "<li>";
-				content = content + "<a href=\"index2.html\">";
-				content = content + "<img src=\"images/album-bb.jpg\" />";
-				content = content + "<h2>";
-				content = content + "下拉新增内容<br/>"+new Date();
-				content = content + "</h2>";
-				content = content + "<p>";
-				content = content + "Broken Bells";
-				content = content + "</p>";				
-				content = content + "</a>";
-				content = content + "</li>";
-			}
-			//$("#thelist").prepend(content).listview('refresh');
-			$("#thelist").prepend(content);
-		
-		myScroll.refresh();		//数据加载完成后，调用界面更新方法   Remember to refresh when contents are loaded (ie: on ajax completion)
-	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
-}
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				url : "${ctx}/index/events/getIndexEvents",
+				data : {
+					currentPage : (indexCurrentPage + 1)
+				},
+				success : function(data) {
+					$(data.events).each(function(index, events) {
+						//alert(events.eventName);
+						content += getLiStr(events);
+					});
+					indexCurrentPage = data.page.currentPage;
+					$("#thelist").append(content);
+				}
+			});
+			//$("#thelist").append(content).listview('refresh');
 
-/**
- * 滚动翻页 （自定义实现此方法）
- * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
- */
-function pullUpAction () {
-	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
-		/*		
-		var el, li, i;
-		el = document.getElementById('thelist');
-
-		for (i=0; i<3; i++) {
-			li = document.createElement('li');
-			li.innerText = 'Generated row ' + (++generatedCount);
-			el.appendChild(li, el.childNodes[0]);
-		}
-		*/
-		
-		var content = "";
-		for (var i=1;i<3;i++){
-			content = content + "<li>";
-			content = content + "<a href=\"#\">";
-			content = content + "<img src=\"images/album-bb.jpg\" />";
-			content = content + "<h2>";
-			content = content + "下拉新增内容<br/>"+new Date();
-			content = content + "</h2>";
-			content = content + "<p>";
-			content = content + "Broken Bells";
-			content = content + "</p>";				
-			content = content + "</a>";
-			content = content + "</li>";
-		}
-		//$("#thelist").append(content).listview('refresh');
-		$("#thelist").prepend(content);
-		
-		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
-	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
-}
-
-/**
- * 初始化iScroll控件
- */
-function loaded() {
-	//清除所占的内存空间
-	if(myScroll!=null){
-		myScroll.destroy();
+			myScroll.refresh(); // 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+		}, 1000); // <-- Simulate network congestion, remove setTimeout from production!
 	}
 
-	pullDownEl = document.getElementById('pullDown');
-	pullDownOffset = pullDownEl.offsetHeight;
-	pullUpEl = document.getElementById('pullUp');	
-	pullUpOffset = pullUpEl.offsetHeight;
-	
-	myScroll = new iScroll('wrapper', {
-		useTransition: true,    //默认为true
-		//useTransition: false, 
-		topOffset: pullDownOffset,
-		onRefresh: function () {
-			if (pullDownEl.className.match('loading')) {
-				pullDownEl.className = '';
-				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-			} else if (pullUpEl.className.match('loading')) {
-				pullUpEl.className = '';
-				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-			}
-		},
-		onScrollMove: function () {
-			if (this.y > 5 && !pullDownEl.className.match('flip')) {
-				pullDownEl.className = 'flip';
-				pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
-				this.minScrollY = 0;
-			} else if (this.y < 5 && pullDownEl.className.match('flip')) {
-				pullDownEl.className = '';
-				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-				this.minScrollY = -pullDownOffset;
-			} else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
-				pullUpEl.className = 'flip';
-				pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
-				this.maxScrollY = this.maxScrollY;
-			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
-				pullUpEl.className = '';
-				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-				this.maxScrollY = pullUpOffset;
-			}
-		},
-		onScrollEnd: function () {
-			if (pullDownEl.className.match('flip')) {
-				pullDownEl.className = 'loading';
-				pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';				
-				pullDownAction();	// Execute custom function (ajax call?)
-			} else if (pullUpEl.className.match('flip')) {
-				pullUpEl.className = 'loading';
-				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';				
-				pullUpAction();	// Execute custom function (ajax call?)
-			}
+	/**
+	 * 初始化iScroll控件
+	 */
+	function loaded() {
+		//清除所占的内存空间
+		if (myScroll != null) {
+			myScroll.destroy();
 		}
-	});
+
+		pullUpEl = document.getElementById('pullUp');
+		pullUpOffset = pullUpEl.offsetHeight;
+
+		myScroll = new iScroll(
+				'wrapper',
+				{
+					useTransition : true, //默认为true
+					//useTransition: false, 
+					//topOffset: pullDownOffset,
+					onRefresh : function() {
+						if (pullUpEl.className.match('loading')) {
+							pullUpEl.className = '';
+							pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+						}
+					},
+					onScrollMove : function() {
+						if (this.y < (this.maxScrollY - 5)
+								&& !pullUpEl.className.match('flip')) {
+							pullUpEl.className = 'flip';
+							pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+							this.maxScrollY = this.maxScrollY;
+						} else if (this.y > (this.maxScrollY + 5)
+								&& pullUpEl.className.match('flip')) {
+							pullUpEl.className = '';
+							pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+							this.maxScrollY = pullUpOffset;
+						}
+					},
+					onScrollEnd : function() {
+						if (pullUpEl.className.match('flip')) {
+							pullUpEl.className = 'loading';
+							pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+							pullUpAction(); // Execute custom function (ajax call?)
+						}
+					}
+				});
+
+		document.getElementById('wrapper').style.left = '0';
+	}
+
+	//初始化绑定iScroll控件 
+	document.addEventListener('touchmove', function(e) {
+		e.preventDefault();
+	}, false);
+
+	//document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	document.addEventListener('DOMContentLoaded', loaded, false);
+
 	
-	document.getElementById('wrapper').style.left = '0'; 
-}
-
-//初始化绑定iScroll控件 
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
-//document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
-document.addEventListener('DOMContentLoaded', loaded, false); 
+	// 对Date的扩展，将 Date 转化为指定格式的String   
+    // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，   
+    // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)   
+    // 例子：   
+    // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423   
+    // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18   
+    Date.prototype.format = function(fmt)   
+    { //author: meizz   
+      var o = {   
+        "M+" : this.getMonth()+1,                 //月份   
+        "d+" : this.getDate(),                    //日   
+        "H+" : this.getHours(),                   //小时   
+        "m+" : this.getMinutes(),                 //分   
+        "s+" : this.getSeconds(),                 //秒   
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+        "S"  : this.getMilliseconds()             //毫秒   
+      };   
+      if(/(y+)/.test(fmt))   
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+      for(var k in o)   
+        if(new RegExp("("+ k +")").test(fmt))   
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+      return fmt;   
+    }  
+    
+	function getLiStr(events) {
+		var content = '';
+		var newTime = new Date(events.eventTime)
+		content = content + '<li>';
+		content = content
+				+ '<a href="${ctx }/index/events/getIndexEvents/activity/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
+		content = content + '<div class="act-item-left">';
+		content = content + '<img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
+		content = content + '</div>';
+		content = content + '<div class="act-item-right">';
+		content = content + '<h2>' + events.eventName + '</h2>';
+		content = content + '<div class="act-item-box">';
+		content = content + '<p>时间 <span>'+ newTime.format("MM月dd日 HH:mm")+'</span></p>';
+		//content = content + '<p>时间 <span>'+(newTime.getMonth()+1) +'月'+newTime.getDate()+'日 '+newTime.getHours()+':'+ newTime.getMinutes()+'</span></p>';
+		//content = content + '<p>时间 <span>' + events.eventTime + '</span></p>';
+		content = content + '<p>地点 ' + events.eventDes + '</p>';
+		content = content + '</div>';
+		content = content + '<div class="act-item-box2">';
+		content = content + '<span>' + ((events.concernCount==null)?0:events.concernCount) + '</span>人报名';
+		content = content + '</div>';
+		content = content + '</div>';
+		content = content + ' </a>';
+		content = content + '</li>';
+		return content;
+	}
+	
+    
 </script>
 </body>
 </html>
