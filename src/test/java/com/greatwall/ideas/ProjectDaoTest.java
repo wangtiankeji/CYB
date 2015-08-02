@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.greatwall.ideas.dao.EventsDao;
+import com.greatwall.ideas.dao.EventDao;
 import com.greatwall.ideas.dao.ProjectDao;
 import com.greatwall.ideas.dto.Concern;
-import com.greatwall.ideas.dto.Events;
+import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.platform.domain.PageParameter;
