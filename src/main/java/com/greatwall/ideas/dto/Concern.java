@@ -9,6 +9,8 @@ public class Concern {
 
     private Integer targetId;
 
+    private String targetType;
+
     private String phone;
 
     private String userName;
@@ -43,6 +45,14 @@ public class Concern {
 
     public void setTargetId(Integer targetId) {
         this.targetId = targetId;
+    }
+
+    public String getTargetType() {
+        return targetType;
+    }
+
+    public void setTargetType(String targetType) {
+        this.targetType = targetType == null ? null : targetType.trim();
     }
 
     public String getPhone() {

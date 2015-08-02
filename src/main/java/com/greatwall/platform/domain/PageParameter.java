@@ -9,7 +9,7 @@ public class PageParameter {
     /** 
     * @Fields DEFAULT_PAGE_SIZE : 默认每页显示数量 
     */ 
-    public static final int DEFAULT_PAGE_SIZE = 2;
+    public static final int DEFAULT_PAGE_SIZE = 10;
 
     /** 
     * @Fields pageSize : 每页显示数量 

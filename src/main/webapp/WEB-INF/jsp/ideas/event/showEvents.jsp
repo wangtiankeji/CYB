@@ -18,12 +18,12 @@
 
 	$(document).ready(function() {
 		var searchData = {state:'enable'};
-		searchPage("${ctx}/events/getEvents",searchData);
+		searchPage("${ctx}/event/getEvents",searchData);
 		//trCss();
 	});
 
 	function search() {
-		searchPage("${ctx}/events/getEvents",$("#eventsForm").serialize());
+		searchPage("${ctx}/event/getEvents",$("#eventsForm").serialize());
 	}
 
 	function trCss() {
@@ -36,10 +36,10 @@
 	}
 	
 	function addEvents(){
-		openDialog({url:"/events/addInit",callback:"saveEvents"});
+		openDialog({url:"/event/addInit",callback:"saveEvents"});
 	}
 	function updateEvents(id){
-		openDialog({url:"/events/updateInit/"+id,callback:"updateEvents"});
+		openDialog({url:"/event/updateInit/"+id,callback:"updateEvents"});
 	}
 	
 

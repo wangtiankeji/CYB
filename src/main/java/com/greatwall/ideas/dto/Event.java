@@ -2,21 +2,24 @@ package com.greatwall.ideas.dto;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-public class Events {
+public class Event {
     private Integer eventId;
 
     private String eventName;
 
-    private String eventDes;
-
     private String eventType;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date eventTime;
 
     private Date createTime;
+
+    private String eventDes;
+
+    private String eventGuest;
+
+    private String guestDes;
+
+    private String eventProcess;
 
     private Date effectiveTime;
 
@@ -25,6 +28,14 @@ public class Events {
     private Integer userId;
 
     private String eventTel;
+
+    private String website;
+
+    private String email;
+
+    private String weixin;
+
+    private String weibo;
 
     private Double eventCost;
 
@@ -36,9 +47,13 @@ public class Events {
 
     private Integer concernCount;
 
+    private Integer signUpNum;
+
     private Integer commentLevel;
 
     private Integer hits;
+
+    private Integer callNum;
 
     private String provider;
 
@@ -56,14 +71,6 @@ public class Events {
 
     public void setEventName(String eventName) {
         this.eventName = eventName == null ? null : eventName.trim();
-    }
-
-    public String getEventDes() {
-        return eventDes;
-    }
-
-    public void setEventDes(String eventDes) {
-        this.eventDes = eventDes == null ? null : eventDes.trim();
     }
 
     public String getEventType() {
@@ -88,6 +95,38 @@ public class Events {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getEventDes() {
+        return eventDes;
+    }
+
+    public void setEventDes(String eventDes) {
+        this.eventDes = eventDes == null ? null : eventDes.trim();
+    }
+
+    public String getEventGuest() {
+        return eventGuest;
+    }
+
+    public void setEventGuest(String eventGuest) {
+        this.eventGuest = eventGuest == null ? null : eventGuest.trim();
+    }
+
+    public String getGuestDes() {
+        return guestDes;
+    }
+
+    public void setGuestDes(String guestDes) {
+        this.guestDes = guestDes == null ? null : guestDes.trim();
+    }
+
+    public String getEventProcess() {
+        return eventProcess;
+    }
+
+    public void setEventProcess(String eventProcess) {
+        this.eventProcess = eventProcess == null ? null : eventProcess.trim();
     }
 
     public Date getEffectiveTime() {
@@ -120,6 +159,38 @@ public class Events {
 
     public void setEventTel(String eventTel) {
         this.eventTel = eventTel == null ? null : eventTel.trim();
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website == null ? null : website.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin == null ? null : weixin.trim();
+    }
+
+    public String getWeibo() {
+        return weibo;
+    }
+
+    public void setWeibo(String weibo) {
+        this.weibo = weibo == null ? null : weibo.trim();
     }
 
     public Double getEventCost() {
@@ -162,6 +233,14 @@ public class Events {
         this.concernCount = concernCount;
     }
 
+    public Integer getSignUpNum() {
+        return signUpNum;
+    }
+
+    public void setSignUpNum(Integer signUpNum) {
+        this.signUpNum = signUpNum;
+    }
+
     public Integer getCommentLevel() {
         return commentLevel;
     }
@@ -176,6 +255,14 @@ public class Events {
 
     public void setHits(Integer hits) {
         this.hits = hits;
+    }
+
+    public Integer getCallNum() {
+        return callNum;
+    }
+
+    public void setCallNum(Integer callNum) {
+        this.callNum = callNum;
     }
 
     public String getProvider() {

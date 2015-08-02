@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ConcernMapper" >
   <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Concern" >
-    <id column="CONCERN_ID" property="concernId" jdbcType="INTEGER" />
+     <id column="CONCERN_ID" property="concernId" jdbcType="INTEGER" />
     <result column="CONCERN_TYPE" property="concernType" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
     <result column="TARGET_ID" property="targetId" jdbcType="INTEGER" />
+    <result column="TARGET_TYPE" property="targetType" jdbcType="VARCHAR" />
     <result column="PHONE" property="phone" jdbcType="VARCHAR" />
     <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    CONCERN_ID, CONCERN_TYPE, USER_ID, TARGET_ID, PHONE, USER_NAME
+    CONCERN_ID, CONCERN_TYPE, USER_ID, TARGET_ID, TARGET_TYPE, PHONE, USER_NAME
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,18 +23,26 @@
     select 
     <include refid="Base_Column_List" />
     from td_cyb_concern
-    <where>
+   <include refid="selectWhere" />
+  </select>
+  
+  <sql id="selectWhere">
+   <where>
     	<if test="concernId != null" >
     		CONCERN_ID = #{concernId,jdbcType=INTEGER}
     	</if>
     	<if test="userId != null" >
-    		USER_ID = #{userId,jdbcType=INTEGER}
+    		and USER_ID = #{userId,jdbcType=INTEGER}
     	</if>
     	<if test="targetId != null" >
-    		TARGET_ID = #{targetId,jdbcType=INTEGER}
+    		and TARGET_ID = #{targetId,jdbcType=INTEGER}
     	</if>
+    	 <if test="concernType != null" >
+         	and CONCERN_TYPE = #{concernType,jdbcType=VARCHAR}
+      </if>
     </where>
-  </select>
+  </sql>
+  
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_concern
@@ -41,55 +50,13 @@
   </delete>
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Concern" >
     insert into td_cyb_concern (CONCERN_ID, CONCERN_TYPE, USER_ID, 
-      TARGET_ID, PHONE, USER_NAME
-      )
+      TARGET_ID, TARGET_TYPE, PHONE, 
+      USER_NAME)
     values (#{concernId,jdbcType=INTEGER}, #{concernType,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{targetId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}
-      )
+      #{targetId,jdbcType=INTEGER}, #{targetType,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.greatwall.ideas.dto.Concern" >
-    insert into td_cyb_concern
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="concernId != null" >
-        CONCERN_ID,
-      </if>
-      <if test="concernType != null" >
-        CONCERN_TYPE,
-      </if>
-      <if test="userId != null" >
-        USER_ID,
-      </if>
-      <if test="targetId != null" >
-        TARGET_ID,
-      </if>
-      <if test="phone != null" >
-        PHONE,
-      </if>
-      <if test="userName != null" >
-        USER_NAME,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="concernId != null" >
-        #{concernId,jdbcType=INTEGER},
-      </if>
-      <if test="concernType != null" >
-        #{concernType,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="targetId != null" >
-        #{targetId,jdbcType=INTEGER},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+ 
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Concern" >
     update td_cyb_concern
     <set >
@@ -101,6 +68,9 @@
       </if>
       <if test="targetId != null" >
         TARGET_ID = #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="targetType != null" >
+        TARGET_TYPE = #{targetType,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         PHONE = #{phone,jdbcType=VARCHAR},
@@ -116,6 +86,7 @@
     set CONCERN_TYPE = #{concernType,jdbcType=VARCHAR},
       USER_ID = #{userId,jdbcType=INTEGER},
       TARGET_ID = #{targetId,jdbcType=INTEGER},
+      TARGET_TYPE = #{targetType,jdbcType=VARCHAR},
       PHONE = #{phone,jdbcType=VARCHAR},
       USER_NAME = #{userName,jdbcType=VARCHAR}
     where CONCERN_ID = #{concernId,jdbcType=INTEGER}

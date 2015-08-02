@@ -15,7 +15,7 @@
     <th>是否有效</th>
     <th>操作</th>
   </tr>
-	<c:forEach items="${eventses}" var="event" varStatus="status">
+	<c:forEach items="${events}" var="event" varStatus="status">
 		<tr>
 			<td><c:out value="${status.count+page.pageSize*(page.currentPage-1)}"/></td>
 			<td><c:out value="${event.eventName}"/></td>

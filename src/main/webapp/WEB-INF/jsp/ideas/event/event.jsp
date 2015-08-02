@@ -33,7 +33,7 @@
 	function saveOrUdateUser(method) {
 		$.ajax({
 			type : "POST",
-			url : "${ctx}/events/" + method,
+			url : "${ctx}/event/" + method,
 			data : $("#eventsForm").serialize(),
 			success : function(msg) {
 				if (msg == 'success') {
@@ -75,8 +75,8 @@
 			<tr>
 				<td align="right">名称:</td>
 				<td><input type="text" id="eventName" name="eventName" 
-					value="${events.eventName }" class="validate[required,maxSize[30]]"/>
-					<input type="hidden" name="eventId" value="${events.eventId }"/></td>
+					value="${event.eventName }" class="validate[required,maxSize[30]]"/>
+					<input type="hidden" name="eventId" value="${event.eventId }"/></td>
 			</tr>
 			<tr>
 				<td align="right">类型:</td>
@@ -90,53 +90,53 @@
 			<tr>
 				<td align="right">图片:</td>
 				<td><input type="text" id="eventImg" name="eventImg" 
-					value="${events.eventImg }" style="display: none;" />
+					value="${event.eventImg }" style="display: none;" />
 					<img id="upload" alt="" style="width: 200px; height: 200px" 
-					<c:choose><c:when test="${empty events.eventImg }">src="${ctx}/img/btn_project_pre.png"</c:when><c:otherwise>src="${ctx}${events.eventImg }"</c:otherwise></c:choose> />
+					<c:choose><c:when test="${empty event.eventImg }">src="${ctx}/img/btn_project_pre.png"</c:when><c:otherwise>src="${ctx}${event.eventImg }"</c:otherwise></c:choose> />
 							<input id="fileToUpload" style="display: none" type="file" name="upfile">
       			</td>
 			</tr>
 			<tr>
 				<td align="right">活动时间:</td>
 				<td><input type="text" id="eventTime" name="eventTime" 
-					value="<fmt:formatDate value="${events.eventTime}" pattern="yyyy-MM-dd HH:mm"/>" class="Wdate" onclick="display()"/></td>
+					value="<fmt:formatDate value="${event.eventTime}" pattern="yyyy-MM-dd HH:mm"/>" class="Wdate" onclick="display()"/></td>
 			</tr>
 			<tr>
 				<td align="right">活动地址:</td>
 				<td><input type="text" id="eventAddress" name="eventAddress" 
-					value="${events.eventAddress }" /></td>
+					value="${event.eventAddress }" /></td>
 			</tr>
 			<tr>
 				<td align="right">联系电话:</td>
 				<td><input type="text" id="eventTel" name="eventTel" class="validate[custom[number]]"
-					value="${events.eventTel }" /></td>
+					value="${event.eventTel }" /></td>
 			</tr>
 			<tr>
 				<td align="right">培训费用:</td>
 				<td><input type="text" id="eventCost" name="eventCost" class="validate[custom[number]]"
-					value="${events.eventCost }" /></td>
+					value="${event.eventCost }" /></td>
 			</tr>
 			<tr>
 				<td align="right">是否认证:</td>
 				<td>已认证<input type="radio" id="auth" name="auth" value="certified" 
-				 <c:if test="${events.auth == 'certified'}">checked="checked"</c:if> />
+				 <c:if test="${event.auth == 'certified'}">checked="checked"</c:if> />
 				未认证<input type="radio" id="auth" name="auth" value="uncertifie"
-				<c:if test="${events.auth == 'uncertifie'}">checked="checked"</c:if>/></td>
+				<c:if test="${event.auth == 'uncertifie'}">checked="checked"</c:if>/></td>
 			</tr>
 			<tr>
 				<td align="right">是否有效:</td>
 				<td>已发布<input type="radio" id="enable" name="enable" value="enable" 
-				<c:if test="${events.enable == 'enable'}">checked="checked"</c:if>/>
+				<c:if test="${event.enable == 'enable'}">checked="checked"</c:if>/>
 				未发布<input type="radio" id="enable" name="enable" value="unable"
-				<c:if test="${events.enable == 'unable'}">checked="checked"</c:if> /></td>
+				<c:if test="${event.enable == 'unable'}">checked="checked"</c:if> /></td>
 			</tr>
 			<tr>
 				<td align="right">发布者:</td>
-				<td><input type="text" id="provider" name="provider" value="${events.provider }"/></td>
+				<td><input type="text" id="provider" name="provider" value="${event.provider }"/></td>
 			</tr>
 			<tr>
 				<td align="right">显示内容:</td>
-				<td><textarea rows="10" cols="25" name="eventDes" id="eventDes" class="validate[maxSize[500]]">${events.eventDes}</textarea>
+				<td><textarea rows="10" cols="25" name="eventDes" id="eventDes" class="validate[maxSize[500]]">${event.eventDes}</textarea>
 				</td>
 			</tr>
 		</table>

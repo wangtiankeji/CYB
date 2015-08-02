@@ -37,47 +37,47 @@
     <div data-role="content" data-theme="f" class="ac-details-content">
         <div class="details-title">
             <div class="details-innerbox">
-                <h2>创客活动足球比赛</h2>
+                <h2>${event.eventName }</h2>
                 <ul>
                     <li>
                         <h3>活动时间</h3>
-                        <p>05月12日 14:00</p>
+                        <p><fmt:formatDate value="${event.eventTime}" pattern="MM月dd日 HH:mm"/></p>
                     </li>
                     <li>
                         <h3>活动地点</h3>
-                        <p>北京市海淀区上地南路上地东里花莲旁边科贸大厦</p>
+                        <p>${event.eventAddress }</p>
                     </li>
                     <li>
                         <h3>报名人数</h3>
-                        <p>56人</p>
+                        <p><fmt:formatNumber value="${event.signUpNum }" pattern="#"/>人</p>
                     </li>
                 </ul>
-                <div class="registration-number">北京创客邦（北京）有限公司</div>
-                <div class="collection-number">收藏量 <span>100</span></div>
+                <div class="registration-number">${event.provider }</div>
+                <div class="collection-number">收藏量 <span>${event.concernCount }</span></div>
             </div>
         </div>
         <div class="ac-transition">
             <div class="details-innerbox">
                 <h2>活动介绍</h2>
-                <p>这是活动的介绍，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；这是活动的介绍，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；</p>
+                <p>${event.eventDes }</p>
             </div>
         </div>
         <div class="ac-process">
             <div class="details-innerbox">
                 <h2>活动流程</h2>
-                <p>这是活动的介绍，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；这是活动的介绍，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；</p>
+                <p>${event.eventProcess }</p>
             </div>
         </div>
         <div class="ac-guest">
             <div class="details-innerbox">
                 <h2>嘉宾介绍</h2>
-                <p>姓名：<span>李某某</span></p>
-                <p>李某某是某公司市场总监，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；这是活动的介绍，本次的活动的主题是让大家畅聊一下未来互联网发展的前景；</p>
+                <p>姓名：<span>${event.eventGuest }</span></p>
+                <p>${event.guestDes }</p>
             </div>
         </div>
     </div>
     <div data-role="footer" data-theme="f" class="ac-details-footer">
-        <div class="telnumber">咨询电话：400-1234-1234</div>
+        <div class="telnumber">咨询电话：${event.eventTel }</div>
         <button type="button" data-role="none" class="ac-details-re">报名</button>
 
     </div>
@@ -85,14 +85,19 @@
         <div class="ac-mask-inner">
             <div class="mask-close"><img src="${ctx }/img/icon_close_green_pre.png" alt=""/></div>
             <h2>活动报名</h2>
-            <form action="" method="post" class="ac-registration">
-                <input type="text" data-role="none" name="name" placeholder="姓名"/>
-                <input type="tel" data-role="none" name="tel" placeholder="电话"/>
+            <form action="" method="post" class="ac-registration" id="signup">
+                <input type="hidden" data-role="none" name="concernType" value="signup" />
+                <input type="hidden" data-role="none" name="targetId" value="${event.eventId }" />
+                <input type="hidden" data-role="none" name="targetType" value="activity" />
+                <input type="text" data-role="none" name="userName" placeholder="姓名"/>
+                <input type="tel" data-role="none" name="phone" placeholder="电话"/>
                 <button type="button" data-role="none" class="registration">提交</button>
             </form>
+            <div class="regist-format error" style="display: none"><p></p></div>
         </div>
     </div>
 
+</div>
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
     <script src="${ctx}/js/swiper.min.js"></script>
@@ -123,9 +128,35 @@
         $('.mask-close').click(function(){
             $('.ac-mask').hide();
         });
+        
+        $(".registration").click(function() {
+    			$.ajax({
+    				type : "POST",
+    				url : "${ctx}/index/concern/addConcern",
+    				data : $("#signup").serialize(),
+    				success : function(msg) {
+    					if (msg == 'success') {
+    						$(".ac-mask").hide();
+    						
+    						alert("报名成功");
+    						/* setTimeout(function() {
+    							showTip(".regist-format", "报名成功");
+    						}, 1000); */
+    					} else {
+    						showTip(".regist-format", msg)
+    					}
+    				}
+    			});
+    	});
+        
+        function showTip(obj, msg) {
+    		$(obj).find("p").text(msg);
+    		$(obj).show();
+    		setTimeout(function() {
+    			$(obj).hide();
+    		}, 1000);
+    	}
     </script>
-</div>
-
 
 </body>
 </html>

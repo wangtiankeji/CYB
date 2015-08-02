@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.greatwall.ideas.dto.Events;
-import com.greatwall.ideas.service.EventsService;
+import com.greatwall.ideas.dto.Event;
+import com.greatwall.ideas.service.EventService;
 import com.greatwall.platform.domain.PageParameter;
 
 
@@ -25,18 +25,18 @@ import com.greatwall.platform.domain.PageParameter;
  * @update 2014-7-6
  */
 @Controller
-@RequestMapping("/events")
-public class EventsController {
+@RequestMapping("/event")
+public class EventController {
 	
-	Logger logger = Logger.getLogger(EventsController.class);
+	Logger logger = Logger.getLogger(EventController.class);
 	
 	@Autowired
-	private EventsService eventsService;
+	private EventService eventService;
 
 	
 	@RequestMapping("/showEvents")
 	public ModelAndView showEvents(){
-		return new ModelAndView("/ideas/events/showEvents.jsp");
+		return new ModelAndView("/ideas/event/showEvents.jsp");
 	}
 	
 	/**
@@ -49,36 +49,36 @@ public class EventsController {
 	* @throws
 	*/ 
 	@RequestMapping("/getEvents")
-	public ModelAndView getEvents(Events events,PageParameter page,ModelMap model){
+	public ModelAndView getEvents(Event event,PageParameter page,ModelMap model){
 		try {
-			model.addAttribute("eventses",eventsService.getPage(events, page));
+			model.addAttribute("events",eventService.getPage(event, page));
 			model.addAttribute("page", page);
 		} catch (Exception e) {
 			logger.error("查询公共信息错误",e);
 			return new ModelAndView("/common/error.jsp");
 		}
-		return new ModelAndView("/ideas/events/events.jsp");
+		return new ModelAndView("/ideas/event/events.jsp");
 	}
 
 
 	@RequestMapping("/addInit")
 	public ModelAndView addInit(Model model) {
-		return new ModelAndView("/ideas/events/event.jsp");
+		return new ModelAndView("/ideas/event/event.jsp");
 	}
 	
 	@RequestMapping("/updateInit/{eventId}")
 	public ModelAndView updateInit(@PathVariable Integer eventId,ModelMap model){
 		if(eventId!=null&&eventId>0){
-			model.addAttribute("events", eventsService.getEvents(eventId));
+			model.addAttribute("event", eventService.getEvent(eventId));
 		}
-		return new ModelAndView("/ideas/events/event.jsp");
+		return new ModelAndView("/ideas/event/event.jsp");
 	}
 	
 	@RequestMapping("/addEvents")
-	public@ResponseBody String addEvents(Events events){
+	public@ResponseBody String addEvents(Event event){
 		try {
-			events.setCreateTime(new Date());
-			if(eventsService.save(events)==1){
+			event.setCreateTime(new Date());
+			if(eventService.save(event)==1){
 				return "success";
 			}else{
 				return "保存失败";
@@ -90,10 +90,10 @@ public class EventsController {
 		
 	}
 	@RequestMapping("/updateEvents")
-	public@ResponseBody String updateEvents(Events events){
+	public@ResponseBody String updateEvents(Event event){
 		try {
-			if(events!=null&&events.getEventId()!=null){
-				if(eventsService.updateEventsByKey(events)==1){
+			if(event!=null&&event.getEventId()!=null){
+				if(eventService.updateEventByKey(event)==1){
 					return "success";
 				}
 			}

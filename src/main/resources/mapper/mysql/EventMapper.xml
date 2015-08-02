@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="EventMapper" >
+  <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Event" >
+    <id column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="EVENT_NAME" property="eventName" jdbcType="VARCHAR" />
+    <result column="EVENT_TYPE" property="eventType" jdbcType="VARCHAR" />
+    <result column="EVENT_TIME" property="eventTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EVENT_DES" property="eventDes" jdbcType="VARCHAR" />
+    <result column="EVENT_GUEST" property="eventGuest" jdbcType="VARCHAR" />
+    <result column="GUEST_DES" property="guestDes" jdbcType="VARCHAR" />
+    <result column="EVENT_PROCESS" property="eventProcess" jdbcType="VARCHAR" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="EVENT_ADDRESS" property="eventAddress" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="EVENT_TEL" property="eventTel" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="website" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="WEIXIN" property="weixin" jdbcType="VARCHAR" />
+    <result column="WEIBO" property="weibo" jdbcType="VARCHAR" />
+    <result column="EVENT_COST" property="eventCost" jdbcType="DOUBLE" />
+    <result column="AUTH" property="auth" jdbcType="VARCHAR" />
+    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="EVENT_IMG" property="eventImg" jdbcType="VARCHAR" />
+    <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
+    <result column="SIGN_UP_NUM" property="signUpNum" jdbcType="INTEGER" />
+    <result column="COMMENT_LEVEL" property="commentLevel" jdbcType="INTEGER" />
+    <result column="HITS" property="hits" jdbcType="INTEGER" />
+    <result column="CALL_NUM" property="callNum" jdbcType="INTEGER" />
+    <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EVENT_ID, EVENT_NAME, EVENT_TYPE, EVENT_TIME, CREATE_TIME, EVENT_DES, EVENT_GUEST, 
+    GUEST_DES, EVENT_PROCESS, EFFECTIVE_TIME, EVENT_ADDRESS, USER_ID, EVENT_TEL, WEBSITE, 
+    EMAIL, WEIXIN, WEIBO, EVENT_COST, AUTH, ENABLE, EVENT_IMG, CONCERN_COUNT, SIGN_UP_NUM, 
+    COMMENT_LEVEL, HITS, CALL_NUM, PROVIDER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_event
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Event" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_event
+    <where>
+    	<if test="eventId != null" >
+        	EVENT_ID = #{eventId,jdbcType=INTEGER}
+      	</if>
+      	<if test="eventType != null" >
+        	and EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from td_cyb_event
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greatwall.ideas.dto.Event" >
+     insert into td_cyb_event (EVENT_ID, EVENT_NAME, EVENT_TYPE, 
+      EVENT_TIME, CREATE_TIME, EVENT_DES, 
+      EVENT_GUEST, GUEST_DES, EVENT_PROCESS, 
+      EFFECTIVE_TIME, EVENT_ADDRESS, USER_ID, 
+      EVENT_TEL, WEBSITE, EMAIL, 
+      WEIXIN, WEIBO, EVENT_COST, 
+      AUTH, ENABLE, EVENT_IMG, 
+      CONCERN_COUNT, SIGN_UP_NUM, COMMENT_LEVEL, 
+      HITS, CALL_NUM, PROVIDER
+      )
+    values (#{eventId,jdbcType=INTEGER}, #{eventName,jdbcType=VARCHAR}, #{eventType,jdbcType=VARCHAR}, 
+      #{eventTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{eventDes,jdbcType=VARCHAR}, 
+      #{eventGuest,jdbcType=VARCHAR}, #{guestDes,jdbcType=VARCHAR}, #{eventProcess,jdbcType=VARCHAR}, 
+      #{effectiveTime,jdbcType=TIMESTAMP}, #{eventAddress,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{eventTel,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{weixin,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{eventCost,jdbcType=DOUBLE}, 
+      #{auth,jdbcType=VARCHAR}, #{enable,jdbcType=VARCHAR}, #{eventImg,jdbcType=VARCHAR}, 
+      #{concernCount,jdbcType=INTEGER}, #{signUpNum,jdbcType=INTEGER}, #{commentLevel,jdbcType=INTEGER}, 
+      #{hits,jdbcType=INTEGER}, #{callNum,jdbcType=INTEGER}, #{provider,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+   <update id="addSignUpNum" parameterType="java.lang.Integer" >
+   	update td_cyb_event set SIGN_UP_NUM = SIGN_UP_NUM + 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+   <update id="subSignUpNum" parameterType="java.lang.Integer" >
+   	update td_cyb_event set SIGN_UP_NUM = SIGN_UP_NUM - 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+   <update id="addHits" parameterType="java.lang.Integer" >
+   	update td_cyb_event set hits = hits + 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+   <update id="addCallNum" parameterType="java.lang.Integer" >
+   	update td_cyb_event set CALL_NUM = CALL_NUM + 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+    <update id="addConcernCount" parameterType="java.lang.Integer" >
+   	update td_cyb_event set CONCERN_COUNT = CONCERN_COUNT + 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+    <update id="subConcernCount" parameterType="java.lang.Integer" >
+   	update td_cyb_event set CONCERN_COUNT = CONCERN_COUNT - 1 
+	where EVENT_ID = #{eventId,jdbcType=INTEGER}
+   </update>
+   
+   
+  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Event" >
+    update td_cyb_event
+    <set >
+      <if test="eventName != null" >
+        EVENT_NAME = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        EVENT_TYPE = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null" >
+        EVENT_TIME = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventDes != null" >
+        EVENT_DES = #{eventDes,jdbcType=VARCHAR},
+      </if>
+      <if test="eventGuest != null" >
+        EVENT_GUEST = #{eventGuest,jdbcType=VARCHAR},
+      </if>
+      <if test="guestDes != null" >
+        GUEST_DES = #{guestDes,jdbcType=VARCHAR},
+      </if>
+      <if test="eventProcess != null" >
+        EVENT_PROCESS = #{eventProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveTime != null" >
+        EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventAddress != null" >
+        EVENT_ADDRESS = #{eventAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="eventTel != null" >
+        EVENT_TEL = #{eventTel,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        WEBSITE = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        WEIXIN = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null" >
+        WEIBO = #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCost != null" >
+        EVENT_COST = #{eventCost,jdbcType=DOUBLE},
+      </if>
+      <if test="auth != null" >
+        AUTH = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        ENABLE = #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="eventImg != null" >
+        EVENT_IMG = #{eventImg,jdbcType=VARCHAR},
+      </if>
+      <if test="concernCount != null" >
+        CONCERN_COUNT = #{concernCount,jdbcType=INTEGER},
+      </if>
+      <if test="signUpNum != null" >
+        SIGN_UP_NUM = #{signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentLevel != null" >
+        COMMENT_LEVEL = #{commentLevel,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        HITS = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="callNum != null" >
+        CALL_NUM = #{callNum,jdbcType=INTEGER},
+      </if>
+      <if test="provider != null" >
+        PROVIDER = #{provider,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </update>
+</mapper>

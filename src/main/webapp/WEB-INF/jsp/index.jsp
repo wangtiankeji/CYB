@@ -25,27 +25,25 @@
 <div data-role="page" id="page-index" data-theme="f" class="ui-body-f" id="page-home">
     <div data-role="header" data-theme="f" class="ui-bar-f" id="header">
         <div class="logo-bar">
-            <div class="logo"><a href="#page-index" id="a-index" data-transition="slide"><img src="img/logo.png" alt=""/></a></div>
+            <div class="logo"><a href="#page-index" id="a-index" data-transition="slide"><img src="${ctx}/img/logo.png" alt=""/></a></div>
              <form id="frm-person" action="" method="post" class="validate">
 					<c:choose>
 						<c:when test="${not empty user}">   
-       					 	<div class="admin"><a href="#" id="a-person" data-transition="slide" data-ajax="false"><img src="img/icon-admin.png" alt="个人中心"/></a></div>
+       					 	<div class="admin"><a href="#" id="a-person" data-transition="slide" data-ajax="false"><img src="${ctx}/img/icon-admin.png" alt="个人中心"/></a></div>
       					</c:when>
 						<c:otherwise>   
-							<div class="admin"><a href="#page-login" id="a-login" data-transition="slide" ><img src="img/icon-admin.png" alt="登录"/></a></div>
+							<div class="admin"><a href="#page-login" id="a-login" data-transition="slide" ><img src="${ctx}/img/icon-admin.png" alt="登录"/></a></div>
      			 		</c:otherwise>
 					</c:choose>
-					
-            
             
             </form>
         </div>
         <!-- 焦点轮播图-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
-                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
-                <div class="swiper-slide"><img src="img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -53,14 +51,14 @@
     <div data-role="content" data-theme="f" class="ui-content-f" id="container">
         <div class="content-item">
             <ul>
-                <li><a href="javascript:void(0);"><img src="img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
-                <li><a href="index/events/showIndexEvents/activity" data-ajax=“false”><img src="img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
-                <li><a href="javascript:void(0);"><img src="img/btn_table_pre.png" alt="众筹平台"/></a><h2>众筹平台</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
+                <li><a href="${ctx}/index/showIndexEvents/incubator" data-ajax=“false”><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
+                <li><a href="${ctx}/index/showIndexEvents/activity" data-ajax=“false”><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
+                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_table_pre.png" alt="众筹平台"/></a><h2>众筹平台</h2></li>
             </ul>
         </div>
         <div class="business-title">
@@ -71,7 +69,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        <img src="img/icon_signup.png" alt=""/>
+                        <img src="${ctx}/img/icon_signup.png" alt=""/>
                         <h2>办公室</h2>
                         <p>办公设施齐全直接入驻</p>
                         <span>${ infoParams.rentalOffice}</span>
@@ -79,7 +77,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="img/icon_change.png" alt=""/>
+                        <img src="${ctx}/img/icon_change.png" alt=""/>
                         <h2>注册公司</h2>
                         <p>快速帮您注册公司</p>
                         <span>${ infoParams.companyRegiste}</span>
@@ -87,7 +85,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_logoff.png" alt=""/>
+                        <img src="${ctx}/img/icon_logoff.png" alt=""/>
                         <h2>合伙协议</h2>
                         <p>最大程度地保护创始人的<br>合法权益</p>
                         <span>${ infoParams.cooperation}</span>
@@ -95,7 +93,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="img/icon_toget.png" alt=""/>
+                        <img src="${ctx}/img/icon_toget.png" alt=""/>
                         <h2>创业咨询</h2>
                         <p>各种创业问题专业<br>咨询解答</p>
                         <span>${ infoParams.consultation}</span>
@@ -111,7 +109,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        <img src="img/icon_moon.png" alt=""/>
+                        <img src="${ctx}/img/icon_moon.png" alt=""/>
                         <h2>代理记账</h2>
                         <p>专业会计帮您记帐</p>
                         <span>${ infoParams.accounting}</span>
@@ -119,7 +117,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_year.png" alt=""/>
+                        <img src="${ctx}/img/icon_year.png" alt=""/>
                         <h2>代理记账（年付）</h2>
                         <p>专业会计帮您记账</p>
                         <span>${ infoParams.accountingYear}</span>
@@ -135,7 +133,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        <img src="img/icon_ask.png" alt=""/>
+                        <img src="${ctx}/img/icon_ask.png" alt=""/>
                         <h2>咨询律师</h2>
                         <p>创业法律问题来咨询<br>专业律师</p>
                         <span>${ infoParams.consultLawyer}</span>
@@ -143,7 +141,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_write.png" alt=""/>
+                        <img src="${ctx}/img/icon_write.png" alt=""/>
                         <h2>合同</h2>
                         <p>专业律师帮您代写和<br>审核合同</p>
                         <span>${ infoParams.contract}</span>
@@ -151,7 +149,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_law.png" alt=""/>
+                        <img src="${ctx}/img/icon_law.png" alt=""/>
                         <h2>法律顾问</h2>
                         <p>资深律师为创业公司提供<br>专业服务</p>
                         <span>${ infoParams.counselor}</span>
@@ -168,7 +166,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        <img src="img/icon_continuer.png" alt=""/>
+                        <img src="${ctx}/img/icon_continuer.png" alt=""/>
                         <h2>商标注册</h2>
                         <p>防止品牌名称被恶意盗用</p>
                         <span>${ infoParams.registrations}</span>
@@ -176,7 +174,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="img/icon_apply.png" alt=""/>
+                        <img src="${ctx}/img/icon_apply.png" alt=""/>
                         <h2>专利申请</h2>
                         <p>保护技术研发成果</p>
                         <span>${ infoParams.patentApplication}</span>
@@ -184,7 +182,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_book.png" alt=""/>
+                        <img src="${ctx}/img/icon_book.png" alt=""/>
                         <h2>著作权</h2>
                         <p>保护作品版权</p>
                         <span>${ infoParams.copyright}</span>
@@ -200,7 +198,7 @@
             <ul>
                 <li>
                     <a href="#">
-                        <img src="img/icon_continuer.png" alt=""/>
+                        <img src="${ctx}/img/icon_continuer.png" alt=""/>
                         <h2>办理社保</h2>
                         <p>为新员工办理五险一金</p>
                         <span>${ infoParams.socialSecurity}</span>
@@ -208,7 +206,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="img/icon_apply.png" alt=""/>
+                        <img src="${ctx}/img/icon_apply.png" alt=""/>
                         <h2>人事</h2>
                         <p>为您设计整体的劳动人事<br>解决方案</p>
                         <span>${ infoParams.personnel}</span>
@@ -216,7 +214,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="img/icon_book.png" alt=""/>
+                        <img src="${ctx}/img/icon_book.png" alt=""/>
                         <h2>人才外包</h2>
                         <p>不再为找合伙人而烦恼</p>
                         <span>${ infoParams.outsourcing}</span>
@@ -243,7 +241,7 @@
                 <button type="button" data-role="none" class="btn-login">登录</button>
                 <a href="tel:18612531150" class="forget-password">忘记密码？</a>
                 <div data-role="footer" data-theme="f" class="ui-footer-f2">
-                    <div class="login-line"><img src="img/login-line.png" alt=""/></div>
+                    <div class="login-line"><img src="${ctx}/img/login-line.png" alt=""/></div>
                     <a href="#page-regist" data-role="none" class="forget-password" data-transition="slide">注册创客邦</a>
                 </div>
                 <!-- 错误状态-->
@@ -270,13 +268,13 @@
     </div>
 </div>
 
+<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-$(document).bind("mobileinit", function() {
+/* $(document).bind("mobileinit", function() {
                        //disable ajax nav
                        $.mobile.ajaxEnabled=false
-               });
+               }); */
 </script>
-<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.jquery.min.js"></script>
 <script type="text/javascript">
