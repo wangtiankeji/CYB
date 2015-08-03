@@ -26,7 +26,7 @@
     <div data-role="header" data-theme="f" class="pecenter-ac-header">
         <ul>
             <li class="activity-active">创客活动</li>
-            <li ><a href="${ctx}/index/showIndexEvents/train" data-ajax=“false”><span></span>创客培训</a></li>
+            <li ><a href="${ctx}/index/event/showIndexEvents/train" data-ajax=“false”><span></span>创客培训</a></li>
         </ul>
     </div>
 
@@ -83,7 +83,7 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	new IscrollPage({url:"${ctx}/index/getIndexEvents",data:{eventType:"activity"}});
+    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:{eventType:"activity"}});
     	pullUpAction();
     });
     
@@ -94,7 +94,7 @@ $(document).bind("mobileinit", function() {
 		var newTime = new Date(events.eventTime)
 		content = content + '<li>';
 		content = content
-				+ '<a href="${ctx }/index/getIndexEvent/activity/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
+				+ '<a href="${ctx }/index/event/getIndexEvent/activity/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
 		content = content + '<div class="act-item-left">';
 		content = content + '<img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
 		content = content + '</div>';

@@ -42,13 +42,7 @@
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-/* $(document).bind("mobileinit", function(){
-　$.extend( $.mobile , {
-	loadingMessageTextVisible = true;
-	showPageLoadingMsg("a", "加载中..." );
-	pageLoadErrorMessage:'努力加载中。。。'
-　});
-}); */
+
 $(document).bind("mobileinit", function() {
     //disable ajax nav
     $.mobile.ajaxEnabled=false
@@ -77,52 +71,33 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	new IscrollPage({url:"${ctx}/index/getIndexEvents",data:{eventType:"incubator"}});
+    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:{eventType:"incubator"}});
     	pullUpAction();
     });
     
 	
 
-	function getLiStr(events) {
+	function getLiStr(event) {
 		var content = '';
-		var newTime = new Date(events.eventTime);
+		var newTime = new Date(event.eventTime);
 		content = content + '<li>';
-		content = content + '    <a href="${ctx }/index/getIndexEvent/incubator/'+ events.eventId +'" data-transition="slide">';
+		content = content + '    <a href="${ctx }/index/event/getIndexEvent/incubator/'+ event.eventId +'" data-transition="slide">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="incubator-left">';
 		content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
 		content = content + '            </div>';
 		content = content + '            <div class="incubator-right">';
-		content = content + '                <h2>'+events.eventName+'</h2>';
-		content = content + '                <p>浏览量 <b>'+events.hits+'</b></p>';
+		content = content + '                <h2>'+event.eventName+'</h2>';
+		content = content + '                <p>浏览量 <b>'+event.hits+'</b></p>';
 		content = content + '                <div>';
-		content = content + '                    <span>'+events.eventAddress+'</span>';
-		content = content + '                    <span>电话询问次数 <b>1250</b></span>';
+		content = content + '                    <span>'+event.eventAddress+'</span>';
+		content = content + '                    <span>电话询问次数 <b>'+event.callNum+'</b></span>';
 		content = content + '                </div>';
 		content = content + '            </div>';
 		content = content + '        </div>';
 		content = content + '    </a>';
 		content = content + '</li>';
-		/* content = content + '<li>';
-		content = content
-				+ '<a href="${ctx }/index/getIndexEvent/activity/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
-		content = content + '<div class="act-item-left">';
-		content = content + '<img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
-		content = content + '</div>';
-		content = content + '<div class="act-item-right">';
-		content = content + '<h2>' + events.eventName + '</h2>';
-		content = content + '<div class="act-item-box">';
-		content = content + '<p>时间 <span>'+ newTime.format("MM月dd日 HH:mm")+'</span></p>';
-		//content = content + '<p>时间 <span>'+(newTime.getMonth()+1) +'月'+newTime.getDate()+'日 '+newTime.getHours()+':'+ newTime.getMinutes()+'</span></p>';
-		//content = content + '<p>时间 <span>' + events.eventTime + '</span></p>';
-		content = content + '<p>地点 ' + events.eventDes + '</p>';
-		content = content + '</div>';
-		content = content + '<div class="act-item-box2">';
-		content = content + '<span>' + ((events.concernCount==null)?0:events.concernCount) + '</span>人报名';
-		content = content + '</div>';
-		content = content + '</div>';
-		content = content + ' </a>';
-		content = content + '</li>'; */
+		
 		return content;
 	}
 	

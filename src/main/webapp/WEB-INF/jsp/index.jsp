@@ -29,7 +29,7 @@
              <form id="frm-person" action="" method="post" class="validate">
 					<c:choose>
 						<c:when test="${not empty user}">   
-       					 	<div class="admin"><a href="#" id="a-person" data-transition="slide" data-ajax="false"><img src="${ctx}/img/icon-admin.png" alt="个人中心"/></a></div>
+       					 	<div class="admin"><a href="${ctx}/center/showPersonal" id="a-person" data-transition="slide" data-ajax="false"><img src="${ctx}/img/icon-admin.png" alt="个人中心"/></a></div>
       					</c:when>
 						<c:otherwise>   
 							<div class="admin"><a href="#page-login" id="a-login" data-transition="slide" ><img src="${ctx}/img/icon-admin.png" alt="登录"/></a></div>
@@ -53,8 +53,8 @@
             <ul>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
-                <li><a href="${ctx}/index/showIndexEvents/incubator" data-ajax=“false”><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
-                <li><a href="${ctx}/index/showIndexEvents/activity" data-ajax=“false”><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/incubator" data-ajax=“false”><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/activity" data-ajax=“false”><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>

@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
+import com.greatwall.ideas.service.ConcernService;
 import com.greatwall.ideas.service.EventService;
 import com.greatwall.platform.base.dao.DaoException;
+import com.greatwall.platform.base.service.ServiceException;
 import com.greatwall.platform.domain.PageParameter;
 
 
@@ -30,23 +33,55 @@ import com.greatwall.platform.domain.PageParameter;
  * @update 2014-7-6
  */
 @Controller
-@RequestMapping("index/event")
-public class IndexEventController {
+@RequestMapping("center")
+public class CenterController {
 	
-	Logger logger = Logger.getLogger(IndexEventController.class);
+	Logger logger = Logger.getLogger(CenterController.class);
 	
-	@Autowired
-	private EventService eventService;
 
-	@RequestMapping("/showIndexEvents/{type}")
+	
+	
+	@RequestMapping("/showPersonal")
+	public ModelAndView showPersonal(){
+		return new ModelAndView("/index/center/showPersonal.jsp");
+	}
+
+	/*@RequestMapping("/addInit")
+	public ModelAndView addInit(Model model) {
+		return new ModelAndView("/ideas/events/event.jsp");
+	}
+	
+	@RequestMapping("/updateInit/{eventId}")
+	public ModelAndView updateInit(@PathVariable Integer eventId,ModelMap model){
+		if(eventId!=null&&eventId>0){
+			model.addAttribute("events", eventService.getEvents(eventId));
+		}
+		return new ModelAndView("/ideas/events/event.jsp");
+	}
+
+	@RequestMapping("/updateEvents")
+	public@ResponseBody String updateEvents(Event events){
+		try {
+			if(events!=null&&events.getEventId()!=null){
+				if(eventService.updateEventByKey(events)==1){
+					return "success";
+				}
+			}
+		} catch (Exception e) {
+			logger.error("保存错误", e);
+			return "保存错误";
+		}
+		
+		return "保存失败";
+	}*/
+	
+	/*@RequestMapping("/showIndexEvents/{type}")
 	public ModelAndView showIndexEvents(@PathVariable String type,ModelMap model){
 		String gotopage = "";
 		if("activity".equals(type)){
 			gotopage = "index/event/showActivitys.jsp";
 		}else if("train".equals(type)){
 			gotopage = "index/event/showTrains.jsp";
-		}else if("incubator".equals(type)){
-			gotopage = "index/event/showIncubators.jsp";
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -54,10 +89,10 @@ public class IndexEventController {
 		return mav;
 	}
 	@RequestMapping("/getIndexEvents")
-	public@ResponseBody Map<String,Object> getIndexEvents(Event event,PageParameter page,ModelMap model){
+	public@ResponseBody Map<String,Object> getIndexEvents(Event events,PageParameter page,ModelMap model){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			map.put("events", eventService.getPage(event, page));
+			map.put("events", eventService.getPage(events, page));
 			map.put("page", page);
 			
 		} catch (DaoException e) {
@@ -75,28 +110,13 @@ public class IndexEventController {
 			gotopage = "index/event/activityDetails.jsp";
 		}else if("train".equals(type)){
 			gotopage = "index/event/trainDetails.jsp";
-		}else if("incubator".equals(type)){
-			gotopage = "index/event/incubatorDetails.jsp";
 		}
-		
 		if(eventId!=null){
-			eventService.addHits(eventId);
-			model.addAttribute("event", eventService.getEvent(eventId));
+			model.addAttribute("event", eventService.getEvents(eventId));
 		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotopage);
 		return mav;
-	}
-	
-	@RequestMapping("/addCallNum")
-	public@ResponseBody String addCallNum(Integer eventId){
-		if(eventId!=null){
-			if(eventService.addCallNum(eventId)==1){
-				return "";
-			}
-			logger.error("电话咨询次数增加次数为0！");
-		}
-		return "";
-	}
+	}*/
 }

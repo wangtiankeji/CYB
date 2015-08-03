@@ -75,7 +75,7 @@
     $("#callNum").click(function() {
     	$.ajax({
 			type : "POST",
-			url : "${ctx}/index/addCallNum",
+			url : "${ctx}/index/event/addCallNum",
 			data : {eventId:${event.eventId }},
 			success : function(msg) {
 				
