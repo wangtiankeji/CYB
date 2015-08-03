@@ -53,23 +53,7 @@ $(document).bind("mobileinit", function() {
 <script src="${ctx}/js/dateutil.js"></script>
 <script src="${ctx}/js/paginationis-iscroll.js"></script>
 <script type="text/javascript">
-    //创客活动《=》创客培训 切换代码
-    $('.train-box').hide();
-    $('.pecenter-ac-header li').click(function(){
-        var index=$(this).index();
-        console.log(index);
-        $(this).addClass('activity-active').siblings().removeClass('activity-active');
-        $(".pcenter-ac-content ul").eq(index).show().siblings().hide();
-    })
-    //报名部分
-    $('.ac-mask').hide();
-    $('.ac-details-re').click(function(){
-        $('.ac-mask').show();
-    });
-    $('.mask-close').click(function(){
-        $('.ac-mask').hide();
-    });
-    
+        
     $(document).ready(function() {
     	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:{eventType:"incubator"}});
     	pullUpAction();

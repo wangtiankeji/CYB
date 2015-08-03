@@ -33,6 +33,14 @@ public class EventDaoImpl extends MyBatisDao implements EventDao {
 			throws DaoException {
 		return this.getListPage("EventMapper.selectPage", event, page);
 	}
+	
+	@Override
+	public List<Event> getConcernPage(Event event, PageParameter page)
+			throws DaoException {
+		return this.getListPage("EventMapper.getConcernPage", event, page);
+	}
+	
+	
 
 	@Override
 	public int updateByPrimaryKeySelective(Event event) {

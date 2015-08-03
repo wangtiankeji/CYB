@@ -1,14 +1,15 @@
 /*整体设置*/
-html { height:100%;font-family: "Microsoft YaHei"}
+html,p,a,h2,h3,b,div,input{font-family: "Microsoft YaHei"}
+html { height:100%;}
 body { min-height: 100%; background-color: #f3f3f3; }
 .clear { height: 0; font-size: 0; line-height: 0; clear: both; }
 img { max-width: 100%; }
 ul{list-style: none;margin:0;padding:0}
 li,h2,p{margin:0;padding:0}
 p{font-size:0.9rem;color:#666;text-align: justify;}
-h2{font-size:1rem;font-family: "Microsoft YaHei";color:#333;font-weight: normal;}
-h3{font-size:0.9rem;font-family: "Microsoft YaHei";color:#999;font-weight: normal;}
-a{text-decoration:none;color:#333;font-family: "Microsoft YaHei"}
+h2{font-size:1rem;color:#333;font-weight: normal;}
+h3{font-size:0.9rem;color:#999;font-weight: normal;}
+a{text-decoration:none;color:#333;}
 .hidden{display: none;}
 .show{display: inline-block;}
 b{font-weight: normal;}
@@ -16,7 +17,7 @@ b{font-weight: normal;}
 #header { min-width: 320px; }
 #container { min-width: 320px;}
 #footer { min-width: 320px; }
-.ui-body-f{min-width: 320px; }
+.ui-body-f{min-width: 320px; height: 100%;}
 /*头部设置*/
 .ui-bar-f{width: 100%;overflow: hidden;border: none;}
 .logo-bar{background-color: rgba(0,0,0,0.5);height:2.5rem;width:100%;
@@ -34,6 +35,7 @@ b{font-weight: normal;}
 /*主体部分*/
 .ui-content-f{border: none;margin-top:-4px;}
 .content-item{width:100%;overflow: hidden;background: #ffffff;}
+.content-item h2{font-size:0.9rem;}
 .content-item ul{overflow: hidden;margin:0px auto;width: 90%;margin-top:0.4rem;}
 .content-item ul li{float:left;width:25%;text-align: center;margin:0.5rem 0px}
 .content-item ul li img{width:3.5rem;}
@@ -47,8 +49,8 @@ b{font-weight: normal;}
 .business-content ul{overflow: hidden;width:100%;}
 .business-content ul li{float: left;width:47%;height:10rem;background: #ffffff;text-align: center;margin:1%;border:1px solid #dddddd;}
 .business-content ul li img{width: 3rem;margin-top:1rem;}
-.business-content ul li h2{color:#333333;line-height: 1.2rem;font-weight: bold;}
-.business-content ul li p{font-size: 0.6rem; margin:0.4rem 0;color:#999999}
+.business-content ul li h2{color:#333333;line-height: 1.2rem;font-weight: bold;font-size:0.9rem;}
+.business-content ul li p{font-size: 0.6rem; margin:0.4rem 0;color:#999999;text-align: center;}
 .business-content ul li span{color:#5cce49;}
 
 /*底部信息*/
@@ -72,13 +74,14 @@ b{font-weight: normal;}
 .btn-regist,.btn-changeNum{margin-bottom: 0.8rem;}
 .regist-item{font-size:0.7rem;color:#666666;font-family: "Microsoft YaHei"}
 .error{width: 35%;height:2rem;line-height:2rem;background: rgba(0,0,0,0.7);border-radius: 2px;position: absolute;color:#fff; font-size: 0.8rem;top:3rem;left:32%;}
-
+.error p{text-align: center;color:#fff;}
 
 /*****个人中心*****/
 .pcenter-header{width: 100%;text-align:center;}
 .pcenter-header p{margin:0.3rem 0;}
 .pcenter-pic{width: 7rem;height:5.5rem;margin:0px auto;background: url("../img/icon_head.png")top center no-repeat;background-size: 5.5rem;margin-top:1.2rem;}
 .pcenter-pic img{width:2.3rem;margin-top:3rem;margin-left:4rem;}
+#pcenter-tel{text-align: center;}
 .ui-content-f3{width: 100%;margin-top:0.3rem;}
 .ui-content-f3 li{margin:0.3rem 0;height: 3rem;line-height: 3rem;padding:0 1rem 0 4rem;}
 .pcenter-tietm-bg1{background: url("../img/icon_collection.png")1rem center no-repeat #ffffff;background-size: 2rem;}
@@ -170,16 +173,16 @@ b{font-weight: normal;}
 .mask-close img{width:100%;}
 
 /*孵化器*/
-.incubator-content ul li{width:100%;background: #fff;padding:0.1rem 0;margin-bottom:0.5rem;}
-.incubator-left{float:left;width:22%}
-.incubator-innerbox img{width: 100%;}
-.incubator-right{float:right;width:76%;}
-.incubator-right>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.incubator-content ul li,.project-content ul li{width:100%;background: #fff;padding:0.1rem 0;margin-bottom:0.5rem;}
+.incubator-left,.project-left{float:left;width:22%}
+.incubator-innerbox img{width: 5rem;}
+.incubator-right,.project-right{float:right;width:76%;}
+.incubator-right>h2,.project-right>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .incubator-right>p{overflow: hidden;margin:0.4rem 0;text-align: right}
-.incubator-right>div span,.incubator-right>p,.incubator-title{font-size:0.8rem;color:#999;}
-.incubator-right>div span:first-child{float:left;}
-.incubator-right>div span:last-child{float:right;}
-.incubator-right>div span:first-child{padding-left:1.2rem;background: url("../img/icon_location.png")left center no-repeat;background-size:1rem;}
+.incubator-right>div span,.incubator-right>p,.incubator-title,.project-right>div>span{font-size:0.8rem;color:#999;}
+.incubator-right>div span:first-child,.project-right>div span:first-child{float:left;}
+.incubator-right>div span:last-child,.project-right>div span:last-child{float:right;}
+.incubator-right>div span:first-child,.project-right>div span:first-child{padding-left:1.2rem;background: url("../img/icon_location.png")left center no-repeat;background-size:1rem;}
 .incubator-det-header>h2{width: 100%;}
 .incubator-det-header{background: #fff;padding-bottom: 0.1rem;}
 .incubator-title>div{margin:0.4rem 0;}
@@ -194,12 +197,107 @@ b{font-weight: normal;}
 .incubator-det-footer{width:100%;background: #fff;height:3rem;line-height:3rem;border-top:1px solid #bbb;position: fixed;bottom: 0}
 .div-line{float:right;height: 2rem;border-right:1px solid #bbb;margin-top:0.5rem;}
 .incubator-det-footer ul li:first-child span{padding-left:1.5rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
-
 .incubator-det-content{margin-bottom: 3rem;}
 
+/*找项目*/
+.project-header{width:100%;height: 2.5rem;line-height:2.5rem;background: #fff;position: fixed;top:0;border-bottom: 1px solid #d1ccca;}
+.project-header>ul li{float:left;width:33%;text-align: center;height: 1.5rem;line-height:1.5rem;margin-top:0.5rem;font-size:0.9rem;color:#333;cursor: pointer}
+.project-header>ul li:first-child{border-right: 1px solid #d1ccca}
+.project-header>ul li:last-child{border-left: 1px solid #d1ccca}
+.project-header>ul li button{width:70%;height:100%;background: #5cce49;border:none;color:#fff;}
+.project-content{margin-top:3rem;}
+.project-label{overflow:hidden;padding-left:1.2rem;background: url("../img/icon_project_tabs.png")left center no-repeat;background-size:0.8rem;}
+.project-label ul li{float:left;width:3rem;font-size:0.8rem;color:#999;margin-top:0.2rem;cursor: pointer;}
+.project-location{overflow: hidden;margin:0.3rem 0;width:100%;clear: both;}
+.project-right>p,.project-right>div>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.project-right>div{overflow: hidden}
+.project-right>div>h2{float:left;width:80%;}
+.project-state{float:right;width:19%;height:1.2rem;line-height:1.2rem;text-align:center;border:1px solid #ddd;border-radius: 0.6rem;font-size: 0.6rem;}
+.project-sort{background: url("../img/icon_arrow_down.png")95% center no-repeat;background-size: 1rem;}
+.project-screening{background: url("../img/icon_arrow_down.png")80% center no-repeat;background-size: 1rem;}
+.project-sort-drop,.project-screen-drop{width:100%;height:100%;background:rgba(0,0,0,0.5);position: fixed;top:2.6rem;left:0;z-index: 100;overflow: scroll;}
 
+.project-sort-drop ul{background: #fff;margin-bottom: 5rem;overflow: scroll}
+.project-sort-drop ul li{padding-left:1.5rem;font-size:0.9rem;margin:0 0.75rem;cursor: pointer;}
+.project-sort-drop ul li span{display:none;float:right;width:1rem;height:1rem;background: url("../img/icon_choiced.png")center no-repeat;background-size: 1rem;margin-top:0.5rem;}
+.time-sort{border-top:1px solid #ddd;border-bottom:1px solid #ddd;background: url("../img/icon_time_nor.png")left center no-repeat;background-size: 1rem;}
+.comprehensive-sort{background: url("../img/icon_reorder_nor.png")left center no-repeat;background-size: 1rem;}
+.hot-sort{background: url("../img/icon_evalution_nor.png")left center no-repeat;background-size: 1rem;}
 
+.project-screen-drop>form>ul{background: #f3f3f3;overflow: hidden}
+.project-screen-drop>form>ul>li{background: #fff;border:1px solid #fff;margin:0.3rem 0;}
+.screen-inner{margin:0.5rem 0.75rem;overflow: hidden;}
+.screen-inner h2{height: 1.8rem;line-height: 1.8rem;}
+.screen-inner ul{overflow: hidden}
+.screen-inner ul li{float:left;font-size:0.8rem;width: 20%;height:1.3rem;text-align:center;line-height:1.3rem;color:#333;margin:0.3rem 5% 0.3rem 0;border:1px solid #999;border-radius: 0.65rem;cursor: pointer;}
+.screen-inner ul li:last-child{margin-right: 0;}
+.location-inner-state{height:4rem;}
+.location-inner-state h2{overflow: hidden}
+.location-inner-state span{float:right;width:1rem;height:1rem;background:url("../img/icon_arrow_down.png")center no-repeat;background-size: 1rem;margin-top:0.5rem;}
+.screen-active{background: #5cce49 !important;border:1px solid #5cce49 !important;color:#fff !important;}
+.project-inner-button button{width:70%;height:2.5rem;background:#5cce49;border: none;color:#fff;}
+.project-inner-button {text-align: center}
 
+.project-img{width: 5rem;height:5rem;margin:0.5rem auto;margin-top:1rem;}
+.project-img img{width:100%;height:100%;}
+.submitproject-header>p{text-align: center;font-size: 0.8rem;}
+
+.subcontent-box1{width:100%;margin-top:1rem;background: #fff;border-top:1px solid #fff;overflow: hidden}
+.subcontent-box1>ul{margin:0.75rem;}
+.subcontent-box1>ul>li{padding:0.5rem 0;border-bottom: 1px solid #bbb;overflow: hidden;min-height:2rem;cursor: pointer;}
+.subcontent-box1>ul>li>span{padding:0.2rem 0.5rem 0.2rem 0;float:left;height:2rem;line-height:2rem;font-size:0.9rem;color:#333;}
+.subcontent-box1>ul>li>input{padding:0.2rem 1rem 0.2rem 0;float:right;width:68%;font-size: 0.9rem;border:none;margin:0.3rem 0;}
+.subcontent-box1>ul>li:last-child{border-bottom:none;}
+.right-arrow{background: url("../img/icon_arrow_gray.png")right center no-repeat;background-size: 1rem;}
+.subcontent-box1>ul>li div{float:right;font-size:0.9rem;min-height:2rem; line-height:2rem;color:#b6b6b6;width:68%;padding:0.2rem 1rem 0.2rem 0;}
+/*项目状态*/
+.project-progress-content{width:100%;height:100%;background:rgba(0,0,0,0.6)}
+.project-progress,.project-location-select,.project-direction,.project-financing,.project-partner{position: fixed;z-index: 100;width:100%;height:100%;background: rgba(0,0,0,0.6);top:0;left:0;}
+.project-progress>div,.stock-proportion div{width:80%;background: #fff;margin:5rem auto;text-align: center;}
+.project-progress h2,.project-direction h2,.project-financing h2,.stock-proportion h2{height:3rem;line-height: 3rem;text-align: center}
+.project-progress ul li{height:3rem;line-height:3rem;border-top:1px solid #bbb;color:#333;cursor: pointer;}
+.project-progress-active{background:#5cce49; border-top:1px solid #5cce49 !important;color:#fff !important;}
+/*项目地区*/
+.project-location-right{float:right;width:80%;height: 100%;background: #fff;overflow: scroll}
+.project-location-header{width:90%;margin:5% auto;overflow: hidden}
+.project-location-header span{float:left;}
+.project-location-header b{float:right;}
+.project-location-header b,.project-location-header span{font-size: 0.9rem;}
+.location-province{float:left;width:40%;}
+.location-province li,.location-city li{height:2rem;line-height:2rem;text-align: center;font-size: 0.9rem;color:#666;}
+.location-province li{border-right:1px solid #bbb;border-bottom: 1px solid #bbb;}
+.location-province li:first-child{border-top:1px solid #bbb;}
+.location-city{float:right;width:60%;}
+.location-city li{width:90%;margin:0 auto;border-bottom: 1px solid #bbb;cursor: pointer}
+.location-province-active{border-right:none !important;}
+.location-city-active{color:#5cce49 !important;}
+/*项目方向*/
+.project-direction>div,.project-financing>div{ width:85%;background: #fff; margin:3rem auto; overflow: hidden;padding-bottom: 1rem;}
+.project-direction ul,.project-financing ul{width:90%;margin:0px auto;overflow: hidden}
+.project-direction ul li,.project-financing ul li,.stock-proportion ul li{float:left;width:28%;height:1.3rem;line-height:1.3rem;border:1px solid #999;margin:0.6rem 0.3rem;font-size: 0.8rem;border-radius: 0.65rem;text-align: center;color:#333;}
+/*项目简述*/
+.project-description,.project-profile,.project-declaration,.project-link{background: #efefef;width:100%;height:100%;position: fixed;top:0;left:100%;text-align: center;}
+.project-description textarea,.project-profile textarea,.project-declaration textarea,.project-link textarea{width: 90%;height:13rem;border:none;padding:0.5rem 5%;color:#999;font-size:0.9rem;}
+.project-description button,.project-profile button,.project-financing-sure button,.publish-project,.project-partner-save,.project-declaration button,.project-link button{width:85%;height:2.3rem;background: #5cce49;  border: none;color:#fff;margin:2rem auto;}
+.project-profile p{font-size: 0.7rem;color:#999;margin:0.5rem;}
+
+/*融资状态*/
+.project-financing input{width: 40%;height:1rem;margin: 0px auto;border:1px solid #999;border:none;}
+.project-financing-turn{border:1px solid #999;width:80%;height:1.5rem;margin:0px auto;padding:0.1rem;}
+.project-financing-turn span{float:right;width:28%;font-size: 0.7rem;margin-top:0.2rem;color:#999;padding-right:1rem;background: url("../img/icon_arrow_down.png")right center no-repeat;background-size: 1rem;}
+.project-financing-sure{text-align: center;}
+
+/*召唤合伙人*/
+.project-partner{background: #efefef;width:100%;height:100%;overflow: scroll;position: fixed;top:0;}
+.project-partner>ul{width:100%;}
+.project-partner>ul>li{background: #fff;width:100%;border-top:1px solid #fff;border-bottom:1px solid #fff;margin-bottom: 0.5rem;}
+.project-partner>ul>li>div{margin:0.5rem auto;width:90%;overflow: hidden;}
+.project-partner>ul>li>div>h2{margin:0.3rem 0;}
+.project-partner>ul>li>div li{float:left;width:28%;height:1.3rem;line-height:1.3rem;border:1px solid #999;margin:0.6rem 0.3rem;font-size: 0.8rem;border-radius: 0.65rem;text-align: center;color:#333;}
+.stock,.explain{width: 98%;height: 1.8rem;line-height:1.8rem;text-align: center;font-size:0.9rem;color:#333;border:1px solid #bbb;margin:0.5rem 0;  }
+.stock-proportion{position:fixed;width:100%;height:100%;top:0;left:0;background: rgba(0,0,0,0.6);}
+.stock-proportion div{border-top:1px solid #fff;border-bottom: 1px solid #fff;overflow: hidden;padding:0.5rem;}
+.project-partner-save,.publish-project{display: block;margin:1rem auto;}
 
 
 

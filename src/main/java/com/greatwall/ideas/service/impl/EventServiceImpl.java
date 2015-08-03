@@ -31,6 +31,12 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
+	public List<Event> getConcernPage(Event event, PageParameter page)
+			throws DaoException {
+		return eventDao.getConcernPage(event, page);
+	}
+	
+	@Override
 	public int save(Event event){
 		return eventDao.insert(event);
 	}

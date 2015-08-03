@@ -44,9 +44,9 @@ function pullUpAction() {
 			url : defaultsPage.url,
 			data : defaultsPage.data,
 			success : function(data) {
-				$(data.events).each(function(index, events) {
+				$(data.objs).each(function(index, objs) {
 					//alert(events.eventName);
-					content += getLiStr(events);
+					content += getLiStr(objs);
 				});
 				defaultsPage.data.currentPage = data.page.currentPage;
 				$("#"+defaultsPage.pageul).append(content);
@@ -68,6 +68,9 @@ function loaded() {
 	}
 
 	pullUpEl = document.getElementById('pullUp');
+	if(!pullUpEl){
+		return;
+	}
 	pullUpOffset = pullUpEl.offsetHeight;
 
 	myScroll = new iScroll(

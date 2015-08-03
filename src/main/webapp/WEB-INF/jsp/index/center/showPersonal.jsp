@@ -25,7 +25,7 @@
 <div data-role="page" data-theme="f" class="ui-body-f" id="page-pcenter">
     <div data-role="header" data-theme="f" class="pcenter-header">
         <div class="pcenter-pic">
-            <a href="#"><img src="img/icon_add_pre.png" alt=""/></a>
+            <a href="#"><img src="${ctx}/img/icon_add_pre.png" alt=""/></a>
         </div>
         <p id="pcenter-tel">18612531150</p>
     </div>
@@ -33,7 +33,7 @@
         <ul>
             <li class="pcenter-tietm-bg1"><a href="#pcenter-collection" data-transition="slide">我的收藏<span></span></a></li>
             <li class="pcenter-tietm-bg2"><a href="#pcenter-appointment" data-transition="slide">我的预约<span></span></a></li>
-            <li class="pcenter-tietm-bg3"><a href="#pcenter-activity" data-transition="slide">我的活动<span></span></a></li>
+            <li class="pcenter-tietm-bg3"><a href="${ctx}/index/event/showIndexEvents/activity/?personal=my" data-ajax=“false”  data-transition="slide">我的活动<span></span></a></li>
             <li class="pcenter-tietm-bg4"><a href="#pcenter-complaint" data-transition="slide">平台投诉<span></span></a></li>
             <li class="pcenter-tietm-bg5"><a href="#pcenter-policy" data-transition="slide">平台政策<span></span></a></li>
             <li class="pcenter-tietm-bg6"><a href="#pcenter-password" data-transition="slide">修改密码<span></span></a></li>
@@ -66,11 +66,11 @@
 <!--修改密码-->
 <div data-role="page" id="pcenter-password" data-theme="f">
     <div data-role="content" data-theme="f" class="ui-content-f5">
-        <form action="" method="post">
+        <form id="passwordForm" action="" method="post">
             <div class="changepassword-content">
                 <ul>
-                    <li><input type="password" name="oldpassword"class="oldpassword" data-role="none" placeholder="密码"/></li>
-                    <li class="newpassword2"><input type="password" name="newpassword" class="newpassword" data-role="none" placeholder="新密码"/></li>
+                    <li><input type="password" name="oldPassword"class="oldpassword" data-role="none" placeholder="密码"/></li>
+                    <li class="newpassword2"><input type="password" name="newPassword" class="newpassword" data-role="none" placeholder="新密码"/></li>
                     <li><input type="password" name="re-newpassword" class="re-newpassword" data-role="none" placeholder="再次输入新密码"/></li>
                 </ul>
             </div>
@@ -101,16 +101,47 @@ $("#pcenter-tel").html(telnumber2);
 
 //修改密码两次输入前端验证
 $('.btn-changeNum').click(function(){
-    if(!($('.newpassword').val()==$('.re-newpassword').val())){
-        clearTimeout(timer);
-        $(".changepassword-format").show();
-        var timer=setTimeout(function(){
-            $(".changepassword-format").hide();
-        },1000)
+	//alert($(".oldpassword").val())
+	if($(".oldpassword").val()==""){
+		showTib("旧密码不能为空");
+		return false;
+	}
+	if($(".newpassword").val()==""||$(".re-newpassword").val()==""){
+		showTib("新密码不能为空");
+		return false;
+	}
+	
+    if(!($(".newpassword").val()==$(".re-newpassword").val())){
+    	showTib("两次输入的密码不一致");
         return false;
     }
+    updatePassword();
 });
-	
+
+function showTib(title){
+	$(".changepassword-format").find("p").text("旧密码不能为空");
+	clearTimeout(timer);
+    $(".changepassword-format").show();
+    var timer=setTimeout(function(){
+        $(".changepassword-format").hide();
+    },1000)
+}
+function updatePassword() {
+	$.ajax({
+		type : "POST",
+		url : "${ctx}/system/user/updatePassword",
+		data : $("#passwordForm").serialize(),
+		success : function(msg) {
+			if (msg == 'success') {
+				alert('提交成功！');
+				$("input[type=password]").val("");
+			} else {
+				alert(msg);
+			}
+
+		}
+	});
+}
     
 </script>
 </body>

@@ -22,4 +22,7 @@ public interface EventService {
 
 	int addCallNum(Integer eventId);
 
+	List<Event> getConcernPage(Event event, PageParameter page)
+			throws DaoException;
+
 }

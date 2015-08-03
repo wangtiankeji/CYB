@@ -26,7 +26,13 @@
     <div data-role="header" data-theme="f" class="pecenter-ac-header">
         <ul>
             <li class="activity-active">创客活动</li>
-            <li ><a href="${ctx}/index/event/showIndexEvents/train" data-ajax=“false”><span></span>创客培训</a></li>
+            <li >
+            <c:choose><c:when test="${personal == 'my'}">
+            <a href="${ctx}/index/event/showIndexEvents/train?personal=my" data-ajax=“false”><span></span>创客培训</a>
+            </c:when><c:otherwise>
+            <a href="${ctx}/index/event/showIndexEvents/train" data-ajax=“false”><span></span>创客培训</a>
+            </c:otherwise> </c:choose>
+            </li>
         </ul>
     </div>
 
@@ -83,7 +89,12 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:{eventType:"activity"}});
+    	//alert(${personal})
+    	var sendData = {eventType:"activity"};
+    	if("${personal}"!=""){
+    		sendData.personal = "${personal}";
+    	}
+    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();
     });
     

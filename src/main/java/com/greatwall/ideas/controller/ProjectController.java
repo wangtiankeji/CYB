@@ -35,4 +35,5 @@ public class ProjectController {
 		}
 		return new ModelAndView("/ideas/project/projects.jsp");
 	}
+	
 }

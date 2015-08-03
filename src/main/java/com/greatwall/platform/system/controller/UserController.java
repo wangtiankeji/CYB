@@ -172,7 +172,7 @@ public class UserController {
 		if (userService.updatePassowrd(u.getUserId(), oldPassword, newPassword)) {
 			return "success";
 		} else {
-			return "老密码错误";
+			return "旧密码错误";
 		}
 
 	}

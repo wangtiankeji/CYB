@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.EventService;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
+import com.greatwall.platform.system.dto.User;
 
 
 
@@ -39,7 +42,7 @@ public class IndexEventController {
 	private EventService eventService;
 
 	@RequestMapping("/showIndexEvents/{type}")
-	public ModelAndView showIndexEvents(@PathVariable String type,ModelMap model){
+	public ModelAndView showIndexEvents(@PathVariable String type,String personal,ModelMap model){
 		String gotopage = "";
 		if("activity".equals(type)){
 			gotopage = "index/event/showActivitys.jsp";
@@ -48,16 +51,24 @@ public class IndexEventController {
 		}else if("incubator".equals(type)){
 			gotopage = "index/event/showIncubators.jsp";
 		}
-		
+		System.out.println(personal);
+		model.addAttribute("personal", personal);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotopage);
 		return mav;
 	}
 	@RequestMapping("/getIndexEvents")
-	public@ResponseBody Map<String,Object> getIndexEvents(Event event,PageParameter page,ModelMap model){
+	public@ResponseBody Map<String,Object> getIndexEvents(Event event,String personal,PageParameter page
+			,ModelMap model,HttpSession httpSession){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			map.put("events", eventService.getPage(event, page));
+			if("my".equals(personal)){
+				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
+				event.setUserId(user.getUserId());
+				map.put("objs", eventService.getConcernPage(event, page));
+			}else{
+				map.put("objs", eventService.getPage(event, page));
+			}
 			map.put("page", page);
 			
 		} catch (DaoException e) {
