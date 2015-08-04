@@ -33,7 +33,7 @@ public class EventDaoTest {
         {  
         	Event events = new Event();
         	events.setEventName("足球赛");
-        	events.setEnable("enable");
+        	events.setStatus("enable");
         	events.setEventAddress("湖南长沙");
         	events.setCreateTime(new Date());
         	eventsDao.insert(events);

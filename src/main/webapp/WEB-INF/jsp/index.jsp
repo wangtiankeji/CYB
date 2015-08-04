@@ -231,10 +231,10 @@
 <!-- 登陆页-->
 <div data-role="page" id="page-login" data-theme="f">
         <div data-role="content" data-theme="f" class="ui-content-f2">
-            <form id="frm-login" action="" method="post" class="validate">
+            <form id="frm-login" action="${ctx}/indexLogin" method="post" class="validate">
                 <div class="login-content">
                     <ul>
-                        <li><input type="tel" name="tel" id="logintel" class="required tel" data-role="none" placeholder="手机号"/></li>
+                        <li><input type="tel" name="loginName" id="logintel" class="required tel" data-role="none" placeholder="手机号"/></li>
                         <li><input type="password" name="password" id="loginpassword" class="required password" data-role="none" placeholder="密码"/></li>
                     </ul>
                 </div>
@@ -270,10 +270,10 @@
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-/* $(document).bind("mobileinit", function() {
-                       //disable ajax nav
-                       $.mobile.ajaxEnabled=false
-               }); */
+	$(document).bind("mobileinit", function() {
+		//disable ajax nav
+		$.mobile.ajaxEnabled = false
+	});
 </script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.jquery.min.js"></script>
@@ -316,7 +316,12 @@
 	$(".btn-login").click(function() {
 		var loginName = $("#logintel").val();
 		var password = $("#loginpassword").val();
-		$.ajax({
+		if(loginName==''||password==''){
+			alert("用户名和密码不能为空");
+			return;
+		}
+		$("#frm-login").submit();
+		/* $.ajax({
 			type : "POST",
 			url : "${ctx}/indexLogin",
 			data : {
@@ -328,17 +333,18 @@
 					showTip(".telerror", "登录成功");
 					setTimeout(function() {
 						//$.mobile.ajaxEnabled = false;
-						$("#frm-person").attr("action","${ctx}/index");
+						var goaction = "${ctx}/index";
+						$("#frm-person").attr("action",goaction);
 						$("#frm-person").submit();
 						/* $("#a-index").click();
 						$("#a-index").hide();
-						$("#a-person").show(); */
+						$("#a-person").show(); 
 					}, 500);
 				} else {
 					showTip(".telerror", msg)
 				}
 			}
-		});
+		}); */
 	});
 
 	$(".btn-regist").click(function() {

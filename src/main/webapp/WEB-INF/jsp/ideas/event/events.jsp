@@ -29,7 +29,7 @@
 			<td><c:if test="${event.auth == 'certified'}">已认证</c:if>
 			<c:if test="${event.auth == 'uncertifie'}">未认证</c:if></td>
 			<td><c:out value="${event.provider}"/></td>
-			<td><c:choose><c:when test="${event.enable == 'enable'}">有效</c:when>
+			<td><c:choose><c:when test="${event.status == 'enable'}">有效</c:when>
 			<c:otherwise>无效</c:otherwise></c:choose></td>
    			<td><a href="javascript:updateEvents('${event.eventId}')">编辑</a>	</td>
 		</tr>

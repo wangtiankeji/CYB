@@ -6,23 +6,31 @@
     <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
     <result column="PROJECT_STATE" property="projectState" jdbcType="VARCHAR" />
     <result column="PROJECT_AREA" property="projectArea" jdbcType="INTEGER" />
-    <result column="PROJECT_DES" property="projectDes" jdbcType="VARCHAR" />
+    <result column="PROJECT_DIRECT" property="projectDirect" jdbcType="VARCHAR" />
     <result column="PROJECT_INTRO" property="projectIntro" jdbcType="VARCHAR" />
+    <result column="PROJECT_DES" property="projectDes" jdbcType="VARCHAR" />
     <result column="PEOPLE_NUM" property="peopleNum" jdbcType="INTEGER" />
-    <result column="MARKET_OUTLOOK" property="marketOutlook" jdbcType="VARCHAR" />
-    <result column="ADVANTAGE" property="advantage" jdbcType="VARCHAR" />
-    <result column="REQUIREMENTS_TYPE" property="requirementsType" jdbcType="VARCHAR" />
+    <result column="FINANCING_STATE" property="financingState" jdbcType="VARCHAR" />
+    <result column="FINANCING_AMOUNT" property="financingAmount" jdbcType="DOUBLE" />
+    <result column="PARTNER_ROLE" property="partnerRole" jdbcType="VARCHAR" />
+    <result column="COOPERATION_MODE" property="cooperationMode" jdbcType="VARCHAR" />
+    <result column="SALARY_TYPE" property="salaryType" jdbcType="VARCHAR" />
+    <result column="OPTION_PROPORTION" property="optionProportion" jdbcType="VARCHAR" />
+    <result column="RECRUIT_MANIFESTO" property="recruitManifesto" jdbcType="VARCHAR" />
+    <result column="SYSTEM_URL" property="systemUrl" jdbcType="VARCHAR" />
     <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
-    <result column="PERSONAL_INTRO" property="personalIntro" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
     <result column="HITS" property="hits" jdbcType="INTEGER" />
     <result column="PROJECT_IMG" property="projectImg" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    PROJECT_ID, PROJECT_NAME, PROJECT_STATE, PROJECT_AREA, PROJECT_DES, PROJECT_INTRO, 
-    PEOPLE_NUM, MARKET_OUTLOOK, ADVANTAGE, REQUIREMENTS_TYPE, CONTACT_PHONE, PERSONAL_INTRO, 
-    CREATE_TIME, USER_ID, HITS, PROJECT_IMG
+    PROJECT_ID, PROJECT_NAME, PROJECT_STATE, PROJECT_AREA, PROJECT_DIRECT, PROJECT_INTRO, 
+    PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, FINANCING_AMOUNT, PARTNER_ROLE, COOPERATION_MODE, 
+    SALARY_TYPE, OPTION_PROPORTION, RECRUIT_MANIFESTO, SYSTEM_URL, CONTACT_PHONE, CREATE_TIME, 
+    LAST_UPDATE_TIME, USER_ID, HITS, PROJECT_IMG, STATUS
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -47,18 +55,22 @@
     where PROJECT_ID = #{projectId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Project" >
-    insert into td_cyb_project (PROJECT_NAME, PROJECT_STATE, 
-      PROJECT_AREA, PROJECT_DES, PROJECT_INTRO, 
-      PEOPLE_NUM, MARKET_OUTLOOK, ADVANTAGE, 
-      REQUIREMENTS_TYPE, CONTACT_PHONE, PERSONAL_INTRO, 
-      CREATE_TIME, USER_ID, HITS, 
-      PROJECT_IMG)
-    values (#{projectName,jdbcType=VARCHAR}, #{projectState,jdbcType=VARCHAR}, 
-      #{projectArea,jdbcType=INTEGER}, #{projectDes,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
-      #{peopleNum,jdbcType=INTEGER}, #{marketOutlook,jdbcType=VARCHAR}, #{advantage,jdbcType=VARCHAR}, 
-      #{requirementsType,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{personalIntro,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{hits,jdbcType=INTEGER}, 
-      #{projectImg,jdbcType=VARCHAR})
+     insert into td_cyb_project (PROJECT_ID, PROJECT_NAME, PROJECT_STATE, 
+      PROJECT_AREA, PROJECT_DIRECT, PROJECT_INTRO, 
+      PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, 
+      FINANCING_AMOUNT, PARTNER_ROLE, COOPERATION_MODE, 
+      SALARY_TYPE, OPTION_PROPORTION, RECRUIT_MANIFESTO, 
+      SYSTEM_URL, CONTACT_PHONE, CREATE_TIME, 
+      LAST_UPDATE_TIME, USER_ID, HITS, 
+      PROJECT_IMG, STATUS)
+    values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{projectState,jdbcType=VARCHAR}, 
+      #{projectArea,jdbcType=INTEGER}, #{projectDirect,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
+      #{projectDes,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER}, #{financingState,jdbcType=VARCHAR}, 
+      #{financingAmount,jdbcType=DOUBLE}, #{partnerRole,jdbcType=VARCHAR}, #{cooperationMode,jdbcType=VARCHAR}, 
+      #{salaryType,jdbcType=VARCHAR}, #{optionProportion,jdbcType=VARCHAR}, #{recruitManifesto,jdbcType=VARCHAR}, 
+      #{systemUrl,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{hits,jdbcType=INTEGER}, 
+      #{projectImg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
   
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Project" >
@@ -73,32 +85,50 @@
       <if test="projectArea != null" >
         PROJECT_AREA = #{projectArea,jdbcType=INTEGER},
       </if>
-      <if test="projectDes != null" >
-        PROJECT_DES = #{projectDes,jdbcType=VARCHAR},
+      <if test="projectDirect != null" >
+        PROJECT_DIRECT = #{projectDirect,jdbcType=VARCHAR},
       </if>
       <if test="projectIntro != null" >
         PROJECT_INTRO = #{projectIntro,jdbcType=VARCHAR},
       </if>
+      <if test="projectDes != null" >
+        PROJECT_DES = #{projectDes,jdbcType=VARCHAR},
+      </if>
       <if test="peopleNum != null" >
         PEOPLE_NUM = #{peopleNum,jdbcType=INTEGER},
       </if>
-      <if test="marketOutlook != null" >
-        MARKET_OUTLOOK = #{marketOutlook,jdbcType=VARCHAR},
+      <if test="financingState != null" >
+        FINANCING_STATE = #{financingState,jdbcType=VARCHAR},
       </if>
-      <if test="advantage != null" >
-        ADVANTAGE = #{advantage,jdbcType=VARCHAR},
+      <if test="financingAmount != null" >
+        FINANCING_AMOUNT = #{financingAmount,jdbcType=DOUBLE},
       </if>
-      <if test="requirementsType != null" >
-        REQUIREMENTS_TYPE = #{requirementsType,jdbcType=VARCHAR},
+      <if test="partnerRole != null" >
+        PARTNER_ROLE = #{partnerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationMode != null" >
+        COOPERATION_MODE = #{cooperationMode,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryType != null" >
+        SALARY_TYPE = #{salaryType,jdbcType=VARCHAR},
+      </if>
+      <if test="optionProportion != null" >
+        OPTION_PROPORTION = #{optionProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitManifesto != null" >
+        RECRUIT_MANIFESTO = #{recruitManifesto,jdbcType=VARCHAR},
+      </if>
+      <if test="systemUrl != null" >
+        SYSTEM_URL = #{systemUrl,jdbcType=VARCHAR},
       </if>
       <if test="contactPhone != null" >
         CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
       </if>
-      <if test="personalIntro != null" >
-        PERSONAL_INTRO = #{personalIntro,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null" >
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="userId != null" >
         USER_ID = #{userId,jdbcType=INTEGER},
@@ -108,6 +138,9 @@
       </if>
       <if test="projectImg != null" >
         PROJECT_IMG = #{projectImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
       </if>
     </set>
     where PROJECT_ID = #{projectId,jdbcType=INTEGER}

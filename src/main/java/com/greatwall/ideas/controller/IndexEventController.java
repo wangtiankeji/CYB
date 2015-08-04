@@ -51,7 +51,6 @@ public class IndexEventController {
 		}else if("incubator".equals(type)){
 			gotopage = "index/event/showIncubators.jsp";
 		}
-		System.out.println(personal);
 		model.addAttribute("personal", personal);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotopage);
@@ -64,6 +63,7 @@ public class IndexEventController {
 		try {
 			if("my".equals(personal)){
 				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
+				
 				event.setUserId(user.getUserId());
 				map.put("objs", eventService.getConcernPage(event, page));
 			}else{

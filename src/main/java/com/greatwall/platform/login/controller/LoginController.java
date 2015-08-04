@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.platform.login.service.LoginService;
+import com.greatwall.platform.system.dto.User;
 
 
 
@@ -29,18 +30,41 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping("/indexLogin")
-	public@ResponseBody String indexLogin(@RequestParam(value="loginName") String loginName,
+	@RequestMapping(value = "/indexLogin", method = RequestMethod.POST)
+	public ModelAndView indexLogin(@RequestParam(value="loginName") String loginName,
 			@RequestParam(value="password") String password,HttpSession httpSession){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/index");
 		if(StringUtils.isBlank(loginName)||StringUtils.isBlank(password)){
-			return "用户名或密码为空";
+			mav.setViewName("redirect:/index#page-login");
+			mav.addObject("reflag", 1);//用户名或密码错误
+			mav.addObject("loginName", loginName);
+			mav.addObject("msg", "用户名或密码为空！");
 		}
 		
 		if(!loginService.checkLogin(loginName, password,httpSession)){
-			return "用户名或密码错误";
+			mav.addObject("reflag", 1);//用户名或密码错误
+			mav.addObject("loginName", loginName);
+			mav.addObject("msg", "用户名或密码错误！");
 		}
-		return "success";
+		String lastUrl = httpSession.getAttribute("lastUrl")!=null?(String)httpSession.getAttribute("lastUrl"):null;
+		if(StringUtils.isNotBlank(lastUrl)){
+			mav.setViewName("redirect:"+lastUrl);
+			httpSession.setAttribute("lastUrl", null);
+		}
+		return mav;
 	}
+//	public@ResponseBody String indexLogin(@RequestParam(value="loginName") String loginName,
+//			@RequestParam(value="password") String password,HttpSession httpSession){
+//		if(StringUtils.isBlank(loginName)||StringUtils.isBlank(password)){
+//			return "用户名或密码为空";
+//		}
+//		
+//		if(!loginService.checkLogin(loginName, password,httpSession)){
+//			return "用户名或密码错误";
+//		}
+//		return "success";
+//	}
 
 	@RequestMapping("/login")
 	public ModelAndView login() {

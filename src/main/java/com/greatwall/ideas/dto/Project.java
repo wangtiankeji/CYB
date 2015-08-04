@@ -11,29 +11,43 @@ public class Project {
 
     private Integer projectArea;
 
-    private String projectDes;
+    private String projectDirect;
 
     private String projectIntro;
 
+    private String projectDes;
+
     private Integer peopleNum;
 
-    private String marketOutlook;
+    private String financingState;
 
-    private String advantage;
+    private Double financingAmount;
 
-    private String requirementsType;
+    private String partnerRole;
+
+    private String cooperationMode;
+
+    private String salaryType;
+
+    private String optionProportion;
+
+    private String recruitManifesto;
+
+    private String systemUrl;
 
     private String contactPhone;
 
-    private String personalIntro;
-
     private Date createTime;
+
+    private Date lastUpdateTime;
 
     private Integer userId;
 
     private Integer hits;
 
     private String projectImg;
+
+    private String status;
 
     public Integer getProjectId() {
         return projectId;
@@ -67,12 +81,12 @@ public class Project {
         this.projectArea = projectArea;
     }
 
-    public String getProjectDes() {
-        return projectDes;
+    public String getProjectDirect() {
+        return projectDirect;
     }
 
-    public void setProjectDes(String projectDes) {
-        this.projectDes = projectDes == null ? null : projectDes.trim();
+    public void setProjectDirect(String projectDirect) {
+        this.projectDirect = projectDirect == null ? null : projectDirect.trim();
     }
 
     public String getProjectIntro() {
@@ -83,6 +97,14 @@ public class Project {
         this.projectIntro = projectIntro == null ? null : projectIntro.trim();
     }
 
+    public String getProjectDes() {
+        return projectDes;
+    }
+
+    public void setProjectDes(String projectDes) {
+        this.projectDes = projectDes == null ? null : projectDes.trim();
+    }
+
     public Integer getPeopleNum() {
         return peopleNum;
     }
@@ -91,28 +113,68 @@ public class Project {
         this.peopleNum = peopleNum;
     }
 
-    public String getMarketOutlook() {
-        return marketOutlook;
+    public String getFinancingState() {
+        return financingState;
     }
 
-    public void setMarketOutlook(String marketOutlook) {
-        this.marketOutlook = marketOutlook == null ? null : marketOutlook.trim();
+    public void setFinancingState(String financingState) {
+        this.financingState = financingState == null ? null : financingState.trim();
     }
 
-    public String getAdvantage() {
-        return advantage;
+    public Double getFinancingAmount() {
+        return financingAmount;
     }
 
-    public void setAdvantage(String advantage) {
-        this.advantage = advantage == null ? null : advantage.trim();
+    public void setFinancingAmount(Double financingAmount) {
+        this.financingAmount = financingAmount;
     }
 
-    public String getRequirementsType() {
-        return requirementsType;
+    public String getPartnerRole() {
+        return partnerRole;
     }
 
-    public void setRequirementsType(String requirementsType) {
-        this.requirementsType = requirementsType == null ? null : requirementsType.trim();
+    public void setPartnerRole(String partnerRole) {
+        this.partnerRole = partnerRole == null ? null : partnerRole.trim();
+    }
+
+    public String getCooperationMode() {
+        return cooperationMode;
+    }
+
+    public void setCooperationMode(String cooperationMode) {
+        this.cooperationMode = cooperationMode == null ? null : cooperationMode.trim();
+    }
+
+    public String getSalaryType() {
+        return salaryType;
+    }
+
+    public void setSalaryType(String salaryType) {
+        this.salaryType = salaryType == null ? null : salaryType.trim();
+    }
+
+    public String getOptionProportion() {
+        return optionProportion;
+    }
+
+    public void setOptionProportion(String optionProportion) {
+        this.optionProportion = optionProportion == null ? null : optionProportion.trim();
+    }
+
+    public String getRecruitManifesto() {
+        return recruitManifesto;
+    }
+
+    public void setRecruitManifesto(String recruitManifesto) {
+        this.recruitManifesto = recruitManifesto == null ? null : recruitManifesto.trim();
+    }
+
+    public String getSystemUrl() {
+        return systemUrl;
+    }
+
+    public void setSystemUrl(String systemUrl) {
+        this.systemUrl = systemUrl == null ? null : systemUrl.trim();
     }
 
     public String getContactPhone() {
@@ -123,20 +185,20 @@ public class Project {
         this.contactPhone = contactPhone == null ? null : contactPhone.trim();
     }
 
-    public String getPersonalIntro() {
-        return personalIntro;
-    }
-
-    public void setPersonalIntro(String personalIntro) {
-        this.personalIntro = personalIntro == null ? null : personalIntro.trim();
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
     }
 
     public Integer getUserId() {
@@ -161,5 +223,13 @@ public class Project {
 
     public void setProjectImg(String projectImg) {
         this.projectImg = projectImg == null ? null : projectImg.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 }

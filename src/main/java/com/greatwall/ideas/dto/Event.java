@@ -41,7 +41,7 @@ public class Event {
 
     private String auth;
 
-    private String enable;
+    private String status;
 
     private String eventImg;
 
@@ -209,12 +209,12 @@ public class Event {
         this.auth = auth == null ? null : auth.trim();
     }
 
-    public String getEnable() {
-        return enable;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEnable(String enable) {
-        this.enable = enable == null ? null : enable.trim();
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public String getEventImg() {

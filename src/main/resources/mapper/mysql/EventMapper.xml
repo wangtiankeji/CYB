@@ -21,7 +21,7 @@
     <result column="WEIBO" property="weibo" jdbcType="VARCHAR" />
     <result column="EVENT_COST" property="eventCost" jdbcType="DOUBLE" />
     <result column="AUTH" property="auth" jdbcType="VARCHAR" />
-    <result column="ENABLE" property="enable" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
     <result column="EVENT_IMG" property="eventImg" jdbcType="VARCHAR" />
     <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
     <result column="SIGN_UP_NUM" property="signUpNum" jdbcType="INTEGER" />
@@ -31,9 +31,9 @@
     <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    EVENT_ID, EVENT_NAME, EVENT_TYPE, EVENT_TIME, CREATE_TIME, EVENT_DES, EVENT_GUEST, 
+     EVENT_ID, EVENT_NAME, EVENT_TYPE, EVENT_TIME, CREATE_TIME, EVENT_DES, EVENT_GUEST, 
     GUEST_DES, EVENT_PROCESS, EFFECTIVE_TIME, EVENT_ADDRESS, USER_ID, EVENT_TEL, WEBSITE, 
-    EMAIL, WEIXIN, WEIBO, EVENT_COST, AUTH, ENABLE, EVENT_IMG, CONCERN_COUNT, SIGN_UP_NUM, 
+    EMAIL, WEIXIN, WEIBO, EVENT_COST, AUTH, STATUS, EVENT_IMG, CONCERN_COUNT, SIGN_UP_NUM, 
     COMMENT_LEVEL, HITS, CALL_NUM, PROVIDER
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -79,13 +79,13 @@
     where EVENT_ID = #{eventId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Event" >
-     insert into td_cyb_event (EVENT_ID, EVENT_NAME, EVENT_TYPE, 
+    insert into td_cyb_event (EVENT_ID, EVENT_NAME, EVENT_TYPE, 
       EVENT_TIME, CREATE_TIME, EVENT_DES, 
       EVENT_GUEST, GUEST_DES, EVENT_PROCESS, 
       EFFECTIVE_TIME, EVENT_ADDRESS, USER_ID, 
       EVENT_TEL, WEBSITE, EMAIL, 
       WEIXIN, WEIBO, EVENT_COST, 
-      AUTH, ENABLE, EVENT_IMG, 
+      AUTH, STATUS, EVENT_IMG, 
       CONCERN_COUNT, SIGN_UP_NUM, COMMENT_LEVEL, 
       HITS, CALL_NUM, PROVIDER
       )
@@ -95,7 +95,7 @@
       #{effectiveTime,jdbcType=TIMESTAMP}, #{eventAddress,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
       #{eventTel,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{weixin,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{eventCost,jdbcType=DOUBLE}, 
-      #{auth,jdbcType=VARCHAR}, #{enable,jdbcType=VARCHAR}, #{eventImg,jdbcType=VARCHAR}, 
+      #{auth,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{eventImg,jdbcType=VARCHAR}, 
       #{concernCount,jdbcType=INTEGER}, #{signUpNum,jdbcType=INTEGER}, #{commentLevel,jdbcType=INTEGER}, 
       #{hits,jdbcType=INTEGER}, #{callNum,jdbcType=INTEGER}, #{provider,jdbcType=VARCHAR}
       )
@@ -189,8 +189,8 @@
       <if test="auth != null" >
         AUTH = #{auth,jdbcType=VARCHAR},
       </if>
-      <if test="enable != null" >
-        ENABLE = #{enable,jdbcType=VARCHAR},
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
       </if>
       <if test="eventImg != null" >
         EVENT_IMG = #{eventImg,jdbcType=VARCHAR},

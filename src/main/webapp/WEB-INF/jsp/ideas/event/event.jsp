@@ -125,10 +125,10 @@
 			</tr>
 			<tr>
 				<td align="right">是否有效:</td>
-				<td>已发布<input type="radio" id="enable" name="enable" value="enable" 
-				<c:if test="${event.enable == 'enable'}">checked="checked"</c:if>/>
-				未发布<input type="radio" id="enable" name="enable" value="unable"
-				<c:if test="${event.enable == 'unable'}">checked="checked"</c:if> /></td>
+				<td>已发布<input type="radio" id="status" name="status" value="enable" 
+				<c:if test="${event.status == 'enable'}">checked="checked"</c:if>/>
+				未发布<input type="radio" id="status1" name="status" value="unable"
+				<c:if test="${event.status == 'unable'}">checked="checked"</c:if> /></td>
 			</tr>
 			<tr>
 				<td align="right">发布者:</td>
