@@ -29,8 +29,8 @@
 			<property name="excludeUrl">
 				<list>
 					<value>/login</value>
-					<value>/regist</value>
 					<value>/index</value>
+					<value>/weixin</value>
 				</list>
 			</property>
 		</bean>

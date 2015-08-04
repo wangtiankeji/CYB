@@ -30,6 +30,15 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	@RequestMapping(value = "/login/ssoLogin",method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView ssoLogin(String code,String state){
+		System.out.println("code = "+code);
+		System.out.println("state = "+state);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/index");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/indexLogin", method = RequestMethod.POST)
 	public ModelAndView indexLogin(@RequestParam(value="loginName") String loginName,
 			@RequestParam(value="password") String password,HttpSession httpSession){
