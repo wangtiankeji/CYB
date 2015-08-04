@@ -43,10 +43,12 @@ public class LoginController {
 		}
 		
 		if(!loginService.checkLogin(loginName, password,httpSession)){
+			mav.setViewName("redirect:/index#page-login");
 			mav.addObject("reflag", 1);//用户名或密码错误
 			mav.addObject("loginName", loginName);
 			mav.addObject("msg", "用户名或密码错误！");
 		}
+		
 		String lastUrl = httpSession.getAttribute("lastUrl")!=null?(String)httpSession.getAttribute("lastUrl"):null;
 		if(StringUtils.isNotBlank(lastUrl)){
 			mav.setViewName("redirect:"+lastUrl);

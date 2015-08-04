@@ -234,7 +234,7 @@
             <form id="frm-login" action="${ctx}/indexLogin" method="post" class="validate">
                 <div class="login-content">
                     <ul>
-                        <li><input type="tel" name="loginName" id="logintel" class="required tel" data-role="none" placeholder="手机号"/></li>
+                        <li><input type="tel" name="loginName" id="logintel" value="${loginName }" class="required tel" data-role="none" placeholder="手机号"/></li>
                         <li><input type="password" name="password" id="loginpassword" class="required password" data-role="none" placeholder="密码"/></li>
                     </ul>
                 </div>
