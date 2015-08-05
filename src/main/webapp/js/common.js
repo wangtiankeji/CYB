@@ -39,7 +39,8 @@ $(document).ready(function (){
     //发项目---点击省市切换
     $('.location-province li').click(function(){
         $(this).addClass('location-province-active').siblings().removeClass('location-province-active');
-        provinceValue=$(this).html();
+         var provinceValue=$(this).html();
+         var cityValue;
         $(".location-city").empty();
         var cities=city[$(this).text()];
         for(var j=0;j<cities.length;j++){
@@ -51,8 +52,10 @@ $(document).ready(function (){
             $('.project-location-header b').addClass('location-city-active')
             cityValue=$(this).html();
         });
+        
         //点击隐藏地区选择
         $('.project-location-header b').click(function(){
+        	projectObj.projectArea = provinceValue+' '+cityValue;
             //将获得的省市添加到页面
             $('.project-location-nav div').html(provinceValue+' '+cityValue).css({
                 'color':'#333'
@@ -62,7 +65,7 @@ $(document).ready(function (){
                 left:'100%'
             },500)
         })
-
+       
     });
     $('.location li:first-child').addClass('screen-active');
 
@@ -208,14 +211,6 @@ $('.talent-inner-state ul li').click(function(){
 });
 
 
-
-
-
-
-
-var projectStateValue;
-var provinceValue;
-var cityValue;
 var projectDirectionValue;
 var projectDescriptionValue;
 var projectProfileValue;
@@ -238,8 +233,8 @@ $('.project-progress ul li').click(function(){
     var timer2=setTimeout(function(){
         $('.project-progress').hide();
     },100)
+    projectObj.projectState = $(this).html();
     $('.project-progress-nav div').html($(this).html()).css({'color':'#333'});
-    var projectStateValue=$(this).html();
 })
 //发项目-项目方向
 $('.project-direction-nav').click(function(){
@@ -408,30 +403,30 @@ $('.project-link button').click(function(){
 })
 
 /*----------------------发项目需要提交的数据对象 start------------------------------*/
-var projectObj={
+var projectObj={};
+/*var projectObj={
     //项目阶段
     projectState:projectStateValue,
     //项目地区
-    projectProvince:provinceValue,
-    projectCity:cityValue,
+    projectArea:provinceValue+" "+cityValue,
     //项目方向
-    projectDirection:projectDirectionValue,
+    projectDirect:projectDirectionValue,
     //项目简述
-    projectDescription:projectDescriptionValue,
+    projectIntro:projectDescriptionValue,
     //项目介绍
-    projectProfile:projectProfileValue,
+    projectDes:projectProfileValue,
     //融资状态
-    projectFinancing1:projectFinancingValue1,
-    projectFinancing2:projectFinancingValue2,
+    financingState:projectFinancingValue1,
+    financingAmount:projectFinancingValue2,
     //合伙人招募
-    role:roleValue,
-    cooperation:cooperationValue,
-    salary:salaryValue,
-    stockProportion:stockProportionValue,
-    projectDeclaration:projectDeclarationValue,
+    partnerRole:roleValue,
+    cooperationMode:cooperationValue,
+    salaryType:salaryValue,
+    optionProportion:stockProportionValue,
+    recruitManifesto:projectDeclarationValue,
     //产品链接
-    projectLink:projectLinkValue
-}
+    systemUrl:projectLinkValue
+}*/
 /*----------------------发项目需要提交的数据对象 end------------------------------*/
 
 //发项目 结束---------------------
@@ -460,4 +455,10 @@ console
         $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
         talentPersonalValue=$(this).html();
     })
+
+
+
+
+
+
 

@@ -28,7 +28,7 @@
             <li class="project-sort">综合排序</li>
             <li class="project-screening">筛选</li>
             <li>
-                <a href="${ctx}/index/project/addInit" data-ajax="false"><button type="button" data-role="none">发项目</button></a>
+                <a href="${ctx}/project/addInit" data-ajax="false"><button type="button" data-role="none">发项目</button></a>
             </li>
         </ul>
         <div class="project-sort-drop" style="display: none">

@@ -73,9 +73,10 @@ public class LoginServiceImpl implements LoginService {
 			user.setLoginName(openId);
 			user.setUserPas("6yhn*IK<");
 			userService.saveUser(user);
+			loginSet(user, httpSession);
+		}else{
+			loginSet(u, httpSession);
 		}
-		
-		loginSet(user, httpSession);
 		
 		return loginflag;
 	}

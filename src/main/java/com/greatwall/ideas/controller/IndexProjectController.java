@@ -49,34 +49,4 @@ public class IndexProjectController extends BaseController {
 		return map;
 	}
 	
-	@RequestMapping("/addInit")
-	public ModelAndView addInit(HttpServletRequest request){
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/index/project/project.jsp");
-		
-		if(!super.checkLogin(request)){
-			mav.setViewName("redirect:/indexLoginInit");
-		}
-		return mav;
-	}
-	
-	@RequestMapping("/addProject")
-	public@ResponseBody String addProject(Project project,HttpSession httpSession){
-		try {
-			User u = super.getSessionUser(httpSession);
-			if(u==null){
-				return "未登录";
-			}
-			project.setUserId(u.getUserId());
-			project.setCreateTime(new Date());
-			if(projectService.save(project)==1){
-				return "success";
-			}else{
-				return "保存失败";
-			}
-		} catch (Exception e) {
-			logger.error("保存错误", e);
-			return "保存错误";
-		}
-	}
 }

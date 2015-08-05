@@ -32,7 +32,7 @@
        					 	<div class="admin"><a href="${ctx}/center/showPersonal" id="a-person" data-transition="slide" data-ajax="false"><img src="${ctx}/img/icon-admin.png" alt="个人中心"/></a></div>
       					</c:when>
 						<c:otherwise>   
-							<div class="admin"><a href="${ctx}/loginIndex" id="a-login" data-transition="slide" ><img src="${ctx}/img/icon-admin.png" alt="登录"/></a></div>
+							<div class="admin"><a href="${ctx}/indexLoginInit" id="a-login" data-transition="slide" ><img src="${ctx}/img/icon-admin.png" alt="登录"/></a></div>
      			 		</c:otherwise>
 					</c:choose>
             

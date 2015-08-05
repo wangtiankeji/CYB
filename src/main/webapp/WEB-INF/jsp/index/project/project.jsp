@@ -21,19 +21,21 @@
     <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
 </head>
 <body>
+
 <!--发项目首页-->
 <div data-role="page" data-theme="f" class="ui-body-f">
     <div data-role="none" data-theme="f" class="submitproject-header">
-        <div class="project-img">
-            <img src="${ctx}/img/btn_addpicure.png" alt="项目图片"/>
+         <div class="project-img" >
+            <img src="${ctx}/img/btn_addpicure.png" id="proimg" alt="项目图片"/>
         </div>
         <p>项目相关图片</p>
+        <input id="fileToUpload" style="display: none" type="file" name="upfile">
     </div>
     <div data-role="none" data-theme="f" class="submitproject-content">
         <form action="" method="post">
             <div class="subcontent-box1">
                 <ul>
-                    <li><span>项目名称</span><input type="text" name="projectName" class="project-name" data-role="none" placeholder="输入项目名称（限10个字）"/></li>
+                    <li><span>项目名称</span><input type="text" class="project-name" data-role="none" placeholder="输入项目名称（限10个字）"/></li>
                     <li class="project-progress-nav"><span>项目阶段</span><div class="right-arrow">请选择项目阶段</div></li>
                     <li class="project-location-nav"><span>项目地区</span><div class="right-arrow">请选择项目地区</div></li>
                     <li class="project-direction-nav"><span>项目方向</span><div class="right-arrow">请选择项目方向</div></li>
@@ -101,7 +103,18 @@
                     <li class="project-description-nav"><span>项目简述</span><div class="right-arrow">用一句话概括您的项目</div></li>
                     <li class="project-profile-nav"><span>项目介绍</span><div class="right-arrow">输入项目介绍（限300个字）</div></li>
                     <li class="project-financing-nav"><span>融资状态</span><div class="right-arrow">请选择融资状态</div></li>
-                    <li class="project-partner-nav"><span style="font-size: 0.8rem;">合伙人招募</span><div class="right-arrow">请选择合伙方式</div></li>
+                    <li class="project-partner-nav">
+                        <span style="font-size: 0.8rem;">合伙人招募</span>
+                        <div class="right-arrow project-partner-nav2">请选择合伙方式</div>
+                        <div>
+                            <ul class="project-partner-selected">
+
+                            </ul>
+                        </div>
+
+
+
+                    </li>
                     <li class="project-link-nav"><span>产品链接</span><div class="right-arrow">点击添加</div></li>
                 </ul>
             </div>
@@ -226,6 +239,58 @@
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.min.js"></script>
 <script src="${ctx}/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
+
+   <script type="text/javascript">
+   $(".publish-project").click( function () { 
+	   projectObj.projectName = $(".project-name").val();
+	   $.ajax({
+			type : "POST",
+			url : "${ctx}/project/addProject",
+			data : projectObj,
+			success : function(msg) {
+				if (msg == 'success') {
+					alert('提交成功！');
+				} else {
+					alert(msg);
+				}
+
+			}
+		});
+	});
    
+   	$(".project-img").click( function () { 
+	   $("#fileToUpload").click();
+	});
+   	
+  //选择文件之后执行上传  
+    $("#fileToUpload").on("change", function() {  
+        $.ajaxFileUpload({  
+            url:"${ctx}/con/upload",  
+            secureuri:false,  
+            fileElementId:'fileToUpload',//file标签的id  
+            dataType: 'json',//返回数据的类型  
+            data:{fileType:"project"},//一同上传的数据  
+            success: function (data, status) {  
+                //把图片替换  
+                var obj = jQuery.parseJSON(data);  
+                if(typeof(obj.status) != "undefined") {  
+                    if(obj.status == "success") {  
+                    	projectObj.projectImg = obj.filePath;
+                    	//$("#eventImg").val("${ctx}"+obj.filePath);
+     	                $("#proimg").attr("src", "${ctx}"+obj.filePath);  
+                    } else {  
+                        alert(obj.msg);  
+                    }  
+                }
+               
+            },  
+            error: function (data, status, e) {  
+                alert(e);  
+            }  
+        });  
+    });  
+   </script>
 </body>
 </html>

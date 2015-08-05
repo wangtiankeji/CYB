@@ -1,5 +1,8 @@
 package com.greatwall.platform.login.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.greatwall.platform.login.service.LoginService;
 import com.greatwall.platform.system.dto.User;
 import com.greatwall.weixin.service.WeiXinService;
@@ -44,7 +48,14 @@ public class LoginController {
 		try {
 			String oauth2 = weiXinService.getOauth2(code);
 			
-			loginService.ssoLogin("", httpSession);
+			if(StringUtils.isNotBlank(oauth2)){
+				Gson gson = new Gson();
+				Map<String,String> map = gson.fromJson(oauth2, HashMap.class);
+				if(map.get("openid")!=null&&!"".equals(map.get("openid"))){
+					loginService.ssoLogin(map.get("openid"), httpSession);
+				}
+			}
+			
 		} catch (Exception e) {
 			logger.error("", e);
 			mav.setViewName("redirect:/indexLoginInit");
