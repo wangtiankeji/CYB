@@ -25,6 +25,7 @@ public class IndexController {
 	@Autowired
 	private PubinfoService pubinfoService;
 	
+	
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView main(Model model) {
 		Pubinfo pubinfo = new Pubinfo();

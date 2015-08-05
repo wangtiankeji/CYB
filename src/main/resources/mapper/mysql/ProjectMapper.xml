@@ -5,7 +5,7 @@
     <id column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
     <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
     <result column="PROJECT_STATE" property="projectState" jdbcType="VARCHAR" />
-    <result column="PROJECT_AREA" property="projectArea" jdbcType="INTEGER" />
+    <result column="PROJECT_AREA" property="projectArea" jdbcType="VARCHAR" />
     <result column="PROJECT_DIRECT" property="projectDirect" jdbcType="VARCHAR" />
     <result column="PROJECT_INTRO" property="projectIntro" jdbcType="VARCHAR" />
     <result column="PROJECT_DES" property="projectDes" jdbcType="VARCHAR" />
@@ -64,7 +64,7 @@
       LAST_UPDATE_TIME, USER_ID, HITS, 
       PROJECT_IMG, STATUS)
     values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{projectState,jdbcType=VARCHAR}, 
-      #{projectArea,jdbcType=INTEGER}, #{projectDirect,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
+      #{projectArea,jdbcType=VARCHAR}, #{projectDirect,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
       #{projectDes,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER}, #{financingState,jdbcType=VARCHAR}, 
       #{financingAmount,jdbcType=DOUBLE}, #{partnerRole,jdbcType=VARCHAR}, #{cooperationMode,jdbcType=VARCHAR}, 
       #{salaryType,jdbcType=VARCHAR}, #{optionProportion,jdbcType=VARCHAR}, #{recruitManifesto,jdbcType=VARCHAR}, 
@@ -83,7 +83,7 @@
         PROJECT_STATE = #{projectState,jdbcType=VARCHAR},
       </if>
       <if test="projectArea != null" >
-        PROJECT_AREA = #{projectArea,jdbcType=INTEGER},
+        PROJECT_AREA = #{projectArea,jdbcType=VARCHAR},
       </if>
       <if test="projectDirect != null" >
         PROJECT_DIRECT = #{projectDirect,jdbcType=VARCHAR},

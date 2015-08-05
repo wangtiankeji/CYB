@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.platform.login.service.LoginService;
 import com.greatwall.platform.system.dto.User;
+import com.greatwall.weixin.service.WeiXinService;
 
 
 
@@ -30,12 +32,33 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private WeiXinService weiXinService;
+	
 	@RequestMapping(value = "/login/ssoLogin",method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView ssoLogin(String code,String state){
+	public ModelAndView ssoLogin(String code,String state,HttpSession httpSession){
 		System.out.println("code = "+code);
 		System.out.println("state = "+state);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/index");
+		try {
+			String oauth2 = weiXinService.getOauth2(code);
+			
+			loginService.ssoLogin("", httpSession);
+		} catch (Exception e) {
+			logger.error("", e);
+			mav.setViewName("redirect:/indexLoginInit");
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/indexLoginInit")
+	public ModelAndView indexLoginInit() {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("indexlogin.jsp");
+
 		return mav;
 	}
 	
@@ -45,14 +68,14 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/index");
 		if(StringUtils.isBlank(loginName)||StringUtils.isBlank(password)){
-			mav.setViewName("redirect:/index#page-login");
+			mav.setViewName("indexlogin.jsp");
 			mav.addObject("reflag", 1);//用户名或密码错误
 			mav.addObject("loginName", loginName);
 			mav.addObject("msg", "用户名或密码为空！");
 		}
 		
 		if(!loginService.checkLogin(loginName, password,httpSession)){
-			mav.setViewName("redirect:/index#page-login");
+			mav.setViewName("indexlogin.jsp");
 			mav.addObject("reflag", 1);//用户名或密码错误
 			mav.addObject("loginName", loginName);
 			mav.addObject("msg", "用户名或密码错误！");

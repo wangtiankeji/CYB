@@ -78,10 +78,6 @@ $(document).ready(function (){
 })
 
 
-
-
-
-
 //找项目---动态折叠省市列表框
 $('.location-inner-state h2 span').click(function(){
     $('.location-inner-state').animate({
@@ -89,18 +85,30 @@ $('.location-inner-state h2 span').click(function(){
     },500)
 })
 
+//找项目头部菜单栏点击效果
 $('.project-sort').click(function(){
-
     $('.project-sort').css({'color':'#5cce49'})
-
     headersrc=$(this).css("background-image");
     headerarr=headersrc.split("_");
     headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
     headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
     $(this).css({'background-image':headersrc2});
-    $('.project-sort-drop').slideToggle("fast");
+    $('.project-sort-drop').slideDown("fast");
 });
-//综合排序选择菜单状态切换
+
+//找人才头部菜单栏点击效果-----
+$('.talent-sort').click(function(){
+    $('.talent-sort').css({'color':'#5cce49'})
+    headersrc=$(this).css("background-image");
+    headerarr=headersrc.split("_");
+    headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
+    headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+    $(this).css({'background-image':headersrc2});
+    $('.talent-sort-drop').slideDown("fast");
+});
+
+
+//找项目综合排序选择菜单状态切换
 $('.project-sort-drop ul li').click(function(){
     $(this).css({'color':'#5cce49'}).siblings().css({'color':'#333'});
     $('.project-sort').html($(this).text());
@@ -123,11 +131,40 @@ $('.project-sort-drop ul li').click(function(){
 
     //选择后收起来的状态
     $('.project-sort-drop').slideUp("fast");
-    $('.project-sort').css({'background-image':headersrc3});
-    $('.project-sort').css({'color':'#333'})
-
+    $('.project-sort').css({
+        'background-image':headersrc3,
+        'color':'#333'
+    });
 });
-//筛选菜单栏
+
+//找人才综合排序选择菜单状态切换-----
+$('.talent-sort-drop ul li').click(function(){
+    $(this).css({'color':'#5cce49'}).siblings().css({'color':'#333'});
+    $('.talent-sort').html($(this).text());
+
+    //背景图标状态切换-活动状态
+    src=$(this).css("background-image");
+    arr=src.split("_");
+    src2=arr[0]+"_"+arr[1]+"_"+"pre.png)";
+    $(this).css({'background-image':src2});
+    $(this).children('span').show().parent().siblings().children("span").hide();
+    //背景图标状态切换-非活动状态
+    sibsrc=$(this).siblings().eq(0).css("background-image")
+    arr2=sibsrc.split("_");
+    src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png)";
+    $(this).siblings().eq(0).css({'background-image':src3});
+
+    //选择后收起来的状态
+    $('.talent-sort-drop').slideUp("fast");
+    $('.talent-sort').css({
+        'background-image':headersrc3,
+        'color':'#333'
+    });
+});
+
+
+
+//找项目筛选菜单栏
 $('.project-screening').click(function(){
     $('.project-screening').css({'color':'#5cce49'})
     headersrc=$(this).css("background-image");
@@ -138,12 +175,58 @@ $('.project-screening').click(function(){
     $('.project-screen-drop').slideToggle("fast");
 });
 
-//选择后收起
+//找人才筛选菜单栏-----
+$('.talent-screening').click(function(){
+    $('.talent-screening').css({'color':'#5cce49'})
+    headersrc=$(this).css("background-image");
+    headerarr=headersrc.split("_");
+    headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
+    headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+    $(this).css({'background-image':headersrc2});
+    $('.talent-screen-drop').slideDown("fast");
+});
+
+//找项目筛选选择后收起
 $('.project-inner-button button').click(function(){
     $('.project-screen-drop').slideUp("fast");
-    $('.project-screening').css({'background-image':headersrc3});
-    $('.project-screening').css({'color':'#333'})
+    $('.project-screening').css({
+        'background-image':headersrc3,
+        'color':'#333'
+    });
 })
+//找项目筛选选择后收起
+$('.talent-inner-button button').click(function(){
+    $('.talent-screen-drop').slideUp("fast");
+    $('.talent-screening').css({
+        'background-image':headersrc3,
+        'color':'#333'
+    });
+})
+//找人才 人才定位 状态选择
+$('.talent-inner-state ul li').click(function(){
+    $(this).addClass('screen-active').siblings().removeClass('screen-active');
+});
+
+
+
+
+
+
+
+var projectStateValue;
+var provinceValue;
+var cityValue;
+var projectDirectionValue;
+var projectDescriptionValue;
+var projectProfileValue;
+var projectFinancingValue1;
+var projectFinancingValue2;
+var roleValue;
+var cooperationValue;
+var salaryValue;
+var stockProportionValue;
+var projectDeclarationValue;
+var projectLinkValue;
 
 //发项目---项目阶段状态选择
 $('.project-progress-nav').click(function(){
@@ -156,6 +239,7 @@ $('.project-progress ul li').click(function(){
         $('.project-progress').hide();
     },100)
     $('.project-progress-nav div').html($(this).html()).css({'color':'#333'});
+    var projectStateValue=$(this).html();
 })
 //发项目-项目方向
 $('.project-direction-nav').click(function(){
@@ -170,6 +254,7 @@ $('.project-direction ul li').click(function(){
     $('.project-direction-nav div').html($(this).html()).css({
         'color':'#333'
     })
+    projectDirectionValue=$(this).html();
 })
 
 //项目简述
@@ -185,6 +270,7 @@ $('.project-description button').click(function(){
     $('.project-description-nav>div').html($('.project-description textarea').val()).css({
         'color':'#333'
     });
+    projectDescriptionValue=$('.project-description textarea').val();
 
 })
 $('.project-description textarea').focus(function(){
@@ -205,6 +291,7 @@ $('.project-profile button').click(function(){
     $('.project-profile-nav>div').html($('.project-description textarea').val()).css({
         'color':'#333'
     });
+    projectProfileValue=$('.project-description textarea').val();
 
 })
 $('.project-profile textarea').focus(function(){
@@ -219,7 +306,7 @@ $('.project-financing-nav').click(function(){
 })
 $('.project-financing ul li').click(function(){
     $(this).addClass('screen-active').siblings().removeClass('screen-active');
-    valueState=$(this).html();
+    projectFinancingValue1=$(this).html();
 })
 $('.project-financing-turn span').click(function(){
     if($('.project-financing-turn span').html()=='万/人民币'){
@@ -230,24 +317,24 @@ $('.project-financing-turn span').click(function(){
 })
 $('.project-financing-sure button').click(function(){
     if($('.project-financing-turn input').val()==''){
-        value2=0;
+        projectFinancingValue2=0;
     }else{
-        value2=$('.project-financing-turn input').val();
+        projectFinancingValue2=$('.project-financing-turn input').val();
     }
-    value=valueState+' '+value2+' '+$('.project-financing-turn span').html();
+    value=projectFinancingValue1+' '+projectFinancingValue2+' '+$('.project-financing-turn span').html();
     $('.project-financing-nav div').html(value).css({
         'color':'#333'
     });
     $('.project-financing').hide();
 })
 //合伙人招募
-$('.project-partner-nav').click(function(){
+$('.project-partner-nav2').click(function(){
     $('.project-partner').animate({
         'left':'0'
     },300)
 })
 $('.partner-role ul li').click(function(){
-    $(this).addClass('screen-active').siblings().removeClass('screen-active');
+    $(this).addClass('a').siblings().removeClass('screen-active');
     roleValue=$(this).html();
 })
 $('.partner-cooperation ul li').click(function(){
@@ -265,6 +352,7 @@ $('.partner-stock div').click(function(){
 $('.stock-proportion ul li').click(function(){
     $(this).addClass('screen-active').siblings().removeClass('screen-active');
     $('.stock').html($(this).html());
+    stockProportionValue=$(this).html();
     clearTimeout(proportionTimer)
     var proportionTimer=setTimeout(function(){
         $('.stock-proportion').hide();
@@ -287,16 +375,17 @@ $('.project-declaration button').click(function(){
         'left':'100%'
     },200)
     $('.explain').html($('.project-declaration textarea').val());
+    projectDeclarationValue=$('.project-declaration textarea').val();
 })
 $('.project-partner-save').click(function(){
-    $('.project-partner').animate({
-        'left':'100%'
-    },200);
-    $('.project-partner-nav div').html('点击查看').css({
-        'color':'#333',
-        'fontSize':'0.9rem'
-    })
+
+        $('.project-partner').animate({
+            'left':'100%'
+        },200);
+        $('.project-partner-selected').append("<li>"+roleValue+"</li>");
+        $('.project-partner-save').html('取消该项');
 })
+
 $('.project-link-nav').click(function(){
    $('.project-link').animate({
        'left':0
@@ -308,6 +397,7 @@ $('.project-link textarea').focus(function(){
     }
 })
 $('.project-link button').click(function(){
+    projectLinkValue=$('.project-link textarea').val();
     $('.project-link').animate({
         'left':'100%'
     },200);
@@ -317,13 +407,57 @@ $('.project-link button').click(function(){
     })
 })
 
-
-
-
+/*----------------------发项目需要提交的数据对象 start------------------------------*/
+var projectObj={
+    //项目阶段
+    projectState:projectStateValue,
+    //项目地区
+    projectProvince:provinceValue,
+    projectCity:cityValue,
+    //项目方向
+    projectDirection:projectDirectionValue,
+    //项目简述
+    projectDescription:projectDescriptionValue,
+    //项目介绍
+    projectProfile:projectProfileValue,
+    //融资状态
+    projectFinancing1:projectFinancingValue1,
+    projectFinancing2:projectFinancingValue2,
+    //合伙人招募
+    role:roleValue,
+    cooperation:cooperationValue,
+    salary:salaryValue,
+    stockProportion:stockProportionValue,
+    projectDeclaration:projectDeclarationValue,
+    //产品链接
+    projectLink:projectLinkValue
+}
+/*----------------------发项目需要提交的数据对象 end------------------------------*/
 
 //发项目 结束---------------------
 
+var talentPersonalValue;
 
 
+//发布简历需要提交后台的数据对象
+var talentobj={
+    talentName:$('.talent-name').val(),
+    talentPersonal:talentPersonalValue
+}
+    //昵称
+    var talentName=$('.talent-name').val();
+console
 
+
+//发布简历
+    //个人定位
+    $('.talent-personal-nav').click(function(){
+        //点击出现选择框
+        $('.talent-personal').show();
+    })
+        //人才定位选择
+    $('.talent-personal>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        talentPersonalValue=$(this).html();
+    })
 

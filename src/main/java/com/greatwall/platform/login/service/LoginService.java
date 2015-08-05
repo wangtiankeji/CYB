@@ -14,4 +14,6 @@ public interface LoginService {
 	 */
 	public Boolean checkLogin(String loginName,String pwd,HttpSession httpSession);
 	
+	
+	public Boolean ssoLogin(String openId,HttpSession httpSession);
 }

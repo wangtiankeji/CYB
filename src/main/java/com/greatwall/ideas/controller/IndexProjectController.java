@@ -21,7 +21,6 @@ import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
-import com.greatwall.platform.domain.ReturnMsg;
 import com.greatwall.platform.system.dto.User;
 
 @Controller
@@ -56,7 +55,7 @@ public class IndexProjectController extends BaseController {
 		mav.setViewName("/index/project/project.jsp");
 		
 		if(!super.checkLogin(request)){
-			mav.setViewName("redirect:/index#page-login");
+			mav.setViewName("redirect:/indexLoginInit");
 		}
 		return mav;
 	}

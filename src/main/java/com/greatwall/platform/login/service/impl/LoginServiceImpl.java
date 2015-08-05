@@ -17,6 +17,7 @@ import com.greatwall.platform.system.dao.UserDao;
 import com.greatwall.platform.system.dto.Association;
 import com.greatwall.platform.system.dto.User;
 import com.greatwall.platform.system.service.AssociationService;
+import com.greatwall.platform.system.service.UserService;
 
 
 
@@ -29,13 +30,16 @@ import com.greatwall.platform.system.service.AssociationService;
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
-//	private static ExecutorService es = Executors.newCachedThreadPool();
+	//	private static ExecutorService es = Executors.newCachedThreadPool();
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private AssociationService associationService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 用户名密码登录
@@ -45,33 +49,53 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	public Boolean checkLogin(String loginName,String pwd,HttpSession httpSession){
 		Boolean loginflag = false;
-			User user = new User();
-			user.setLoginName(loginName);
-			User u = (User)userDao.getUser(user);
-			if(u!=null){
-				if(StringUtils.isNotBlank(u.getUserPas())&&pwd.equals(u.getUserPas())){
-					u.setUserPas("");
-					httpSession.setAttribute("roleIds", this.getRoleIds(u.getUserId()));
-					httpSession.setAttribute("user",u);
-					
-					User loginTimeUser = new User();
-					loginTimeUser.setUserId(u.getUserId());
-					loginTimeUser.setLastLoginTime(new Date());
-					userDao.updateUser(loginTimeUser);
-					
-					loginflag = true;
-				}
+		User user = new User();
+		user.setLoginName(loginName);
+		User u = (User)userDao.getUser(user);
+		if(u!=null){
+			if(StringUtils.isNotBlank(u.getUserPas())&&pwd.equals(u.getUserPas())){
+				u.setUserPas("");
+				
+				loginSet(u, httpSession);
+				loginflag = true;
 			}
+		}
+		return loginflag;
+	}
+
+	public Boolean ssoLogin(String openId,HttpSession httpSession){
+		Boolean loginflag = true;
+		
+		User user = new User();
+		user.setSessionKey(openId);
+		User u = (User)userDao.getUser(user);
+		if(u==null){
+			user.setLoginName(openId);
+			user.setUserPas("6yhn*IK<");
+			userService.saveUser(user);
+		}
+		
+		loginSet(user, httpSession);
+		
 		return loginflag;
 	}
 	
+	private void loginSet(User u,HttpSession httpSession){
+		httpSession.setAttribute("roleIds", this.getRoleIds(u.getUserId()));
+		httpSession.setAttribute("user",u);
+
+		User loginTimeUser = new User();
+		loginTimeUser.setUserId(u.getUserId());
+		loginTimeUser.setLastLoginTime(new Date());
+		userDao.updateUser(loginTimeUser);
+	}
 	/** 
-	* @Title: getRoleIds 
-	* @Description: 获取登录用户角色 
-	* @param userId
-	* @return String  返回格式  roleId,roleId,
-	* @throws 
-	*/
+	 * @Title: getRoleIds 
+	 * @Description: 获取登录用户角色 
+	 * @param userId
+	 * @return String  返回格式  roleId,roleId,
+	 * @throws 
+	 */
 	private String getRoleIds(Integer userId){
 		Association association = new Association();
 		association.setSourceType("role");

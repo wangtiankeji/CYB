@@ -33,7 +33,8 @@ public class InterfaceController {
 		
 		if(SignUtil.checkSignature("vNzNcFhyM4PGY2yBrrIn1sKWBa", signature, timestamp, nonce)){
 			System.out.println("true");
+			return echostr;
 		}
-		return echostr;
+		return "";
 	}
 }

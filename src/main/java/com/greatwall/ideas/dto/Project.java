@@ -9,7 +9,7 @@ public class Project {
 
     private String projectState;
 
-    private Integer projectArea;
+    private String projectArea;
 
     private String projectDirect;
 
@@ -73,11 +73,11 @@ public class Project {
         this.projectState = projectState == null ? null : projectState.trim();
     }
 
-    public Integer getProjectArea() {
+    public String getProjectArea() {
         return projectArea;
     }
 
-    public void setProjectArea(Integer projectArea) {
+    public void setProjectArea(String projectArea) {
         this.projectArea = projectArea;
     }
 

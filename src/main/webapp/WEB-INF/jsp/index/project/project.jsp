@@ -33,7 +33,7 @@
         <form action="" method="post">
             <div class="subcontent-box1">
                 <ul>
-                    <li><span>项目名称</span><input type="text" class="project-name" data-role="none" placeholder="输入项目名称（限10个字）"/></li>
+                    <li><span>项目名称</span><input type="text" name="projectName" class="project-name" data-role="none" placeholder="输入项目名称（限10个字）"/></li>
                     <li class="project-progress-nav"><span>项目阶段</span><div class="right-arrow">请选择项目阶段</div></li>
                     <li class="project-location-nav"><span>项目地区</span><div class="right-arrow">请选择项目地区</div></li>
                     <li class="project-direction-nav"><span>项目方向</span><div class="right-arrow">请选择项目方向</div></li>

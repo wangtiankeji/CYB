@@ -24,7 +24,7 @@
 	<mvc:interceptors>
 		<!-- 多个拦截器,顺序执行 -->
 		<bean class="com.greatwall.platform.common.interceptor.PermissionsInteceptor">
-			<property name="redirectUrl" value="/index#page-login" />
+			<property name="redirectUrl" value="/indexLoginInit" />
 			<property name="indexUrl" value="/index" />
 			<property name="excludeUrl">
 				<list>
