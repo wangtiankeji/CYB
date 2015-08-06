@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.greatwall.ideas.dao.ResumeDao;
-import com.greatwall.ideas.dto.Resume;
-import com.greatwall.ideas.service.ResumeService;
+import com.greatwall.ideas.dao.TalentDao;
+import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.service.TalentService;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
 
@@ -19,30 +19,30 @@ import com.greatwall.platform.domain.PageParameter;
 *
 */ 
 @Service("resumeService")
-public class ResumeServiceImpl implements ResumeService{
+public class TalentServiceImpl implements TalentService{
 
 	@Autowired
-	private ResumeDao resumeDao;
+	private TalentDao resumeDao;
 	
 	@Override
-	public List<Resume> getPage(Resume resume, PageParameter page)
+	public List<Talent> getPage(Talent talent, PageParameter page)
 			throws DaoException {
-		return resumeDao.getPage(resume, page);
+		return resumeDao.getPage(talent, page);
 	}
 
 	@Override
-	public int save(Resume resume) {
-		return resumeDao.insert(resume);
+	public int save(Talent talent) {
+		return resumeDao.insert(talent);
 	}
 
 	@Override
-	public Resume getResume(Integer resumeId) {
-		return resumeDao.selectByPrimaryKey(resumeId);
+	public Talent getTalent(Integer talentId) {
+		return resumeDao.selectByPrimaryKey(talentId);
 	}
 
 	@Override
-	public int updateResumeByKey(Resume resume) {
-		return resumeDao.updateByPrimaryKeySelective(resume);
+	public int updateTalentByKey(Talent talent) {
+		return resumeDao.updateByPrimaryKeySelective(talent);
 	}
 
 }

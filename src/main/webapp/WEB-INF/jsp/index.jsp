@@ -52,7 +52,7 @@
         <div class="content-item">
             <ul>
                 <li><a href="${ctx}/index/project/showProjects" data-ajax=“false”><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
-                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
+                <li><a href="${ctx}/index/talent/showTalents"><img src="${ctx}/img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
                 <li><a href="${ctx}/index/event/showIndexEvents/incubator" data-ajax=“false”><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
                 <li><a href="${ctx}/index/event/showIndexEvents/activity" data-ajax=“false”><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
                 <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>

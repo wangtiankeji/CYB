@@ -2,10 +2,10 @@ package com.greatwall.ideas.dto;
 
 import java.util.Date;
 
-public class Resume {
-    private Integer resumeId;
+public class Talent {
+    private Integer talentId;
 
-    private String resumeName;
+    private String talentName;
 
     private String nickname;
 
@@ -29,20 +29,20 @@ public class Resume {
 
     private Integer hits;
 
-    public Integer getResumeId() {
-        return resumeId;
+    public Integer getTalentId() {
+        return talentId;
     }
 
-    public void setResumeId(Integer resumeId) {
-        this.resumeId = resumeId;
+    public void setTalentId(Integer talentId) {
+        this.talentId = talentId;
     }
 
-    public String getResumeName() {
-        return resumeName;
+    public String getTalentName() {
+        return talentName;
     }
 
-    public void setResumeName(String resumeName) {
-        this.resumeName = resumeName == null ? null : resumeName.trim();
+    public void setTalentName(String talentName) {
+        this.talentName = talentName == null ? null : talentName.trim();
     }
 
     public String getNickname() {

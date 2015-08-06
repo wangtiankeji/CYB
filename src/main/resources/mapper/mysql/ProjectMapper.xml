@@ -12,11 +12,6 @@
     <result column="PEOPLE_NUM" property="peopleNum" jdbcType="INTEGER" />
     <result column="FINANCING_STATE" property="financingState" jdbcType="VARCHAR" />
     <result column="FINANCING_AMOUNT" property="financingAmount" jdbcType="DOUBLE" />
-    <result column="PARTNER_ROLE" property="partnerRole" jdbcType="VARCHAR" />
-    <result column="COOPERATION_MODE" property="cooperationMode" jdbcType="VARCHAR" />
-    <result column="SALARY_TYPE" property="salaryType" jdbcType="VARCHAR" />
-    <result column="OPTION_PROPORTION" property="optionProportion" jdbcType="VARCHAR" />
-    <result column="RECRUIT_MANIFESTO" property="recruitManifesto" jdbcType="VARCHAR" />
     <result column="SYSTEM_URL" property="systemUrl" jdbcType="VARCHAR" />
     <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
@@ -28,9 +23,8 @@
   </resultMap>
   <sql id="Base_Column_List" >
     PROJECT_ID, PROJECT_NAME, PROJECT_STATE, PROJECT_AREA, PROJECT_DIRECT, PROJECT_INTRO, 
-    PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, FINANCING_AMOUNT, PARTNER_ROLE, COOPERATION_MODE, 
-    SALARY_TYPE, OPTION_PROPORTION, RECRUIT_MANIFESTO, SYSTEM_URL, CONTACT_PHONE, CREATE_TIME, 
-    LAST_UPDATE_TIME, USER_ID, HITS, PROJECT_IMG, STATUS
+    PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, FINANCING_AMOUNT, SYSTEM_URL, CONTACT_PHONE, 
+    CREATE_TIME, LAST_UPDATE_TIME, USER_ID, HITS, PROJECT_IMG, STATUS
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -58,19 +52,17 @@
      insert into td_cyb_project (PROJECT_ID, PROJECT_NAME, PROJECT_STATE, 
       PROJECT_AREA, PROJECT_DIRECT, PROJECT_INTRO, 
       PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, 
-      FINANCING_AMOUNT, PARTNER_ROLE, COOPERATION_MODE, 
-      SALARY_TYPE, OPTION_PROPORTION, RECRUIT_MANIFESTO, 
-      SYSTEM_URL, CONTACT_PHONE, CREATE_TIME, 
-      LAST_UPDATE_TIME, USER_ID, HITS, 
-      PROJECT_IMG, STATUS)
+      FINANCING_AMOUNT, SYSTEM_URL, CONTACT_PHONE, 
+      CREATE_TIME, LAST_UPDATE_TIME, USER_ID, 
+      HITS, PROJECT_IMG, STATUS
+      )
     values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{projectState,jdbcType=VARCHAR}, 
       #{projectArea,jdbcType=VARCHAR}, #{projectDirect,jdbcType=VARCHAR}, #{projectIntro,jdbcType=VARCHAR}, 
       #{projectDes,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER}, #{financingState,jdbcType=VARCHAR}, 
-      #{financingAmount,jdbcType=DOUBLE}, #{partnerRole,jdbcType=VARCHAR}, #{cooperationMode,jdbcType=VARCHAR}, 
-      #{salaryType,jdbcType=VARCHAR}, #{optionProportion,jdbcType=VARCHAR}, #{recruitManifesto,jdbcType=VARCHAR}, 
-      #{systemUrl,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{hits,jdbcType=INTEGER}, 
-      #{projectImg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+      #{financingAmount,jdbcType=DOUBLE}, #{systemUrl,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
+      #{hits,jdbcType=INTEGER}, #{projectImg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
   </insert>
   
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Project" >
@@ -102,21 +94,6 @@
       </if>
       <if test="financingAmount != null" >
         FINANCING_AMOUNT = #{financingAmount,jdbcType=DOUBLE},
-      </if>
-      <if test="partnerRole != null" >
-        PARTNER_ROLE = #{partnerRole,jdbcType=VARCHAR},
-      </if>
-      <if test="cooperationMode != null" >
-        COOPERATION_MODE = #{cooperationMode,jdbcType=VARCHAR},
-      </if>
-      <if test="salaryType != null" >
-        SALARY_TYPE = #{salaryType,jdbcType=VARCHAR},
-      </if>
-      <if test="optionProportion != null" >
-        OPTION_PROPORTION = #{optionProportion,jdbcType=VARCHAR},
-      </if>
-      <if test="recruitManifesto != null" >
-        RECRUIT_MANIFESTO = #{recruitManifesto,jdbcType=VARCHAR},
       </if>
       <if test="systemUrl != null" >
         SYSTEM_URL = #{systemUrl,jdbcType=VARCHAR},

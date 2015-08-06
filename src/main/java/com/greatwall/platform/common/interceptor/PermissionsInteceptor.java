@@ -67,7 +67,9 @@ public class PermissionsInteceptor implements HandlerInterceptor  {
 		//3、如果用户已经登录 放行    
 		if(request.getSession().getAttribute("user") != null) {  
 			return true; 
-		}  
+		}else{
+			request.getSession().setAttribute("lastUrl", urlPath);
+		}
 
 		//4、非法请求 即这些请求需要登录后才能访问  
 		//重定向到登录页面  

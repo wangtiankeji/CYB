@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PartnerMapper" >
+  <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Partner" >
+    <id column="PARTNER_ID" property="partnerId" jdbcType="INTEGER" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
+    <result column="PARTNER_ROLE" property="partnerRole" jdbcType="VARCHAR" />
+    <result column="COOPERATION_MODE" property="cooperationMode" jdbcType="VARCHAR" />
+    <result column="SALARY_TYPE" property="salaryType" jdbcType="VARCHAR" />
+    <result column="OPTION_PROPORTION" property="optionProportion" jdbcType="VARCHAR" />
+    <result column="RECRUIT_MANIFESTO" property="recruitManifesto" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PARTNER_ID, PROJECT_ID, PARTNER_ROLE, COOPERATION_MODE, SALARY_TYPE, OPTION_PROPORTION, 
+    RECRUIT_MANIFESTO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_partner
+    where PARTNER_ID = #{partnerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from td_cyb_partner
+    where PARTNER_ID = #{partnerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greatwall.ideas.dto.Partner" >
+    insert into td_cyb_partner (PARTNER_ID, PROJECT_ID, PARTNER_ROLE, 
+      COOPERATION_MODE, SALARY_TYPE, OPTION_PROPORTION, 
+      RECRUIT_MANIFESTO)
+    values (#{partnerId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{partnerRole,jdbcType=VARCHAR}, 
+      #{cooperationMode,jdbcType=VARCHAR}, #{salaryType,jdbcType=VARCHAR}, #{optionProportion,jdbcType=VARCHAR}, 
+      #{recruitManifesto,jdbcType=VARCHAR})
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Partner" >
+    update td_cyb_partner
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="partnerRole != null" >
+        PARTNER_ROLE = #{partnerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationMode != null" >
+        COOPERATION_MODE = #{cooperationMode,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryType != null" >
+        SALARY_TYPE = #{salaryType,jdbcType=VARCHAR},
+      </if>
+      <if test="optionProportion != null" >
+        OPTION_PROPORTION = #{optionProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="recruitManifesto != null" >
+        RECRUIT_MANIFESTO = #{recruitManifesto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTNER_ID = #{partnerId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

@@ -13,33 +13,33 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.greatwall.ideas.dao.EventDao;
 import com.greatwall.ideas.dao.ProjectDao;
-import com.greatwall.ideas.dao.ResumeDao;
+import com.greatwall.ideas.dao.TalentDao;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.Pubinfo;
-import com.greatwall.ideas.dto.Resume;
+import com.greatwall.ideas.dto.Talent;
 import com.greatwall.platform.domain.PageParameter;
 
 //@Transactional
 //@TransactionConfiguration(defaultRollback = true)  
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})  
-public class ResumeDaoTest {
+public class TalentDaoTest {
 
 	@Autowired
-	private ResumeDao resumeDao;
+	private TalentDao resumeDao;
 	
 	@Test  
     public void insert()  
     {  
         try  
         {  
-        	Resume resume = new Resume();
-        	resume.setResumeName("个人简历");
-        	resume.setCreateTime(new Date());
+        	Talent talent = new Talent();
+        	talent.setTalentName("个人简历");
+        	talent.setCreateTime(new Date());
         	
-        	resumeDao.insert(resume);
+        	resumeDao.insert(talent);
         	
         }  
         catch (Exception e)  
@@ -55,15 +55,15 @@ public class ResumeDaoTest {
         try  
         {  
         	
-        	Resume resume = new Resume();
+        	Talent talent = new Talent();
         	
         	PageParameter page = new PageParameter();
         	
-        	List<Resume> resumelist = resumeDao.getPage(resume, page);
+        	List<Talent> talentlist = resumeDao.getPage(talent, page);
         	
-        	if(resumelist!=null){
-        		for(Resume res:resumelist){
-        			System.out.println("========="+res.getResumeName());
+        	if(talentlist!=null){
+        		for(Talent res:talentlist){
+        			System.out.println("========="+res.getTalentName());
         		}
         	}
         }  

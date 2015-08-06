@@ -2,7 +2,6 @@ package com.greatwall.platform;
 
 import static org.junit.Assert.fail;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.greatwall.ideas.dto.Resume;
-import com.greatwall.platform.domain.PageParameter;
 import com.greatwall.platform.system.dao.DataDictDao;
 import com.greatwall.platform.system.dto.DataDict;
 
