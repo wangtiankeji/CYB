@@ -1,6 +1,7 @@
 package com.greatwall.ideas.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
@@ -48,15 +50,11 @@ public class ProjectController extends BaseController {
 	public ModelAndView addInit(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/index/project/project.jsp");
-		
-//		if(!super.checkLogin(request)){
-//			mav.setViewName("redirect:/indexLoginInit");
-//		}
 		return mav;
 	}
 	
 	@RequestMapping("/addProject")
-	public@ResponseBody String addProject(Project project,HttpSession httpSession){
+	public@ResponseBody String addProject(Project project,List<Partner> partners,HttpSession httpSession){
 		try {
 			User u = super.getSessionUser(httpSession);
 			if(u==null){

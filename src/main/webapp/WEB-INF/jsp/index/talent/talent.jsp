@@ -26,6 +26,7 @@
     <div data-role="none" data-theme="f" class="publish-talent-header">
         <div class="publish-talent-img"></div>
         <p style="text-align: center;">上传个人头像</p>
+         <input id="fileToUpload" style="display: none" type="file" name="upfile">
     </div>
     <div data-role="none" data-theme="f" class="submitproject-content">
         <form action="" method="post">
@@ -234,11 +235,12 @@
 <script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 
    <script type="text/javascript">
+   var talentObj = {};
    $(".publish-project").click( function () { 
-	   projectObj.projectName = $(".project-name").val();
+	   talentObj.nickname = $(".talent-name").val();
 	   $.ajax({
 			type : "POST",
-			url : "${ctx}/project/addProject",
+			url : "${ctx}/talent/addTalent",
 			data : projectObj,
 			success : function(msg) {
 				if (msg == 'success') {
@@ -251,7 +253,7 @@
 		});
 	});
    
-   	$(".project-img").click( function () { 
+   	$(".publish-talent-img").click( function () { 
 	   $("#fileToUpload").click();
 	});
    	
@@ -268,9 +270,10 @@
                 var obj = jQuery.parseJSON(data);  
                 if(typeof(obj.status) != "undefined") {  
                     if(obj.status == "success") {  
-                    	projectObj.projectImg = obj.filePath;
+                    	talentObj.projectImg = obj.filePath;
+                    	$(".publish-talent-img").css("backgroundImage","url(${ctx}"+obj.filePath +")"); 
                     	//$("#eventImg").val("${ctx}"+obj.filePath);
-     	                $("#proimg").attr("src", "${ctx}"+obj.filePath);  
+     	               // $("#proimg").attr("src", "${ctx}"+obj.filePath);  
                     } else {  
                         alert(obj.msg);  
                     }  
