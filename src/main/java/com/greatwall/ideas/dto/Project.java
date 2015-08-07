@@ -1,6 +1,7 @@
 package com.greatwall.ideas.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Project {
     private Integer projectId;
@@ -38,7 +39,7 @@ public class Project {
     private String projectImg;
 
     private String status;
-
+    
     public Integer getProjectId() {
         return projectId;
     }
@@ -182,4 +183,5 @@ public class Project {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+    
 }

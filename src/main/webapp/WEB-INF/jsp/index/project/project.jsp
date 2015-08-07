@@ -25,11 +25,11 @@
 <!--发项目首页-->
 <div data-role="page" data-theme="f" class="ui-body-f">
     <div data-role="none" data-theme="f" class="submitproject-header">
-         <div class="project-img" >
-            <img src="${ctx}/img/btn_addpicure.png" id="proimg" alt="项目图片"/>
+        <div class="project-img">
+            <img src="${ctx}/img/btn_addpicure.png" alt="项目图片"/>
         </div>
-        <p>项目相关图片</p>
         <input id="fileToUpload" style="display: none" type="file" name="upfile">
+        <p>项目相关图片</p>
     </div>
     <div data-role="none" data-theme="f" class="submitproject-content">
         <form action="" method="post">
@@ -151,7 +151,8 @@
                     </div>
                 </div>
             </div>
-            <!-- 合伙人招募-->
+
+            <!-- 招募合伙人-->
             <div class="project-partner" style="left:100%;">
                 <ul>
                     <li class="partner-role">
@@ -225,12 +226,21 @@
                     <button type="button" data-role="none">保存</button>
                 </div>
             </div>
+
+
+            <div class="project-alert" style="display: none">
+                请填写完整提交
+            </div>
+
             <!-- 产品链接-->
             <div class="project-link">
                 <textarea name="link" id="link" data-role="none" maxlength="30">请输入WEB链接..</textarea>
                 <button type="button" data-role="none">保存</button>
             </div>
             <button class="publish-project" type="button" data-role="none">发布项目</button>
+            <div class="project-alert" style="display: none">
+                请填写完整提交
+            </div>
         </form>
     </div>
 </div>
@@ -243,7 +253,7 @@
 <script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 
    <script type="text/javascript">
-   $(".publish-project").click( function () { 
+   /* $(".publish-project").click( function () { 
 	   projectObj.projectName = $(".project-name").val();
 	   $.ajax({
 			type : "POST",
@@ -258,7 +268,26 @@
 
 			}
 		});
-	});
+	}); */
+	
+	function publishProject(publishProjectObj){
+		var partnerObj = $(".submitproject-content").data("partner");
+		//publishProjectObj.partners = JSON.stringify(partnerObj);
+		var datas = $.param(publishProjectObj)+"&"+$.param(partnerObj)+"&"+$.param(partnerObj);
+		$.ajax({
+			type : "POST",
+			url : "${ctx}/project/addProject",
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg == 'success') {
+					alert('提交成功！');
+				} else {
+					alert(msg);
+				}
+			}
+		});
+	}
    
    	$(".project-img").click( function () { 
 	   $("#fileToUpload").click();
@@ -277,9 +306,9 @@
                 var obj = jQuery.parseJSON(data);  
                 if(typeof(obj.status) != "undefined") {  
                     if(obj.status == "success") {  
-                    	projectObj.projectImg = obj.filePath;
+                    	//projectObj.projectImg = obj.filePath;
                     	//$("#eventImg").val("${ctx}"+obj.filePath);
-     	                $("#proimg").attr("src", "${ctx}"+obj.filePath);  
+     	                $(".project-img img").attr("src", "${ctx}"+obj.filePath);  
                     } else {  
                         alert(obj.msg);  
                     }  

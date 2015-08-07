@@ -32,6 +32,22 @@
     from td_cyb_project
     where PROJECT_ID = #{projectId,jdbcType=INTEGER}
   </select>
+  <select id="selectProject" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Project" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_project
+    <where>
+    	<if test="projectId != null">
+    	PROJECT_ID = #{projectId,jdbcType=INTEGER}
+    	</if>
+    	<if test="projectName != null">
+    	 and PROJECT_NAME = #{projectName,jdbcType=VARCHAR}
+    	</if>
+    	<if test="userId != null">
+    	 and USER_ID = #{userId,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
   
   <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Project" >
     select 

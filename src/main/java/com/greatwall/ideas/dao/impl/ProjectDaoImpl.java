@@ -27,6 +27,11 @@ public class ProjectDaoImpl extends MyBatisDao implements ProjectDao {
 	public Project selectByPrimaryKey(Integer projectId) {
 		return this.get("ProjectMapper.selectByPrimaryKey", projectId);
 	}
+	
+	@Override
+	public Project getProject(Project project){
+		return this.get("ProjectMapper.selectProject", project);
+	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Project project) {

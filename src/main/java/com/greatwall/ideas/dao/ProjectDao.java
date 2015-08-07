@@ -19,4 +19,6 @@ public interface ProjectDao {
 	List<Project> getPage(Project project, PageParameter page)
 			throws DaoException;
 
+	Project getProject(Project project);
+
 }

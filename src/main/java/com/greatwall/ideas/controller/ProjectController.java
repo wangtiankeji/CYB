@@ -1,5 +1,6 @@
 package com.greatwall.ideas.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,15 +55,17 @@ public class ProjectController extends BaseController {
 	}
 	
 	@RequestMapping("/addProject")
-	public@ResponseBody String addProject(Project project,List<Partner> partners,HttpSession httpSession){
+	public@ResponseBody String addProject(Project project,HttpServletRequest request){
 		try {
-			User u = super.getSessionUser(httpSession);
+			User u = super.getSessionUser(request.getSession());
 			if(u==null){
 				return "未登录";
 			}
+			List<Partner> partners = this.getListParam(request);
+			
 			project.setUserId(u.getUserId());
 			project.setCreateTime(new Date());
-			if(projectService.save(project)==1){
+			if(projectService.save(project,partners)==1){
 				return "success";
 			}else{
 				return "保存失败";
@@ -71,5 +74,28 @@ public class ProjectController extends BaseController {
 			logger.error("保存错误", e);
 			return "保存错误";
 		}
+	}
+	
+	private List<Partner> getListParam(HttpServletRequest request){
+		List<Partner> pars = new ArrayList<Partner>();
+		
+		String[] partnerRoles = request.getParameterValues("partnerRole");
+		if(partnerRoles!=null){
+			String[] cooperationModes = request.getParameterValues("cooperationMode");
+			String[] salaryTypes = request.getParameterValues("salaryType");
+			String[] optionProportions = request.getParameterValues("optionProportion");
+			String[] recruitManifestos = request.getParameterValues("recruitManifesto");
+			for(int i=0;i<partnerRoles.length;i++){
+				Partner partner = new Partner();
+				partner.setPartnerRole(partnerRoles[i]);
+				partner.setCooperationMode(cooperationModes[i]);
+				partner.setSalaryType(salaryTypes[i]);
+				partner.setOptionProportion(optionProportions[i]);
+				partner.setRecruitManifesto(recruitManifestos[i]);
+				pars.add(partner);
+			}
+		}
+		
+		return pars;
 	}
 }

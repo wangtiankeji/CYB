@@ -1,5 +1,5 @@
 /*整体设置*/
-html,p,a,h2,h3,b,div,input{font-family: "Microsoft YaHei"}
+html,p,a,h2,h3,b,div,input,span{font-family: "Microsoft YaHei"}
 html { height:100%;}
 body { min-height: 100%; background-color: #f3f3f3; }
 .clear { height: 0; font-size: 0; line-height: 0; clear: both; }
@@ -21,7 +21,7 @@ b{font-weight: normal;}
 /*头部设置*/
 .ui-bar-f{width: 100%;overflow: hidden;border: none;}
 .logo-bar{background-color: rgba(0,0,0,0.5);height:2.5rem;width:100%;
-    position: absolute;top:0;z-index: 100}
+    position: fixed;top:0;z-index: 100}
 .logo-bar .logo{float: left;margin:0.75rem;}
 .logo-bar .logo img{height:1rem;}
 .logo-bar .admin img{height: 1.2rem}
@@ -73,7 +73,7 @@ b{font-weight: normal;}
 .login-line{margin:1.5rem 0;width: 80%; margin: 0 auto;}
 .btn-regist,.btn-changeNum{margin-bottom: 0.8rem;}
 .regist-item{font-size:0.7rem;color:#666666;font-family: "Microsoft YaHei"}
-.error{width: 35%;height:2rem;line-height:2rem;background: rgba(0,0,0,0.7);border-radius: 2px;position: absolute;color:#fff; font-size: 0.8rem;top:3rem;left:32%;}
+.error{width: 40%;height:2rem;line-height:2rem;background: rgba(0,0,0,0.7);border-radius: 2px;position: absolute;color:#fff; font-size: 0.8rem;top:3rem;left:32%;}
 .error p{text-align: center;color:#fff;}
 
 /*****个人中心*****/
@@ -152,7 +152,7 @@ b{font-weight: normal;}
 .details-title ul h3,.details-title ul p{float:left;margin:0;}
 .details-title ul h3{width: 22%;}
 .details-title ul p{font-size:0.9rem;color:#666;width:76%;text-align: justify;}
-.details-innerbox,.incubator-innerbox{margin:0.5rem 0.75rem;overflow: hidden;}
+.details-innerbox,.incubator-innerbox{margin:0.5rem 1rem;overflow: hidden;}
 
 .registration-number,.collection-number,.ac-process{font-size: 0.8rem;color:#aaa;margin-top:0.3rem;}
 .registration-number{float:left;}
@@ -173,13 +173,13 @@ b{font-weight: normal;}
 .mask-close img{width:100%;}
 
 /*孵化器*/
-.incubator-content ul li,.project-content ul li,.talent-content>ul>li{width:100%;background: #fff;padding:0.1rem 0;margin-bottom:0.5rem;}
+.incubator-content ul li,.project-content>ul>li,.talent-content>ul>li{width:100%;background: #fff;padding:0.1rem 0;margin-bottom:0.5rem;}
 .incubator-left,.project-left,.talent-left{float:left;width:22%}
 .incubator-innerbox img{width: 5rem;}
 .incubator-right,.project-right,.talent-right{float:right;width:76%;}
-.incubator-right>h2,.project-right>h2,{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.incubator-right>h2,.project-right>h2{text-overflow: ellipsis;white-space: nowrap!important;overflow: hidden;}
 .incubator-right>p{overflow: hidden;margin:0.4rem 0;text-align: right}
-.incubator-right>div span,.incubator-right>p,.incubator-title,.project-right>div>span,.talent-right>div>span{font-size:0.8rem;color:#999;}
+.incubator-right>div span,.incubator-right>p,.incubator-title,.project-right>div>span,.talent-right>div>span{font-size:0.7rem;color:#999;}
 
 .incubator-right>div span:first-child,.project-right>div span:first-child{float:left;}
 .incubator-right>div span:last-child,.project-right>div span:last-child{float:right;}
@@ -198,7 +198,7 @@ b{font-weight: normal;}
 .incubator-det-footer{width:100%;background: #fff;height:3rem;line-height:3rem;border-top:1px solid #bbb;position: fixed;bottom: 0}
 .div-line{float:right;height: 2rem;border-right:1px solid #bbb;margin-top:0.5rem;}
 .incubator-det-footer ul li:first-child span{padding-left:1.5rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
-.incubator-det-content{margin-bottom: 3rem;}
+.incubator-det-content{margin-bottom: 3.5rem;}
 
 /*找项目---找人才*/
     /*头部样式*/
@@ -241,7 +241,7 @@ b{font-weight: normal;}
 .project-location,.talent-location{overflow: hidden;margin:0.3rem 0;width:100%;clear: both;}
 .project-right>p,.talent-right p,.project-right>div>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .project-right>div{overflow: hidden}
-.project-right>div>h2{float:left;width:80%;}
+.project-right>div>h2{float:left;width:74%;}
 .project-state,.talent-state{float:right;width:3rem;height:1.1rem;line-height:1.1rem;text-align:center;border:1px solid #ddd;border-radius: 0.6rem;}
 .talent-right>div span:first-child{float:left;}
 .talent-right h2{float:left;}
@@ -261,17 +261,16 @@ b{font-weight: normal;}
 .subcontent-box1>ul>li div{float:right;font-size:0.9rem;min-height:2rem; line-height:2rem;color:#b6b6b6;width:68%;padding:0.2rem 1rem 0.2rem 0;}
 /*项目状态*/
 .project-progress-content{width:100%;height:100%;background:rgba(0,0,0,0.6)}
-.project-progress,.project-location-select,.project-direction,.project-financing,.project-partner{position: fixed;z-index: 100;width:100%;height:100%;background: rgba(0,0,0,0.6);top:0;left:0;}
+.project-progress,.project-location-select,.project-direction,.project-financing,.project-partner,.talent-location-select{position: fixed;z-index: 100;width:100%;height:100%;background: rgba(0,0,0,0.6);top:0;left:0;}
 .project-progress>div,.stock-proportion div{width:80%;background: #fff;margin:5rem auto;text-align: center;}
 .project-progress h2,.project-direction h2,.project-financing h2,.stock-proportion h2{height:3rem;line-height: 3rem;text-align: center}
 .project-progress ul li{height:3rem;line-height:3rem;border-top:1px solid #bbb;color:#333;cursor: pointer;}
 .project-progress-active{background:#5cce49; border-top:1px solid #5cce49 !important;color:#fff !important;}
 /*项目地区*/
-.project-location-right{float:right;width:80%;height: 100%;background: #fff;overflow: scroll}
-.project-location-header{width:90%;margin:5% auto;overflow: hidden}
-.project-location-header span{float:left;}
-.project-location-header b{float:right;}
-.project-location-header b,.project-location-header span{font-size: 0.9rem;}
+.project-location-right,.talent-location-right{float:right;width:80%;height: 100%;background: #fff;overflow: scroll}
+.project-location-header,.talent-location-header{width:90%;margin:5% auto;overflow: hidden}
+.project-location-header span,.talent-location-header span{float:left;font-size: 0.9rem;}
+.project-location-header b,.talent-location-header b{float:right;font-size: 0.9rem;}
 .location-province{float:left;width:40%;}
 .location-province li,.location-city li{height:2rem;line-height:2rem;text-align: center;font-size: 0.9rem;color:#666;}
 .location-province li{border-right:1px solid #bbb;border-bottom: 1px solid #bbb;}
@@ -285,9 +284,9 @@ b{font-weight: normal;}
 .project-direction ul,.project-financing ul{width:90%;margin:0px auto;overflow: hidden}
 .project-direction ul li,.project-financing ul li,.stock-proportion ul li{float:left;width:28%;height:1.3rem;line-height:1.3rem;border:1px solid #999;margin:0.6rem 0.3rem;font-size: 0.8rem;border-radius: 0.65rem;text-align: center;color:#333;}
 /*项目简述*/
-.project-description,.project-profile,.project-declaration,.project-link{background: #efefef;width:100%;height:100%;position: fixed;top:0;left:100%;text-align: center;}
-.project-description textarea,.project-profile textarea,.project-declaration textarea,.project-link textarea{width: 90%;height:13rem;border:none;padding:0.5rem 5%;color:#999;font-size:0.9rem;}
-.project-description button,.project-profile button,.project-financing-sure button,.publish-project,.project-partner-save,.project-declaration button,.project-link button{width:85%;height:2.3rem;background: #5cce49;  border: none;color:#fff;margin:2rem auto;}
+.project-description,.project-profile,.project-declaration,.project-link,.talent-description{background: #efefef;width:100%;height:100%;position: fixed;top:0;left:100%;text-align: center;}
+.project-description textarea,.project-profile textarea,.project-declaration textarea,.project-link textarea,.talent-description textarea{width: 90%;height:13rem;border:none;padding:0.5rem 5%;color:#999;font-size:0.9rem;}
+.project-description button,.project-profile button,.project-financing-sure button,.publish-project,.project-partner-save,.project-declaration button,.project-link button,.talent-description button{width:85%;height:2.3rem;background: #5cce49;  border: none;color:#fff;margin:2rem auto;}
 .project-profile p{font-size: 0.7rem;color:#999;margin:0.5rem;}
 
 /*融资状态*/
@@ -304,13 +303,16 @@ b{font-weight: normal;}
 .project-partner>ul>li>div>h2{margin:0.3rem 0;}
 .project-partner>ul>li>div li{float:left;width:28%;height:1.3rem;line-height:1.3rem;border:1px solid #999;margin:0.6rem 0.3rem;font-size: 0.8rem;border-radius: 0.65rem;text-align: center;color:#333;}
 .project-partner-selected li{float:left;width:28%;height:1.2rem;line-height:1.2rem;text-align:center;border:1px solid #5cce49;background:#5cce49;border-radius: 0.6rem;margin:0.2rem;color:#fff;}
+.project-alert{position: fixed;z-index: 100;width: 15rem;height: 5rem;line-height: 5rem;text-align: center;background:rgba(0,0,0,0.6);top:10rem; left:13%;color:#fff;}
 
 
 
-.stock,.explain{width: 98%;height: 1.8rem;line-height:1.8rem;text-align: center;font-size:0.9rem;color:#333;border:1px solid #bbb;margin:0.5rem 0;  }
+
+.stock,.explain{width: 98%;height: 1.8rem;line-height:1.8rem;text-align: center;font-size:0.9rem;color:#333;border:1px solid #bbb;margin:0.5rem 0; text-overflow: ellipsis;white-space: nowrap;overflow: hidden; }
 .stock-proportion{position:fixed;width:100%;height:100%;top:0;left:0;background: rgba(0,0,0,0.6);}
 .stock-proportion div{border-top:1px solid #fff;border-bottom: 1px solid #fff;overflow: hidden;padding:0.5rem;}
 .project-partner-save,.publish-project{display: block;margin:1rem auto;}
+.publish-project>a{display:inline-block;width:100%;height:2.3rem;line-height:2.3rem;color:#fff;}
 
 .project-details-header{width:100%;background: #fff;border:1px solid #fff;overflow: hidden}
 .pdh-inner,.pdc-inner{margin:1rem;}
@@ -323,7 +325,7 @@ b{font-weight: normal;}
 .pdh-inner-title2 span{float:right;}
 
 .pdh-inner,.pdc-inner,.pdh-inner-title3 div,.pdh-inner-title3 span{font-size:0.9rem;color:#666;}
-.pdh-inner>p{width:100%;clear: both;font-size:1rem;color:#333;margin:0.5rem 0;}
+.pdh-inner>p{width:100%;clear: both;font-size:0.9rem;color:#333;margin:0.5rem 0;}
 .pdh-inner-title3 div b{color:#f94303;}
 .pdh-inner-title4{border-top:1px solid #bbb;padding-top:0.6rem;}
 .pdh-inner-title4 h2{font-size:0.9rem;color:#666;}
@@ -338,7 +340,7 @@ b{font-weight: normal;}
 .pdc-inner-publisher h2{padding-left:2rem;background: url("../img/icon_presonalinturduction.png")left center no-repeat;background-size: 1.5rem;}
 .pdc-inner-profile h2{padding-left:2rem;background: url("../img/icon_projectintur.png")left center no-repeat;background-size: 1.5rem;}
 .pdc-inner-link a{display: block;width:90%;height:2rem;line-height:2rem;border:1px solid #bbb;text-align: center;margin:0.5rem auto;border-radius: 3px;}
-.project-details-foot{width:100%;height:3rem;position: fixed;left:0;bottom: 0;background: #fff;}
+.project-details-foot{width:100%;height:3rem;position: fixed;left:0;bottom: 0;background: #fff;border-top:1px solid #bbb;}
 .project-details-foot ul{width:90%;margin:0 auto;}
 .project-details-foot ul li{float:left;width:49%;height:2rem;margin-top:0.5rem;}
 .project-details-foot ul li:first-child{border-right: 1px solid #bbb;}
@@ -352,13 +354,14 @@ b{font-weight: normal;}
     /*发简历*/
 .publish-talent-img{width:5rem;height:5rem;border-radius: 5rem;margin:0.5rem auto;margin-top:1rem;background: url("../img/btn_addpicure.png")center no-repeat;background-size: 5rem;}
         /*个人定位*/
-.talent-personal{width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,0.6)}
-.talent-personal>div{width:90%;height:17rem;background:#fff;margin:4rem auto;overflow: scroll;}
-.talent-personal>div>h2{text-align: center;height: 3rem;line-height: 3rem;border-bottom: 1px solid #bbb;position:fixed;top:4rem;width:90%;background: #fff;}
-.talent-personal>div>ul{margin:4rem 0;}
-.talent-personal>div>ul>li{height:3rem;line-height:3rem;text-align: center;}
+.talent-personal,.talent-sex,.talent-state2,.talent-money,.talent-treatment{width:100%;height:100%;position:fixed;top:0;left:0;background: rgba(0,0,0,0.6)}
+.talent-personal>div,.talent-state2>div,.talent-money>div,.talent-treatment>div{width:90%;height:17rem;background:#fff;margin:4rem auto;overflow: scroll;}
+.talent-personal>div>h2,.talent-state2>div>h2,.talent-money>div>h2,.talent-treatment>div>h2{text-align: center;height: 3rem;line-height: 3rem;border-bottom: 1px solid #bbb;position:fixed;top:4rem;width:90%;background: #fff;}
+.talent-personal>div>ul,.talent-state2>div>ul,.talent-money>div>ul,.talent-treatment>div>ul{margin:4rem 0;}
+.talent-personal>div>ul>li,.talent-sex>div>ul>li,.talent-state2>div>ul>li,.talent-money>div>ul>li,.talent-treatment>div>ul>li{height:3rem;line-height:3rem;text-align: center;}
 .talent-personal-active{background: #5cce49;color:#fff;}
-
-
-
+        /*选择性别*/
+.talent-sex>div{width:80%;height:13rem;background:#fff;margin:4rem auto;}
+.talent-sex>div>ul{margin:1rem 0;}
+.talent-sex>div>h2{text-align: center;height: 3rem;line-height: 3rem;border-bottom: 1px solid #bbb;}
 

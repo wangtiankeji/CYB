@@ -38,7 +38,7 @@
                 <li class="hot-sort">热度排序<span></span></li>
             </ul>
         </div>
-        <div class="project-screen-drop">
+        <div class="project-screen-drop" style="display: none">
             <form action="">
                 <ul>
                     <li>

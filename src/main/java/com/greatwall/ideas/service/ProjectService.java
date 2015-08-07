@@ -2,15 +2,17 @@ package com.greatwall.ideas.service;
 
 import java.util.List;
 
+import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.platform.base.dao.DaoException;
+import com.greatwall.platform.base.service.ServiceException;
 import com.greatwall.platform.domain.PageParameter;
 
 
 public interface ProjectService {
     int deleteByPrimaryKey(Integer projectId);
 
-    int save(Project project);
+    int save(Project project,List<Partner> partners) throws ServiceException;
 
     Project getProject(Integer projectId);
 
