@@ -1,12 +1,8 @@
 package com.greatwall.ideas.controller;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +17,6 @@ import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
-import com.greatwall.platform.system.dto.User;
 
 @Controller
 @RequestMapping("index/project")

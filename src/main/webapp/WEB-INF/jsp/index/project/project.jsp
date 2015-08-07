@@ -252,74 +252,66 @@
 <script type="text/javascript" src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 
-   <script type="text/javascript">
-   /* $(".publish-project").click( function () { 
-	   projectObj.projectName = $(".project-name").val();
-	   $.ajax({
-			type : "POST",
-			url : "${ctx}/project/addProject",
-			data : projectObj,
-			success : function(msg) {
-				if (msg == 'success') {
-					alert('提交成功！');
-				} else {
-					alert(msg);
-				}
+	<script type="text/javascript">
 
-			}
-		});
-	}); */
-	
-	function publishProject(publishProjectObj){
-		var partnerObj = $(".submitproject-content").data("partner");
-		//publishProjectObj.partners = JSON.stringify(partnerObj);
-		var datas = $.param(publishProjectObj)+"&"+$.param(partnerObj)+"&"+$.param(partnerObj);
-		$.ajax({
-			type : "POST",
-			url : "${ctx}/project/addProject",
-			dataType : "json",
-			data : datas,
-			success : function(msg) {
-				if (msg == 'success') {
-					alert('提交成功！');
-				} else {
-					alert(msg);
+		function publishProject(publishProjectObj) {
+			var datas = $.param(publishProjectObj);
+			var arraypartner = $(".submitproject-content").data("partner");
+			$.each( arraypartner, function(i, n){
+				datas += "&"+$.param($(".submitproject-content").data("partner"+n));
+			});
+			$.ajax({
+				type : "POST",
+				url : "${ctx}/project/addProject",
+				dataType : "json",
+				data : datas,
+				success : function(msg) {
+					if (msg == 'success') {
+						alert('提交成功！');
+						$("form").action("${ctx}/index/project/showProjects")
+					} else {
+						alert(msg);
+					}
 				}
-			}
+			});
+		}
+
+		$(".project-img").click(function() {
+			$("#fileToUpload").click();
 		});
-	}
-   
-   	$(".project-img").click( function () { 
-	   $("#fileToUpload").click();
-	});
-   	
-  //选择文件之后执行上传  
-    $("#fileToUpload").on("change", function() {  
-        $.ajaxFileUpload({  
-            url:"${ctx}/con/upload",  
-            secureuri:false,  
-            fileElementId:'fileToUpload',//file标签的id  
-            dataType: 'json',//返回数据的类型  
-            data:{fileType:"project"},//一同上传的数据  
-            success: function (data, status) {  
-                //把图片替换  
-                var obj = jQuery.parseJSON(data);  
-                if(typeof(obj.status) != "undefined") {  
-                    if(obj.status == "success") {  
-                    	//projectObj.projectImg = obj.filePath;
-                    	//$("#eventImg").val("${ctx}"+obj.filePath);
-     	                $(".project-img img").attr("src", "${ctx}"+obj.filePath);  
-                    } else {  
-                        alert(obj.msg);  
-                    }  
-                }
-               
-            },  
-            error: function (data, status, e) {  
-                alert(e);  
-            }  
-        });  
-    });  
-   </script>
+
+		//选择文件之后执行上传  
+		$("#fileToUpload").on(
+				"change",
+				function() {
+					$.ajaxFileUpload({
+						url : "${ctx}/con/upload",
+						secureuri : false,
+						fileElementId : 'fileToUpload',//file标签的id  
+						dataType : 'json',//返回数据的类型  
+						data : {
+							fileType : "project"
+						},//一同上传的数据  
+						success : function(data, status) {
+							//把图片替换  
+							var obj = jQuery.parseJSON(data);
+							if (typeof (obj.status) != "undefined") {
+								if (obj.status == "success") {
+									//projectObj.projectImg = obj.filePath;
+									//$("#eventImg").val("${ctx}"+obj.filePath);
+									$(".project-img img").attr("src",
+											"${ctx}" + obj.filePath);
+								} else {
+									alert(obj.msg);
+								}
+							}
+
+						},
+						error : function(data, status, e) {
+							alert(e);
+						}
+					});
+				});
+	</script>
 </body>
 </html>

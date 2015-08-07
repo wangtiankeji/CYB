@@ -406,7 +406,8 @@ $(document).ready(function () {
                 projectDirect:projectDirectionValue,
                 projectIntro:projectDescriptionValue,
                 projectDes:projectProfileValue,
-                financingAmount:projectFinancingValue,
+                financingState:projectFinancingValue1,
+                financingAmount:projectFinancingValue2,
                 systemUrl:projectLinkValue,
                 projectName:$('.project-name').val(),
                 peopleNum:$('.project-team-select').val()
@@ -427,6 +428,7 @@ $(document).ready(function () {
         var projectDeclarationValue;
 
     $('.project-partner-nav2').click(function(){
+    	initPartner();
         $('.project-partner').animate({
             'left':'0'
         },300)
@@ -477,9 +479,76 @@ $(document).ready(function () {
         }
 
 
-    })
+    });
+
+    
+    $('.project-partner-cancel').live('click', function() {
+		$('.project-partner').animate({
+			'left' : '100%'
+		}, 200);
+		removePartner($(this).attr("random"));
+	});
+
+	function removePartner(ran) {
+		$(".submitproject-content").removeData("partner" + ran);
+		var arrayPartner = $(".submitproject-content").data("partner");
+		var num = jQuery.inArray(ran, arrayPartner);
+		arrayPartner.splice(num, 1);
+		$('.project-partner-cancel').detach();
+		$('#li' + ran).detach();
+	}
+	 $('.select-li').live('click', function() {
+		initPartner();
+		var ran = $(this).attr("random");
+		var partner = $(".submitproject-content").data("partner" + ran);
+		$(".partner-role ul li:contains('" + partner.partnerRole + "')").addClass('screen-active');
+		$(".partner-cooperation ul li:contains('" + partner.cooperationMode + "')").addClass('screen-active');
+		$(".partner-salary ul li:contains('" + partner.salaryType + "')").addClass('screen-active');
+		$('.stock').html(partner.optionProportion);
+    	$('.explain').html(partner.recruitManifesto);
+    	$(".stock-proportion div ul li:contains('" + partner.optionProportion + "')").addClass('screen-active');
+    	roleValue = partner.partnerRole;
+        cooperationValue = partner.cooperationMode;
+        salaryValue = partner.salaryType;
+        stockProportionValue = partner.optionProportion;
+        projectDeclarationValue = partner.optionProportion;
+
+		$('.project-partner-save').after('<button class="project-partner-cancel" type="button" random="'+ran+'" data-role="none">取消</button>');
+		$('.project-partner-save').attr("random",ran);
+		$('.project-partner').animate({
+			'left' : '0'
+		}, 300)
+	})
+	
+	
+	 function addPartner(){
+    	 $('.project-partner').animate({
+             'left':'100%'
+         },200);
+        var ran = getRandom(100000)
+         $('.project-partner-selected').append("<li random='"+ran+"' class='select-li' id='li"+ran+"'>"+roleValue+"</li>");
+        // $('.project-partner-save').html('取消该项');
+        
+         //这是招募合伙人的数据对象==================》
+         var partnerProjectObj={
+         	partnerRole:roleValue,
+         	cooperationMode:cooperationValue,
+         	salaryType:salaryValue,
+         	optionProportion:stockProportionValue,
+         	recruitManifesto:projectDeclarationValue
+         }
+         var arrayPartner = $(".submitproject-content").data("partner");
+         if(!arrayPartner){
+         	arrayPartner = new Array();
+         }
+         arrayPartner.push(ran);
+         
+         $(".submitproject-content").data("partner",arrayPartner);
+         $(".submitproject-content").data("partner"+ran,partnerProjectObj);
+    }
 
     $('.project-partner-save').click(function(){
+    	
         if(roleValue==undefined||cooperationValue==undefined||salaryValue==undefined||stockProportionValue==undefined){
             clearTimeout(publishProjecttimer);
             $('.project-alert').show();
@@ -487,26 +556,34 @@ $(document).ready(function () {
                 $('.project-alert').hide();
             },1000)
         }else{
-            $('.project-partner').animate({
-                'left':'100%'
-            },200);
-            $('.project-partner-selected').append("<li>"+roleValue+"</li>");
-           // $('.project-partner-save').html('取消该项');
-           
-            //这是招募合伙人的数据对象==================》
-            var partnerProjectObj={
-            	partnerRole:roleValue,
-            	cooperationMode:cooperationValue,
-            	salaryType:salaryValue,
-            	optionProportion:stockProportionValue,
-            	recruitManifesto:projectDeclarationValue
-            }
-            $(".submitproject-content").data("partner",partnerProjectObj);
+        	var ran = $(this).attr("random");
+        	if(ran != undefined&& ran!=''){
+        		removePartner(ran);
+        	}
+        	addPartner();
         }
 
+    });
 
-    })
+    function initPartner(){
+    	$('.partner-role ul li').removeClass();
+    	$('.partner-cooperation ul li').removeClass();
+    	$('.partner-salary ul li').removeClass();
+    	$('.stock').html("");
+    	$('.explain').html("");
+    	$('.stock-proportion div ul li').removeClass();
+    	$('.project-partner-cancel').detach();
+    	$('.project-partner-save').attr("random","");
+    	roleValue = undefined;
+        cooperationValue = undefined;
+        salaryValue = undefined;
+        stockProportionValue = undefined;
+        projectDeclarationValue = undefined;
+    }
 
+    function getRandom(n){
+       return Math.floor(Math.random()*n+1)
+    }
 
 
 

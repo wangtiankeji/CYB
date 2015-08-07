@@ -19,6 +19,7 @@ import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
+import com.greatwall.platform.base.service.ServiceException;
 import com.greatwall.platform.domain.PageParameter;
 import com.greatwall.platform.system.dto.User;
 
@@ -65,12 +66,17 @@ public class ProjectController extends BaseController {
 			
 			project.setUserId(u.getUserId());
 			project.setCreateTime(new Date());
+			project.setStatus("publish");
+			project.setHits(0);
 			if(projectService.save(project,partners)==1){
 				return "success";
 			}else{
 				return "保存失败";
 			}
-		} catch (Exception e) {
+		}catch (ServiceException e) {
+			logger.error("", e);
+			return e.getMessage();
+		}catch (Exception e) {
 			logger.error("保存错误", e);
 			return "保存错误";
 		}
