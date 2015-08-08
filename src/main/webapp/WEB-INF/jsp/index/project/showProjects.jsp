@@ -96,13 +96,12 @@
         </div>
     </div>
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
-    	<div id="scroller">
+    	
 				<ul class="activity-box" id="thelist">
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 				</div>
-			</div>
     </div>
 </div>
 
@@ -117,20 +116,13 @@ $(document).bind("mobileinit", function() {
 <script src="${ctx}/js/iscroll.js"></script>
 <script src="${ctx}/js/dateutil.js"></script>
 <script src="${ctx}/js/paginationis-iscroll.js"></script>
-<script src="${ctx}/js/common.js"></script>
 <script type="text/javascript">
     
     $(document).ready(function() {
-    	//alert(${personal})
     	var sendData = {eventType:"activity"};
-    	/* if("${personal}"!=""){
-    		sendData.personal = "${personal}";
-    	} */
     	new IscrollPage({url:"${ctx}/index/project/getProjects",data:sendData});
     	pullUpAction();
     });
-    
-	
 
 	function getLiStr(project) {
 		var content = '';
@@ -138,15 +130,15 @@ $(document).bind("mobileinit", function() {
 		content = content + '    <a href="#">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="project-left">';
-		content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
+		content = content + '                <img src="${cxt}/img/pcenter-pic-i.jpg" alt=""/>';
 		content = content + '            </div>';
 		content = content + '            <div class="project-right">';
 		content = content + '                <div>';
-		content = content + '                    <h2>北京望京西SOHO二期项目进行中</h2>';
+		content = content + '                    <h2>'+project.projectName+'</h2>';
 		content = content + '                    <span class="project-state">已上线</span>';
 		content = content + '                </div>';
 		content = content + '                <div class="project-location">';
-		content = content + '                    <span>北京朝阳</span>';
+		content = content + '                    <span>'+project.projectArea+'</span>';
 		content = content + '                    <span><b>5月12日</b>发布</span>';
 		content = content + '                </div>';
 		content = content + '                <p>一句话介绍，这是项目的一句话介绍,是一句话的介绍</p>';
