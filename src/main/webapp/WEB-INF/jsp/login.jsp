@@ -1,67 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="common/base.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html >
 <head>
-<title>登录</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="${ctx}/js/validationEngine/jquery.validationEngine.js"></script>
-<script type="text/javascript"
-	src="${ctx}/js/validationEngine/jquery.validationEngine-zh_CN.js"></script>
-<link rel="stylesheet"
-	href="${ctx}/js/validationEngine/css/validationEngine.jquery.css"
-	type="text/css">
-<link href="${ctx}/css/login.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("input[type=text],input[type=password]").focusin(function() {
-			$(this).addClass('focusInput');
-		}).focusout(function() {
-			$(this).removeClass('focusInput');
-		});
-		$("#loginName").focus();
-
-		$("#login").validationEngine({
-			showOneMessage : true
-		});
-		
-		if('1'=='${reflag}'){
-			alert('${msg}');
-		}
-		
-	});
-</script>
-
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>登录</title>
+	
+	<link rel="stylesheet" href="${cxt }/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="${cxt }/js/bootstrapValidator/css/bootstrapValidator.css"/>
+    
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/admin.css" >
+	
+	<link href="${ctx}/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
-	<form action="loginmain" method="post" id="login">
-		<div id="login">
-			<div class="top_name"></div>
-			<div class="login_content">
-				<table width="100%" border="0" cellpadding="0" cellspacing="0"
-					class="login_table">
-					<tr>
-						<th width="110">用户名：</th>
-						<td><input type="text" name="loginName" id="loginName" value="${loginName }"
-							class="input1 validate[required,maxSize[50]]"></td>
-					</tr>
-					<tr>
-						<th>密 码：</th>
-						<td><input type="password" name="password" id="password"
-							class="input1 validate[required,maxSize[50]]"></td>
-					</tr>
-					<tr>
-						<th>&nbsp;</th>
-						<td><input name="登录" type="submit" id="登录"
-							class="login_button" value="登录" /></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+        	<div class="login-box">
+            <div class="page-header">
+                <h2>后台登录</h2>
+            </div>
 
+            <form id="defaultForm" method="post" class="form-horizontal" action="loginmain"
+            	data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">用户名：</label>
+                    <div class="col-lg-5">
+                    <i class="glyphicon glyphicon-user"></i>
+                        <input type="text" class="form-control" name="loginName" required data-bv-notempty-message="用户名必填"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">密码：</label>
+                    <div class="col-lg-5">
+                    	<i class="fa fa-lock"></i>
+                        <input type="password" class="form-control " name="password" required data-bv-notempty-message="密码必填"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-lg-offset-3">
+                        <button type="submit" name="sub" class="btn btn-danger">登录</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="${cxt }/bootstrap/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="${cxt }/js/bootstrapValidator/bootstrapValidator.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#defaultForm').bootstrapValidator();
+  
+});
+</script>
 </body>
+	
 </html>

@@ -20,6 +20,20 @@
     from td_cyb_partner
     where PARTNER_ID = #{partnerId,jdbcType=INTEGER}
   </select>
+   <select id="select" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Partner" >
+    select 
+    <include refid="Base_Column_List" />
+    from td_cyb_partner
+    <where>
+    	<if test="partnerId != null" >
+    		PARTNER_ID = #{partnerId,jdbcType=INTEGER}
+    	</if>
+    	<if test="projectId != null" >
+    		and PROJECT_ID = #{projectId,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_partner
     where PARTNER_ID = #{partnerId,jdbcType=INTEGER}

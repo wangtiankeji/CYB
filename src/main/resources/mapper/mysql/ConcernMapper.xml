@@ -34,12 +34,15 @@
     	<if test="userId != null" >
     		and USER_ID = #{userId,jdbcType=INTEGER}
     	</if>
+    	 <if test="concernType != null" >
+         	and CONCERN_TYPE = #{concernType,jdbcType=VARCHAR}
+      	</if>
     	<if test="targetId != null" >
     		and TARGET_ID = #{targetId,jdbcType=INTEGER}
     	</if>
-    	 <if test="concernType != null" >
-         	and CONCERN_TYPE = #{concernType,jdbcType=VARCHAR}
-      </if>
+    	 <if test="targetType != null" >
+         	and TARGET_TYPE = #{targetType,jdbcType=VARCHAR}
+      	</if>
     </where>
   </sql>
   

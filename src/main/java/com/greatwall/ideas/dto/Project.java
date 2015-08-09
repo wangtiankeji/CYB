@@ -1,7 +1,6 @@
 package com.greatwall.ideas.dto;
 
 import java.util.Date;
-import java.util.List;
 
 public class Project {
     private Integer projectId;
@@ -24,6 +23,8 @@ public class Project {
 
     private Double financingAmount;
 
+    private String financingUnit;
+
     private String systemUrl;
 
     private String contactPhone;
@@ -39,7 +40,9 @@ public class Project {
     private String projectImg;
 
     private String status;
-    
+
+    private Integer concernCount;
+
     public Integer getProjectId() {
         return projectId;
     }
@@ -120,6 +123,14 @@ public class Project {
         this.financingAmount = financingAmount;
     }
 
+    public String getFinancingUnit() {
+        return financingUnit;
+    }
+
+    public void setFinancingUnit(String financingUnit) {
+        this.financingUnit = financingUnit == null ? null : financingUnit.trim();
+    }
+
     public String getSystemUrl() {
         return systemUrl;
     }
@@ -183,5 +194,12 @@ public class Project {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
-    
+
+    public Integer getConcernCount() {
+        return concernCount;
+    }
+
+    public void setConcernCount(Integer concernCount) {
+        this.concernCount = concernCount;
+    }
 }

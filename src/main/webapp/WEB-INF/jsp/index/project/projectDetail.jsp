@@ -24,41 +24,35 @@
 <!-- 项目详情页-->
 <div data-role="page" data-theme="f" class="ui-body-f">
     <div data-role="none" data-theme="f">
-        <img src="img/project_detail_pic.jpg" alt=""/>
+        <img src="${cxt }${project.projectImg }" alt=""/>
         <div class="project-details-header">
             <div class="pdh-inner">
                 <div class="pdh-inner-title">
-                    <h2>创客邦项目</h2>
-                    <span>开发中</span>
+                    <h2>${project.projectName }</h2>
+                    <span>${project.projectState }</span>
                 </div>
                 <div class="pdh-inner-title2">
-                    <div>北京 海淀</div>
-                    <span><b>5月12日</b>发布</span>
+                    <div>${project.projectArea }</div>
+                    <span><b><fmt:formatDate value="${project.createTime}" pattern="MM月dd日"/></b>发布</span>
                 </div>
                 <div class="pdh-inner-title3">
-                    <div>当前团队人数&nbsp; <b>4</b></div>
-                    <div>投资状态及金额&nbsp; <b>个人出资 20万/美元</b></div>
+                    <div>当前团队人数&nbsp; <b>${project.peopleNum }</b></div>
+                    <div>投资状态及金额&nbsp; <b>${project.financingState } ${project.financingAmount }万/美元</b></div>
                 </div>
-                <p>这是项目的一句话介绍,这是项目的一句话介绍.</p>
+                <p>${project.projectIntro }</p>
                 <div class="pdh-inner-title4">
                     <h2>合伙人招募</h2>
                     <ul>
-                        <li>
-                            <h2>技术合伙人</h2>
+                    	<c:forEach items="${partners}" var="partner" varStatus="status">
+                    	<li>
+                            <h2>${partner.partnerRole}合伙人</h2>
                             <div>
-                                <p>面议 市场水平</p>
-                                <p>5%~10%</p>
+                                <p>${partner.cooperationMode} ${partner.salaryType}</p>
+                                <p>${partner.optionProportion}</p>
                             </div>
 
                         </li>
-                        <li>
-                            <h2>产品合伙人</h2>
-                            <div>
-                                <p>面议 市场水平</p>
-                                <p>5%~10%</p>
-                            </div>
-
-                        </li>
+                    	</c:forEach>
                     </ul>
                 </div>
             </div>
@@ -74,13 +68,13 @@
         <div class="project-details-content">
             <div class="pdc-inner pdc-inner-profile">
                 <h2>项目介绍</h2>
-                <p>这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍，这是项目介绍</p>
+                <p>${project.projectDes }</p>
             </div>
         </div>
         <div class="project-details-content">
             <div class="pdc-inner pdc-inner-link">
                 <h2>产品链接</h2>
-                <a href="#">点击查看</a>
+                <a href="${project.systemUrl }">点击查看</a>
             </div>
         </div>
     </div>
@@ -91,18 +85,25 @@
                 <p>158109992345</p>
             </li>
             <li class="project-details-collection">
-                <span>已收藏 <b style="font-size: 0.8rem;">(12)</b></span>
+                <span>已收藏 <b style="font-size: 0.8rem;">(<b id="concernCount">${project.concernCount }</b>)</b></span>
             </li>
         </ul>
     </div>
 </div>
 
-<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
-<script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
-<script src="${ctx}/js/swiper.min.js"></script>
+<script type="text/javascript" type="text/javascript">
+var ctx = "${ctx}";
+</script>
 
-   <script type="text/javascript">
-  
-   </script>
+<script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/swiper.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/concern.js"></script>
+<script type="text/javascript" type="text/javascript">
+  $(".project-details-collection").click(function() {
+  	addConcern({bNumId:"concernCount",targetId:${project.projectId },
+  		url:"${ctx}/index/concern/addConcern",concernType:"concern",targetType:"project"});
+  });
+</script>
 </body>
 </html>

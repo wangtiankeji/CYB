@@ -47,6 +47,11 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return 1;
 	}
+	
+	@Override
+	public List<Partner> getPartners(Partner partner){
+		return partnerDao.getPartners(partner);
+	}
 
 	@Override
 	public Project getProject(Integer projectId) {

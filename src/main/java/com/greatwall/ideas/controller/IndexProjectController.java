@@ -4,14 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
@@ -42,6 +46,19 @@ public class IndexProjectController extends BaseController {
 			logger.error("查询活动分页错误",e);
 		}
 		return map;
+	}
+	
+	@RequestMapping("/getProject/{projectId}")
+	public ModelAndView getProject(@PathVariable Integer projectId,ModelMap model){
+		if(projectId!=null){
+			Partner partner = new Partner();
+			partner.setProjectId(projectId);
+			model.addAttribute("project", projectService.getProject(projectId));
+			model.addAttribute("partners", projectService.getPartners(partner));
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/index/project/projectDetail.jsp");
+		return mav;
 	}
 	
 }

@@ -246,6 +246,11 @@
 </div>
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	$(document).bind("mobileinit", function() {
+		$.mobile.ajaxEnabled = false;
+	});
+</script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.min.js"></script>
 <script src="${ctx}/js/common.js"></script>
@@ -269,6 +274,7 @@
 					if (msg == 'success') {
 						alert('提交成功！');
 						$("form").action("${ctx}/index/project/showProjects")
+						$("form").submit();
 					} else {
 						alert(msg);
 					}

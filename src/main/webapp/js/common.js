@@ -410,7 +410,8 @@ $(document).ready(function () {
                 financingAmount:projectFinancingValue2,
                 systemUrl:projectLinkValue,
                 projectName:$('.project-name').val(),
-                peopleNum:$('.project-team-select').val()
+                peopleNum:$('.project-team-select').val(),
+                projectImg:$('.project-img img').attr("src")
             }
             
             publishProject(publishProjectObj);
@@ -477,12 +478,10 @@ $(document).ready(function () {
         }else{
             $('.explain').html(projectDeclarationValue);
         }
-
-
     });
 
     
-    $('.project-partner-cancel').live('click', function() {
+    $('.project-partner-cancel').on('click', function() {
 		$('.project-partner').animate({
 			'left' : '100%'
 		}, 200);
@@ -497,7 +496,8 @@ $(document).ready(function () {
 		$('.project-partner-cancel').detach();
 		$('#li' + ran).detach();
 	}
-	 $('.select-li').live('click', function() {
+	
+	 $('.select-li').on('click', function() {
 		initPartner();
 		var ran = $(this).attr("random");
 		var partner = $(".submitproject-content").data("partner" + ran);
@@ -525,7 +525,7 @@ $(document).ready(function () {
     	 $('.project-partner').animate({
              'left':'100%'
          },200);
-        var ran = getRandom(100000)
+        var ran = getRandom(100000);
          $('.project-partner-selected').append("<li random='"+ran+"' class='select-li' id='li"+ran+"'>"+roleValue+"</li>");
         // $('.project-partner-save').html('取消该项');
         
@@ -554,7 +554,7 @@ $(document).ready(function () {
             $('.project-alert').show();
             var publishProjecttimer=setTimeout(function(){
                 $('.project-alert').hide();
-            },1000)
+            },1000);
         }else{
         	var ran = $(this).attr("random");
         	if(ran != undefined&& ran!=''){

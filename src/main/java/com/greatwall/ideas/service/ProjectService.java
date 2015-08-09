@@ -21,4 +21,6 @@ public interface ProjectService {
 	List<Project> getPage(Project project, PageParameter page)
 			throws DaoException;
 
+	List<Partner> getPartners(Partner partner);
+
 }

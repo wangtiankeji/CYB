@@ -75,13 +75,11 @@
         </div>
     </div>
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
-    	<div id="scroller">
 				<ul class="activity-box" id="thelist">
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 				</div>
-			</div>
     </div>
 </div>
 

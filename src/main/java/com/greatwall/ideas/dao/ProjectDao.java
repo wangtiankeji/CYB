@@ -21,4 +21,6 @@ public interface ProjectDao {
 
 	Project getProject(Project project);
 
+	int updateConcernCount(Integer eventId, String type);
+
 }

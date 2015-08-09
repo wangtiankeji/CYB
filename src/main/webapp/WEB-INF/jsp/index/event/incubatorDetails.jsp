@@ -68,10 +68,11 @@
         </div>
     </div>
     
-<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
-<script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="${ctx}/js/swiper.min.js"></script>
-    <script>
+<script type="text/javascript" src="${ctx}/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/swiper.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/concern.js"></script>
+    <script type="text/javascript">
     $("#callNum").click(function() {
     	$.ajax({
 			type : "POST",
@@ -83,7 +84,10 @@
 		});
     });
         $("#concern").click(function() {
-        	var concernNum = $("#concernCount").text();
+        	
+        	addConcern({bNumId:"concernCount",targetId:${event.eventId },
+        		url:"${ctx}/index/concern/addConcern",concernType:"concern",targetType:"incubator"});
+        	/* var concernNum = $("#concernCount").text();
     			$.ajax({
     				type : "POST",
     				url : "${ctx}/index/concern/addConcern",
@@ -99,7 +103,7 @@
     						alert(msg);
     					}
     				}
-    			});
+    			}); */
     	});
     </script>
 

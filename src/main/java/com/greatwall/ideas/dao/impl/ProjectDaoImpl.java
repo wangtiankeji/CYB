@@ -20,6 +20,7 @@ public class ProjectDaoImpl extends MyBatisDao implements ProjectDao {
 
 	@Override
 	public int insert(Project project) {
+		project.setConcernCount(project.getConcernCount()==null?0:project.getConcernCount());
 		return this.save("ProjectMapper.insert",project);
 	}
 
@@ -41,6 +42,16 @@ public class ProjectDaoImpl extends MyBatisDao implements ProjectDao {
 	@Override
 	public List<Project> getPage(Project project,PageParameter page) throws DaoException {
 			return this.getListPage("ProjectMapper.selectPage", project, page);
+	}
+	
+	@Override
+	public int updateConcernCount(Integer eventId,String type){
+		if("add".equals(type)){
+			return this.update("ProjectMapper.addConcernCount", eventId);
+		}else if("sub".equals(type)){
+			return this.update("ProjectMapper.subConcernCount", eventId);
+		}
+		return 0;
 	}
 
 

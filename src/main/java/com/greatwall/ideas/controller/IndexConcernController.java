@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,11 @@ import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.ConcernService;
 import com.greatwall.ideas.service.EventService;
+import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.service.ServiceException;
 import com.greatwall.platform.domain.PageParameter;
+import com.greatwall.platform.system.dto.User;
 
 
 
@@ -34,7 +38,7 @@ import com.greatwall.platform.domain.PageParameter;
  */
 @Controller
 @RequestMapping("index/concern")
-public class IndexConcernController {
+public class IndexConcernController extends BaseController {
 	
 	Logger logger = Logger.getLogger(IndexConcernController.class);
 	
@@ -42,41 +46,25 @@ public class IndexConcernController {
 	private ConcernService concernService;
 
 	@RequestMapping("/addConcern")
-	public@ResponseBody String addConcern(Concern concern){
+	public@ResponseBody String addConcern(Concern concern,HttpServletRequest request){
 		try {
-			if(concern==null){
-				return "类型不能为空";
+			String validate = validate(concern,request);
+			if(!"".equals(validate)){
+				return validate;
 			}
-			if(concern.getConcernType()==null||concern.getTargetId()==null
-					||concern.getTargetType()==null){
-				return "类型不能为空";
-			}
+			User u = super.getSessionUser(request.getSession());
+			concern.setUserId(u.getUserId());
 			if("signup".equals(concern.getConcernType())){
-				if(StringUtils.isBlank(concern.getPhone())){
-					return "电话不能为空";
-				}
-				if(StringUtils.isBlank(concern.getUserName())){
-					return "姓名不能为空";
-				}
-			}
-			concern.setUserId(123);
-			if("signup".equals(concern.getConcernType())){
-				if(concernService.signUp(concern)){
-					return "success";
-				}else{
-					return "保存失败";
-				}
+				return signUp(concern);
 				
 			}else if("concern".equals(concern.getConcernType())){
-				if(!concernService.concern(concern)){
-					if(concernService.unConcern(concern)){
-						return "cancel";
-					}else{
-						return "取消收藏失败";
-					}
+				
+				if("project".equals(concern.getTargetType())){
+					return concernProject(concern);
 				}else{
-					return "success";
+					return concernEvent(concern);
 				}
+				
 			}
 			
 			return "类型错误";
@@ -87,6 +75,60 @@ public class IndexConcernController {
 			return "保存错误";
 		}
 		
+	}
+	
+	private String concernProject(Concern concern) throws ServiceException{
+		if(!concernService.concern(concern)){
+			if(concernService.unConcern(concern)){
+				return "cancel";
+			}else{
+				return "取消收藏失败";
+			}
+		}else{
+			return "success";
+		}
+	}
+	
+	private String concernEvent(Concern concern) throws ServiceException{
+		if(!concernService.concern(concern)){
+			if(concernService.unConcern(concern)){
+				return "cancel";
+			}else{
+				return "取消收藏失败";
+			}
+		}else{
+			return "success";
+		}
+	}
+	
+	private String validate(Concern concern,HttpServletRequest request){
+		if(concern==null){
+			return "类型不能为空";
+		}
+		if(concern.getConcernType()==null||concern.getTargetId()==null
+				||concern.getTargetType()==null){
+			return "类型不能为空";
+		}
+		if("signup".equals(concern.getConcernType())){
+			if(StringUtils.isBlank(concern.getPhone())){
+				return "电话不能为空";
+			}
+			if(StringUtils.isBlank(concern.getUserName())){
+				return "姓名不能为空";
+			}
+		}
+		if(!checkLogin(request)){
+			return "unlogin";
+		}
+		return "";
+	}
+	
+	private String signUp(Concern concern) throws ServiceException{
+		if(concernService.signUp(concern)){
+			return "success";
+		}else{
+			return "保存失败";
+		}
 	}
 	
 }

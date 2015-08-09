@@ -65,8 +65,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/indexLoginInit")
-	public ModelAndView indexLoginInit() {
-
+	public ModelAndView indexLoginInit(String lastUrl,HttpSession httpSession) {
+		if(StringUtils.isNotEmpty(lastUrl) ){
+			httpSession.setAttribute("lastUrl", lastUrl);
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("indexlogin.jsp");
 

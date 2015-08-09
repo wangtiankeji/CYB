@@ -127,7 +127,7 @@ $(document).bind("mobileinit", function() {
 	function getLiStr(project) {
 		var content = '';
 		content = content + '<li>';
-		content = content + '    <a href="#">';
+		content = content + '    <a href="${cxt}/index/project/getProject/'+ project.projectId +'">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="project-left">';
 		content = content + '                <img src="${cxt}/img/pcenter-pic-i.jpg" alt=""/>';

@@ -33,6 +33,11 @@ public class PartnerDaoImpl extends MyBatisDao implements PartnerDao {
 			throws DaoException {
 		return this.getListPage("PartnerMapper.selectPage", partner, page);
 	}
+	
+	@Override
+	public  List<Partner> getPartners(Partner partner){
+		return this.getList("PartnerMapper.select", partner);
+	}
 
 	@Override
 	public int updateByPrimaryKeySelective(Partner partner) {

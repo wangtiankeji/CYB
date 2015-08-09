@@ -20,4 +20,6 @@ public interface PartnerDao {
 	List<Partner> getPage(Partner partner, PageParameter page)
 			throws DaoException;
 
+	List<Partner> getPartners(Partner partner);
+
 }
