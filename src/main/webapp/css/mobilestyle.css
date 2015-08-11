@@ -212,7 +212,7 @@ b{font-weight: normal;}
 .project-screening,.talent-screening{background: url("../img/icon_arrow_down.png")80% center no-repeat;background-size: 1rem;}
 .project-sort-drop,.talent-sort-drop,.project-screen-drop,.talent-screen-drop{width:100%;height:100%;background:rgba(0,0,0,0.5);position: fixed;top:2.6rem;left:0;z-index: 100;overflow: scroll;}
 
-.project-sort-drop ul,.talent-sort-drop ul{background: #fff;margin-bottom: 5rem;overflow: scroll}
+.project-sort-drop ul,.talent-sort-drop ul{background: #fff;margin-bottom: 5rem;overflow: hidden}
 .project-sort-drop ul li,.talent-sort-drop ul li{padding-left:1.5rem;font-size:0.9rem;margin:0 0.75rem;cursor: pointer;}
 .project-sort-drop ul li span,.talent-sort-drop ul li span{display:none;float:right;width:1rem;height:1rem;background: url("../img/icon_choiced.png")center no-repeat;background-size: 1rem;margin-top:0.5rem;}
 
@@ -286,7 +286,7 @@ b{font-weight: normal;}
 /*项目简述*/
 .project-description,.project-profile,.project-declaration,.project-link,.talent-description{background: #efefef;width:100%;height:100%;position: fixed;top:0;left:100%;text-align: center;}
 .project-description textarea,.project-profile textarea,.project-declaration textarea,.project-link textarea,.talent-description textarea{width: 90%;height:13rem;border:none;padding:0.5rem 5%;color:#999;font-size:0.9rem;}
-.project-description button,.project-profile button,.project-financing-sure button,.publish-project,.project-partner-save,.project-declaration button,.project-link button,.talent-description button{width:85%;height:2.3rem;background: #5cce49;  border: none;color:#fff;margin:2rem auto;}
+.project-description button,.project-profile button,.project-financing-sure button,.publish-project,.publish-talent,.project-partner-save,.project-declaration button,.project-link button,.talent-description button{width:85%;height:2.3rem;background: #5cce49;  border: none;color:#fff;margin:2rem auto;}
 .project-profile p{font-size: 0.7rem;color:#999;margin:0.5rem;}
 
 /*融资状态*/
@@ -311,7 +311,7 @@ b{font-weight: normal;}
 .stock,.explain{width: 98%;height: 1.8rem;line-height:1.8rem;text-align: center;font-size:0.9rem;color:#333;border:1px solid #bbb;margin:0.5rem 0; text-overflow: ellipsis;white-space: nowrap;overflow: hidden; }
 .stock-proportion{position:fixed;width:100%;height:100%;top:0;left:0;background: rgba(0,0,0,0.6);}
 .stock-proportion div{border-top:1px solid #fff;border-bottom: 1px solid #fff;overflow: hidden;padding:0.5rem;}
-.project-partner-save,.publish-project{display: block;margin:1rem auto;}
+.project-partner-save,.publish-project,.publish-talent{display: block;margin:1rem auto;}
 .publish-project>a{display:inline-block;width:100%;height:2.3rem;line-height:2.3rem;color:#fff;}
 
 .project-details-header{width:100%;background: #fff;border:1px solid #fff;overflow: hidden}
@@ -364,4 +364,163 @@ b{font-weight: normal;}
 .talent-sex>div{width:80%;height:13rem;background:#fff;margin:4rem auto;}
 .talent-sex>div>ul{margin:1rem 0;}
 .talent-sex>div>h2{text-align: center;height: 3rem;line-height: 3rem;border-bottom: 1px solid #bbb;}
+
+
+/*个人简历部分*/
+.resume-content,.resume-content2{width: 100%;}
+.resume-content h2,.resume-content2 h2{font-size:0.9rem;}
+.resume-content>li{width:100%;background: #fff;margin-top:0.5rem;overflow: hidden}
+.resume-item-inner,.company-class{background: url("../img/icon_arrow_gray.png")right center no-repeat;background-size: 1.2rem;}
+.resume-item-inner,.resume-item-inner2{margin:1rem;overflow: hidden;}
+.resume-item-inner>div,.resume-item-inner2>div:first-child{float: left;width:25%;height:100%;}
+.resume-item-inner>div>h2{color:#666;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.resume-item-a>ul,.regist-item-right{float:left;width: 74%!important;}
+.regist-item-right>div{width:100%;background: url("../img/icon_arrow_gray.png")right center no-repeat;background-size: 1rem;font-size:0.9rem;color:#bbb;height:1.5rem;}
+.regist-item-right>ul>li{margin-bottom: 0.5rem;}
+.regist-item-right>ul>li>p{font-size:0.7rem;color:#bbb;margin-top:0.2rem;}
+.resume-item-b>ul{float:left;width: 74%!important;}
+
+.resume-item-b ul>li{float:left;font-size:0.7rem;height:1.2rem;line-height: 1.2rem;padding:0 0.3rem;background:#5cce49;color:#fff;border-radius: 3px;margin:0.3rem;}
+.resume-content2{background: #fff;padding:0.3rem 0;margin:0.5rem 0;}
+.resume-content2>li input{height: 1rem;border: none;font-size:0.9rem;width:100%;}
+.resume-bottom-line{border-bottom: 1px solid #bbb;float:left;width: 74%;padding:1px 0;margin-top:-3px;}
+.company-class{height: 1.5rem;line-height: 1.5rem;}
+.company-class>span{font-size: 0.9rem;color:#b6b6b6}
+.skill-text{width:100%;height:100%;background:rgba(0,0,0,0.6);position: fixed;top:0;left:0;}
+
+.company-select-inner{width:90%;margin:5rem auto;text-align: center;background: #fff;padding:0.3rem 0;}
+.company-select-inner>h2{height:2.5rem;line-height: 2.5rem;}
+.company-select-inner>ul{margin-top:0.5rem;}
+.company-select-inner>ul>li{height:2.5rem;line-height:2.5rem;font-size:0.9rem;color:#333;}
+.company-class-active{background: #5cce49;color:#fff!important;}
+
+.work-experience,.education-experience,.skill-experience{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:0;}
+.company-class-save{display:block;width:80%;height: 2.5rem;background: #5cce49;color:#fff;border:none;margin:1rem auto;}
+
+.skill-experience-bg{width:100%;padding:1rem 0;background: #fff;overflow: hidden}
+.skill-experience-inner{margin:0rem 1rem;}
+.skill-experience-inner>p{font-size:0.8rem;color:#bbb;}
+.skill-experience-inner>ul{margin-top:0.5rem;overflow: hidden}
+.skill-experience-inner>ul>li{float:left;font-size:0.7rem;width:46%;height:1.8rem;line-height:1.8rem;color:#fff;margin:0.3rem;background: #5cce49;border-radius: 3px;text-align: center;margin-bottom: 0.5rem;position: relative;}
+
+.skill-experience-inner>ul>li>span{position:absolute;left:0;top:0;width:100%;height: 100%;background: rgba(0,0,0,0.6);border-radius: 3px;display: none;}
+#add-skill{background: none;border:1px dashed #bbb;color:#5cce49;font-size: 1.2rem;height: 1.7rem;text-align: center;width:60%;margin:0.5rem auto;}
+
+.skill-text-inner{width:80%;padding:1rem;background: #fff;margin:5rem auto;}
+.skill-text-inner>h2{text-align: center}
+.skill-text-input{margin-top:1rem;border:1px solid #bbb;}
+.skill-text-input>input{width: 92%;font-size: 0.9rem;border:none;}
+
+.skill-text-sure{border-top:1px solid #bbb;margin-top:1rem;height:1.5rem;line-height: 1.5rem;padding:0.5rem 0}
+.skill-text-sure>span{display:inline-block;width:48%;text-align: center;font-size:0.9rem;}
+.skill-text-sure>span:first-child{color:#666;border-right:1px solid #bbb;}
+.skill-text-sure>span:last-child{color:#5cce49;}
+#resume-class-selecting{width:100%;height:100%;background:rgba(0,0,0,0.6);position: fixed;top:0;left:0;}
+.skill-save,.entrepreneurship-save{display:block;background: #5cce49;color:#fff;height: 2.5rem;text-align: center;width:60%;margin:1.5rem auto;border: none;}
+
+/*创业方向*/
+.entrepreneurship{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:100%;}
+.entrepreneurship-inner{width:100%;background: #fff}
+.entrepreneurship-inner>p{height: 2.5rem;line-height: 2.5rem;margin-left:1rem;}
+.entrepreneurship-inner>ul{margin-left:1rem;margin-right:0.3rem;overflow: hidden}
+.entrepreneurship-inner>ul>li{float:left;font-size:0.7rem;width:22%;height:1.5rem;line-height:1.5rem;margin-right:0.3rem;text-align: center;margin-bottom: 0.5rem;border-radius: 3px;color:#666;border:1px solid #bbb;}
+.entrepreneurship-active{background: #5cce49;border:1px solid #5cce49!important;color:#fff!important;}
+
+.resume-save{display:block;width:70%;height:2.5rem;color:#fff;background:#5cce49;border:none; margin:1rem auto;}
+
+/*融资 技术外包 推广 众筹*/
+/*common------start*/
+/*列表*/
+.common-innerbox{margin:0.5rem 1rem;overflow: hidden;}
+.common-innerbox img{width: 5rem;}
+.common-left{float:left;width:22%}
+.common-right{}
+.common-right{float:right;width:76%;}
+.common-right>h2{text-overflow: ellipsis;white-space: nowrap!important;overflow: hidden;}
+.common-right>p{overflow: hidden;margin:0.4rem 0;text-align: right}
+.common-right>div span,.common-right>p{font-size:0.7rem;color:#999;}
+.common-right>div span:first-child,.project-right>div span:first-child{float:left;}
+.common-right>div span:last-child,.project-right>div span:last-child{float:right;}
+.common-right>div span:first-child,.project-right>div span:first-child,.talent-right>div span:first-child{padding-left:1.2rem;background: url("../img/icon_location.png")left center no-repeat;background-size:0.9rem;}
+
+/*详情*/
+.common-bg{background: #fff;width: 100%;overflow: hidden;padding:0.1rem 0;margin-bottom: 0.5rem;}
+.common-content-inner{margin:0.5rem 0.75rem;}
+.common-content-inner>h2{font-size:1rem;color:#333;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.common-content-inner>ul{margin-top:0.75rem;border-top:1px solid #bbb;height:2rem;line-height: 2rem;}
+.common-content-inner>ul>li{float:left;font-size:0.7rem;color:#bbb;width:31%;text-align: center}
+.common-content-inner>ul>li{text-align: left;}
+.common-content-inner>ul>li:last-child{text-align: right;}
+.common-file>h2{font-size:0.9rem;color:#333;hight:2rem;line-height: 2rem;border-bottom: 1px solid #bbb;}
+.common-file>p{margin-top:0.3rem;text-align: justify;}
+.common-foot{position: fixed;left:0;bottom: 0;width:100%;height:3rem;background: #fff;border-top:1px solid #bbb;}
+.common-foot>ul>li{float:left;width:49%;text-align: center;font-size:0.9rem;color:#333;height: 1.5rem;line-height: 1.5rem;margin-top:0.75rem;}
+.common-foot>ul>li:first-child{border-right:1px solid #bbb;}
+.common-foot>ul>li>span{display: inline-block;padding-left:1rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
+
+
+.common-right-b>div{overflow: hidden}
+.common-right-b>div>h2{float:left;width:80%;text-overflow: ellipsis;white-space: nowrap!important;overflow: hidden;}
+/*认证*/
+.havesure{float:right;width:18%;height:1rem;line-height:1rem;background: #5cce49;font-size:0.6rem;color:#fff!important;text-align: center;}
+.notsure{float:right;width:18%;height:1rem;line-height:1rem;background: #666;font-size:0.6rem;color:#fff!important;text-align: center;}
+
+.common-star{overflow: hidden;margin:0.5rem 0;}
+.common-star>b{float:left;font-size:0.8rem;color:#999;}
+.common-star>ul{float:left;}
+.common-star>ul>li{float:left;width:1rem;height:1rem;marggin-right:0.3rem;background: url("../img/icon_star_pre.png")center no-repeat;background-size: 1rem;}
+.common-star>p{float:right;font-size:0.8rem;color:#999;text-align: right;}
+.common-content-inner>div>h2{float:left;width:80%;}
+.common-content-inner>div:first-child{overflow: hidden;}
+.common-location{padding-left:1rem;background: url("../img/icon_location.png")left center no-repeat;background-size: 0.9rem;}
+
+/*common------end*/
+/*首页 新增二级页面 办公室 注册 。。。*/
+/*common-----start*/
+.common-index-bg{width: 100%;background: #fff;padding:0.3rem 0;}
+.index-common-header{margin-top:-4px;}
+.index-common-innner{margin:1rem;}
+.index-common-header h2{font-size:1.1rem;font-weight: bold;}
+.index-common-note{border-bottom: 1px solid #bbb;padding:1rem 0;}
+.index-common-note>p{font-size:0.8rem;color:#999;}
+.index-common-price>div{padding:1rem 0;}
+.index-common-price>div>span{color:#f70707;}
+.index-common-price>ul{overflow: hidden;}
+.index-common-price>ul>li{float:left;width:49%;font-size:0.9rem;color:#7a7879;}
+.index-common-price>ul>li:last-child{text-align: right;border-left:1px solid #bbb;}
+.index-connon-content{margin-top:0.5rem;}
+.index-connon-content h2{text-align: center;font-weight: bold;height:3rem;line-height:3rem;border-bottom:1px solid #bbb;}
+.index-content-office{background: url("../img/index_img_1.png")1rem 1rem no-repeat;background-size: 16px;padding:0.5rem 0;}
+.index-content-contract{background: url("../img/index_img_4.png")1rem 1rem no-repeat;background-size: 16px;padding:0.5rem 0;}
+
+
+
+.index-content-process ul li div{width: 100px;height:34px;line-height:34px;background: url("../img/index_img_2.png")center no-repeat;background-size: 100px;text-align: center;color:#fff;font-size:0.9rem;}
+.index-content-process ul{margin:1rem 0 0 2.8rem;}
+.index-content-process ul li{margin-bottom: 20.5px;height:50px;}
+
+.index-content-process ul li p{padding-left:1rem;font-size:0.8rem;height:2rem;}
+.index-content-class{margin:1.5rem;}
+.index-content-class li{height: 4rem;border-bottom:1px solid #bbb;}
+.index-content-class li span{float:left;width:30%;font-size:0.9rem;height:2rem;line-height:2rem;border-right:1px solid #bbb;margin-top:1rem;}
+.index-content-class li p{float:left;margin-left:0.5rem;width:65%;margin-top:1rem;}
+
+
+
+
+
+
+
+
+
+
+
+/*common-----end*/
+
+
+
+
+
+
+
 

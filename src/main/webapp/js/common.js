@@ -588,4 +588,489 @@ $(document).ready(function () {
 
 
 //发项目功能实现-------------------------end
+    
+  //找人才功能实现-------------------------start
+    //找人才---排序功能
+    $('.talent-sort').click(function(){
+        $('.talent-sort').css({'color':'#5cce49'})
+        headersrc=$(this).css("background-image");
+        headerarr=headersrc.split("_");
+        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
+        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+        $(this).css({'background-image':headersrc2});
+        $('.talent-sort-drop').slideDown("fast");
+    });
+        //下拉菜单
+    var talentSortValue;
+    $('.talent-sort-drop ul li').click(function(){
+        $(this).css({'color':'#5cce49'}).siblings().css({'color':'#333'});
+        $('.talent-sort').html(talentSortValue);
+
+
+        //这是找人才-排序数据==================》
+        talentSortValue=$(this).text();
+
+        //背景图标状态切换-活动状态
+        src=$(this).css("background-image");
+        arr=src.split("_");
+        src2=arr[0]+"_"+arr[1]+"_"+"pre.png)";
+        $(this).css({'background-image':src2});
+        $(this).children('span').show().parent().siblings().children("span").hide();
+        //背景图标状态切换-非活动状态
+        sibsrc=$(this).siblings().eq(0).css("background-image")
+        arr2=sibsrc.split("_");
+        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png)";
+        $(this).siblings().eq(0).css({'background-image':src3});
+
+        //选择后收起来的状态
+        $('.talent-sort-drop').slideUp("fast");
+        $('.talent-sort').css({
+            'background-image':headersrc3,
+            'color':'#333'
+        });
+
+    });
+
+    //找人才---筛选功能
+    var talentOrientationValue;
+    $('.talent-screening').click(function(){
+        $('.talent-screening').css({'color':'#5cce49'})
+        headersrc=$(this).css("background-image");
+        headerarr=headersrc.split("_");
+        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
+        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+        $(this).css({'background-image':headersrc2});
+        $('.talent-screen-drop').slideDown("fast");
+    });
+        //排序-人才定位
+    $('.talent-inner-state ul li').click(function(){
+        $(this).addClass('screen-active').siblings().removeClass('screen-active');
+        //人才定位数据
+        talentOrientationValue=$(this).html();
+    });
+
+    //找人才筛选选择后收起
+    $('.talent-inner-button button').click(function(){
+        $('.talent-screen-drop').slideUp("fast");
+        $('.talent-screening').css({
+            'background-image':headersrc3,
+            'color':'#333'
+        });
+
+
+        if(talentOrientationValue==undefined){
+            talentOrientationValue='全部'
+        }
+        if(locationScreenValue==undefined){
+            locationScreenValue='全部'
+        }
+        //这是找人才-排序数据==================》
+        var talentScreenValue={
+            talentOrientation:talentOrientationValue,
+            locationScreen:locationScreenValue
+        }
+    })
+//找人才功能实现-------------------------end
+
+
+
+
+//发简历功能实现-------------------------start
+    //定义全局变量
+    var talentPublishNameValue;
+    var talentPersonalValue;
+    var talentSexValue;
+    var projectDescriptionValue;
+    var talentState2Value;
+    var talentMoneyValue;
+    var talentTreatmentValue;
+
+
+
+    //人才定位选择
+    $('.talent-personal-nav').click(function(){
+        //点击出现选择框
+        $('.talent-personal').show();
+    })
+    $('.talent-personal>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        //获得的人才定位值
+        talentPersonalValue=$(this).html();
+
+        clearTimeout(talentPersonalTimer);
+        var talentPersonalTimer=setTimeout(function(){
+            $('.talent-personal').hide();
+            $('.talent-personal-nav div').html(talentPersonalValue).css({'color':'#333'});
+        },200)
+    })
+    //工作区域选择
+
+    //项目地区显示
+    $('.talent-location-nav').click(function () {
+        $('.talent-location-select').animate({
+            left: '0'
+        }, 500)
+    })
+    //发项目---点击省市切换
+
+    $('.location-province li').click(function () {
+        $(this).addClass('location-province-active').siblings().removeClass('location-province-active');
+
+        provinceValue = $(this).html();
+        $(".location-city").empty();
+
+
+        var cities = city[$(this).text()];
+        for (var j = 0; j < cities.length; j++) {
+            $('.location-city').append("<li>" + cities[j] + "</li>");
+        }
+        //发项目---城市选择点击样式切换
+        $('.location-city li').click(function () {
+            $(this).addClass('location-city-active').siblings().removeClass('location-city-active')
+            $('.project-location-header b').addClass('location-city-active')
+            $('.talent-location-header b').addClass('location-city-active')
+            if(cityValue==undefined){
+                cityValue = $(this).html();
+            }
+
+        });
+    });
+    //点击隐藏地区选择
+    $('.talent-location-header b').click(function(){
+        //将获得的省市添加到页面
+        if(cityValue==undefined){
+            provinceValue='北京';
+            cityValue='东城区'
+        }
+        $('.talent-location-nav div').html(provinceValue+' '+cityValue).css({
+            'color':'#333'
+        });
+        //省市页面切入过度效果
+        $('.talent-location-select').animate({
+            left:'100%'
+        },500)
+    })
+
+    //性别选择
+    $('.talent-sex-nav').click(function(){
+        //点击出现选择框
+        $('.talent-sex').show();
+    })
+    $('.talent-sex>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        //获得的人才定位值
+        talentSexValue=$(this).html();
+
+        clearTimeout(talentPersonalTimer);
+        var talentPersonalTimer=setTimeout(function(){
+            $('.talent-sex').hide();
+            $('.talent-sex-nav div').html(talentSexValue).css({'color':'#333'});
+        },200)
+    })
+
+    //个人描述
+    $('.talent-describe-nav').click(function(){
+        $('.talent-description').animate({
+            left:0
+        },300)
+    })
+    $('.talent-description button').click(function(){
+        $('.talent-description').animate({
+            left:'100%'
+        },300);
+        projectDescriptionValue=$('.talent-description textarea').val();
+
+        if(projectDescriptionValue==''|| projectDescriptionValue=='请输入个人描述信息..'){
+            $('.talent-describe-nav>div').html('个人描述（限30个字）').css({
+                'color':'#b6b6b6'
+            })
+        }else{
+            $('.talent-describe-nav>div').html(projectDescriptionValue).css({
+                'color':'#333'
+            });
+        }
+
+
+
+    })
+    $('.talent-description textarea').focus(function(){
+        if($('.talent-description textarea').val()=='请输入个人描述信息..'){
+            $('.talent-description textarea').val('');
+        }
+    });
+
+    //创业状态
+    $('.talent-state-nav').click(function(){
+        //点击出现选择框
+        $('.talent-state2').show();
+    })
+    $('.talent-state2>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        //获得的人才定位值
+        talentState2Value=$(this).html();
+
+        clearTimeout(talentPersonalTimer);
+        var talentPersonalTimer=setTimeout(function(){
+            $('.talent-state2').hide();
+            $('.talent-state-nav div').html(talentState2Value).css({'color':'#333'});
+        },200)
+    })
+
+    //创业出资
+    $('.talent-money-nav').click(function(){
+        //点击出现选择框
+        $('.talent-money').show();
+    })
+    $('.talent-money>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        //获得的人才定位值
+        talentMoneyValue=$(this).html();
+
+        clearTimeout(talentPersonalTimer);
+        var talentPersonalTimer=setTimeout(function(){
+            $('.talent-money').hide();
+            $('.talent-money-nav div').html(talentMoneyValue).css({'color':'#333'});
+        },200)
+    })
+
+    //期望待遇
+    $('.talent-treatment-nav').click(function(){
+        //点击出现选择框
+        $('.talent-treatment').show();
+    })
+    $('.talent-treatment>div>ul>li').click(function(){
+        $(this).addClass('talent-personal-active').siblings().removeClass('talent-personal-active');
+        //获得的人才定位值
+        talentTreatmentValue=$(this).html();
+
+        clearTimeout(talentPersonalTimer);
+        var talentPersonalTimer=setTimeout(function(){
+            $('.talent-treatment').hide();
+            $('.talent-treatment-nav div').html(talentTreatmentValue).css({'color':'#333'});
+        },200)
+    })
+
+
+    //这是发简历--数据==================》
+    $('.publish-talent').click(function(){
+        talentPublishNameValue=$('.talent-publish-name').val()
+        if(talentPublishNameValue==undefined||talentPersonalValue==undefined||talentSexValue==undefined||projectDescriptionValue==undefined||talentState2Value==undefined||talentMoneyValue==undefined){
+            clearTimeout(publishProjecttimer);
+            $('.project-alert').show();
+            var publishProjecttimer=setTimeout(function(){
+                $('.project-alert').hide();
+            },1000)
+        }else{
+            var talentPublishObj={
+                talentPublishName:talentPublishNameValue,
+                talentPersonal:talentPersonalValue,
+                talentSex:talentSexValue,
+                projectDescription:projectDescriptionValue,
+                talentState2:talentState2Value,
+                talentMoney:talentMoneyValue,
+                talentTreatment:talentTreatmentValue
+            }
+        }
+    })
+
+    //个人简历
+    //跳转
+    $('.talent-resume-nav').click(function(){
+    	$.mobile.changePage("/talent/resumeInit",{transition: "slide",changeHash: true});     
+        //window.open('resume.html')
+        $('.talent-resume-nav div a').html('点击查看').css({
+            'color':'#333'
+        })
+    })
+    
+    
+
+    //动态添加工作经历
+    //定义全局变量
+    var companyNameValue;
+    var positionValue;
+    var entryTimeValue;
+    var quitTimeValue;
+    var companyTypeValue;
+
+    $('.word-click').click(function(){
+        $('.work-experience').animate({
+            'left':0
+        },300)
+    });
+
+    $('.company-class-nav').click(function(){
+        $('#resume-class-selecting').show();
+    });
+
+    $('#resume-class-selecting ul li').click(function(){
+        $(this).addClass('company-class-active').siblings().removeClass('company-class-active');
+        companyTypeValue=$(this).html();
+        $('.company-class span').html(companyTypeValue).css({
+            'color':'#333'
+        })
+        $('#resume-class-selecting').hide();
+
+    })
+
+    //
+    $('.work-experience-save').click(function(){
+        //获得数据
+        companyNameValue=$('.company-name').val();
+        positionValue=$('.position').val();
+        entryTimeValue=$('.entry-time').val();
+        quitTimeValue=$('.quit-time').val();
+
+        //判断是否为空
+        if(companyNameValue==''||positionValue==''||entryTimeValue==''||quitTimeValue==''||companyTypeValue==undefined){
+            $('.project-alert').show();
+            var eduTimer=setTimeout(function(){
+                $('.project-alert').hide();
+            },1000)
+
+        }else{
+            $('.work-experience').animate({
+                "left":'100%'
+            },300)
+            //这是工作经历--数据==================》
+            var workExpObj={
+                companyName:companyNameValue,
+                position:positionValue,
+                entryTime:entryTimeValue,
+                quitTime:quitTimeValue,
+                companyType:companyTypeValue
+            }
+            //动态生成教育经历列表
+            $('.resume-work-experice ul').append("<li>" +"<h2>"+companyNameValue+"</h2>"+"<p>"+entryTimeValue+" 至 "+quitTimeValue+"</p>"+"</li>");
+        }
+
+    })
+
+
+    //动态添加教育经历
+    $('.edu-click').click(function(){
+        $('.education-experience').animate({
+            'left':'0'
+        },300)
+    })
+    //定义全局变量
+    var collegeNameValue;
+    var degreesValue;
+    var goSchoolTimeValue;
+    var leaveSchoolTimeValue;
+    var majorValue;
+
+
+    $('.education-experience-save').click(function(){
+        collegeNameValue=$('.college-name').val()
+        degreesValue=$('.degrees').val()
+        goSchoolTimeValue=$('.go-school-time').val()
+        leaveSchoolTimeValue=$('.leave-school-time').val()
+        majorValue=$('.major').val()
+
+
+        if(collegeNameValue==''||degreesValue==''||goSchoolTimeValue==''||leaveSchoolTimeValue==''){
+           $('.project-alert').show();
+            var eduTimer=setTimeout(function(){
+                $('.project-alert').hide();
+            },1000)
+
+        }else{
+            //这是教育经历--数据==================》
+            $('.education-experience').animate({
+                "left":'100%'
+            },300)
+            var eduExpObj={
+                collegeName:collegeNameValue,
+                degrees:degreesValue,
+                goSchoolTime:goSchoolTimeValue,
+                leaveSchoolTime:leaveSchoolTimeValue,
+                vmajor:majorValue
+            }
+         //动态生成教育经历列表
+         $('.resume-education-experice ul').append("<li>" +"<h2>"+collegeNameValue+"</h2>"+"<p>"+goSchoolTimeValue+" 至 "+leaveSchoolTimeValue+"</p>"+"</li>");
+
+        }
+    })
+
+    //动态添加擅长领域
+        //定义全局变量
+        var skillValue;
+    $('.skill-click').click(function(){
+        $('.resume-skill-nav ul li').remove();
+        $('.skill-experience').animate({
+            'left':'0'
+        },300)
+    })
+    $('#add-skill').click(function(){
+        $('.skill-text').show();
+    })
+    $('.skill-text-sure span:first-child').click(function(){
+        $('.skill-text').hide();
+    })
+    $('.skill-text-sure span:last-child').click(function(){
+        skillValue=$('.skill-text-inner input').val();
+        $('.skill-experience ul').append("<li>"+"<span>X</span>"+"<b>"+skillValue+"</b>"+"</li>");
+        $('.skill-text').hide();
+        $('.skill-experience ul li').click(function(){
+            $(this).children('span').show();
+            $(this).children('span').click(function(){
+                $(this).parent().remove();
+            })
+        })
+    })
+    $('.skill-save').click(function(){
+        var skillArr=$('.skill-experience ul li').text();
+        skillArr=skillArr.split('X');
+       console.log(skillArr) ;
+        for(var i=0;i<skillArr.length;i++){
+            if(skillArr[i]!=''){
+                $('.resume-skill-nav ul').append('<li>'+skillArr[i]+'</li>');
+            }
+        }
+        $('.skill-experience').animate({
+            'left':'100%'
+        },300)
+    })
+
+    //创业方向
+    $('.entrepreneurship-nav').click(function(){
+        $('.entrepreneurship-nav ul li').remove();
+        $('.entrepreneurship').animate({
+            'left':'0'
+        },300)
+    })
+
+    $('.entrepreneurship ul li').click(function(){
+       if($(this).is('.entrepreneurship-active')){
+           $(this).removeClass('entrepreneurship-active');
+       }else{
+           if($('.entrepreneurship-active').length<5){
+               $(this).addClass('entrepreneurship-active');
+           }
+       }
+
+    });
+    $('.entrepreneurship-save').click(function(){
+        var arr=$('.entrepreneurship ul li');
+        for(var i=0;i<arr.length;i++){
+            var c=$('.entrepreneurship ul li').eq(i);
+            if(c.is('.entrepreneurship-active')){
+                $('.entrepreneurship-nav ul').append('<li>'+ c.text()+'</li>');
+            }
+        }
+        $('.entrepreneurship').animate({
+            'left':'100%'
+        },300)
+    })
+
+    $('.resume-save').click(function(){
+        WeixinJSBridge.invoke('closeWindow',{})
+    })
+
+
+
+
+//发简历功能实现-------------------------end
+
 });

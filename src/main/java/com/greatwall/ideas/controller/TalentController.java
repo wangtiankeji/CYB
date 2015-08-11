@@ -110,4 +110,8 @@ public class TalentController extends BaseController {
 		return "保存失败";
 	}
 	
+	@RequestMapping("/resumeInit")
+	public ModelAndView resumeInit(){
+		return new ModelAndView("/index/talent/resume.jsp");
+	}
 }
