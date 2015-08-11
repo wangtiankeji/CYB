@@ -1,27 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/base.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="创客邦">
-    <meta name="keywords" content="创客邦">
-    <meta name="viewport" content="width=device-width" ,initial-scale="1" ,minium-scale="1" ,maximum-scale="1"
-          ,user-scalable="no">
-    <title>创客邦</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="${ctx}/css/jquery.mobile-1.4.5.min.css" type="text/css"/>
-    <link rel="stylesheet" href="${ctx}/css/swiper.min.css" type="text/css"/>
-    <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
-</head>
-<body>
-<div data-role="page" data-theme="f" class="ui-body-f">
+
     <ul class="resume-content">
         <li>
             <div class="resume-item-inner resume-item-a resume-work-experice" style="background: none">
@@ -31,10 +11,6 @@
                 <div class="regist-item-right">
                     <div class="word-click">点击添加工作经历</div>
                 <ul>
-                    <li>
-                        <h2>创业邦</h2>
-                        <p><span>2014年1月</span> 至 <span>2015年1月</span></p>
-                    </li>
 
                 </ul>
                 </div>
@@ -49,10 +25,7 @@
                 <div class="regist-item-right">
                     <div class="edu-click">点击添加教育经历</div>
                     <ul>
-                        <li>
-                            <h2>北京大学</h2>
-                            <p><span>2013年1月</span> 至 <span>2015年1月</span></p>
-                        </li>
+                       
                     </ul>
                 </div>
 
@@ -66,7 +39,7 @@
                 <div class="regist-item-right">
                     <div class="skill-click">点击添加擅长领域</div>
                     <ul>
-                        <li>sdfs </li>
+                        
                     </ul>
                 </div>
 
@@ -79,7 +52,7 @@
                     <h2>创业方向</h2>
                 </div>
                 <ul>
-                    <li>擅长编程</li>
+                    
                 </ul>
 
             </div>
@@ -277,17 +250,245 @@
 
     <button type="button" data-role="none" class="resume-save">保存</button>
 
-</div>
+<script type="text/javascript">
+//动态添加工作经历
+//定义全局变量
+var companyNameValue;
+var positionValue;
+var entryTimeValue;
+var quitTimeValue;
+var companyTypeValue;
 
-<script src="${ctx}/js/jquery-1.11.3.min.js"></script>
-<script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
-<script src="${ctx}/js/swiper.min.js"></script>
-<script src="${ctx}/js/common.js"></script>
-<script type="text/javascript" src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
+function workInit(){
+	companyNameValue = undefined;
+	positionValue = undefined;
+	entryTimeValue = undefined;
+	quitTimeValue = undefined;
+	companyTypeValue = undefined;
+	
+	$(".work-experience").find("input").val("");
+	$(".company-class span").text("");
+	
+}
+$('.word-click').on("click", function(){
+	workInit();
+    $('.work-experience').animate({
+        'left':0
+    },300)
+});
 
-   <script type="text/javascript">
-  
-   </script>
-</body>
-</html>
+$('.company-class-nav').click(function(){
+    $('#resume-class-selecting').show();
+});
+
+$('#resume-class-selecting ul li').click(function(){
+    $(this).addClass('company-class-active').siblings().removeClass('company-class-active');
+    companyTypeValue=$(this).html();
+    $('.company-class span').html(companyTypeValue).css({
+        'color':'#333'
+    })
+    $('#resume-class-selecting').hide();
+
+})
+
+
+function showWork(obj){
+	//workInit();
+	var resumeWork = $(".resume-work-experice").data("resume");
+	for (x in resumeWork){
+		if(resumeWork[x].randomId == $(obj).attr("random")){
+			$('.company-name').val(resumeWork[x].companyName);
+		    $('.position').val(resumeWork[x].position);
+		    $('.entry-time').val(resumeWork[x].entryTime);
+		    $('.quit-time').val(resumeWork[x].quitTime);
+		    $('.company-class span').html(resumeWork[x].companyType).css({
+		        'color':'#333'
+		    })
+			break;
+		}
+	}
+	$(".resume-work-experice").removeData("resume");
+	$(obj).detach();
+	$('.work-experience').animate({
+        'left':0
+    },300)
+}
+
+//
+$('.work-experience-save').click(function(){
+    //获得数据
+    companyNameValue=$('.company-name').val();
+    positionValue=$('.position').val();
+    entryTimeValue=$('.entry-time').val();
+    quitTimeValue=$('.quit-time').val();
+    companyTypeValue=$('.company-class span').html();
+
+    //判断是否为空
+    if(companyNameValue==''||positionValue==''||entryTimeValue==''||quitTimeValue==''||companyTypeValue==undefined){
+        $('.project-alert').show();
+        var eduTimer=setTimeout(function(){
+            $('.project-alert').hide();
+        },1000)
+
+    }else{
+        $('.work-experience').animate({
+            "left":'100%'
+        },300)
+        //这是工作经历--数据==================》
+        var ran = getRandom(100000);
+        var workExpObj={
+        	randomId:ran,
+            companyName:companyNameValue,
+            position:positionValue,
+            entryTime:entryTimeValue,
+            quitTime:quitTimeValue,
+            companyType:companyTypeValue
+        }
+        
+        //动态生成教育经历列表
+        $('.resume-work-experice ul').append("<li onclick='showWork(this)' random='"+ran+"'>" +"<h2>"+companyNameValue+"</h2>"+"<p>"+entryTimeValue+" 至 "+quitTimeValue+"</p>"+"</li>");
+        
+        var arrayPartner = $(".resume-work-experice").data("resume");
+        if(!arrayPartner){
+        	arrayPartner = new Array();
+        }
+        arrayPartner.push(workExpObj);
+        
+        $(".resume-work-experice").data("resume",arrayPartner);
+    }
+
+})
+
+
+
+
+    //动态添加教育经历
+    $('.edu-click').click(function(){
+        $('.education-experience').animate({
+            'left':'0'
+        },300)
+    })
+    //定义全局变量
+    var collegeNameValue;
+    var degreesValue;
+    var goSchoolTimeValue;
+    var leaveSchoolTimeValue;
+    var majorValue;
+
+
+    $('.education-experience-save').click(function(){
+        collegeNameValue=$('.college-name').val()
+        degreesValue=$('.degrees').val()
+        goSchoolTimeValue=$('.go-school-time').val()
+        leaveSchoolTimeValue=$('.leave-school-time').val()
+        majorValue=$('.major').val()
+
+
+        if(collegeNameValue==''||degreesValue==''||goSchoolTimeValue==''||leaveSchoolTimeValue==''){
+           $('.project-alert').show();
+            var eduTimer=setTimeout(function(){
+                $('.project-alert').hide();
+            },1000)
+
+        }else{
+            //这是教育经历--数据==================》
+            $('.education-experience').animate({
+                "left":'100%'
+            },300)
+            var eduExpObj={
+                collegeName:collegeNameValue,
+                degrees:degreesValue,
+                goSchoolTime:goSchoolTimeValue,
+                leaveSchoolTime:leaveSchoolTimeValue,
+                vmajor:majorValue
+            }
+         //动态生成教育经历列表
+         $('.resume-education-experice ul').append("<li>" +"<h2>"+collegeNameValue+"</h2>"+"<p>"+goSchoolTimeValue+" 至 "+leaveSchoolTimeValue+"</p>"+"</li>");
+
+        }
+    })
+    
+    
+    //动态添加擅长领域
+        //定义全局变量
+        var skillValue;
+    $('.skill-click').click(function(){
+        $('.resume-skill-nav ul li').remove();
+        $('.skill-experience').animate({
+            'left':'0'
+        },300)
+    })
+    $('#add-skill').click(function(){
+        $('.skill-text').show();
+    })
+    $('.skill-text-sure span:first-child').click(function(){
+        $('.skill-text').hide();
+    })
+    $('.skill-text-sure span:last-child').click(function(){
+        skillValue=$('.skill-text-inner input').val();
+        $('.skill-experience ul').append("<li>"+"<span>X</span>"+"<b>"+skillValue+"</b>"+"</li>");
+        $('.skill-text').hide();
+        $('.skill-experience ul li').click(function(){
+            $(this).children('span').show();
+            $(this).children('span').click(function(){
+                $(this).parent().remove();
+            })
+        })
+    })
+    $('.skill-save').click(function(){
+        var skillArr=$('.skill-experience ul li').text();
+        skillArr=skillArr.split('X');
+       console.log(skillArr) ;
+        for(var i=0;i<skillArr.length;i++){
+            if(skillArr[i]!=''){
+                $('.resume-skill-nav ul').append('<li>'+skillArr[i]+'</li>');
+            }
+        }
+        $('.skill-experience').animate({
+            'left':'100%'
+        },300)
+    })
+
+    //创业方向
+    $('.entrepreneurship-nav').click(function(){
+        $('.entrepreneurship-nav ul li').remove();
+        $('.entrepreneurship').animate({
+            'left':'0'
+        },300)
+    })
+
+    $('.entrepreneurship ul li').click(function(){
+       if($(this).is('.entrepreneurship-active')){
+           $(this).removeClass('entrepreneurship-active');
+       }else{
+           if($('.entrepreneurship-active').length<5){
+               $(this).addClass('entrepreneurship-active');
+           }
+       }
+
+    });
+    $('.entrepreneurship-save').click(function(){
+        var arr=$('.entrepreneurship ul li');
+        for(var i=0;i<arr.length;i++){
+            var c=$('.entrepreneurship ul li').eq(i);
+            if(c.is('.entrepreneurship-active')){
+                $('.entrepreneurship-nav ul').append('<li>'+ c.text()+'</li>');
+            }
+        }
+        $('.entrepreneurship').animate({
+            'left':'100%'
+        },300)
+    })
+
+    $('.resume-save').click(function(){
+        //WeixinJSBridge.invoke('closeWindow',{})
+    	 $("#resumepage").hide();
+		 $("#mainpage").show();
+    })
+
+    function getRandom(n){
+       return Math.floor(Math.random()*n+1)
+    }
+
+</script>
+

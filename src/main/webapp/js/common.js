@@ -876,7 +876,18 @@ $(document).ready(function () {
     //个人简历
     //跳转
     $('.talent-resume-nav').click(function(){
-    	$.mobile.changePage("/talent/resumeInit",{transition: "slide",changeHash: true});     
+    	if($("#resumepage").html()==""){
+    		$.post("/talent/resumeInit", "",
+     			   function(data){
+     			     $("#resumepage").html(data);
+     			     $("#resumepage").show();
+     			     $("#mainpage").hide();
+     			   }, "html");
+    	}else{
+    		 $("#resumepage").show();
+			 $("#mainpage").hide();
+    	}
+    	
         //window.open('resume.html')
         $('.talent-resume-nav div a').html('点击查看').css({
             'color':'#333'
@@ -885,190 +896,9 @@ $(document).ready(function () {
     
     
 
-    //动态添加工作经历
-    //定义全局变量
-    var companyNameValue;
-    var positionValue;
-    var entryTimeValue;
-    var quitTimeValue;
-    var companyTypeValue;
+    
 
-    $('.word-click').click(function(){
-        $('.work-experience').animate({
-            'left':0
-        },300)
-    });
-
-    $('.company-class-nav').click(function(){
-        $('#resume-class-selecting').show();
-    });
-
-    $('#resume-class-selecting ul li').click(function(){
-        $(this).addClass('company-class-active').siblings().removeClass('company-class-active');
-        companyTypeValue=$(this).html();
-        $('.company-class span').html(companyTypeValue).css({
-            'color':'#333'
-        })
-        $('#resume-class-selecting').hide();
-
-    })
-
-    //
-    $('.work-experience-save').click(function(){
-        //获得数据
-        companyNameValue=$('.company-name').val();
-        positionValue=$('.position').val();
-        entryTimeValue=$('.entry-time').val();
-        quitTimeValue=$('.quit-time').val();
-
-        //判断是否为空
-        if(companyNameValue==''||positionValue==''||entryTimeValue==''||quitTimeValue==''||companyTypeValue==undefined){
-            $('.project-alert').show();
-            var eduTimer=setTimeout(function(){
-                $('.project-alert').hide();
-            },1000)
-
-        }else{
-            $('.work-experience').animate({
-                "left":'100%'
-            },300)
-            //这是工作经历--数据==================》
-            var workExpObj={
-                companyName:companyNameValue,
-                position:positionValue,
-                entryTime:entryTimeValue,
-                quitTime:quitTimeValue,
-                companyType:companyTypeValue
-            }
-            //动态生成教育经历列表
-            $('.resume-work-experice ul').append("<li>" +"<h2>"+companyNameValue+"</h2>"+"<p>"+entryTimeValue+" 至 "+quitTimeValue+"</p>"+"</li>");
-        }
-
-    })
-
-
-    //动态添加教育经历
-    $('.edu-click').click(function(){
-        $('.education-experience').animate({
-            'left':'0'
-        },300)
-    })
-    //定义全局变量
-    var collegeNameValue;
-    var degreesValue;
-    var goSchoolTimeValue;
-    var leaveSchoolTimeValue;
-    var majorValue;
-
-
-    $('.education-experience-save').click(function(){
-        collegeNameValue=$('.college-name').val()
-        degreesValue=$('.degrees').val()
-        goSchoolTimeValue=$('.go-school-time').val()
-        leaveSchoolTimeValue=$('.leave-school-time').val()
-        majorValue=$('.major').val()
-
-
-        if(collegeNameValue==''||degreesValue==''||goSchoolTimeValue==''||leaveSchoolTimeValue==''){
-           $('.project-alert').show();
-            var eduTimer=setTimeout(function(){
-                $('.project-alert').hide();
-            },1000)
-
-        }else{
-            //这是教育经历--数据==================》
-            $('.education-experience').animate({
-                "left":'100%'
-            },300)
-            var eduExpObj={
-                collegeName:collegeNameValue,
-                degrees:degreesValue,
-                goSchoolTime:goSchoolTimeValue,
-                leaveSchoolTime:leaveSchoolTimeValue,
-                vmajor:majorValue
-            }
-         //动态生成教育经历列表
-         $('.resume-education-experice ul').append("<li>" +"<h2>"+collegeNameValue+"</h2>"+"<p>"+goSchoolTimeValue+" 至 "+leaveSchoolTimeValue+"</p>"+"</li>");
-
-        }
-    })
-
-    //动态添加擅长领域
-        //定义全局变量
-        var skillValue;
-    $('.skill-click').click(function(){
-        $('.resume-skill-nav ul li').remove();
-        $('.skill-experience').animate({
-            'left':'0'
-        },300)
-    })
-    $('#add-skill').click(function(){
-        $('.skill-text').show();
-    })
-    $('.skill-text-sure span:first-child').click(function(){
-        $('.skill-text').hide();
-    })
-    $('.skill-text-sure span:last-child').click(function(){
-        skillValue=$('.skill-text-inner input').val();
-        $('.skill-experience ul').append("<li>"+"<span>X</span>"+"<b>"+skillValue+"</b>"+"</li>");
-        $('.skill-text').hide();
-        $('.skill-experience ul li').click(function(){
-            $(this).children('span').show();
-            $(this).children('span').click(function(){
-                $(this).parent().remove();
-            })
-        })
-    })
-    $('.skill-save').click(function(){
-        var skillArr=$('.skill-experience ul li').text();
-        skillArr=skillArr.split('X');
-       console.log(skillArr) ;
-        for(var i=0;i<skillArr.length;i++){
-            if(skillArr[i]!=''){
-                $('.resume-skill-nav ul').append('<li>'+skillArr[i]+'</li>');
-            }
-        }
-        $('.skill-experience').animate({
-            'left':'100%'
-        },300)
-    })
-
-    //创业方向
-    $('.entrepreneurship-nav').click(function(){
-        $('.entrepreneurship-nav ul li').remove();
-        $('.entrepreneurship').animate({
-            'left':'0'
-        },300)
-    })
-
-    $('.entrepreneurship ul li').click(function(){
-       if($(this).is('.entrepreneurship-active')){
-           $(this).removeClass('entrepreneurship-active');
-       }else{
-           if($('.entrepreneurship-active').length<5){
-               $(this).addClass('entrepreneurship-active');
-           }
-       }
-
-    });
-    $('.entrepreneurship-save').click(function(){
-        var arr=$('.entrepreneurship ul li');
-        for(var i=0;i<arr.length;i++){
-            var c=$('.entrepreneurship ul li').eq(i);
-            if(c.is('.entrepreneurship-active')){
-                $('.entrepreneurship-nav ul').append('<li>'+ c.text()+'</li>');
-            }
-        }
-        $('.entrepreneurship').animate({
-            'left':'100%'
-        },300)
-    })
-
-    $('.resume-save').click(function(){
-        WeixinJSBridge.invoke('closeWindow',{})
-    })
-
-
+    
 
 
 //发简历功能实现-------------------------end

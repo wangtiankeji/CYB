@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
 </head>
 <body>
-<div data-role="page" data-theme="f" class="ui-body-f">
+
+<div data-role="page" data-theme="f" class="ui-body-f" id="mainpage">
 
 
         <div data-role="none" data-theme="f" class="publish-talent-header">
@@ -142,6 +143,8 @@
         </div>
 
 </div>
+
+<div data-theme="f" class="ui-body-f" id="resumepage" style="display: none;"></div>
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
