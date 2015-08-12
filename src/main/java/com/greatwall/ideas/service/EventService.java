@@ -2,6 +2,7 @@ package com.greatwall.ideas.service;
 
 import java.util.List;
 
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
@@ -22,7 +23,7 @@ public interface EventService {
 
 	int addCallNum(Integer eventId);
 
-	List<Event> getConcernPage(Event event, PageParameter page)
+	List<Event> getConcernPage(Concern concern, PageParameter page)
 			throws DaoException;
 
 }

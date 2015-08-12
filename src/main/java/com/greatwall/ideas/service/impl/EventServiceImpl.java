@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.greatwall.ideas.dao.EventDao;
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.EventService;
 import com.greatwall.platform.base.dao.DaoException;
@@ -31,9 +32,9 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
-	public List<Event> getConcernPage(Event event, PageParameter page)
+	public List<Event> getConcernPage(Concern concern, PageParameter page)
 			throws DaoException {
-		return eventDao.getConcernPage(event, page);
+		return eventDao.getConcernPage(concern, page);
 	}
 	
 	@Override

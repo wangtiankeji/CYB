@@ -102,7 +102,7 @@ var ctx = "${ctx}";
 <script type="text/javascript" type="text/javascript">
   $(".project-details-collection").click(function() {
   	addConcern({bNumId:"concernCount",targetId:${project.projectId },
-  		url:"${ctx}/index/concern/addConcern",concernType:"concern",targetType:"project"});
+  		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"project"});
   });
 </script>
 </body>

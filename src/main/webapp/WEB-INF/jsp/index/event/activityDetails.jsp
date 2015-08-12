@@ -132,7 +132,7 @@
         $(".registration").click(function() {
     			$.ajax({
     				type : "POST",
-    				url : "${ctx}/index/concern/addConcern",
+    				url : "${ctx}/concern/addConcern",
     				data : $("#signup").serialize(),
     				success : function(msg) {
     					if (msg == 'success') {

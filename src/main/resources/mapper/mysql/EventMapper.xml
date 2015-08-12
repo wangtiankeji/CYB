@@ -56,20 +56,23 @@
       	</if>
     </where>
   </select>
-  <select id="getConcernPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Event" >
+  <select id="getConcernPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Concern" >
     select 
     a.*
     from td_cyb_event a,td_cyb_concern b
     <where>
     	a.EVENT_ID = b.TARGET_ID
-    	<if test="eventId != null" >
-        	and EVENT_ID = #{eventId,jdbcType=INTEGER}
+    	<if test="targetId != null" >
+        	and b.TARGET_ID = #{targetId,jdbcType=INTEGER}
       	</if>
       	<if test="userId != null" >
         	and b.USER_ID = #{userId,jdbcType=INTEGER}
       	</if>
-      	<if test="eventType != null" >
-        	and EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
+      	<if test="targetType != null" >
+        	and b.TARGET_TYPE = #{targetType,jdbcType=VARCHAR}
+      	</if>
+      	<if test="concernType != null" >
+        	and b.CONCERN_TYPE = #{concernType,jdbcType=VARCHAR}
       	</if>
     </where>
   </select>

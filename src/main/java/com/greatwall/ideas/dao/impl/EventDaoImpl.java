@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.greatwall.ideas.dao.EventDao;
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.dao.MyBatisDao;
@@ -35,9 +36,9 @@ public class EventDaoImpl extends MyBatisDao implements EventDao {
 	}
 	
 	@Override
-	public List<Event> getConcernPage(Event event, PageParameter page)
+	public List<Event> getConcernPage(Concern concern, PageParameter page)
 			throws DaoException {
-		return this.getListPage("EventMapper.getConcernPage", event, page);
+		return this.getListPage("EventMapper.getConcernPage", concern, page);
 	}
 	
 	

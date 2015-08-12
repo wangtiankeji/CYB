@@ -125,7 +125,11 @@
                 </ul>
             </div>
         </div>
-        <button type="button" data-role="none" class="company-class-save work-experience-save">保存</button>
+        <ul class="resume-button">
+            <li><button type="button" data-role="none">取消</button></li>
+            <li><button type="button" data-role="none">保存</button></li>
+        </ul>
+       <!--  <button type="button" data-role="none" class="company-class-save work-experience-save">保存</button> -->
     </div>
     <!-- 教育经历-->
     <div class="education-experience" style="left:100%;">

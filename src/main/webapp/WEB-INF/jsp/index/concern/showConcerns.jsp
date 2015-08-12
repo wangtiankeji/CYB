@@ -23,31 +23,30 @@
 <body>
 <!--我的活动-->
 <div data-role="page" data-theme="f" class="ui-body-f" id="activity">
-    <div data-role="header" data-theme="f" class="pecenter-ac-header">
-        <ul>
-            <li class="activity-active">创客活动</li>
-            <li >
-            <c:choose><c:when test="${personal == 'my'}">
-            <a href="${ctx}/index/event/showIndexEvents/train?personal=my" data-ajax=“false”><span></span>创客培训</a>
-            </c:when><c:otherwise>
-            <a href="${ctx}/index/event/showIndexEvents/train" data-ajax=“false”><span></span>创客培训</a>
-            </c:otherwise> </c:choose>
-            </li>
-        </ul>
+    <div data-role="header" data-theme="f" class="ui-header-pcenter">
+        <div class="pcenter-click">找项目</div>
+        <div class="penter-item-bg" style="display:none">
+            <ul class="pcenter-item">
+                <li class="pcenter-item-active">找项目</li>
+                <li>找人才</li>
+                <li>孵化器</li>
+                <li>活动</li>
+                <li>融资</li>
+                <li>技术外包</li>
+                <li>运营推广</li>
+                <li>众筹平台</li>
+            </ul>
+        </div>
     </div>
 
 		<div data-role="content" data-theme="f" class="pcenter-ac-content"
 			id="wrapper">
-			<div id="scroller">
-				<ul class="activity-box" id="thelist">
-				</ul>
-				<div id="pullUp">
-					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
-				</div>
+			<ul class="activity-box" id="thelist">
+			</ul>
+			<div id="pullUp">
+				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 			</div>
 		</div>
-		
-		
 	</div>
 
 
@@ -89,32 +88,31 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	//alert(${personal})
-    	var sendData = {targetType:"activity"};
-    	if("${concernType}"!=""){
-    		sendData.concernType = "${concernType}";
-    	}
+    	var sendData = {eventType:"train"};
+    	/* if("${personal}"!=""){
+    		sendData.personal = "${personal}";
+    	} */
     	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();
     });
-    
-	
 
 	function getLiStr(events) {
 		var content = '';
 		var newTime = new Date(events.eventTime)
 		content = content + '<li>';
-		content = content
-				+ '<a href="${ctx }/index/event/getIndexEvent/activity/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
+		content = content + '<a href="${ctx }/index/event/getIndexEvent/train/'+ events.eventId +'" data-transition="slide" data-ajax=“false”> ';
 		content = content + '<div class="act-item-left">';
 		content = content + '<img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
 		content = content + '</div>';
 		content = content + '<div class="act-item-right">';
 		content = content + '<h2>' + events.eventName + '</h2>';
+		content = content + '<div class="trcost">';
+		content = content + '<b>培训费用</b>';
+		content = content + '<span>￥'+events.eventCost+'</span>';
+		content = content + '</div>';
+		content = content + '<p>'+ events.eventDes+'</p>';
 		content = content + '<div class="act-item-box">';
 		content = content + '<p>时间 <span>'+ newTime.format("MM月dd日 HH:mm")+'</span></p>';
-		//content = content + '<p>时间 <span>'+(newTime.getMonth()+1) +'月'+newTime.getDate()+'日 '+newTime.getHours()+':'+ newTime.getMinutes()+'</span></p>';
-		//content = content + '<p>时间 <span>' + events.eventTime + '</span></p>';
 		content = content + '<p>地点 ' + events.eventAddress + '</p>';
 		content = content + '</div>';
 		content = content + '<div class="act-item-box2">';

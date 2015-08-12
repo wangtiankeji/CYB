@@ -86,11 +86,11 @@
         $("#concern").click(function() {
         	
         	addConcern({bNumId:"concernCount",targetId:${event.eventId },
-        		url:"${ctx}/index/concern/addConcern",concernType:"concern",targetType:"incubator"});
+        		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"incubator"});
         	/* var concernNum = $("#concernCount").text();
     			$.ajax({
     				type : "POST",
-    				url : "${ctx}/index/concern/addConcern",
+    				url : "${ctx}/concern/addConcern",
     				data : {targetId:${event.eventId },concernType:"concern",targetType:"incubator"},
     				success : function(msg) {
     					if (msg == 'success') {

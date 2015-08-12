@@ -42,7 +42,7 @@ public class IndexConcernController extends BaseController {
 	
 	Logger logger = Logger.getLogger(IndexConcernController.class);
 	
-	@Autowired
+	/*@Autowired
 	private ConcernService concernService;
 
 	@RequestMapping("/addConcern")
@@ -129,6 +129,6 @@ public class IndexConcernController extends BaseController {
 		}else{
 			return "保存失败";
 		}
-	}
+	}*/
 	
 }

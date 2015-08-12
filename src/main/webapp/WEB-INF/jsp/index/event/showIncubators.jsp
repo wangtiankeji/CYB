@@ -55,7 +55,12 @@ $(document).bind("mobileinit", function() {
 <script type="text/javascript">
         
     $(document).ready(function() {
-    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:{eventType:"incubator"}});
+    	
+    	var sendData = {targetType:"incubator"};
+    	if("${concernType}"!=""){
+    		sendData.concernType = "${concernType}";
+    	}
+    	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();
     });
     

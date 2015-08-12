@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.EventService;
 import com.greatwall.platform.base.dao.DaoException;
@@ -42,7 +43,7 @@ public class IndexEventController {
 	private EventService eventService;
 
 	@RequestMapping("/showIndexEvents/{type}")
-	public ModelAndView showIndexEvents(@PathVariable String type,String personal,ModelMap model){
+	public ModelAndView showIndexEvents(@PathVariable String type,String concernType,ModelMap model){
 		String gotopage = "";
 		if("activity".equals(type)){
 			gotopage = "index/event/showActivitys.jsp";
@@ -51,21 +52,21 @@ public class IndexEventController {
 		}else if("incubator".equals(type)){
 			gotopage = "index/event/showIncubators.jsp";
 		}
-		model.addAttribute("personal", personal);
+		model.addAttribute("concernType", concernType);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotopage);
 		return mav;
 	}
 	@RequestMapping("/getIndexEvents")
-	public@ResponseBody Map<String,Object> getIndexEvents(Event event,String personal,PageParameter page
+	public@ResponseBody Map<String,Object> getIndexEvents(Event event,Concern concern,PageParameter page
 			,ModelMap model,HttpSession httpSession){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			if("my".equals(personal)){
+			if(concern!=null&&!"".equals(concern.getConcernType())){
 				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
 				
-				event.setUserId(user.getUserId());
-				map.put("objs", eventService.getConcernPage(event, page));
+				concern.setUserId(user.getUserId());
+				map.put("objs", eventService.getConcernPage(concern, page));
 			}else{
 				map.put("objs", eventService.getPage(event, page));
 			}

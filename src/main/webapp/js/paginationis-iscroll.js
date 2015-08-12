@@ -45,8 +45,12 @@ function pullUpAction() {
 			data : defaultsPage.data,
 			success : function(data) {
 				$(data.objs).each(function(index, objs) {
-					//alert(events.eventName);
-					content += getLiStr(objs);
+					if(jQuery.isFunction(defaultsPage.callback)){
+						content += defaultsPage.callback(objs);
+					}else{
+						content += getLiStr(objs);
+					}
+					
 				});
 				defaultsPage.data.currentPage = data.page.currentPage;
 				$("#"+defaultsPage.pageul).append(content);

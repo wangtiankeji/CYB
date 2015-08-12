@@ -33,7 +33,7 @@
         <ul>
             <li class="pcenter-tietm-bg1"><a href="#pcenter-collection" data-transition="slide">我的收藏<span></span></a></li>
             <li class="pcenter-tietm-bg2"><a href="#pcenter-appointment" data-transition="slide">我的预约<span></span></a></li>
-            <li class="pcenter-tietm-bg3"><a href="${ctx}/index/event/showIndexEvents/activity/?personal=my" data-ajax=“false”  data-transition="slide">我的活动<span></span></a></li>
+            <li class="pcenter-tietm-bg3"><a href="${ctx}/index/event/showIndexEvents/activity/?concernType=signup" data-ajax=“false”  data-transition="slide">我的活动<span></span></a></li>
             <li class="pcenter-tietm-bg4"><a href="#pcenter-complaint" data-transition="slide">平台投诉<span></span></a></li>
             <li class="pcenter-tietm-bg5"><a href="#pcenter-policy" data-transition="slide">平台政策<span></span></a></li>
             <li class="pcenter-tietm-bg6"><a href="#pcenter-password" data-transition="slide">修改密码<span></span></a></li>

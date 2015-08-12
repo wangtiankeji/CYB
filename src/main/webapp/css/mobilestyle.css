@@ -96,9 +96,9 @@ b{font-weight: normal;}
 
 /*我的收藏*/
 .ui-content-f4{min-width: 320px;}
-.ui-content-f4 ul li,.pcenter-ac-content ul li{width: 100%;background:#fff;margin:0.5rem 0;padding:0.5rem;overflow: hidden;}
+.ui-content-f4>ul>li,.pcenter-ac-content ul li{width: 100%;background:#fff;margin:0.5rem 0;padding:0.5rem;overflow: hidden;}
 .pcenter-collection-left,.act-item-left{float:left;width:25%;height: 100%;}
-.ui-content-f4 ul li img,.act-item-left img{width: 5rem;}
+.ui-content-f4>ul li img,.act-item-left img{width: 5rem;}
 .pcenter-collection-right,.act-item-right{float:right;width:68%;margin-right:1rem;}
 .pcenter-collection-right h2,.pcenter-collection-right>p,.act-item-right>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .pcenter-collection-right h2{display: inline-block;font-size: 1rem;color:#333;width:80%;}
@@ -111,6 +111,15 @@ b{font-weight: normal;}
 .icon-state{float:right;border:1px solid #aaa;width:2.5rem;height:1rem;line-height:1rem;font-size:0.6rem;text-align: center;color:#aaa;border-radius: 0.5rem;}
 .location-date{overflow: hidden;margin-top:0.3rem;}
 .item-descripe{width: 100%;height: 2rem;font-size: 0.9rem;margin-top:0.5rem;}
+
+/*新增部分*/
+.penter-item-bg{width:100%;height:100%;position:fixed;top:2.6rem;left:0;background: rgba(0,0,0,0.6)}
+.ui-header-pcenter{width:100%;background: #fff;height:2.5rem; }
+.ui-header-pcenter>div:first-child{position: fixed;top:0;left:0;width:100%;text-align: center;height: 2.5rem;line-height: 2.5rem;border-bottom: 1px solid #bbb;background: url("../img/icon_arrow_down.png")95% center no-repeat;background-size: 1rem;}
+.pcenter-item{width:100%;background: #fff;padding-bottom: 0.5rem;}
+.pcenter-item>li{text-align: center;padding:0.8rem 0;border-bottom: 1px solid #bbb;color:#666;font-size:0.9rem;}
+.pcenter-item-active{background: #5cce49;border-bottom: 1px solid #5cce49;color:#fff!important;}
+
 /*我的活动*/
 .pecenter-ac-header{width:100%;height: 2.5rem;background: #fff;}
 .pecenter-ac-header ul li{float:left;width:49%;height:2.4rem;line-height:2.5rem;text-align: center;color:#666;cursor: pointer;}
@@ -380,6 +389,12 @@ b{font-weight: normal;}
 .regist-item-right>ul>li>p{font-size:0.7rem;color:#bbb;margin-top:0.2rem;}
 .resume-item-b>ul{float:left;width: 74%!important;}
 
+/*新增部分*/
+.resume-button{width:100%;overflow: hidden;}
+.resume-button li{float:left;width:50%;text-align: center;}
+.resume-button li button{width:90%;height:2.5rem;border:none;}
+.resume-button li:last-child button{background:#5cce49;color:#fff;}
+
 .resume-item-b ul>li{float:left;font-size:0.7rem;height:1.2rem;line-height: 1.2rem;padding:0 0.3rem;background:#5cce49;color:#fff;border-radius: 3px;margin:0.3rem;}
 .resume-content2{background: #fff;padding:0.3rem 0;margin:0.5rem 0;}
 .resume-content2>li input{height: 1rem;border: none;font-size:0.9rem;width:100%;}
@@ -394,7 +409,7 @@ b{font-weight: normal;}
 .company-select-inner>ul>li{height:2.5rem;line-height:2.5rem;font-size:0.9rem;color:#333;}
 .company-class-active{background: #5cce49;color:#fff!important;}
 
-.work-experience,.education-experience,.skill-experience{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:0;}
+.work-experience,.education-experience,.work-experience2,.education-experience2，.skill-experience{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:0;}
 .company-class-save{display:block;width:80%;height: 2.5rem;background: #5cce49;color:#fff;border:none;margin:1rem auto;}
 
 .skill-experience-bg{width:100%;padding:1rem 0;background: #fff;overflow: hidden}
@@ -415,7 +430,7 @@ b{font-weight: normal;}
 .skill-text-sure>span{display:inline-block;width:48%;text-align: center;font-size:0.9rem;}
 .skill-text-sure>span:first-child{color:#666;border-right:1px solid #bbb;}
 .skill-text-sure>span:last-child{color:#5cce49;}
-#resume-class-selecting{width:100%;height:100%;background:rgba(0,0,0,0.6);position: fixed;top:0;left:0;}
+.resume-class-selecting{width:100%;height:100%;background:rgba(0,0,0,0.6);position: fixed;top:0;left:0;}
 .skill-save,.entrepreneurship-save{display:block;background: #5cce49;color:#fff;height: 2.5rem;text-align: center;width:60%;margin:1.5rem auto;border: none;}
 
 /*创业方向*/
@@ -489,7 +504,7 @@ b{font-weight: normal;}
 .index-common-price>ul>li{float:left;width:49%;font-size:0.9rem;color:#7a7879;}
 .index-common-price>ul>li:last-child{text-align: right;border-left:1px solid #bbb;}
 .index-connon-content{margin-top:0.5rem;}
-.index-connon-content h2{text-align: center;font-weight: bold;height:3rem;line-height:3rem;border-bottom:1px solid #bbb;}
+.index-connon-content>div>h2,.contract-content-title{text-align: center;font-weight: bold;height:3rem;line-height:3rem;border-bottom:1px solid #bbb;}
 .index-content-office{background: url("../img/index_img_1.png")1rem 1rem no-repeat;background-size: 16px;padding:0.5rem 0;}
 .index-content-contract{background: url("../img/index_img_4.png")1rem 1rem no-repeat;background-size: 16px;padding:0.5rem 0;}
 
@@ -500,27 +515,70 @@ b{font-weight: normal;}
 .index-content-process ul li{margin-bottom: 20.5px;height:50px;}
 
 .index-content-process ul li p{padding-left:1rem;font-size:0.8rem;height:2rem;}
-.index-content-class{margin:1.5rem;}
-.index-content-class li{height: 4rem;border-bottom:1px solid #bbb;}
+.index-content-class{margin:1.5rem;overflow: hidden}
+.index-content-class li{border-bottom:1px solid #bbb;overflow: hidden;padding:0.5rem 0;}
 .index-content-class li span{float:left;width:30%;font-size:0.9rem;height:2rem;line-height:2rem;border-right:1px solid #bbb;margin-top:1rem;}
 .index-content-class li p{float:left;margin-left:0.5rem;width:65%;margin-top:1rem;}
+.contract-seivice-process>ul{overflow: hidden;}
+.contract-seivice-process>ul>li{float:left;width:33%;text-align: center;}
+.contract-seivice-process>ul>li>p{text-align: center;font-size:0.7rem;}
+.index-content-rigist ul{overflow: hidden;}
+.index-content-rigist ul li{float:left;width:16%;margin:0rem 2%;text-align: center;}
+.index-content-rigist ul li h2{font-size:0.8rem;}
+.index-content-rigist ul li p{font-size:0.7rem;}
+.index-content-class2 li{overflow: hidden;padding:1rem 0;border-bottom: 1px solid #bbb;}
+.index-content-class2 span{float:left;font-size:0.9rem;width:30%;border-right:1px solid #bbb;}
+.index-content-class2 p{float:left;margin-left:1rem;}
+.index-copyright-box1{float:left;width:49%;overflow: hidden;}
+.index-copyright-box1>h2{fon-size:0.9rem!important;}
+.index-copyright-box2 h2{font-weight: normal!important;font-size:0.9rem!important;height: 1.5rem;}
+.index-copyright-box2{float:left;width:40%;overflow: hidden;padding-left:1rem;border-left:1px solid #bbb;}
+.index-office-inner div{padding:1rem 0;border-bottom:1px solid #bbb;}
+/*代理记账*/
+.accounting-content ul{overflow: hidden;}
+.accounting-content ul li{float:left;width:24%;}
+.accounting-content ul li p{text-align: center;font-size:0.7rem;}
+.index-content-class3{width:90%;margin:0 auto;}
+.index-content-class3>li{overflow: hidden;padding:1rem 0;border-bottom: 1px solid #bbb;}
+.index-content-class3>li>span{float:left;width:45%;padding-left:1.2rem;}
+.index-content-class3>li>p{float:left;padding-left:1rem;width:40%;border-left:1px solid #bbb;}
+.index-content-class3>li i{font-size:0.7rem;}
+.icon_account_a{background: url("../img/icon_account_%20(1).png")left center no-repeat;background-size: 1rem;}
+.icon_account_b{background: url("../img/icon_account_%20(2).png")left center no-repeat;background-size: 1rem;}
+.icon_account_c{background: url("../img/icon_account_%20(4).png")left center no-repeat;background-size: 1rem;}
+.icon_account_d{background: url("../img/icon_account_%20(5).png")left center no-repeat;background-size: 1rem;}
+.index-content-law{background: url("../img/index_img_3.png")1rem 1rem no-repeat;background-size: 16px;padding:0.5rem 0;}
+/*合伙人协议*/
+.index-content-agreement ul{width:90%;margin:0 auto;}
+.index-content-agreement ul li{padding:0.5rem 0;padding-left:1.5rem;background-size: 1rem;}
+.index-content-agreement ul li p{padding:0.5rem 0;border-bottom: 1px solid #bbb;}
 
+.agreement-a{background: url("../img/icon_num.png")left 1.2rem no-repeat;}
+.agreement-b{background: url("../img/icon_num_2.png")left 1.2rem no-repeat;}
+.agreement-c{background: url("../img/icon_num_3.png")left 1.2rem no-repeat;}
+.color-red{color:#f70707}
 
+/*人事*/
+.hr-content ul li{padding: 1rem 0;overflow: hidden;}
+.hr-content ul li div{float:left;width:30%;font-size:0.8rem;}
+.hr-content ul li p{float:right;width:69%;font-size:0.8rem;}
+.index-common-price b{margin-left:1rem;display:inline-block;width:5rem;height:1.5rem;line-height:1.5rem;background: #5cce49;border-radius: 3px;color:#fff;text-align: center;font-size:0.9rem;}
 
+/*注册公司*/
+.regist-footer h2,.regist-footer2 h2{text-align: center;font-weight: bold;height: 3rem;line-height: 3rem;border-bottom: 1px solid #bbb;}
+.regist-footer ul{margin-top:2rem;}
+.regist-footer li{overflow: hidden;padding:0.5rem 0;margin-bottom: 0.5rem;border-bottom: 1px solid #bbb;}
+.regist-footer li div:first-child{float:left;width:49%;height:3rem;border-right:1px solid #bbb;}
+.regist-footer li div:last-child{float:right;width:49%;text-align: center;color:#f70707;height:3rem;line-height: 3rem;}
+.regist-footer li div:first-child p{height: 1.5rem;line-height: 1.5rem;padding-left:1.5rem;}
+.regist-icon-a{background: url("../img/icon_account_%20(3).png")left center no-repeat;background-size: 1rem;}
+.regist-icon-b{background: url("../img/icon_account_%20(5).png")left center no-repeat;background-size: 1rem;}
 
+.regist-footer2 ul{overflow: hidden;border-bottom: 1px solid #5cce49;}
+.regist-footer2 ul li{float:left;width:32%;text-align: center;height: 3rem;line-height: 3rem;}
+.regist-footer2-active{border-bottom: 0.2rem solid #5cce49;height:2.8rem;line-height: 2.8rem;}
 
-
-
-
-
-
-
+.regist-footer2-txt{width:90%;margin:2rem auto;}
+.regist-footer2-txt p{color:#333;}
+.regist-bottom{text-align: center;height: 3rem;line-height: 3rem;color:#333;border-top:1px solid #bbb;}
 /*common-----end*/
-
-
-
-
-
-
-
-
