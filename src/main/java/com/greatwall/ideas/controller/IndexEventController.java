@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.EventService;
+import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
 import com.greatwall.platform.system.dto.User;
@@ -35,7 +36,7 @@ import com.greatwall.platform.system.dto.User;
  */
 @Controller
 @RequestMapping("index/event")
-public class IndexEventController {
+public class IndexEventController extends BaseController{
 	
 	Logger logger = Logger.getLogger(IndexEventController.class);
 	
@@ -63,7 +64,8 @@ public class IndexEventController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
 			if(concern!=null&&!"".equals(concern.getConcernType())){
-				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
+				User user = this.getSessionUser(httpSession);
+//				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
 				
 				concern.setUserId(user.getUserId());
 				map.put("objs", eventService.getConcernPage(concern, page));

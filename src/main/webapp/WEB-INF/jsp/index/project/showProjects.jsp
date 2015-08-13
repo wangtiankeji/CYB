@@ -126,6 +126,7 @@ $(document).bind("mobileinit", function() {
 
 	function getLiStr(project) {
 		var content = '';
+		var newTime = new Date(project.createTime)
 		content = content + '<li>';
 		content = content + '    <a href="${cxt}/index/project/getProject/'+ project.projectId +'">';
 		content = content + '        <div class="incubator-innerbox">';
@@ -139,14 +140,12 @@ $(document).bind("mobileinit", function() {
 		content = content + '                </div>';
 		content = content + '                <div class="project-location">';
 		content = content + '                    <span>'+project.projectArea+'</span>';
-		content = content + '                    <span><b>5月12日</b>发布</span>';
+		content = content + '                    <span><b>'+ newTime.format("MM月dd日")+'</b>发布</span>';
 		content = content + '                </div>';
-		content = content + '                <p>一句话介绍，这是项目的一句话介绍,是一句话的介绍</p>';
+		content = content + '                <p>'+project.projectIntro+'</p>';
 		content = content + '                <div class="project-label">';
 		content = content + '                    <ul>';
 		content = content + '                        <li>有市场</li>';
-		content = content + '                        <li>前景好</li>';
-		content = content + '                        <li>创业</li>';
 		content = content + '                    </ul>';
 		content = content + '                </div>';
 		content = content + '            </div>';

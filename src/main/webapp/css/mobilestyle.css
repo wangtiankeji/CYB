@@ -409,7 +409,7 @@ b{font-weight: normal;}
 .company-select-inner>ul>li{height:2.5rem;line-height:2.5rem;font-size:0.9rem;color:#333;}
 .company-class-active{background: #5cce49;color:#fff!important;}
 
-.work-experience,.education-experience,.work-experience2,.education-experience2，.skill-experience{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:0;}
+.work-experience,.education-experience,.work-experience2,.education-experience2,.skill-experience{width: 100%;height: 100%;background: #efefef;position: fixed;top:0;left:0;}
 .company-class-save{display:block;width:80%;height: 2.5rem;background: #5cce49;color:#fff;border:none;margin:1rem auto;}
 
 .skill-experience-bg{width:100%;padding:1rem 0;background: #fff;overflow: hidden}

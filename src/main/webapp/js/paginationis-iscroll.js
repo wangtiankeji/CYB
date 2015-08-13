@@ -4,16 +4,17 @@
  * 
  */
 
-var myScroll, pullUpEl, pullUpOffset,defaultsPage;
+var myScroll, pullUpEl, pullUpOffset,defaultsPage = {};
 //var indexCurrentPage = 0;
 
-var IscrollPage = function (params){  
+var IscrollPage = function (params,callback){  
 	 var defaults = {
 			roleContent:"wrapper",  
 			pageul:"thelist",
 			data:{currentPage:0,pageSize:2}
 	}
 	 
+	 //jQuery.extend(defaultsPage, defaults, params);
 	defaultsPage = params || {};
 	for (var def in defaults) {
 		if (typeof defaultsPage[def] === 'undefined') {
@@ -26,6 +27,10 @@ var IscrollPage = function (params){
 				}
 			}
 		}
+	}
+	
+	if(jQuery.isFunction(callback)){
+		defaultsPage.callback = callback;
 	}
 
 };  
@@ -46,6 +51,7 @@ function pullUpAction() {
 			success : function(data) {
 				$(data.objs).each(function(index, objs) {
 					if(jQuery.isFunction(defaultsPage.callback)){
+//					if(typeof(defaultsPage.callback) == "function"){
 						content += defaultsPage.callback(objs);
 					}else{
 						content += getLiStr(objs);

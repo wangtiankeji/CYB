@@ -2,6 +2,7 @@ package com.greatwall.ideas.service;
 
 import java.util.List;
 
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.platform.base.dao.DaoException;
@@ -22,5 +23,8 @@ public interface ProjectService {
 			throws DaoException;
 
 	List<Partner> getPartners(Partner partner);
+
+	List<Project> getConcernPage(Concern concern, PageParameter page)
+			throws DaoException;
 
 }

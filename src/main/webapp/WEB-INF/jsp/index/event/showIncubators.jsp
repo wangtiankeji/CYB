@@ -68,7 +68,6 @@ $(document).bind("mobileinit", function() {
 
 	function getLiStr(event) {
 		var content = '';
-		var newTime = new Date(event.eventTime);
 		content = content + '<li>';
 		content = content + '    <a href="${ctx }/index/event/getIndexEvent/incubator/'+ event.eventId +'" data-transition="slide">';
 		content = content + '        <div class="incubator-innerbox">';

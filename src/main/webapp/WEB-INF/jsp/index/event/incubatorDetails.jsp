@@ -24,7 +24,7 @@
 <!--活动详情页-->
 <div data-role="page" data-theme="f" class="ui-body-f" id="incubator-details">
         <div data-role="none" data-theme="f" class="incubator-det-header">
-            <img src="img/incubator-header.jpg" alt=""/>
+            <img src="${ctx }/img/incubator-header.jpg" alt=""/>
             <div class="incubator-innerbox incubator-title">
                 <h2>${event.eventName }</h2>
                 <div>

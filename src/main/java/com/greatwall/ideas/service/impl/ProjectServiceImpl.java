@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.greatwall.ideas.dao.PartnerDao;
 import com.greatwall.ideas.dao.ProjectDao;
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.service.ProjectService;
@@ -67,6 +68,12 @@ public class ProjectServiceImpl implements ProjectService{
 	public List<Project> getPage(Project project, PageParameter page)
 			throws DaoException {
 		return projectDao.getPage(project, page);
+	}
+	
+	@Override
+	public List<Project> getConcernPage(Concern concern, PageParameter page)
+			throws DaoException {
+		return projectDao.getConcernPage(concern, page);
 	}
 
 }

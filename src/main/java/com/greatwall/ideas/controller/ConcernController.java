@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.ConcernService;
+import com.greatwall.ideas.service.EventService;
+import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.service.ServiceException;
@@ -24,26 +27,40 @@ import com.greatwall.platform.domain.PageParameter;
 import com.greatwall.platform.system.dto.User;
 
 @Controller
-@RequestMapping("index/concern")
+@RequestMapping("concern")
 public class ConcernController extends BaseController {
 
 	Logger logger = Logger.getLogger(ConcernController.class);
 			
 	@Autowired
 	private ConcernService concernService;
+	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
+	private EventService eventService;
 	
 	@RequestMapping("/showConcerns")
 	public ModelAndView showConcerns(Model model) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index/main/contract.jsp");
+		mav.setViewName("index/concern/showConcerns.jsp");
 		return mav;
 	}
 	
 	@RequestMapping("/getConcerns")
-	public@ResponseBody Map<String,Object> getConcerns(Concern concern,PageParameter page){
+	public@ResponseBody Map<String,Object> getConcerns(Concern concern,PageParameter page,HttpSession httpSession){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			map.put("objs", concernService.getPage(concern, page));
+			User u = this.getSessionUser(httpSession);
+			concern.setUserId(u.getUserId());
+//			map.put("objs", concernService.getPage(concern, page));
+			
+			if("project".equals(concern.getTargetType())){
+				map.put("objs", projectService.getConcernPage(concern, page));
+			}else{
+				map.put("objs", eventService.getConcernPage(concern, page));
+			}
+			
 			map.put("page", page);
 		} catch (DaoException e) {
 			logger.error("查询我的收藏错误",e);
