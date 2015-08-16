@@ -853,7 +853,9 @@ $(document).ready(function () {
 
     //这是发简历--数据==================》
     $('.publish-talent').click(function(){
-        talentPublishNameValue=$('.talent-publish-name').val()
+        talentPublishNameValue=$('.talent-publish-name').val();
+        weixinNameValue=$('.talent-weixin-name').val();
+        
         if(talentPublishNameValue==undefined||talentPersonalValue==undefined||talentSexValue==undefined||projectDescriptionValue==undefined||talentState2Value==undefined||talentMoneyValue==undefined){
             clearTimeout(publishProjecttimer);
             $('.project-alert').show();
@@ -861,15 +863,31 @@ $(document).ready(function () {
                 $('.project-alert').hide();
             },1000)
         }else{
+        	 var arrayWork = $("#mainpage").data("arrayWork")==undefined?"":$("#mainpage").data("arrayWork");
+        	 var arrayWork = JSON.stringify(arrayWork);
+        	 var arrayEdu = $("#mainpage").data("arrayEdu")==undefined?"":$("#mainpage").data("arrayEdu");
+        	 var arrayEdu = JSON.stringify(arrayEdu);
+        	 var skill = $("#mainpage").data("skill")==undefined?"":$("#mainpage").data("skill");
+        	 var entrep = $("#mainpage").data("entrep")==undefined?"":$("#mainpage").data("entrep");
+             //alert(JSON.stringify(arrayWork));
+             
             var talentPublishObj={
-                talentPublishName:talentPublishNameValue,
-                talentPersonal:talentPersonalValue,
-                talentSex:talentSexValue,
-                projectDescription:projectDescriptionValue,
-                talentState2:talentState2Value,
+            	nickname:talentPublishNameValue,
+            	talentName:weixinNameValue,
+            	goal:talentPersonalValue,
+            	sex:talentSexValue,
+            	intro:projectDescriptionValue,
+            	entrepreneurship:talentState2Value,
                 talentMoney:talentMoneyValue,
-                talentTreatment:talentTreatmentValue
+                expectedSalary:talentTreatmentValue,
+                workExperience:arrayWork,
+                educational:arrayEdu,
+                goodAt:skill,
+                targetType:entrep
             }
+            
+            submitTalent(talentPublishObj);
+           
         }
     })
 

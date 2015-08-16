@@ -26,13 +26,11 @@
 
 		<div data-role="content" data-theme="f" class="pcenter-ac-content"
 			id="wrapper">
-			<div id="scroller">
 				<ul class="activity-box" id="thelist">
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 				</div>
-			</div>
 		</div>
 		
 		
@@ -56,9 +54,12 @@ $(document).bind("mobileinit", function() {
         
     $(document).ready(function() {
     	
-    	var sendData = {targetType:"incubator"};
+    	var sendData = {};
     	if("${concernType}"!=""){
     		sendData.concernType = "${concernType}";
+    		sendData.targetType = "${targetType}";
+    	}else{
+    		sendData.eventType = "${targetType}";
     	}
     	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();

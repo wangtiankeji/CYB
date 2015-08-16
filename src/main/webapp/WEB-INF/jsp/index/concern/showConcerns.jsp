@@ -21,14 +21,14 @@
     <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
 </head>
 <body>
-<!--我的活动-->
-<div data-role="page" data-theme="f" class="ui-body-f" id="activity">
-    <div data-role="header" data-theme="f" class="ui-header-pcenter">
-        <div class="pcenter-click">找项目</div>
-        <div class="penter-item-bg" style="display:none">
+<!--我的收藏-->
+<div data-role="page" data-theme="f" class="ui-body-f" id="pcenter-collection">
+	<div data-role="none" data-theme="f" class="ui-header-pcenter">
+        <div class="pcenter-collection-click">找项目</div>
+        <div class="penter-item-bg" style="display: none">
             <ul class="pcenter-item">
                 <li class="pcenter-item-active" targetType="project">找项目</li>
-                <li >找人才</li>
+                <li>找人才</li>
                 <li targetType="incubator">孵化器</li>
                 <li>活动</li>
                 <li>融资</li>
@@ -38,23 +38,20 @@
             </ul>
         </div>
     </div>
-
-		<div data-role="content" data-theme="f" class="pcenter-ac-content"
-			id="wrapper">
-			<ul class="activity-box" id="thelist">
-			</ul>
-			<div id="pullUp">
-				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
-			</div>
-		</div>
-	</div>
+    
+	 <div data-role="none" data-theme="f" class="project-content" id="wrapper">
+				<ul class="activity-box" id="thelist">
+				</ul>
+				<div id="pullUp">
+					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+				</div>
+    </div>
 
 
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(document).bind("mobileinit", function() {
-    //disable ajax nav
     $.mobile.ajaxEnabled=false
 }); 
 </script>
@@ -64,43 +61,19 @@ $(document).bind("mobileinit", function() {
 <script src="${ctx}/js/paginationis-iscroll.js"></script>
 <script type="text/javascript">
 
-$('.pcenter-click').click(function(){
+$('.pcenter-collection-click').click(function(){
     $('.penter-item-bg').slideDown('fast')
     $('.project-sort').css({'color':'#5cce49'});
-   /*  pcenterSrc=$(this).css("background-image");
-    pcenterArr=pcenterSrc.split("_");
-    psrc=pcenterArr[0]+"_"+pcenterArr[1]+"_"+"up.png)";
-    psrc2=pcenterArr[0]+"_"+pcenterArr[1]+"_"+"down.png)";
-    $(this).css({'background-image':psrc});
-    console.log(psrc); */
 })
 
 $('.pcenter-item li').click(function(){
 	showConcerns($(this).attr("targetType"));
     $(this).addClass('pcenter-item-active').siblings().removeClass('pcenter-item-active');
     $('.penter-item-bg').slideUp('fast');
-    //$('.pcenter-click').css({'background-image':psrc2});
     $('.pcenter-click').html($(this).text());
-    //pIndex=$(this).index();
-    //$('.ui-content-f4 ul').eq(pIndex).show().siblings().hide();
-})
+    
+});
 
-    //创客活动《=》创客培训 切换代码
-    $('.train-box').hide();
-    $('.pecenter-ac-header li').click(function(){
-        var index=$(this).index();
-        console.log(index);
-        $(this).addClass('activity-active').siblings().removeClass('activity-active');
-        $(".pcenter-ac-content ul").eq(index).show().siblings().hide();
-    })
-    //报名部分
-    $('.ac-mask').hide();
-    $('.ac-details-re').click(function(){
-        $('.ac-mask').show();
-    });
-    $('.mask-close').click(function(){
-        $('.ac-mask').hide();
-    });
     
     $(document).ready(function() {
     	showConcerns("project");

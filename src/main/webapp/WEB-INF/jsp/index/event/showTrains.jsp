@@ -87,9 +87,12 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	var sendData = {targetType:"train"};
+    	var sendData = {};
     	if("${concernType}"!=""){
     		sendData.concernType = "${concernType}";
+    		sendData.targetType = "${targetType}";
+    	}else{
+    		sendData.eventType = "${targetType}";
     	}
     	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();

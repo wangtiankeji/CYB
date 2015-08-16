@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="TalentMapper" >
-  <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Talent" >
-     <id column="TALENT_ID" property="talentId" jdbcType="INTEGER" />
+<mapper namespace="com.test.data.TalentMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.Talent" >
+    <id column="TALENT_ID" property="talentId" jdbcType="INTEGER" />
     <result column="TALENT_NAME" property="talentName" jdbcType="VARCHAR" />
     <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
@@ -21,8 +21,8 @@
     <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="HITS" property="hits" jdbcType="INTEGER" />
-     <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
-    </resultMap>
+    <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Base_Column_List" >
     TALENT_ID, TALENT_NAME, NICKNAME, USER_ID, GOAL, WORK_AREA, SEX, PHONE, INTRO, ENTREPRENEURSHIP, 
     TALENT_MONEY, EXPECTED_SALARY, GOOD_AT, WORK_EXPERIENCE, EDUCATIONAL, TARGET_TYPE, 
@@ -34,23 +34,12 @@
     from td_cyb_talent
     where TALENT_ID = #{talentId,jdbcType=INTEGER}
   </select>
-   <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Talent" >
-    select 
-    <include refid="Base_Column_List" />
-    from td_cyb_talent
-    <where>
-    	<if test="talentId != null">
-    		TALENT_ID = #{talentId,jdbcType=INTEGER}
-    	</if>
-    </where>
-  </select>
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_talent
     where TALENT_ID = #{talentId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.greatwall.ideas.dto.Talent" >
-     insert into td_cyb_talent (TALENT_ID, TALENT_NAME, NICKNAME, 
+  <insert id="insert" parameterType="com.test.model.Talent" >
+    insert into td_cyb_talent (TALENT_ID, TALENT_NAME, NICKNAME, 
       USER_ID, GOAL, WORK_AREA, 
       SEX, PHONE, INTRO, 
       ENTREPRENEURSHIP, TALENT_MONEY, EXPECTED_SALARY, 
@@ -65,9 +54,136 @@
       #{targetType,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
       #{hits,jdbcType=INTEGER}, #{concernCount,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Talent" >
+  <insert id="insertSelective" parameterType="com.test.model.Talent" >
+    insert into td_cyb_talent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="talentId != null" >
+        TALENT_ID,
+      </if>
+      <if test="talentName != null" >
+        TALENT_NAME,
+      </if>
+      <if test="nickname != null" >
+        NICKNAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="goal != null" >
+        GOAL,
+      </if>
+      <if test="workArea != null" >
+        WORK_AREA,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="intro != null" >
+        INTRO,
+      </if>
+      <if test="entrepreneurship != null" >
+        ENTREPRENEURSHIP,
+      </if>
+      <if test="talentMoney != null" >
+        TALENT_MONEY,
+      </if>
+      <if test="expectedSalary != null" >
+        EXPECTED_SALARY,
+      </if>
+      <if test="goodAt != null" >
+        GOOD_AT,
+      </if>
+      <if test="workExperience != null" >
+        WORK_EXPERIENCE,
+      </if>
+      <if test="educational != null" >
+        EDUCATIONAL,
+      </if>
+      <if test="targetType != null" >
+        TARGET_TYPE,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="hits != null" >
+        HITS,
+      </if>
+      <if test="concernCount != null" >
+        CONCERN_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="talentId != null" >
+        #{talentId,jdbcType=INTEGER},
+      </if>
+      <if test="talentName != null" >
+        #{talentName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goal != null" >
+        #{goal,jdbcType=VARCHAR},
+      </if>
+      <if test="workArea != null" >
+        #{workArea,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="entrepreneurship != null" >
+        #{entrepreneurship,jdbcType=VARCHAR},
+      </if>
+      <if test="talentMoney != null" >
+        #{talentMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedSalary != null" >
+        #{expectedSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="goodAt != null" >
+        #{goodAt,jdbcType=VARCHAR},
+      </if>
+      <if test="workExperience != null" >
+        #{workExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="educational != null" >
+        #{educational,jdbcType=VARCHAR},
+      </if>
+      <if test="targetType != null" >
+        #{targetType,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="concernCount != null" >
+        #{concernCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.Talent" >
     update td_cyb_talent
-     <set >
+    <set >
       <if test="talentName != null" >
         TALENT_NAME = #{talentName,jdbcType=VARCHAR},
       </if>
@@ -128,5 +244,27 @@
     </set>
     where TALENT_ID = #{talentId,jdbcType=INTEGER}
   </update>
-  
+  <update id="updateByPrimaryKey" parameterType="com.test.model.Talent" >
+    update td_cyb_talent
+    set TALENT_NAME = #{talentName,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      GOAL = #{goal,jdbcType=VARCHAR},
+      WORK_AREA = #{workArea,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      INTRO = #{intro,jdbcType=VARCHAR},
+      ENTREPRENEURSHIP = #{entrepreneurship,jdbcType=VARCHAR},
+      TALENT_MONEY = #{talentMoney,jdbcType=VARCHAR},
+      EXPECTED_SALARY = #{expectedSalary,jdbcType=VARCHAR},
+      GOOD_AT = #{goodAt,jdbcType=VARCHAR},
+      WORK_EXPERIENCE = #{workExperience,jdbcType=VARCHAR},
+      EDUCATIONAL = #{educational,jdbcType=VARCHAR},
+      TARGET_TYPE = #{targetType,jdbcType=VARCHAR},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      HITS = #{hits,jdbcType=INTEGER},
+      CONCERN_COUNT = #{concernCount,jdbcType=INTEGER}
+    where TALENT_ID = #{talentId,jdbcType=INTEGER}
+  </update>
 </mapper>

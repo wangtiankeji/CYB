@@ -78,6 +78,11 @@ public class EventController {
 	public@ResponseBody String addEvents(Event event){
 		try {
 			event.setCreateTime(new Date());
+			event.setHits(0);
+			event.setCallNum(0);
+			event.setCommentLevel(0);
+			event.setSignUpNum(0);
+			event.setConcernCount(0);
 			if(eventService.save(event)==1){
 				return "success";
 			}else{

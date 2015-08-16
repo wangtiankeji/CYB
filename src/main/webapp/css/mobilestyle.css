@@ -5,7 +5,7 @@ body { min-height: 100%; background-color: #f3f3f3; }
 .clear { height: 0; font-size: 0; line-height: 0; clear: both; }
 img { max-width: 100%; }
 ul{list-style: none;margin:0;padding:0}
-li,h2,p{margin:0;padding:0}
+li,h2,h3,p,table,td{margin:0;padding:0}
 p{font-size:0.9rem;color:#666;text-align: justify;}
 h2{font-size:1rem;color:#333;font-weight: normal;}
 h3{font-size:0.9rem;color:#999;font-weight: normal;}
@@ -17,7 +17,7 @@ b{font-weight: normal;}
 #header { min-width: 320px; }
 #container { min-width: 320px;}
 #footer { min-width: 320px; }
-.ui-body-f{min-width: 320px; height: 100%;}
+.ui-body-f{min-width: 320px; height: 100%;max-width: 1080px;}
 /*头部设置*/
 .ui-bar-f{width: 100%;overflow: hidden;border: none;}
 .logo-bar{background-color: rgba(0,0,0,0.5);height:2.5rem;width:100%;
@@ -112,13 +112,45 @@ b{font-weight: normal;}
 .location-date{overflow: hidden;margin-top:0.3rem;}
 .item-descripe{width: 100%;height: 2rem;font-size: 0.9rem;margin-top:0.5rem;}
 
+
+
 /*新增部分*/
 .penter-item-bg{width:100%;height:100%;position:fixed;top:2.6rem;left:0;background: rgba(0,0,0,0.6)}
-.ui-header-pcenter{width:100%;background: #fff;height:2.5rem; }
-.ui-header-pcenter>div:first-child{position: fixed;top:0;left:0;width:100%;text-align: center;height: 2.5rem;line-height: 2.5rem;border-bottom: 1px solid #bbb;background: url("../img/icon_arrow_down.png")95% center no-repeat;background-size: 1rem;}
+
 .pcenter-item{width:100%;background: #fff;padding-bottom: 0.5rem;}
 .pcenter-item>li{text-align: center;padding:0.8rem 0;border-bottom: 1px solid #bbb;color:#666;font-size:0.9rem;}
 .pcenter-item-active{background: #5cce49;border-bottom: 1px solid #5cce49;color:#fff!important;}
+
+.ui-header-pcenter{width:100%;height:2.5rem;background: #fff;position: fixed;top:0;left:0;border-bottom: 1px solid #bbb;z-index: 100;}
+.pcenter-collection-click{width:100%;height:2.5rem;line-height: 2.5rem;text-align: center;background: url("../img/icon_arrow_down.png")95% center no-repeat;background-size: 1rem;}
+.ui-content-colloect{margin-top:3rem;width:100%;}
+/*找项目样式&&共同样式部分*/
+.ui-content-colloect>ul{width: 100%;margin-bottom: 0.8rem;}
+.ui-content-colloect>ul>li{width: 100%;margin-bottom: 0.5rem;background: #fff;padding:0.1rem 0;}
+.colloction-innerbox{margin:1rem;overflow: hidden}
+.collection-left{float:left;width:25%;}
+.collection-left img{width:5rem;}
+.collection-right,.collection-right-fuhua,.collection-right-activity,.collection-right-rongzi{float:right;width:72%;}
+.collection-right>div{overflow: hidden}
+.collection-right h2{width:73%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;font-size:1rem;float:left;}
+.project-state-collocet,.collect-talent-state{width:23%;float:right;font-size: 0.7rem;height:1rem;line-height:1rem;border:1px solid #bbb;border-radius: 0.5rem;text-align: center}
+.collection-right-location span{font-size:0.8rem;color:#999;}
+.collection-right-location span:last-child,.collection-right-fuhua>div>span:last-child{float:right;}
+.collection-right-location span:first-child,.collection-right-fuhua>div>span:first-child{padding-left:1.2rem;background:url("../img/icon_location.png")left center no-repeat;background-size: 0.9rem; }
+.collection-right-location{margin: 0.2rem 0;}
+.collection-project-label ul li{float:left;font-size:0.8rem;color:#999;margin-right:0.3rem;}
+.collection-project-label ul{padding-left:1.2rem; background:url("../img/icon_project_tabs.png")left center no-repeat;background-size: 0.9rem; overflow: hidden;}
+.collection-right>p{margin:0.2rem 0;}
+/*找人才*/
+.collection-left>div{width:4rem;height:4rem;background:url("../img/pcenter-pic-i.jpg")center no-repeat;background-size: 5rem;border-radius: 5rem; }
+/*孵化器*/
+.collection-right-fuhua>h2,.collection-right-rongzi>h2{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;font-size:1rem;}
+.collection-right-fuhua>p,.collection-right-rongzi>p{text-align: right;width:100%;margin:0.3rem 0;color: #999;}
+.collection-right-fuhua>div>span,.collection-right-rongzi>div>span{font-size:0.8rem;color:#999}
+/*活动*/
+.collection-right-time{margin:0.3rem 0;border-bottom: 1px solid #bbb;padding-bottom: 0.2rem;}
+.collection-right-time>p{font-size: 0.8rem;color:#333;}
+.collection-right-baoming{float:right;font-size: 0.8rem;color:#999;}
 
 /*我的活动*/
 .pecenter-ac-header{width:100%;height: 2.5rem;background: #fff;}
@@ -442,6 +474,43 @@ b{font-weight: normal;}
 .entrepreneurship-active{background: #5cce49;border:1px solid #5cce49!important;color:#fff!important;}
 
 .resume-save{display:block;width:70%;height:2.5rem;color:#fff;background:#5cce49;border:none; margin:1rem auto;}
+
+/*人才详情页*/
+.talent-details-header{text-align: center;}
+.talent-details-face{width: 5rem;height:5rem;border:4px solid #fff;border-radius:5rem;margin:0 auto;background: url("../img/pcenter-pic-i.jpg")center no-repeat;background-size: 5rem;margin-top:1.5rem;}
+.talent-details-header>span{font-size:0.7rem;color:#999;padding-left:1.2rem;background: url("../img/icon_location.png")left center no-repeat;background-size: 0.8rem;}
+
+.talent-details-inner{margin:0.5rem 1rem;}
+.talent-content-item{width:100%;padding:0.5rem 0;margin-top:0.5rem;}
+.talent-content-item>li{width:100%;background: #fff;padding:0.5rem 0;margin-bottom: 0.5rem;}
+.talent-details-descrip{overflow: hidden;}
+.talent-details-descrip>li{float:left;font-size:0.9rem;color:#666;}
+.talent-details-descrip>li>span{color:#333;}
+.talent-details-descrip>li:first-child{border-right:1px solid #bbb;width:49%;}
+.talent-details-descrip>li:last-child{padding-left:1rem;}
+.talent-details-descrip2{margin-top:0.5rem;width:100%;width:100%;border-top:1px solid #bbb;overflow: hidden;padding:0.5rem 0;}
+.talent-details-descrip2>span{float:left;width:30%;font-size:0.9rem;color:#666;}
+.talent-details-descrip2>p{float:right; width:70%;color:#333;}
+.talent-details-chuangye>div>h2,.talent-details-resume>div>h2{border-bottom: 1px solid #bbb;padding:0.3rem 0;pading-left:1.5rem;}
+table{width: 100%;border-collapse:separate;}
+table tr td{font-size:0.9rem;color:#333;vertical-align: top;padding:0.5rem 0;}
+table tr td:first-child{color:#666;}
+.talent-details-resume h3{color:#333;margin-bottom:0.3rem;}
+.talent-details-table1 li{margin-bottom: 0.5rem;}
+.talent-details-table1 li p{color:#666;font-size:0.7rem;}
+.talent-details-table2 li{float:left;font-size:0.7rem;padding:0 0.3rem;height: 1rem;border-radius: 3px;background: #5cce49;color:#fff;margin:0 0.3rem 0.3rem 0;}
+.talent-details-foot{position: fixed;left:0;bottom:0;height: 2.5rem;border-top:1px solid #bbb;background: #fff;width: 100%;marign-bottom:2rem;}
+.talent-details-foot>ul li{float:left;width:49%;height: 1.5rem;line-height: 1.5rem;text-align: center;color:#333;font-size: 0.9rem;margin:0.5rem 0;}
+.talent-details-foot>ul li:last-child{border-left:1px solid #bbb;}
+.talent-details-foot>ul li:last-child span{padding-left:1.2rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
+.talent-details-modal{width:100%;height:100%;position: fixed;left:0;top:0;background: rgba(0,0,0,0.6)}
+.talent-details-modal>div{width:15rem;height:7rem;margin:5rem auto;background: #fff;border-radius: 3px;padding: 0.5rem 0;}
+.talent-details-modal>div>h2{height:1.5rem;line-height:1.5rem;text-align: center;margin-top:0.5rem;}
+.talent-details-modal>div>p{text-align: center;margin-top:0.5rem;color:#5cce49;border-top:1px solid #bbb;font-size: 1rem;padding:0.8rem 0;}
+.talent-details-modal>div>span{float:right;width:2rem;height:0.5rem;text-align: center;color:#bbb;}
+
+
+
 
 /*融资 技术外包 推广 众筹*/
 /*common------start*/

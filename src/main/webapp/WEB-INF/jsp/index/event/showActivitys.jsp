@@ -89,10 +89,12 @@ $(document).bind("mobileinit", function() {
     });
     
     $(document).ready(function() {
-    	//alert(${personal})
-    	var sendData = {targetType:"activity"};
+    	var sendData = {};
     	if("${concernType}"!=""){
     		sendData.concernType = "${concernType}";
+    		sendData.targetType = "${targetType}";
+    	}else{
+    		sendData.eventType = "${targetType}";
     	}
     	new IscrollPage({url:"${ctx}/index/event/getIndexEvents",data:sendData});
     	pullUpAction();

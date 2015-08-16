@@ -38,7 +38,14 @@
             
             </form>
         </div>
-        <!-- 焦点轮播图-->
+        
+    </div>
+    
+    <div data-role="content">
+    
+   <div data-role="none" data-theme="f" class="ui-content-f" id="container">
+    
+    <!-- 焦点轮播图-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
@@ -47,18 +54,17 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-    </div>
-    <div data-role="content" data-theme="f" class="ui-content-f" id="container">
+        
         <div class="content-item">
             <ul>
-                <li><a href="${ctx}/index/project/showProjects" data-ajax=“false”><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
+                <li><a href="${ctx}/index/project/showProjects" data-ajax="false"><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
                 <li><a href="${ctx}/index/talent/showTalents"><img src="${ctx}/img/btn_talent_pre.png" alt="找人才"/></a><h2>找人才</h2></li>
-                <li><a href="${ctx}/index/event/showIndexEvents/incubator" data-ajax=“false”><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
-                <li><a href="${ctx}/index/event/showIndexEvents/activity" data-ajax=“false”><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
-                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
-                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
-                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
-                <li><a href="javascript:void(0);"><img src="${ctx}/img/btn_table_pre.png" alt="众筹平台"/></a><h2>众筹平台</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/incubator" data-ajax="false"><img src="${ctx}/img/btn_incubator_pre.png" alt="找项目"/></a><h2>孵化器</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/activity" data-ajax="false"><img src="${ctx}/img/btn_active_pre.png" alt="活动"/></a><h2>活动</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/financing" data-ajax="false"><img src="${ctx}/img/btn_financing_pre.png" alt="融资"/></a><h2>融资</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/skill" data-ajax="false"><img src="${ctx}/img/btn_technology_pre.png" alt="技术外包"/></a><h2>技术外包</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/operate" data-ajax="false"><img src="${ctx}/img/btn_marketing_pre.png" alt="运营推广"/></a><h2>运营推广</h2></li>
+                <li><a href="${ctx}/index/event/showIndexEvents/crowdfunding" data-ajax="false"><img src="${ctx}/img/btn_table_pre.png" alt="众筹平台"/></a><h2>众筹平台</h2></li>
             </ul>
         </div>
         <div class="business-title">
@@ -222,6 +228,7 @@
                 </li>
             </ul>
         </div>
+    </div>
     </div>
     <div data-role="footer" data-theme="f" class="ui-footer-f">
         <p>创客邦科技（北京）有限公司</p>

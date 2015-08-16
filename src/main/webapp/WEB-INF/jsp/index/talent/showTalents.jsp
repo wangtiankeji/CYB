@@ -111,20 +111,20 @@ $(document).bind("mobileinit", function() {
 	function getLiStr(talent) {
 		var content = '';
 		content = content + '<li>';
-		content = content + '    <a href="#">';
+		content = content + '    <a href="${ctx}/index/talent/getTalent/'+talent.talentId+'">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="talent-left">';
 		content = content + '                <div></div>';
 		content = content + '            </div>';
 		content = content + '            <div class="talent-right">';
 		content = content + '                <div>';
-		content = content + '                    <h2>小野妹子</h2>';
-		content = content + '                    <span class="talent-state" style="font-size: 0.7rem;">设计</span>';
+		content = content + '                    <h2>'+talent.nickname+'</h2>';
+		content = content + '                    <span class="talent-state" style="font-size: 0.7rem;">'+talent.goal+'</span>';
 		content = content + '                </div>';
 		content = content + '                <div class="talent-location">';
-		content = content + '                    <span>北京朝阳</span>';
+		content = content + '                    <span>'+talent.workArea+'</span>';
 		content = content + '                </div>';
-		content = content + '                <p>一句话介绍，这是项目的一句话介绍,是一句话的介绍</p>';
+		content = content + '                <p>'+talent.intro+'</p>';
 		content = content + '                <div class="talent-label" >';
 		content = content + '                    <ul>';
 		content = content + '                        <li>大公司经验</li>';

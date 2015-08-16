@@ -34,6 +34,7 @@
                 <div class="subcontent-box1">
                     <ul>
                         <li><span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span><input type="text" data-role="none" class="talent-publish-name" placeholder="个人昵称"/></li>
+                        <li><span>个人微信</span><input type="text" data-role="none" class="talent-weixin-name" placeholder="微信号"/></li>
                         <li class="talent-personal-nav"><span>个人定位</span><div class="right-arrow">个人定位</div></li>
                         <li class="talent-location-nav"><span>工作区域</span><div class="right-arrow">请选择项工作区域</div></li>
                         <li class="talent-sex-nav"><span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span><div class="right-arrow">性别</div></li>
@@ -154,13 +155,12 @@
 <script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 
    <script type="text/javascript">
-   var talentObj = {};
-   $(".publish-project").click( function () { 
-	   talentObj.nickname = $(".talent-name").val();
-	   $.ajax({
+   
+  function submitTalent(data){
+	  $.ajax({
 			type : "POST",
 			url : "${ctx}/talent/addTalent",
-			data : projectObj,
+			data : data,
 			success : function(msg) {
 				if (msg == 'success') {
 					alert('提交成功！');
@@ -170,7 +170,7 @@
 
 			}
 		});
-	});
+  }
    
    	$(".publish-talent-img").click( function () { 
 	   $("#fileToUpload").click();

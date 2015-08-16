@@ -12,10 +12,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.Talent;
 import com.greatwall.ideas.service.ProjectService;
@@ -34,7 +36,7 @@ public class IndexTalentController extends BaseController {
 	private TalentService talentService;
 	
 	@RequestMapping("/showTalents")
-	public ModelAndView showProjects(){
+	public ModelAndView showTalents(){
 		return new ModelAndView("/index/talent/showTalents.jsp");
 	}
 	
@@ -51,4 +53,13 @@ public class IndexTalentController extends BaseController {
 		return map;
 	}
 	
+	@RequestMapping("/getTalent/{talentId}")
+	public ModelAndView getTalent(@PathVariable Integer talentId,ModelMap model){
+		if(talentId!=null){
+			model.put("talent",talentService.getTalent(talentId));
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/index/talent/talentDetails.jsp");
+		return mav;
+	}
 }

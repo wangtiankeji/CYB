@@ -22,6 +22,10 @@
 			<td><c:if test="${event.eventType == 'incubator'}">孵化器</c:if>
 			<c:if test="${event.eventType == 'activity'}">活动</c:if>
 			<c:if test="${event.eventType == 'train'}">培训</c:if>
+			<c:if test="${event.eventType == 'financing'}">融资</c:if>
+			<c:if test="${event.eventType == 'skill'}">技术外包</c:if>
+			<c:if test="${event.eventType == 'operate'}">运营推广</c:if>
+			<c:if test="${event.eventType == 'crowdfunding'}">众筹平台</c:if>
 			</td>
 			<td><fmt:formatDate value="${event.eventTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			<td><c:out value="${event.eventAddress}"/></td>

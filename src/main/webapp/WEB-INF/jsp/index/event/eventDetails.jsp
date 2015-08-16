@@ -22,8 +22,8 @@
 </head>
 <body>
 <!--活动详情页-->
-<div data-role="page" data-theme="f" class="ui-body-f" id="incubator-details">
-        <div data-role="none" data-theme="f" class="incubator-det-header">
+    <div id="financing-details" data-role="page" data-theme="f" class="ui-body-f">
+        <div class="common-bg">
             <img src="${ctx }/img/incubator-header.jpg" alt=""/>
             <div class="incubator-innerbox incubator-title">
                 <h2>${event.eventName }</h2>
@@ -35,14 +35,14 @@
             </div>
 
         </div>
-        <div data-role="content" data-theme="f" class="incubator-det-content">
+        <div class="common-bg">
             <div class="incubator-det-item">
                 <div class="incubator-innerbox">
-                    <h3>孵化器简介</h3>
+                    <h3><c:if test="${event.eventType == 'incubator'  }">孵化器</c:if><c:if test="${event.eventType == 'financing'}">融资</c:if><c:if test="${event.eventType == 'skill'}">技术外包</c:if><c:if test="${event.eventType == 'operate'}">运营推广</c:if><c:if test="${event.eventType == 'crowdfunding'}">众筹平台</c:if>简介</h3>
                     <p>${event.eventDes }</p>
                 </div>
             </div>
-            <div class="incubator-det-item">
+            <div class="common-bg">
                 <div class="incubator-innerbox">
                     <h3>联系我们</h3>
                     <ul class="incubator-concat">
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div data-role="footer" data-theme="f" class="incubator-det-footer">
+        <div class="common-foot">
             <ul>
                 <li>
                     <a href="#" id="concern"><span>已收藏 (<b id="concernCount">${event.concernCount }</b>)</span><i class="div-line"></i></a>
@@ -84,26 +84,8 @@
 		});
     });
         $("#concern").click(function() {
-        	
         	addConcern({bNumId:"concernCount",targetId:${event.eventId },
         		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"incubator"});
-        	/* var concernNum = $("#concernCount").text();
-    			$.ajax({
-    				type : "POST",
-    				url : "${ctx}/concern/addConcern",
-    				data : {targetId:${event.eventId },concernType:"concern",targetType:"incubator"},
-    				success : function(msg) {
-    					if (msg == 'success') {
-    						alert("收藏成功");
-    						$("#concernCount").text((parseInt(concernNum)+1))
-    					} else if(msg == 'cancel'){
-    						$("#concernCount").text((concernNum-1))
-    						alert("取消收藏成功");
-    					} else {
-    						alert(msg);
-    					}
-    				}
-    			}); */
     	});
     </script>
 

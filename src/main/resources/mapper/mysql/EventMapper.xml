@@ -48,10 +48,10 @@
     <include refid="Base_Column_List" />
     from td_cyb_event
     <where>
-    	<if test="eventId != null" >
+    	<if test="eventId != null and eventId != '' " >
         	EVENT_ID = #{eventId,jdbcType=INTEGER}
       	</if>
-      	<if test="eventType != null" >
+      	<if test="eventType != null and eventType != '' " >
         	and EVENT_TYPE = #{eventType,jdbcType=VARCHAR}
       	</if>
     </where>

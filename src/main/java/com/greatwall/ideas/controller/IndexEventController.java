@@ -50,9 +50,10 @@ public class IndexEventController extends BaseController{
 			gotopage = "index/event/showActivitys.jsp";
 		}else if("train".equals(type)){
 			gotopage = "index/event/showTrains.jsp";
-		}else if("incubator".equals(type)){
-			gotopage = "index/event/showIncubators.jsp";
+		}else{
+			gotopage = "index/event/showEvents.jsp";
 		}
+		model.addAttribute("targetType", type);
 		model.addAttribute("concernType", concernType);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotopage);
@@ -63,7 +64,7 @@ public class IndexEventController extends BaseController{
 			,ModelMap model,HttpSession httpSession){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
-			if(concern!=null&&!"".equals(concern.getConcernType())){
+			if(concern!=null&&StringUtils.isNotBlank(concern.getConcernType())){
 				User user = this.getSessionUser(httpSession);
 //				User user = httpSession.getAttribute("user")!=null?(User)httpSession.getAttribute("user"):null;
 				
@@ -89,8 +90,8 @@ public class IndexEventController extends BaseController{
 			gotopage = "index/event/activityDetails.jsp";
 		}else if("train".equals(type)){
 			gotopage = "index/event/trainDetails.jsp";
-		}else if("incubator".equals(type)){
-			gotopage = "index/event/incubatorDetails.jsp";
+		}else {
+			gotopage = "index/event/eventDetails.jsp";
 		}
 		
 		if(eventId!=null){

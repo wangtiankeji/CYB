@@ -114,7 +114,7 @@
             </li>
         </ul>
         <!-- 公司类型-->
-        <div id="resume-class-selecting" style="display: none">
+         <div class="resume-class-selecting" style="display: none">
             <div class="company-select-inner">
                 <h2>公司类型</h2>
                 <ul>
@@ -126,8 +126,8 @@
             </div>
         </div>
         <ul class="resume-button">
-            <li><button type="button" data-role="none">取消</button></li>
-            <li><button type="button" data-role="none">保存</button></li>
+            <li><button type="button" data-role="none" class="work-experience-cancel">取消</button></li>
+            <li><button type="button" data-role="none" class="work-experience-save">保存</button></li>
         </ul>
        <!--  <button type="button" data-role="none" class="company-class-save work-experience-save">保存</button> -->
     </div>
@@ -187,7 +187,10 @@
             </li>
 
         </ul>
-        <button type="button" data-role="none" class="company-class-save education-experience-save">保存</button>
+         <ul class="resume-button">
+            <li><button type="button" data-role="none" class="education-experience-cancel">取消</button></li>
+            <li><button type="button" data-role="none" class="education-experience-save">保存</button></li>
+        </ul>
         <div class="project-alert" style="display: none">
             请填写完整提交
         </div>
@@ -198,7 +201,7 @@
             <div class="skill-experience-inner">
                 <p>请自定义擅长领域（每个标签最多10个字）</p>
                 <ul>
-                    <li><span>X</span><b>擅长吃饭擅长吃饭吃饭</b></li>
+                    <!-- <li><span>X</span><b>擅长吃饭擅长吃饭吃饭</b></li> -->
                 </ul>
                 <div id="add-skill">+</div>
             </div>
@@ -282,23 +285,23 @@ $('.word-click').on("click", function(){
 });
 
 $('.company-class-nav').click(function(){
-    $('#resume-class-selecting').show();
+    $('.resume-class-selecting').show();
 });
 
-$('#resume-class-selecting ul li').click(function(){
+$('.resume-class-selecting ul li').click(function(){
     $(this).addClass('company-class-active').siblings().removeClass('company-class-active');
     companyTypeValue=$(this).html();
     $('.company-class span').html(companyTypeValue).css({
         'color':'#333'
     })
-    $('#resume-class-selecting').hide();
+    $('.resume-class-selecting').hide();
 
 })
 
 
 function showWork(obj){
 	//workInit();
-	var resumeWork = $(".resume-work-experice").data("resume");
+	var resumeWork = $("#mainpage").data("arrayWork");
 	for (x in resumeWork){
 		if(resumeWork[x].randomId == $(obj).attr("random")){
 			$('.company-name').val(resumeWork[x].companyName);
@@ -307,17 +310,23 @@ function showWork(obj){
 		    $('.quit-time').val(resumeWork[x].quitTime);
 		    $('.company-class span').html(resumeWork[x].companyType).css({
 		        'color':'#333'
-		    })
+		    });
 			break;
 		}
 	}
-	$(".resume-work-experice").removeData("resume");
+	$("#mainpage").removeData("arrayWork");
 	$(obj).detach();
 	$('.work-experience').animate({
         'left':0
     },300)
 }
 
+$('.work-experience-cancel').click(function(){
+	//$('li[random='+ $(this).attr("random")+']').detach();
+	 $('.work-experience').animate({
+         "left":'100%'
+     },300)
+});
 //
 $('.work-experience-save').click(function(){
     //获得数据
@@ -352,13 +361,13 @@ $('.work-experience-save').click(function(){
         //动态生成教育经历列表
         $('.resume-work-experice ul').append("<li onclick='showWork(this)' random='"+ran+"'>" +"<h2>"+companyNameValue+"</h2>"+"<p>"+entryTimeValue+" 至 "+quitTimeValue+"</p>"+"</li>");
         
-        var arrayPartner = $(".resume-work-experice").data("resume");
-        if(!arrayPartner){
-        	arrayPartner = new Array();
+        var arrayWork = $("#mainpage").data("arrayWork");
+        if(!arrayWork){
+        	arrayWork = new Array();
         }
-        arrayPartner.push(workExpObj);
+        arrayWork.push(workExpObj);
         
-        $(".resume-work-experice").data("resume",arrayPartner);
+        $("#mainpage").data("arrayWork",arrayWork);
     }
 
 })
@@ -368,9 +377,15 @@ $('.work-experience-save').click(function(){
 
     //动态添加教育经历
     $('.edu-click').click(function(){
+    	eduInit();
         $('.education-experience').animate({
             'left':'0'
         },300)
+    })
+    $('.education-experience-cancel').click(function(){
+    	 $('.education-experience').animate({
+             "left":'100%'
+         },300)
     })
     //定义全局变量
     var collegeNameValue;
@@ -379,6 +394,16 @@ $('.work-experience-save').click(function(){
     var leaveSchoolTimeValue;
     var majorValue;
 
+    function eduInit(){
+    	collegeNameValue = undefined;
+    	degreesValue = undefined;
+    	goSchoolTimeValue = undefined;
+    	leaveSchoolTimeValue = undefined;
+    	majorValue = undefined;
+    	
+    	$(".education-experience").find("input").val("");
+    	
+    }
 
     $('.education-experience-save').click(function(){
         collegeNameValue=$('.college-name').val()
@@ -396,21 +421,48 @@ $('.work-experience-save').click(function(){
 
         }else{
             //这是教育经历--数据==================》
+             var ran = getRandom(100000);
             $('.education-experience').animate({
                 "left":'100%'
             },300)
             var eduExpObj={
                 collegeName:collegeNameValue,
                 degrees:degreesValue,
-                goSchoolTime:goSchoolTimeValue,
-                leaveSchoolTime:leaveSchoolTimeValue,
-                vmajor:majorValue
+                entryTime:goSchoolTimeValue,
+                quitTime:leaveSchoolTimeValue,
+                major:majorValue
             }
          //动态生成教育经历列表
-         $('.resume-education-experice ul').append("<li>" +"<h2>"+collegeNameValue+"</h2>"+"<p>"+goSchoolTimeValue+" 至 "+leaveSchoolTimeValue+"</p>"+"</li>");
+         $('.resume-education-experice ul').append("<li onclick='showEdu(this)' random='"+ran+"'>" +"<h2>"+collegeNameValue+"</h2>"+"<p>"+goSchoolTimeValue+" 至 "+leaveSchoolTimeValue+"</p>"+"</li>");
 
+            var arrayEdu = $("#mainpage").data("arrayEdu");
+            if(!arrayEdu){
+            	arrayEdu = new Array();
+            }
+            arrayEdu.push(eduExpObj);
+            
+            $("#mainpage").data("arrayEdu",arrayEdu);
         }
     })
+    
+    function showEdu(obj){
+	var arrayEdu = $("#mainpage").data("arrayEdu");
+	for (x in arrayEdu){
+		if(arrayEdu[x].randomId == $(obj).attr("random")){
+			$('.college-name').val(arrayEdu[x].collegeName);
+		    $('.degrees').val(arrayEdu[x].degrees);
+		    $('.go-school-time').val(arrayEdu[x].entryTime);
+		    $('.leave-school-time').val(arrayEdu[x].quitTime);
+		    $('.major').val(arrayEdu[x].major);
+			break;
+		}
+	}
+	$("#mainpage").removeData("arrayEdu");
+	$(obj).detach();
+	$('.education-experience').animate({
+        'left':0
+    },300)
+}
     
     
     //动态添加擅长领域
@@ -442,15 +494,18 @@ $('.work-experience-save').click(function(){
     $('.skill-save').click(function(){
         var skillArr=$('.skill-experience ul li').text();
         skillArr=skillArr.split('X');
-       console.log(skillArr) ;
+        var skill;
+       //console.log(skillArr) ;
         for(var i=0;i<skillArr.length;i++){
             if(skillArr[i]!=''){
                 $('.resume-skill-nav ul').append('<li>'+skillArr[i]+'</li>');
+                skill += skillArr[i] +',';
             }
         }
         $('.skill-experience').animate({
             'left':'100%'
         },300)
+        $("#mainpage").data("skill",skill);
     })
 
     //创业方向
@@ -472,16 +527,19 @@ $('.work-experience-save').click(function(){
 
     });
     $('.entrepreneurship-save').click(function(){
+    	var entrep
         var arr=$('.entrepreneurship ul li');
         for(var i=0;i<arr.length;i++){
             var c=$('.entrepreneurship ul li').eq(i);
             if(c.is('.entrepreneurship-active')){
                 $('.entrepreneurship-nav ul').append('<li>'+ c.text()+'</li>');
+                entrep += c.text()+','
             }
         }
         $('.entrepreneurship').animate({
             'left':'100%'
-        },300)
+        },300);
+        $("#mainpage").data("entrep",entrep);
     })
 
     $('.resume-save').click(function(){

@@ -85,7 +85,7 @@
         <button type="button" data-role="none" class="ac-details-re">报名</button>
 
     </div>
-    <div class="ac-mask">
+    <div class="ac-mask" style="display:none;">
         <div class="ac-mask-inner">
             <div class="mask-close"><img src="${ctx }/img/icon_close_green_pre.png" alt=""/></div>
             <h2>活动报名</h2>

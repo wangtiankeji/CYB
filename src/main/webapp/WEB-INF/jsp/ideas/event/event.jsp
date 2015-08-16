@@ -56,6 +56,9 @@
 			showOneMessage : true
 		//addPromptClass:"formError-noArrow formError-text"
 		});
+		
+		$("#eventType").val("${event.eventType}");
+		
 	});
 	
 	
@@ -84,6 +87,10 @@
 				<option value="incubator">孵化器</option>
 				<option value="activity">活动</option>
 				<option value="train">培训</option>
+				<option value="financing">融资</option>
+				<option value="skill">技术外包</option>
+				<option value="operate">运营推广</option>
+				<option value="crowdfunding">众筹平台</option>
 				</select>
 				</td>
 			</tr>
@@ -138,6 +145,26 @@
 				<td align="right">显示内容:</td>
 				<td><textarea rows="10" cols="25" name="eventDes" id="eventDes" class="validate[maxSize[500]]">${event.eventDes}</textarea>
 				</td>
+			</tr>
+			<tr>
+				<td align="right">电子邮箱:</td>
+				<td><input type="text" id="email" name="email" 
+					value="${event.email }" /></td>
+			</tr>
+			<tr>
+				<td align="right">微信:</td>
+				<td><input type="text" id="weixin" name="weixin" 
+					value="${event.weixin }" /></td>
+			</tr>
+			<tr>
+				<td align="right">微博:</td>
+				<td><input type="text" id="weibo" name="weibo" 
+					value="${event.weibo }" /></td>
+			</tr>
+			<tr>
+				<td align="right">网址:</td>
+				<td><input type="text" id="website" name="website" 
+					value="${event.website }" /></td>
 			</tr>
 		</table>
 	</form>

@@ -6,8 +6,8 @@ var pubDialog;
 var openDialog = function (obj) {
 	pubDialog = $.dialog({
 		title : obj.title,
-		width : '380px',
-		height : '350px',
+		width : obj.width==undefined?'380px':obj.width,
+		height : obj.height==undefined?'350px':obj.height,
 		content : 'url:' + obj.url,
 		button : [ {
 			name : '确定',

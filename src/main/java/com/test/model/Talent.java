@@ -1,4 +1,4 @@
-package com.greatwall.ideas.dto;
+package com.test.model;
 
 import java.util.Date;
 

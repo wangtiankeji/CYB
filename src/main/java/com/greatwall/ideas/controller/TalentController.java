@@ -54,11 +54,6 @@ public class TalentController extends BaseController {
 		return new ModelAndView("/ideas/talent/talents.jsp");
 	}
 	
-	@RequestMapping("/addInit")
-	public ModelAndView addInit(Model model) {
-		return new ModelAndView("/ideas/talent/talent.jsp");
-	}
-	
 	@RequestMapping("/addTalentInit")
 	public ModelAndView addTalentInit(){
 		ModelAndView mav = new ModelAndView();
@@ -84,6 +79,8 @@ public class TalentController extends BaseController {
 			}
 			talent.setUserId(u.getUserId());
 			talent.setCreateTime(new Date());
+			talent.setHits(0);
+			talent.setConcernCount(0);
 			if(talentService.save(talent)==1){
 				return "success";
 			}else{

@@ -36,10 +36,10 @@
 	}
 	
 	function addEvents(){
-		openDialog({url:"/event/addInit",callback:"saveEvents"});
+		openDialog({url:"/event/addInit",callback:"saveEvents",width:"800px",height:"600px"});
 	}
 	function updateEvents(id){
-		openDialog({url:"/event/updateInit/"+id,callback:"updateEvents"});
+		openDialog({url:"/event/updateInit/"+id,callback:"updateEvents",width:"800px",height:"600px"});
 	}
 	
 
@@ -55,9 +55,14 @@
 			<form id="eventsForm" action="">
 			<div id="Search">
 				类型：<select name="eventType" id="eventType">
+				<option value="">全部</option>
 				<option value="incubator">孵化器</option>
 				<option value="activity">活动</option>
 				<option value="train">培训</option>
+				<option value="financing">融资</option>
+				<option value="skill">技术外包</option>
+				<option value="operate">运营推广</option>
+				<option value="crowdfunding">众筹平台</option>
 				</select>
 				活动时间：<input type="text" size="12" readonly="readonly"
 					id="startTime" name="startTime" class="Wdate"
