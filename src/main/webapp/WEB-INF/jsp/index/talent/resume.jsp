@@ -88,7 +88,7 @@
                         <h2>入职时间</h2>
                     </div>
                     <div class="resume-bottom-line">
-                        <input type="text" class="entry-time" data-role="none" maxlength="15" placeholder="必填 XX年XX月"/>
+                        <input type="text" class="entry-time" data-role="none" maxlength="15" placeholder="必填 XX年XX月" id="entrytime"/>
                     </div>
                 </div>
             </li>
@@ -98,7 +98,7 @@
                         <h2>离职时间</h2>
                     </div>
                     <div class="resume-bottom-line">
-                        <input type="text" class="quit-time" data-role="none" maxlength="15" placeholder="必填 XX年XX月"/>
+                        <input type="text" class="quit-time" data-role="none" maxlength="15" placeholder="必填 XX年XX月" id="quittime"/>
                     </div>
                 </div>
             </li>
@@ -160,7 +160,7 @@
                         <h2>入学时间</h2>
                     </div>
                     <div class="resume-bottom-line">
-                        <input type="text" data-role="none" class="go-school-time" maxlength="15" placeholder="必填 XX年XX月"/>
+                        <input type="text" data-role="none" class="go-school-time" maxlength="15" placeholder="必填 XX年XX月" id="goschooltime" />
                     </div>
                 </div>
             </li>
@@ -170,7 +170,7 @@
                         <h2>毕业时间</h2>
                     </div>
                     <div class="resume-bottom-line">
-                        <input type="text" data-role="none" class="leave-school-time" maxlength="15" placeholder="必填 XX年XX月"/>
+                        <input type="text" data-role="none" class="leave-school-time" maxlength="15" placeholder="必填 XX年XX月" id="leaveschooltime"/>
                     </div>
                 </div>
             </li>
@@ -256,7 +256,48 @@
     </div>
 
     <button type="button" data-role="none" class="resume-save">保存</button>
+     <script src="${ctx}/js/mobiscroll/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+	<script src="${ctx}/js/mobiscroll/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
 
+	<link href="${ctx}/js/mobiscroll/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+	<link href="${ctx}/js/mobiscroll/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+	<script src="${ctx}/js/mobiscroll/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+	<script src="${ctx}/js/mobiscroll/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+
+	<!-- S 可根据自己喜好引入样式风格文件 -->
+	<script src="${ctx}/js/mobiscroll/js/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+	<link href="${ctx}/js/mobiscroll/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+        $(function () {
+			var currYear = (new Date()).getFullYear();	
+			var opt={};
+			opt.date = {preset : 'date'};
+			//opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
+			opt.datetime = {preset : 'datetime'};
+			opt.time = {preset : 'time'};
+			opt.default = {
+				theme: 'android-ics light', //皮肤样式
+		        display: 'modal', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				lang:'zh',
+				dateFormat: 'yyyy年mm月', // 日期格式      
+				dateOrder : 'yyyymm', 
+		        startYear:currYear - 50, //开始年份
+		        endYear:currYear  //结束年份
+			};
+
+			$("#entrytime").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+			$("#quittime").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+			$("#goschooltime").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+			$("#leaveschooltime").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+		  	/* var optDateTime = $.extend(opt['datetime'], opt['default']);
+		  	var optTime = $.extend(opt['time'], opt['default']);
+		    $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+		    $("#appTime").mobiscroll(optTime).time(optTime); */
+
+        });
+    </script>
+    
 <script type="text/javascript">
 //动态添加工作经历
 //定义全局变量

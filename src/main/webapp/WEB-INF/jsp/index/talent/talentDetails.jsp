@@ -149,6 +149,11 @@
 <script src="${ctx}/js/swiper.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/concern.js"></script>
    <script type="text/javascript">
+   $(document).ready(function() {
+		
+	});
+	
+   
    <!--开关模态框-->
    $('.talent-foot-modal').click(function(){
        $('.talent-details-modal').show();
