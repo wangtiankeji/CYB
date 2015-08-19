@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
+import com.greatwall.ideas.dto.ProjectCon;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.service.ServiceException;
@@ -37,7 +38,7 @@ public class ProjectController extends BaseController {
 	}
 	
 	@RequestMapping("/getProjects")
-	public ModelAndView getProjects(Project project,PageParameter page,ModelMap model){
+	public ModelAndView getProjects(ProjectCon project,PageParameter page,ModelMap model){
 		try {
 			model.addAttribute("projects",projectService.getPage(project, page));
 			model.addAttribute("page", page);

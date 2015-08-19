@@ -4,7 +4,9 @@ var city = {北京:["东城区","西城区","崇文区","宣武区","朝阳区",
 
 
 $(document).ready(function () {
-//找项目排序功能实现------------------------start
+	
+	//找项目排序功能实现------------------------start
+	var sortValue;
     $('.project-sort').click(function(){
         $('.project-sort').css({'color':'#5cce49'})
         headersrc=$(this).css("background-image");
@@ -66,13 +68,17 @@ $(document).ready(function () {
             'color':'#333'
         });
     });
+    
+    $('.time-sort').click(function(){
+    	sortValue = "CREATE_TIME";
+    	submitScreen();
+    });
 
 
 //找项目排序功能实现------------------------end
 
 
-
-//找项目筛选功能实现------------------------start
+  //找项目筛选功能实现------------------------start
     //定义筛选部分的全局变量
     var projectScreenValue;
     var locationScreenValue;
@@ -143,31 +149,32 @@ $(document).ready(function () {
             'color': '#333'
         });
 
-        //这是筛选部分的数据对象==================》
-        if (projectScreenValue == undefined) {
-            projectScreenValue = '全部'
-        }
-        ;
-        if (locationScreenValue == undefined) {
-            projectScreenValue = '全部'
-        }
-        ;
-        if (timeScreenValue == undefined) {
-            projectScreenValue = '全部'
-        }
-        ;
-        if (partnerScreenValue == undefined) {
-            projectScreenValue = '全部'
-        }
-        ;
         //数据对象
-        var screenObj = {
-            projectScreen: projectScreenValue,
-            locationScreen: locationScreenValue,
-            timeScreen: timeScreenValue,
-            partnerScreen: partnerScreenValue
-        }
+        submitScreen();
     });
+    
+    function submitScreen(){
+    	if (projectScreenValue == '全部') {
+            projectScreenValue = ''
+        }
+        if (locationScreenValue == '全部') {
+        	locationScreenValue = ''
+        }
+        if (timeScreenValue == '全部') {
+        	timeScreenValue = ''
+        }
+        if (partnerScreenValue == '全部') {
+        	partnerScreenValue = ''
+        }
+    	var screenObj = {
+            	projectState: projectScreenValue,
+            	projectArea: locationScreenValue,
+            	creatTimeStr: timeScreenValue,
+            	partnerRole: partnerScreenValue,
+            	sort: sortValue
+            }
+            gotoPage(screenObj);
+    }
 //找项目筛选功能实现-------------------------end
 
 
@@ -364,6 +371,7 @@ $(document).ready(function () {
         $('.project-financing-nav div').html(projectFinancingValue).css({
             'color':'#333'
         });
+        projectFinancingValue = $('.project-financing-turn span').html();
         $('.project-financing').hide();
     })
 
@@ -408,6 +416,7 @@ $(document).ready(function () {
                 projectDes:projectProfileValue,
                 financingState:projectFinancingValue1,
                 financingAmount:projectFinancingValue2,
+                financingUnit:projectFinancingValue,
                 systemUrl:projectLinkValue,
                 projectName:$('.project-name').val(),
                 peopleNum:$('.project-team-select').val(),

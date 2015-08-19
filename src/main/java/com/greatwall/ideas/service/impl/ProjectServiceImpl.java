@@ -11,6 +11,7 @@ import com.greatwall.ideas.dao.ProjectDao;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
+import com.greatwall.ideas.dto.ProjectCon;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.service.ServiceException;
@@ -65,9 +66,14 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
-	public List<Project> getPage(Project project, PageParameter page)
+	public List<Project> getPage(ProjectCon project, PageParameter page)
 			throws DaoException {
 		return projectDao.getPage(project, page);
+	}
+	
+	@Override
+	public List<Project> selectProjectPartnerPage(ProjectCon project,PageParameter page) throws DaoException {
+		return projectDao.selectProjectPartnerPage(project, page);
 	}
 	
 	@Override

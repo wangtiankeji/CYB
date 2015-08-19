@@ -24,7 +24,7 @@
 <!-- 项目详情页-->
 <div data-role="page" data-theme="f" class="ui-body-f">
     <div data-role="none" data-theme="f">
-        <img src="${cxt }${project.projectImg }" alt=""/>
+        <img src="${project.projectImg }" alt=""/>
         <div class="project-details-header">
             <div class="pdh-inner">
                 <div class="pdh-inner-title">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="pdh-inner-title3">
                     <div>当前团队人数&nbsp; <b>${project.peopleNum }</b></div>
-                    <div>投资状态及金额&nbsp; <b>${project.financingState } ${project.financingAmount }万/美元</b></div>
+                    <div>投资状态及金额&nbsp; <b>${project.financingState } ${project.financingAmount } ${project.financingUnit }</b></div>
                 </div>
                 <p>${project.projectIntro }</p>
                 <div class="pdh-inner-title4">
@@ -82,7 +82,7 @@
         <ul>
             <li class="project-details-tel">
                 <span>联系电话</span>
-                <p>158109992345</p>
+                <p>?</p>
             </li>
             <li class="project-details-collection">
                 <span>已收藏 <b style="font-size: 0.8rem;">(<b id="concernCount">${project.concernCount }</b>)</b></span>

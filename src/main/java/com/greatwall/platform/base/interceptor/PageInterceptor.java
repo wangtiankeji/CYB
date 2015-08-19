@@ -120,7 +120,14 @@ public class PageInterceptor implements Interceptor {
     private void setPageParameter(String sql, Connection connection, MappedStatement mappedStatement,
             BoundSql boundSql, PageParameter page) throws SQLException {
         // 记录总记录数
+    	sql = sql.toLowerCase();
+    	int orderidx = sql.indexOf("order by");
+    	if(orderidx>0){
+    		sql = sql.substring(0, orderidx);
+    	}
+    	
         String countSql = "select count(0) from (" + sql + ") as total";
+        System.out.println(countSql);
         PreparedStatement countStmt = null;
         ResultSet rs = null;
         try {

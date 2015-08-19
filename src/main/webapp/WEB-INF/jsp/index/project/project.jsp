@@ -260,7 +260,9 @@
 	<script type="text/javascript">
 
 		function publishProject(publishProjectObj) {
+			var imgpath = $(".project-img").attr("imgPath");
 			var datas = $.param(publishProjectObj);
+			datas = datas+ "&projectImg="+imgpath;
 			var arraypartner = $(".submitproject-content").data("partner");
 			$.each( arraypartner, function(i, n){
 				datas += "&"+$.param($(".submitproject-content").data("partner"+n));
@@ -305,8 +307,9 @@
 								if (obj.status == "success") {
 									//projectObj.projectImg = obj.filePath;
 									//$("#eventImg").val("${ctx}"+obj.filePath);
-									$(".project-img img").attr("src",
-											"${ctx}" + obj.filePath);
+									$(".project-img img").attr("src","${ctx}" + obj.filePath);
+									$(".project-img").attr("imgPath",obj.filePath);
+									alert(obj.filePath)
 								} else {
 									alert(obj.msg);
 								}

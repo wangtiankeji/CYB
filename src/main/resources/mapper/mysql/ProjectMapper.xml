@@ -62,7 +62,7 @@
 	where PROJECT_ID = #{projectId,jdbcType=INTEGER}
    </update>
   
-  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Project" >
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.ProjectCon" >
     select 
     <include refid="Base_Column_List" />
     from td_cyb_project
@@ -70,7 +70,48 @@
     	<if test="projectId != null">
     	PROJECT_ID = #{projectId,jdbcType=INTEGER}
     	</if>
+    	<if test="projectState != null and projectState != '' ">
+    	and PROJECT_STATE = #{projectState,jdbcType=VARCHAR}
+    	</if>
+    	<if test="projectArea != null and projectArea!='' ">
+    	and PROJECT_AREA like #{projectArea,jdbcType=VARCHAR}
+    	</if>
+    	<if test="createTime != null">
+    	and CREATE_TIME <![CDATA[ >= ]]> #{createTime,jdbcType=TIMESTAMP}
+    	</if>
     </where>
+    	<if test="sort != null and sort != '' ">
+    	order by ${sort} DESC
+    	</if>
+  </select>
+  <select id="selectProjectPartnerPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.ProjectCon" >
+    select 
+     a.PROJECT_ID, PROJECT_NAME, PROJECT_STATE, PROJECT_AREA, PROJECT_DIRECT, PROJECT_INTRO, 
+    PROJECT_DES, PEOPLE_NUM, FINANCING_STATE, FINANCING_AMOUNT, FINANCING_UNIT, SYSTEM_URL, 
+    CONTACT_PHONE, CREATE_TIME, LAST_UPDATE_TIME, USER_ID, HITS, PROJECT_IMG, STATUS, 
+    CONCERN_COUNT
+    from td_cyb_project a ,td_cyb_partner b
+    <where>
+    	a.PROJECT_ID = b.PROJECT_ID
+    	<if test="projectId != null">
+    	and a.PROJECT_ID = #{projectId,jdbcType=INTEGER}
+    	</if>
+    	<if test="projectState != null and projectState != '' ">
+    	and a.PROJECT_STATE = #{projectState,jdbcType=VARCHAR}
+    	</if>
+    	<if test="projectArea != null and projectArea!='' ">
+    	and a.PROJECT_AREA like #{projectArea,jdbcType=VARCHAR}
+    	</if>
+    	<if test="partnerRole != null and partnerRole != '' ">
+    	and b.PARTNER_ROLE = #{partnerRole,jdbcType=VARCHAR}
+    	</if>
+    	<if test="createTime != null and createTime != '' ">
+    	and CREATE_TIME <![CDATA[ >= ]]> #{createTime,jdbcType=TIMESTAMP}
+    	</if>
+    </where>
+    	<if test="sort != null and sort != '' ">
+    	order by ${sort} DESC
+    	</if>
   </select>
   
   <select id="getConcernPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.Concern" >

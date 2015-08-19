@@ -16,6 +16,7 @@ import com.greatwall.ideas.dao.ProjectDao;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.dto.Project;
+import com.greatwall.ideas.dto.ProjectCon;
 import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.platform.domain.PageParameter;
 
@@ -54,7 +55,7 @@ public class ProjectDaoTest {
         try  
         {  
         	
-        	Project project = new Project();
+        	ProjectCon project = new ProjectCon();
         	
         	PageParameter page = new PageParameter();
         	

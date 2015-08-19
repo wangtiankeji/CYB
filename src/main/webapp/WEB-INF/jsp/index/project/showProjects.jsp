@@ -23,7 +23,7 @@
 <body>
 <!--项目列表-->
 <div data-role="page" data-theme="f" class="ui-body-f">
-    <div data-role="none" data-theme="f" class="project-header">
+ <div data-role="none" data-theme="f" class="project-header">
         <ul>
             <li class="project-sort">综合排序</li>
             <li class="project-screening">筛选</li>
@@ -95,11 +95,13 @@
 
         </div>
     </div>
+    
+   
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
     	
 				<ul class="activity-box" id="thelist">
 				</ul>
-				<div id="pullUp">
+				<div id="pullUp" >
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
 				</div>
     </div>
@@ -115,14 +117,19 @@ $(document).bind("mobileinit", function() {
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/iscroll.js"></script>
 <script src="${ctx}/js/dateutil.js"></script>
+<script src="${ctx}/js/common.js"></script>
 <script src="${ctx}/js/paginationis-iscroll.js"></script>
 <script type="text/javascript">
     
     $(document).ready(function() {
-    	var sendData = {eventType:"activity"};
+    	gotoPage();
+    });
+    
+    function gotoPage(sendData){
+    	$("#thelist").empty();
     	new IscrollPage({url:"${ctx}/index/project/getProjects",data:sendData});
     	pullUpAction();
-    });
+    }
 
 	function getLiStr(project) {
 		var content = '';
@@ -131,23 +138,23 @@ $(document).bind("mobileinit", function() {
 		content = content + '    <a href="${cxt}/index/project/getProject/'+ project.projectId +'">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="project-left">';
-		content = content + '                <img src="${cxt}/img/pcenter-pic-i.jpg" alt=""/>';
+		content = content + '                <img src="'+project.projectImg+'" alt=""/>';
 		content = content + '            </div>';
 		content = content + '            <div class="project-right">';
 		content = content + '                <div>';
 		content = content + '                    <h2>'+project.projectName+'</h2>';
-		content = content + '                    <span class="project-state">已上线</span>';
+		content = content + '                    <span class="project-state">'+project.projectState +'</span>';
 		content = content + '                </div>';
 		content = content + '                <div class="project-location">';
 		content = content + '                    <span>'+project.projectArea+'</span>';
 		content = content + '                    <span><b>'+ newTime.format("MM月dd日")+'</b>发布</span>';
 		content = content + '                </div>';
 		content = content + '                <p>'+project.projectIntro+'</p>';
-		content = content + '                <div class="project-label">';
+/* 		content = content + '                <div class="project-label">';
 		content = content + '                    <ul>';
 		content = content + '                        <li>有市场</li>';
 		content = content + '                    </ul>';
-		content = content + '                </div>';
+		content = content + '                </div>'; */
 		content = content + '            </div>';
 		content = content + '        </div>';
 		content = content + '    </a>';
