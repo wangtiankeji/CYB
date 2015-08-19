@@ -45,6 +45,16 @@
     </where>
   </select>
   
+    <update id="addConcernCount" parameterType="java.lang.Integer" >
+   	update td_cyb_talent set CONCERN_COUNT = CONCERN_COUNT + 1 
+	where TALENT_ID = #{talentId,jdbcType=INTEGER}
+   </update>
+   
+    <update id="subConcernCount" parameterType="java.lang.Integer" >
+   	update td_cyb_talent set CONCERN_COUNT = CONCERN_COUNT - 1 
+	where TALENT_ID = #{talentId,jdbcType=INTEGER}
+   </update>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_talent
     where TALENT_ID = #{talentId,jdbcType=INTEGER}

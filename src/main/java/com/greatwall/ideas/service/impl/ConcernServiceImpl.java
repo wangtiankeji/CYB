@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.greatwall.ideas.dao.ConcernDao;
 import com.greatwall.ideas.dao.EventDao;
 import com.greatwall.ideas.dao.ProjectDao;
+import com.greatwall.ideas.dao.TalentDao;
 import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.service.ConcernService;
 import com.greatwall.platform.base.dao.DaoException;
@@ -36,6 +37,9 @@ public class ConcernServiceImpl implements ConcernService {
 	
 	@Autowired
 	private ProjectDao projectDao;
+	
+	@Autowired
+	private TalentDao talentDao;
 	
 	@Override
 	public List<Concern> getPage(Concern concern, PageParameter page)
@@ -86,6 +90,10 @@ public class ConcernServiceImpl implements ConcernService {
 					if(projectDao.updateConcernCount(concern.getTargetId(), "add")!=1){
 						throw new ServiceException("收藏失败");
 					}
+				}else if("talent".equals(concern.getTargetType())){
+					if(talentDao.updateConcernCount(concern.getTargetId(), "add")!=1){
+						throw new ServiceException("收藏失败");
+					}
 				}else{
 					if(eventDao.updateConcernCount(concern.getTargetId(), "add")!=1){
 						throw new ServiceException("收藏失败");
@@ -121,6 +129,10 @@ public class ConcernServiceImpl implements ConcernService {
 		}
 		if("project".equals(concern.getTargetType())){
 			if(projectDao.updateConcernCount(concern.getTargetId(), "sub")!=1){
+				throw new ServiceException("取消收藏失败");
+			}
+		}else if("talent".equals(concern.getTargetType())){
+			if(talentDao.updateConcernCount(concern.getTargetId(), "sub")!=1){
 				throw new ServiceException("取消收藏失败");
 			}
 		}else{

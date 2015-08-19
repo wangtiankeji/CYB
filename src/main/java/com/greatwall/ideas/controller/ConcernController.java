@@ -82,11 +82,14 @@ public class ConcernController extends BaseController {
 				
 			}else if("concern".equals(concern.getConcernType())){
 				
-				if("project".equals(concern.getTargetType())){
+				return concern(concern);
+				/*if("project".equals(concern.getTargetType())){
 					return concernProject(concern);
+				}else if("talent".equals(concern.getTargetType())){
+					
 				}else{
 					return concernEvent(concern);
-				}
+				}*/
 				
 			}
 			
@@ -100,7 +103,7 @@ public class ConcernController extends BaseController {
 		
 	}
 	
-	private String concernProject(Concern concern) throws ServiceException{
+	/*private String concernProject(Concern concern) throws ServiceException{
 		if(!concernService.concern(concern)){
 			if(concernService.unConcern(concern)){
 				return "cancel";
@@ -110,9 +113,9 @@ public class ConcernController extends BaseController {
 		}else{
 			return "success";
 		}
-	}
+	}*/
 	
-	private String concernEvent(Concern concern) throws ServiceException{
+	private String concern(Concern concern) throws ServiceException{
 		if(!concernService.concern(concern)){
 			if(concernService.unConcern(concern)){
 				return "cancel";

@@ -9,8 +9,8 @@ $(document).ready(function () {
         $('.project-sort').css({'color':'#5cce49'})
         headersrc=$(this).css("background-image");
         headerarr=headersrc.split("_");
-        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
-        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png";
+        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png";
         $(this).css({'background-image':headersrc2});
         $('.project-sort-drop').slideDown("fast");
     });
@@ -21,18 +21,18 @@ $(document).ready(function () {
         //背景图标状态切换-活动状态
         src=$(this).css("background-image");
         arr=src.split("_");
-        src2=arr[0]+"_"+arr[1]+"_"+"pre.png)";
+        src2=arr[0]+"_"+arr[1]+"_"+"pre.png";
         $(this).css({'background-image':src2});
         $(this).children('span').show().parent().siblings().children("span").hide();
         //背景图标状态切换-非活动状态
         sibsrc=$(this).siblings().eq(0).css("background-image")
         arr2=sibsrc.split("_");
-        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png)";
+        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png";
         $(this).siblings().eq(0).css({'background-image':src3});
 
         sibsrc2=$(this).siblings().eq(1).css("background-image")
         arr3=sibsrc2.split("_");
-        src4=arr3[0]+"_"+arr3[1]+"_"+"nor.png)";
+        src4=arr3[0]+"_"+arr3[1]+"_"+"nor.png";
         $(this).siblings().eq(1).css({'background-image':src4});
 
         //选择后收起来的状态
@@ -50,13 +50,13 @@ $(document).ready(function () {
         //背景图标状态切换-活动状态
         src=$(this).css("background-image");
         arr=src.split("_");
-        src2=arr[0]+"_"+arr[1]+"_"+"pre.png)";
+        src2=arr[0]+"_"+arr[1]+"_"+"pre.png";
         $(this).css({'background-image':src2});
         $(this).children('span').show().parent().siblings().children("span").hide();
         //背景图标状态切换-非活动状态
         sibsrc=$(this).siblings().eq(0).css("background-image")
         arr2=sibsrc.split("_");
-        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png)";
+        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png";
         $(this).siblings().eq(0).css({'background-image':src3});
 
         //选择后收起来的状态
@@ -85,8 +85,8 @@ $(document).ready(function () {
         $('.project-screening').css({'color': '#5cce49'})
         headersrc = $(this).css("background-image");
         headerarr = headersrc.split("_");
-        headersrc2 = headerarr[0] + "_" + headerarr[1] + "_" + "up.png)";
-        headersrc3 = headerarr[0] + "_" + headerarr[1] + "_" + "down.png)";
+        headersrc2 = headerarr[0] + "_" + headerarr[1] + "_" + "up.png";
+        headersrc3 = headerarr[0] + "_" + headerarr[1] + "_" + "down.png";
         $(this).css({'background-image': headersrc2});
         $('.project-screen-drop').slideDown("fast");
     });
@@ -595,8 +595,8 @@ $(document).ready(function () {
         $('.talent-sort').css({'color':'#5cce49'})
         headersrc=$(this).css("background-image");
         headerarr=headersrc.split("_");
-        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
-        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png";
+        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png";
         $(this).css({'background-image':headersrc2});
         $('.talent-sort-drop').slideDown("fast");
     });
@@ -613,13 +613,13 @@ $(document).ready(function () {
         //背景图标状态切换-活动状态
         src=$(this).css("background-image");
         arr=src.split("_");
-        src2=arr[0]+"_"+arr[1]+"_"+"pre.png)";
+        src2=arr[0]+"_"+arr[1]+"_"+"pre.png";
         $(this).css({'background-image':src2});
         $(this).children('span').show().parent().siblings().children("span").hide();
         //背景图标状态切换-非活动状态
         sibsrc=$(this).siblings().eq(0).css("background-image")
         arr2=sibsrc.split("_");
-        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png)";
+        src3=arr2[0]+"_"+arr2[1]+"_"+"nor.png";
         $(this).siblings().eq(0).css({'background-image':src3});
 
         //选择后收起来的状态
@@ -637,8 +637,8 @@ $(document).ready(function () {
         $('.talent-screening').css({'color':'#5cce49'})
         headersrc=$(this).css("background-image");
         headerarr=headersrc.split("_");
-        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png)";
-        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png)";
+        headersrc2=headerarr[0]+"_"+headerarr[1]+"_"+"up.png";
+        headersrc3=headerarr[0]+"_"+headerarr[1]+"_"+"down.png";
         $(this).css({'background-image':headersrc2});
         $('.talent-screen-drop').slideDown("fast");
     });

@@ -79,46 +79,21 @@
                             <tr>
                                 <td width="25%">工作经历</td>
                                 <td width="75%">
-                                    <ul class="talent-details-table1">
-                                        <li>
-                                            <h3>创业邦科技</h3>
-                                            <p><span>2014年5月</span> 至 <span>2015年5月</span></p>
-                                        </li>
-                                        <li>
-                                            <h3>网田科技</h3>
-                                            <p><span>2014年5月</span> 至 <span>2015年5月</span></p>
-                                        </li>
+                                    <ul id="worke" class="talent-details-table1">
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>教育经历</td>
                                 <td>
-                                    <ul class="talent-details-table1">
-                                        <li>
-                                            <h3>北京大学</h3>
-                                            <p><span>2014年5月</span> 至 <span>2015年5月</span></p>
-                                        </li>
-                                        <li>
-                                            <h3>清华大学</h3>
-                                            <p><span>2014年5月</span> 至 <span>2015年5月</span></p>
-                                        </li>
+                                    <ul id="educ" class="talent-details-table1">
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>擅长领域</td>
                                 <td>
-                                    <ul class="talent-details-table2">
-                                        <li>平面设计</li>
-                                        <li>UI设计</li>
-                                        <li>视频处理</li>
-                                        <li>画册设计</li>
-                                        <li>画册设计</li>
-                                        <li>画册设计</li>
-                                        <li>画册设计</li>
-                                        <li>画册设计</li>
-                                        <li>画册设计</li>
+                                    <ul id="targetul" class="talent-details-table2">
                                     </ul>
                                 </td>
                             </tr>
@@ -137,7 +112,7 @@
             <div class="talent-details-modal" style="display: none">
                 <div>
                     <h2>请添加微信号</h2>
-                    <p>LittleGirlf</p>
+                    <p>${talent.talentName }</p>
                 </div>
             </div>
         </div>
@@ -148,24 +123,54 @@
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/concern.js"></script>
-   <script type="text/javascript">
-   $(document).ready(function() {
-		
-	});
-	
-   
-   <!--开关模态框-->
-   $('.talent-foot-modal').click(function(){
-       $('.talent-details-modal').show();
-   })
-   $('.talent-details-modal').click(function(){
-       $('.talent-details-modal').hide();
-   })
-   
-    $(".project-details-collection").click(function() {
-  	addConcern({bNumId:"concernCount",targetId:${talent.talentId },
-  		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"talent"});
-  });
-   </script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			showResume();
+		});
+
+		function showResume() {
+			var workStr = '${talent.workExperience }';
+			if (workStr != undefined && workStr != '') {
+				var worke = jQuery.parseJSON(workStr);
+				$.each( worke, function(i, n){
+					$("#worke").append("<li><h3>"+n.companyName+"</h3><p><span>"+n.entryTime +"</span> 至 <span>"+n.quitTime +"</span></p></li>");
+					});
+			}
+			var eduStr = '${talent.educational }';
+			if (eduStr != undefined && eduStr != '') {
+				var educ = jQuery.parseJSON(eduStr);
+				$.each( educ, function(i, n){
+					$("#educ").append("<li><h3>"+n.collegeName+"</h3><p><span>"+n.entryTime +"</span> 至 <span>"+n.quitTime +"</span></p></li>");
+					});
+			}
+			
+			var targetType = '${talent.targetType }';
+			var target = targetType.split(',');
+			$.each( target, function(i, n){
+				if(n!=''){
+					$("#targetul").append("<li>"+n+"</li>");
+				}
+			});
+
+		}
+
+		<!--开关模态框-->
+		$('.talent-foot-modal').click(function() {
+			$('.talent-details-modal').show();
+		})
+		$('.talent-details-modal').click(function() {
+			$('.talent-details-modal').hide();
+		})
+
+		$(".project-details-collection").click(function() {
+			addConcern({
+				bNumId : "concernCount",
+				targetId : ${talent.talentId },
+				url : "${ctx}/concern/addConcern",
+				concernType : "concern",
+				targetType : "talent"
+			});
+		});
+	</script>
 </body>
 </html>

@@ -37,5 +37,15 @@ public class TalentDaoImpl extends MyBatisDao implements TalentDao {
 	public List<Talent> getPage(Talent talent,PageParameter page) throws DaoException {
 		return this.getListPage("TalentMapper.selectPage", talent, page);
 	}
+	
+	@Override
+	public int updateConcernCount(Integer talentId,String type){
+		if("add".equals(type)){
+			return this.update("TalentMapper.addConcernCount", talentId);
+		}else if("sub".equals(type)){
+			return this.update("TalentMapper.subConcernCount", talentId);
+		}
+		return 0;
+	}
 
 }

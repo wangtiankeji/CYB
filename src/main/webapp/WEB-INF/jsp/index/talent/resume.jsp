@@ -535,7 +535,7 @@ $('.work-experience-save').click(function(){
     $('.skill-save').click(function(){
         var skillArr=$('.skill-experience ul li').text();
         skillArr=skillArr.split('X');
-        var skill;
+        var skill='';
        //console.log(skillArr) ;
         for(var i=0;i<skillArr.length;i++){
             if(skillArr[i]!=''){
@@ -545,8 +545,8 @@ $('.work-experience-save').click(function(){
         }
         $('.skill-experience').animate({
             'left':'100%'
-        },300)
-        $("#mainpage").data("skill",skill);
+        },300);
+        $("#mainpage").data("skill",skill.substring(0, skill.length-1));
     })
 
     //创业方向

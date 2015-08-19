@@ -18,4 +18,6 @@ public interface TalentDao {
 
 	List<Talent> getPage(Talent talent, PageParameter page) throws DaoException;
 
+	int updateConcernCount(Integer talentId, String type);
+
 }
