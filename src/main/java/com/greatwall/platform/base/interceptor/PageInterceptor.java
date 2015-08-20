@@ -127,7 +127,7 @@ public class PageInterceptor implements Interceptor {
     	}
     	
         String countSql = "select count(0) from (" + sql + ") as total";
-        System.out.println(countSql);
+//        System.out.println(countSql);
         PreparedStatement countStmt = null;
         ResultSet rs = null;
         try {
