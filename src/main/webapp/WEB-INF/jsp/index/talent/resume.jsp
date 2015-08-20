@@ -568,7 +568,7 @@ $('.work-experience-save').click(function(){
 
     });
     $('.entrepreneurship-save').click(function(){
-    	var entrep
+    	var entrep = "";
         var arr=$('.entrepreneurship ul li');
         for(var i=0;i<arr.length;i++){
             var c=$('.entrepreneurship ul li').eq(i);
@@ -580,7 +580,7 @@ $('.work-experience-save').click(function(){
         $('.entrepreneurship').animate({
             'left':'100%'
         },300);
-        $("#mainpage").data("entrep",entrep);
+        $("#mainpage").data("entrep",entrep.substring(0, entrep.length-1));
     })
 
     $('.resume-save').click(function(){

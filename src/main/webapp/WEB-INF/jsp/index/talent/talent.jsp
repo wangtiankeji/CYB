@@ -28,6 +28,7 @@
         <div data-role="none" data-theme="f" class="publish-talent-header">
             <div class="publish-talent-img"></div>
             <p style="text-align: center;">上传个人头像</p>
+            <input id="fileToUpload" style="display: none" type="file" name="upfile">
         </div>
         <div data-role="none" data-theme="f" class="submitproject-content">
             <form action="" method="post">
@@ -157,6 +158,7 @@
    <script type="text/javascript">
    
   function submitTalent(data){
+	  data.talentImg = $(".publish-talent-img").attr("imgPath");
 	  $.ajax({
 			type : "POST",
 			url : "${ctx}/talent/addTalent",
@@ -183,16 +185,14 @@
             secureuri:false,  
             fileElementId:'fileToUpload',//file标签的id  
             dataType: 'json',//返回数据的类型  
-            data:{fileType:"project"},//一同上传的数据  
+            data:{fileType:"talent"},//一同上传的数据  
             success: function (data, status) {  
                 //把图片替换  
                 var obj = jQuery.parseJSON(data);  
                 if(typeof(obj.status) != "undefined") {  
                     if(obj.status == "success") {  
-                    	talentObj.projectImg = obj.filePath;
                     	$(".publish-talent-img").css("backgroundImage","url(${ctx}"+obj.filePath +")"); 
-                    	//$("#eventImg").val("${ctx}"+obj.filePath);
-     	               // $("#proimg").attr("src", "${ctx}"+obj.filePath);  
+                    	$(".publish-talent-img").attr("imgPath",obj.filePath);
                     } else {  
                         alert(obj.msg);  
                     }  

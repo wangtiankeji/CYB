@@ -6,6 +6,7 @@
     <result column="TALENT_NAME" property="talentName" jdbcType="VARCHAR" />
     <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="TALENT_IMG" property="talentImg" jdbcType="VARCHAR" />
     <result column="GOAL" property="goal" jdbcType="VARCHAR" />
     <result column="WORK_AREA" property="workArea" jdbcType="VARCHAR" />
     <result column="SEX" property="sex" jdbcType="VARCHAR" />
@@ -21,12 +22,12 @@
     <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="HITS" property="hits" jdbcType="INTEGER" />
-     <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
+    <result column="CONCERN_COUNT" property="concernCount" jdbcType="INTEGER" />
     </resultMap>
   <sql id="Base_Column_List" >
-    TALENT_ID, TALENT_NAME, NICKNAME, USER_ID, GOAL, WORK_AREA, SEX, PHONE, INTRO, ENTREPRENEURSHIP, 
-    TALENT_MONEY, EXPECTED_SALARY, GOOD_AT, WORK_EXPERIENCE, EDUCATIONAL, TARGET_TYPE, 
-    LAST_UPDATE_TIME, CREATE_TIME, HITS, CONCERN_COUNT
+    TALENT_ID, TALENT_NAME, NICKNAME, USER_ID, TALENT_IMG, GOAL, WORK_AREA, SEX, PHONE, 
+    INTRO, ENTREPRENEURSHIP, TALENT_MONEY, EXPECTED_SALARY, GOOD_AT, WORK_EXPERIENCE, 
+    EDUCATIONAL, TARGET_TYPE, LAST_UPDATE_TIME, CREATE_TIME, HITS, CONCERN_COUNT
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -74,24 +75,26 @@
     where TALENT_ID = #{talentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Talent" >
-     insert into td_cyb_talent (TALENT_ID, TALENT_NAME, NICKNAME, 
-      USER_ID, GOAL, WORK_AREA, 
-      SEX, PHONE, INTRO, 
-      ENTREPRENEURSHIP, TALENT_MONEY, EXPECTED_SALARY, 
-      GOOD_AT, WORK_EXPERIENCE, EDUCATIONAL, 
-      TARGET_TYPE, LAST_UPDATE_TIME, CREATE_TIME, 
-      HITS, CONCERN_COUNT)
+    insert into td_cyb_talent (TALENT_ID, TALENT_NAME, NICKNAME, 
+      USER_ID, TALENT_IMG, GOAL, 
+      WORK_AREA, SEX, PHONE, 
+      INTRO, ENTREPRENEURSHIP, TALENT_MONEY, 
+      EXPECTED_SALARY, GOOD_AT, WORK_EXPERIENCE, 
+      EDUCATIONAL, TARGET_TYPE, LAST_UPDATE_TIME, 
+      CREATE_TIME, HITS, CONCERN_COUNT
+      )
     values (#{talentId,jdbcType=INTEGER}, #{talentName,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER}, #{goal,jdbcType=VARCHAR}, #{workArea,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, 
-      #{entrepreneurship,jdbcType=VARCHAR}, #{talentMoney,jdbcType=VARCHAR}, #{expectedSalary,jdbcType=VARCHAR}, 
-      #{goodAt,jdbcType=VARCHAR}, #{workExperience,jdbcType=VARCHAR}, #{educational,jdbcType=VARCHAR}, 
-      #{targetType,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{hits,jdbcType=INTEGER}, #{concernCount,jdbcType=INTEGER})
+      #{userId,jdbcType=INTEGER}, #{talentImg,jdbcType=VARCHAR}, #{goal,jdbcType=VARCHAR}, 
+      #{workArea,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR}, #{entrepreneurship,jdbcType=VARCHAR}, #{talentMoney,jdbcType=VARCHAR}, 
+      #{expectedSalary,jdbcType=VARCHAR}, #{goodAt,jdbcType=VARCHAR}, #{workExperience,jdbcType=VARCHAR}, 
+      #{educational,jdbcType=VARCHAR}, #{targetType,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{hits,jdbcType=INTEGER}, #{concernCount,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Talent" >
     update td_cyb_talent
-     <set >
+      <set >
       <if test="talentName != null" >
         TALENT_NAME = #{talentName,jdbcType=VARCHAR},
       </if>
@@ -100,6 +103,9 @@
       </if>
       <if test="userId != null" >
         USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="talentImg != null" >
+        TALENT_IMG = #{talentImg,jdbcType=VARCHAR},
       </if>
       <if test="goal != null" >
         GOAL = #{goal,jdbcType=VARCHAR},

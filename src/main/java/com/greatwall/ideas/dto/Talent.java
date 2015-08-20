@@ -11,6 +11,8 @@ public class Talent {
 
     private Integer userId;
 
+    private String talentImg;
+
     private String goal;
 
     private String workArea;
@@ -75,6 +77,14 @@ public class Talent {
         this.userId = userId;
     }
 
+    public String getTalentImg() {
+        return talentImg;
+    }
+
+    public void setTalentImg(String talentImg) {
+        this.talentImg = talentImg == null ? null : talentImg.trim();
+    }
+
     public String getGoal() {
         return goal;
     }
@@ -84,14 +94,14 @@ public class Talent {
     }
 
     public String getWorkArea() {
-		return workArea;
-	}
+        return workArea;
+    }
 
-	public void setWorkArea(String workArea) {
-		this.workArea = workArea;
-	}
+    public void setWorkArea(String workArea) {
+        this.workArea = workArea == null ? null : workArea.trim();
+    }
 
-	public String getSex() {
+    public String getSex() {
         return sex;
     }
 

@@ -120,7 +120,7 @@ $(document).bind("mobileinit", function() {
 		content = content + '    <a href="${ctx}/index/talent/getTalent/'+talent.talentId+'" data-ajax="false">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="talent-left">';
-		content = content + '                <div></div>';
+		content = content + '                <img src="'+talent.talentImg+'" alt=""/>';
 		content = content + '            </div>';
 		content = content + '            <div class="talent-right">';
 		content = content + '                <div>';

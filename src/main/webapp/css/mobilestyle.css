@@ -390,7 +390,7 @@ b{font-weight: normal;}
 .project-details-collection span{padding-left:1.2rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
 
 /*找人才*/
-.talent-left>div{width:4rem;height:4rem;border-radius: 4rem;background: url("../img/pcenter-pic-i.jpg")center no-repeat;background-size: 4rem;}
+.talent-left>div{width:4rem;height:4rem;border-radius: 4rem;background-size: 4rem;}
 .talent-right>p{margin:0.3rem 0;}
     /*发简历*/
 .publish-talent-img{width:5rem;height:5rem;border-radius: 5rem;margin:0.5rem auto;margin-top:1rem;background: url("../img/btn_addpicure.png")center no-repeat;background-size: 5rem;}
