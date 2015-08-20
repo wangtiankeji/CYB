@@ -73,5 +73,9 @@ public class ProjectDaoImpl extends MyBatisDao implements ProjectDao {
 		return 0;
 	}
 
+	@Override
+	public int addHits(Integer projectId){
+		return this.update("ProjectMapper.addHits", projectId);
+	}
 
 }

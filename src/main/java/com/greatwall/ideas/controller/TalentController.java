@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.ideas.service.TalentService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.domain.PageParameter;
@@ -43,7 +44,7 @@ public class TalentController extends BaseController {
 	}
 	
 	@RequestMapping("/getTalents")
-	public ModelAndView getTalents(Talent talent,PageParameter page,ModelMap model){
+	public ModelAndView getTalents(TalentCon talent,PageParameter page,ModelMap model){
 		try {
 			model.addAttribute("talents",talentService.getPage(talent, page));
 			model.addAttribute("page", page);

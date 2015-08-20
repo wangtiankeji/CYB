@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.greatwall.ideas.dao.TalentDao;
 import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.dao.MyBatisDao;
 import com.greatwall.platform.domain.PageParameter;
@@ -34,7 +35,7 @@ public class TalentDaoImpl extends MyBatisDao implements TalentDao {
 	}
 	
 	@Override
-	public List<Talent> getPage(Talent talent,PageParameter page) throws DaoException {
+	public List<Talent> getPage(TalentCon talent,PageParameter page) throws DaoException {
 		return this.getListPage("TalentMapper.selectPage", talent, page);
 	}
 	
@@ -46,6 +47,11 @@ public class TalentDaoImpl extends MyBatisDao implements TalentDao {
 			return this.update("TalentMapper.subConcernCount", talentId);
 		}
 		return 0;
+	}
+	
+	@Override
+	public int addHits(Integer talentId){
+		return this.update("TalentMapper.addHits", talentId);
 	}
 
 }

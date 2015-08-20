@@ -61,6 +61,11 @@
    	update td_cyb_project set CONCERN_COUNT = CONCERN_COUNT - 1 
 	where PROJECT_ID = #{projectId,jdbcType=INTEGER}
    </update>
+   
+   <update id="addHits" parameterType="java.lang.Integer" >
+   	update td_cyb_project set hits = hits + 1 
+	where PROJECT_ID = #{projectId,jdbcType=INTEGER}
+   </update>
   
   <select id="selectPage" resultMap="BaseResultMap" parameterType="com.greatwall.ideas.dto.ProjectCon" >
     select 

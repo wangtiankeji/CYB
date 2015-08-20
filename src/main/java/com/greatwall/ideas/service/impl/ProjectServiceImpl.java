@@ -81,5 +81,9 @@ public class ProjectServiceImpl implements ProjectService{
 			throws DaoException {
 		return projectDao.getConcernPage(concern, page);
 	}
-
+	
+	@Override
+	public int addHits(Integer projectId){
+		return projectDao.addHits(projectId);
+	}
 }

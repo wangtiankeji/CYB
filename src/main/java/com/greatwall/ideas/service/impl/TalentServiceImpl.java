@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.greatwall.ideas.dao.TalentDao;
 import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.ideas.service.TalentService;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.domain.PageParameter;
@@ -22,27 +23,32 @@ import com.greatwall.platform.domain.PageParameter;
 public class TalentServiceImpl implements TalentService{
 
 	@Autowired
-	private TalentDao resumeDao;
+	private TalentDao talentDao;
 	
 	@Override
-	public List<Talent> getPage(Talent talent, PageParameter page)
+	public List<Talent> getPage(TalentCon talent, PageParameter page)
 			throws DaoException {
-		return resumeDao.getPage(talent, page);
+		return talentDao.getPage(talent, page);
 	}
 
 	@Override
 	public int save(Talent talent) {
-		return resumeDao.insert(talent);
+		return talentDao.insert(talent);
 	}
 
 	@Override
 	public Talent getTalent(Integer talentId) {
-		return resumeDao.selectByPrimaryKey(talentId);
+		return talentDao.selectByPrimaryKey(talentId);
 	}
 
 	@Override
 	public int updateTalentByKey(Talent talent) {
-		return resumeDao.updateByPrimaryKeySelective(talent);
+		return talentDao.updateByPrimaryKeySelective(talent);
+	}
+	
+	@Override
+	public int addHits(Integer talentId){
+		return talentDao.addHits(talentId);
 	}
 
 }

@@ -31,4 +31,6 @@ public interface ProjectService {
 	List<Project> selectProjectPartnerPage(ProjectCon project,
 			PageParameter page) throws DaoException;
 
+	int addHits(Integer projectId);
+
 }

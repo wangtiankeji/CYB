@@ -19,6 +19,7 @@ import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.Pubinfo;
 import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.platform.domain.PageParameter;
 
 //@Transactional
@@ -55,7 +56,7 @@ public class TalentDaoTest {
         try  
         {  
         	
-        	Talent talent = new Talent();
+        	TalentCon talent = new TalentCon();
         	
         	PageParameter page = new PageParameter();
         	

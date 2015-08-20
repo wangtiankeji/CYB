@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.ideas.dto.Partner;
-import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.ProjectCon;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.platform.base.controller.BaseController;
@@ -73,6 +72,8 @@ public class IndexProjectController extends BaseController {
 		if(projectId!=null){
 			Partner partner = new Partner();
 			partner.setProjectId(projectId);
+			
+			projectService.addHits(projectId);
 			model.addAttribute("project", projectService.getProject(projectId));
 			model.addAttribute("partners", projectService.getPartners(partner));
 		}

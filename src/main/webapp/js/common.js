@@ -69,8 +69,12 @@ $(document).ready(function () {
         });
     });
     
-    $('.time-sort').click(function(){
+    $('#project-time-sort').click(function(){
     	sortValue = "CREATE_TIME";
+    	submitScreen();
+    });
+    $('#project-hot-sort').click(function(){
+    	sortValue = "HITS";
     	submitScreen();
     });
 
@@ -639,6 +643,11 @@ $(document).ready(function () {
         });
 
     });
+    
+    $('#talent-hot-sort').click(function(){
+    	sortValue = "HITS";
+    	searchTalents();
+    });
 
     //找人才---筛选功能
     var talentOrientationValue;
@@ -666,19 +675,26 @@ $(document).ready(function () {
             'color':'#333'
         });
 
-
-        if(talentOrientationValue==undefined){
-            talentOrientationValue='全部'
+        searchTalents();
+        
+    })
+    
+    function searchTalents(){
+    	if(talentOrientationValue=='全部'){
+            talentOrientationValue=''
         }
-        if(locationScreenValue==undefined){
-            locationScreenValue='全部'
+        if(locationScreenValue=='全部'){
+            locationScreenValue=''
         }
         //这是找人才-排序数据==================》
         var talentScreenValue={
-            talentOrientation:talentOrientationValue,
-            locationScreen:locationScreenValue
+        	goal:talentOrientationValue,
+        	workArea:locationScreenValue,
+        	sort:sortValue
         }
-    })
+        
+        gotoPage(talentScreenValue);
+    }
 //找人才功能实现-------------------------end
 
 
@@ -693,6 +709,7 @@ $(document).ready(function () {
     var talentState2Value;
     var talentMoneyValue;
     var talentTreatmentValue;
+    var talentAreaValue;
 
 
 
@@ -754,6 +771,7 @@ $(document).ready(function () {
         $('.talent-location-nav div').html(provinceValue+' '+cityValue).css({
             'color':'#333'
         });
+        talentAreaValue = provinceValue+' '+cityValue;
         //省市页面切入过度效果
         $('.talent-location-select').animate({
             left:'100%'
@@ -885,6 +903,7 @@ $(document).ready(function () {
             	talentName:weixinNameValue,
             	goal:talentPersonalValue,
             	sex:talentSexValue,
+            	workArea:talentAreaValue,
             	intro:projectDescriptionValue,
             	entrepreneurship:talentState2Value,
                 talentMoney:talentMoneyValue,

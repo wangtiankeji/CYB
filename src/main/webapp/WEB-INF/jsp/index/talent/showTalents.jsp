@@ -34,8 +34,8 @@
         <!-- 综合排序下拉菜单-->
         <div class="talent-sort-drop" style="display: none">
             <ul>
-                <li class="comprehensive-sort">综合排序<span></span></li>
-                <li class="hot-sort">热度排序<span></span></li>
+                <li class="comprehensive-sort" id="talent-comprehensive-sort">综合排序<span></span></li>
+                <li class="hot-sort" id="talent-hot-sort">热度排序<span></span></li>
             </ul>
         </div>
         <!-- 筛选下拉菜单-->
@@ -98,20 +98,26 @@ $(document).bind("mobileinit", function() {
 <script type="text/javascript">
     
     $(document).ready(function() {
-    	//alert(${personal})
+    	/* //alert(${personal})
     	var sendData = {eventType:"activity"};
     	/* if("${personal}"!=""){
     		sendData.personal = "${personal}";
-    	} */
+    	} 
     	new IscrollPage({url:"${ctx}/index/talent/getTalents",data:sendData});
-    	pullUpAction();
+    	pullUpAction(); */
+    	
+    	gotoPage();
     });
 	
-
+    function gotoPage(sendData){
+    	$("#thelist").empty();
+    	new IscrollPage({url:"${ctx}/index/talent/getTalents",data:sendData});
+    	pullUpAction();
+    }
 	function getLiStr(talent) {
 		var content = '';
 		content = content + '<li>';
-		content = content + '    <a href="${ctx}/index/talent/getTalent/'+talent.talentId+'">';
+		content = content + '    <a href="${ctx}/index/talent/getTalent/'+talent.talentId+'" data-ajax="false">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="talent-left">';
 		content = content + '                <div></div>';

@@ -13,7 +13,7 @@ public class Talent {
 
     private String goal;
 
-    private Integer workArea;
+    private String workArea;
 
     private String sex;
 
@@ -83,15 +83,15 @@ public class Talent {
         this.goal = goal == null ? null : goal.trim();
     }
 
-    public Integer getWorkArea() {
-        return workArea;
-    }
+    public String getWorkArea() {
+		return workArea;
+	}
 
-    public void setWorkArea(Integer workArea) {
-        this.workArea = workArea;
-    }
+	public void setWorkArea(String workArea) {
+		this.workArea = workArea;
+	}
 
-    public String getSex() {
+	public String getSex() {
         return sex;
     }
 

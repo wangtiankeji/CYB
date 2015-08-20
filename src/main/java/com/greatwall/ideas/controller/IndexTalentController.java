@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.greatwall.ideas.dto.Partner;
 import com.greatwall.ideas.dto.Project;
 import com.greatwall.ideas.dto.Talent;
+import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.ideas.service.ProjectService;
 import com.greatwall.ideas.service.TalentService;
 import com.greatwall.platform.base.controller.BaseController;
@@ -41,7 +42,7 @@ public class IndexTalentController extends BaseController {
 	}
 	
 	@RequestMapping("/getTalents")
-	public @ResponseBody Map<String,Object> getTalents(Talent talent,PageParameter page,ModelMap model){
+	public @ResponseBody Map<String,Object> getTalents(TalentCon talent,PageParameter page,ModelMap model){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
 			map.put("objs",talentService.getPage(talent, page));
@@ -56,6 +57,7 @@ public class IndexTalentController extends BaseController {
 	@RequestMapping("/getTalent/{talentId}")
 	public ModelAndView getTalent(@PathVariable Integer talentId,ModelMap model){
 		if(talentId!=null){
+			talentService.addHits(talentId);
 			model.put("talent",talentService.getTalent(talentId));
 		}
 		ModelAndView mav = new ModelAndView();
