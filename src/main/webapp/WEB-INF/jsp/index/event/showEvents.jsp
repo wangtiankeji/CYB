@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="${ctx}/css/mobilestyle.css" type="text/css"/>
 </head>
 <body>
-<!--我的活动-->
+
 <div data-role="page" data-theme="f" class="ui-body-f" id="activity">
 
 		<div data-role="content" data-theme="f" class="pcenter-ac-content"
 			id="wrapper">
-				<ul class="activity-box" id="thelist">
+				<ul id="thelist">
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
@@ -69,23 +69,55 @@ $(document).bind("mobileinit", function() {
 
 	function getLiStr(event) {
 		var content = '';
-		content = content + '<li>';
-		content = content + '    <a href="${ctx }/index/event/getIndexEvent/incubator/'+ event.eventId +'" data-transition="slide">';
-		content = content + '        <div class="incubator-innerbox">';
-		content = content + '            <div class="incubator-left">';
-		content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
-		content = content + '            </div>';
-		content = content + '            <div class="incubator-right">';
-		content = content + '                <h2>'+event.eventName+'</h2>';
-		content = content + '                <p>浏览量 <b>'+event.hits+'</b></p>';
-		content = content + '                <div>';
-		content = content + '                    <span>'+event.eventAddress+'</span>';
-		content = content + '                    <span>电话询问次数 <b>'+event.callNum+'</b></span>';
-		content = content + '                </div>';
-		content = content + '            </div>';
-		content = content + '        </div>';
-		content = content + '    </a>';
-		content = content + '</li>';
+		
+		if(event.eventType == 'skill' || event.eventType ==  'operate'){
+			content = content + '<li class="common-bg">';
+			content = content + '   <a href="${ctx }/index/event/getIndexEvent/'+event.type+'/'+ event.eventId +'" data-transition="slide">';
+			content = content + '        <div class="common-innerbox">';
+			content = content + '            <div class="common-left">';
+			content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
+			content = content + '            </div>';
+			content = content + '            <div class="common-right common-right-b">';
+			content = content + '                <div>';
+			content = content + '                    <h2>'+event.eventName+'</h2>';
+			content = content + '                    <span class="havesure">'+((event.auth=="certified")?"已认证":"未认证")+'</span>';
+			content = content + '                </div>';
+			content = content + '                <div class="common-star">';
+			content = content + '                    <b>星级评价&nbsp;</b>';
+			content = content + '                    <ul>';
+			for(var i=0;i<event.commentLevel;i++){
+				content = content + '<li>&nbsp;</li>';
+			}
+			content = content + '                    </ul>';
+			content = content + '                    <p>浏览量 <b>'+event.hits+'</b></p>';
+			content = content + '                </div>';
+			content = content + '                <div>';
+			content = content + '                    <span class="common-location">'+event.eventAddress+'</span>';
+			content = content + '                    <span>电话询问次数 <b>'+event.callNum+'</b></span>';
+			content = content + '                </div>';
+			content = content + '            </div>';
+			content = content + '        </div>';
+			content = content + '    </a>';
+			content = content + '</li>';
+		}else{
+			content = content + '<li>';
+			content = content + '    <a href="${ctx }/index/event/getIndexEvent/incubator/'+ event.eventId +'" data-transition="slide">';
+			content = content + '        <div class="incubator-innerbox">';
+			content = content + '            <div class="incubator-left">';
+			content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
+			content = content + '            </div>';
+			content = content + '            <div class="incubator-right">';
+			content = content + '                <h2>'+event.eventName+'</h2>';
+			content = content + '                <p>浏览量 <b>'+event.hits+'</b></p>';
+			content = content + '                <div>';
+			content = content + '                    <span>'+event.eventAddress+'</span>';
+			content = content + '                    <span>电话询问次数 <b>'+event.callNum+'</b></span>';
+			content = content + '                </div>';
+			content = content + '            </div>';
+			content = content + '        </div>';
+			content = content + '    </a>';
+			content = content + '</li>';
+		}
 		
 		return content;
 	}

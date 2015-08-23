@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.greatwall.ideas.dto.Concern;
-import com.greatwall.ideas.dto.Event;
 import com.greatwall.ideas.service.ConcernService;
 import com.greatwall.ideas.service.EventService;
 import com.greatwall.ideas.service.ProjectService;
+import com.greatwall.ideas.service.TalentService;
 import com.greatwall.platform.base.controller.BaseController;
 import com.greatwall.platform.base.dao.DaoException;
 import com.greatwall.platform.base.service.ServiceException;
@@ -36,6 +36,8 @@ public class ConcernController extends BaseController {
 	private ConcernService concernService;
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private TalentService talentService;
 	
 	@Autowired
 	private EventService eventService;
@@ -57,6 +59,8 @@ public class ConcernController extends BaseController {
 			
 			if("project".equals(concern.getTargetType())){
 				map.put("objs", projectService.getConcernPage(concern, page));
+			}else if("talent".equals(concern.getTargetType())){
+				map.put("objs", talentService.getConcernPage(concern, page));
 			}else{
 				map.put("objs", eventService.getConcernPage(concern, page));
 			}

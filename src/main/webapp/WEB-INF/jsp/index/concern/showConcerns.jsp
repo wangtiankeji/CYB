@@ -28,13 +28,13 @@
         <div class="penter-item-bg" style="display: none">
             <ul class="pcenter-item">
                 <li class="pcenter-item-active" targetType="project">找项目</li>
-                <li>找人才</li>
+                <li targetType="talent">找人才</li>
                 <li targetType="incubator">孵化器</li>
                 <li>活动</li>
-                <li>融资</li>
-                <li>技术外包</li>
-                <li>运营推广</li>
-                <li>众筹平台</li>
+                <li targetType="financing">融资</li>
+                <li targetType="skill">技术外包</li>
+                <li targetType="operate">运营推广</li>
+                <li targetType="crowdfunding">众筹平台</li>
             </ul>
         </div>
     </div>
@@ -86,19 +86,21 @@ $('.pcenter-item li').click(function(){
     	$("#thelist").empty();
     	var sendData = {targetType:targetType,concernType:"concern"};
     	var callback
-    	if(targetType == "incubator"){
-    		callback = getincubator;
-    	}else if(targetType == "project"){
+    	if(targetType == "project" ){
     		callback = getproject;
+    	}else if(targetType == "talent"){
+    		callback = gettalent;
+    	}else{
+        	callback = getevent;
     	}
     	new IscrollPage({url:"${ctx}/concern/getConcerns",data:sendData},callback);
     	pullUpAction();
     }
     
-    function getincubator(event){
+    function getevent(event){
     	var content = '';
     	content = content + '<li>';
-		content = content + '    <a href="${ctx }/index/event/getIndexEvent/incubator/'+ event.eventId +'" data-transition="slide">';
+		content = content + '    <a href="${ctx }/index/event/getIndexEvent/'+event.type+'/'+ event.eventId +'" data-transition="slide">';
 		content = content + '        <div class="incubator-innerbox">';
 		content = content + '            <div class="incubator-left">';
 		content = content + '                <img src="${ctx}/img/pcenter-pic-i.jpg" alt=""/>';
@@ -144,6 +146,36 @@ $('.pcenter-item li').click(function(){
 		content = content + '        </div>';
 		content = content + '    </a>';
 		content = content + '</li>';
+		return content;
+    }
+    function gettalent(talent){
+    	var content = '';
+    	content = content + '<li>';
+    	content = content + '     <a href="${ctx}/index/talent/getTalent/'+talent.talentId+'" data-ajax="false">';
+    	content = content + '        <div class="colloction-innerbox">';
+    	content = content + '            <div class="collection-left">';
+    	content = content + '                <div></div>';
+    	content = content + '            </div>';
+    	content = content + '            <div class="collection-right">';
+    	content = content + '                <div>';
+    	content = content + '                    <h2>'+talent.nickname+'</h2>';
+    	content = content + '                    <span class="collect-talent-state">'+talent.goal+'</span>';
+    	content = content + '                </div>';
+    	content = content + '                <div class="collection-right-location">';
+    	content = content + '                    <span>'+talent.workArea+'</span>';
+    	content = content + '                    <span></span>';
+    	content = content + '                </div>';
+    	content = content + '                <p>'+talent.intro+'</p>';
+    	content = content + '                <div class="collection-project-label" >';
+    	content = content + '                    <ul>';
+    	content = content + '                        <li>大公司经验</li>';
+    	content = content + '                        <li>名校经历</li>';
+    	content = content + '                    </ul>';
+    	content = content + '                </div>';
+    	content = content + '            </div>';
+    	content = content + '        </div>';
+    	content = content + '    </a>';
+    	content = content + '</li>';
 		return content;
     }
 

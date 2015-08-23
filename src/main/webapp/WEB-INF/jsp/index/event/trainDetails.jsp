@@ -34,7 +34,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
-    <div data-role="content" data-theme="f" class="ac-details-content">
+    <div data-role="none" data-theme="f" class="ac-details-content">
         <div class="details-title">
             <div class="details-innerbox">
                 <h2>${event.eventName }</h2>
@@ -89,11 +89,15 @@
         <div class="ac-mask-inner">
             <div class="mask-close"><img src="${ctx }/img/icon_close_green_pre.png" alt=""/></div>
             <h2>活动报名</h2>
-            <form action="" method="post" class="ac-registration">
-                <input type="text" data-role="none" name="name" placeholder="姓名"/>
-                <input type="tel" data-role="none" name="tel" placeholder="电话"/>
+            <form action="" method="post" class="ac-registration" id="signup">
+                <input type="hidden" data-role="none" name="concernType" value="signup" />
+                <input type="hidden" data-role="none" name="targetId" value="${event.eventId }" />
+                <input type="hidden" data-role="none" name="targetType" value="train" />
+                <input type="text" data-role="none" name="userName" placeholder="姓名"/>
+                <input type="tel" data-role="none" name="phone" placeholder="电话"/>
                 <button type="button" data-role="none" class="registration">提交</button>
             </form>
+            <div class="regist-format error" style="display: none"><p></p></div>
         </div>
     </div>
 
@@ -129,6 +133,33 @@
         $('.mask-close').click(function(){
             $('.ac-mask').hide();
         });
+        
+        $(".registration").click(function() {
+			$.ajax({
+				type : "POST",
+				url : "${ctx}/concern/addConcern",
+				data : $("#signup").serialize(),
+				success : function(msg) {
+					if (msg == 'success') {
+						$(".ac-mask").hide();
+						
+						alert("报名成功");
+						/* setTimeout(function() {
+							showTip(".regist-format", "报名成功");
+						}, 1000); */
+					} else {
+						showTip(".regist-format", msg)
+					}
+				}
+			});
+	});
+        function showTip(obj, msg) {
+    		$(obj).find("p").text(msg);
+    		$(obj).show();
+    		setTimeout(function() {
+    			$(obj).hide();
+    		}, 1000);
+    	}
     </script>
 
 </body>

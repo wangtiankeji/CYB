@@ -119,7 +119,7 @@ $('.btn-changeNum').click(function(){
 });
 
 function showTib(title){
-	$(".changepassword-format").find("p").text("旧密码不能为空");
+	$(".changepassword-format").find("p").text(title);
 	clearTimeout(timer);
     $(".changepassword-format").show();
     var timer=setTimeout(function(){

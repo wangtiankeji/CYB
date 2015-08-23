@@ -85,7 +85,7 @@
     });
         $("#concern").click(function() {
         	addConcern({bNumId:"concernCount",targetId:${event.eventId },
-        		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"incubator"});
+        		url:"${ctx}/concern/addConcern",concernType:"concern",targetType:"${event.eventType}"});
     	});
     </script>
 

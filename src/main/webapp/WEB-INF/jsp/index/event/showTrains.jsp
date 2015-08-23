@@ -118,7 +118,7 @@ $(document).bind("mobileinit", function() {
 		content = content + '<p>地点 ' + events.eventAddress + '</p>';
 		content = content + '</div>';
 		content = content + '<div class="act-item-box2">';
-		content = content + '<span>' + ((events.concernCount==null)?0:events.concernCount) + '</span>人报名';
+		content = content + '<span>' + ((events.signUpNum==null)?0:events.signUpNum) + '</span>人报名';
 		content = content + '</div>';
 		content = content + '</div>';
 		content = content + ' </a>';

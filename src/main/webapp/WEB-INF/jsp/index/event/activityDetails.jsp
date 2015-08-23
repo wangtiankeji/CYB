@@ -34,7 +34,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
-    <div data-role="content" data-theme="f" class="ac-details-content">
+    <div data-role="none" data-theme="f" class="ac-details-content">
         <div class="details-title">
             <div class="details-innerbox">
                 <h2>${event.eventName }</h2>

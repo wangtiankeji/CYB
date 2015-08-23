@@ -2,6 +2,7 @@ package com.greatwall.ideas.dao;
 
 import java.util.List;
 
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Talent;
 import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.platform.base.dao.DaoException;
@@ -22,5 +23,8 @@ public interface TalentDao {
 	int updateConcernCount(Integer talentId, String type);
 
 	int addHits(Integer talentId);
+
+	List<Talent> getConcernPage(Concern concern, PageParameter page)
+			throws DaoException;
 
 }

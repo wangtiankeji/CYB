@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.greatwall.ideas.dao.TalentDao;
+import com.greatwall.ideas.dto.Concern;
 import com.greatwall.ideas.dto.Talent;
 import com.greatwall.ideas.dto.TalentCon;
 import com.greatwall.ideas.service.TalentService;
@@ -50,5 +51,11 @@ public class TalentServiceImpl implements TalentService{
 	public int addHits(Integer talentId){
 		return talentDao.addHits(talentId);
 	}
+	
+	@Override
+	public List<Talent> getConcernPage(Concern concern,PageParameter page) throws DaoException{
+		return talentDao.getConcernPage(concern, page);
+	}
+	
 
 }

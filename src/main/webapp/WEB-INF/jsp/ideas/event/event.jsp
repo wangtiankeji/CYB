@@ -127,7 +127,7 @@
 				<td align="right">是否认证:</td>
 				<td>已认证<input type="radio" id="auth" name="auth" value="certified" 
 				 <c:if test="${event.auth == 'certified'}">checked="checked"</c:if> />
-				未认证<input type="radio" id="auth" name="auth" value="uncertifie"
+				未认证<input type="radio" id="auth" name="auth" value="uncertified"
 				<c:if test="${event.auth == 'uncertifie'}">checked="checked"</c:if>/></td>
 			</tr>
 			<tr>
