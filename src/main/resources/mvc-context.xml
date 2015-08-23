@@ -31,6 +31,7 @@
 					<value>/login</value>
 					<value>/index</value>
 					<value>/weixin</value>
+					<value>/con/</value>
 				</list>
 			</property>
 		</bean>

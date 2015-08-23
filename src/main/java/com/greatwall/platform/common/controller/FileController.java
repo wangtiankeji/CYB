@@ -10,7 +10,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -61,14 +65,22 @@ public class FileController {
 		
 		String filest =  new Date().getTime()+"";
 		String fileend = fileName.substring(fileName.indexOf(".")+1, fileName.length());
-		String filePath = "/con/getImg/"+filest+"/"+fileend;
+		StringBuffer fpsb = new StringBuffer();
+		fpsb.append("/con/getImg/");
+		if(StringUtils.isNotBlank(fileType)){
+			fpsb.append(fileType);
+		}
+		fpsb.append("/");
+		fpsb.append(filest);
+		fpsb.append("/");
+		fpsb.append(fileend);
 		
 		fileName =filest+"."+fileend;  
-		File targetFile = new File(imgPath, fileName);  
+		File targetFile = new File(imgPath+"/"+fileType==null?"":fileType, fileName);  
 		if(!targetFile.exists()){  
 			targetFile.mkdirs();  
 		}  
-		map.put("filePath", filePath);
+		map.put("filePath", fpsb.toString());
 		map.put("status", "success");
 		//保存  
 		try {  
@@ -89,7 +101,7 @@ public class FileController {
 //		FileInputStream in = new FileInputStream(sf);
 //		return in;
 //	}
-	@RequestMapping("/getImg/{fileName}/{suffix}")
+	/*@RequestMapping("/getImg/{fileName}/{suffix}")
 	public @ResponseBody ResponseEntity<byte[]> getImg(@PathVariable String fileName,@PathVariable String suffix)  {
 		 HttpHeaders headers = new HttpHeaders();  
 		    headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);  
@@ -103,6 +115,36 @@ public class FileController {
 //				e.printStackTrace();
 			}
 		    return  imgf;
+	}*/
+	@RequestMapping("/getImg/**")
+	public @ResponseBody ResponseEntity<byte[]> getImg(HttpServletRequest request)  {
+		String sPath = request.getServletPath().replace("/con/getImg/", "");
+		
+		StringBuffer fileName = new StringBuffer();
+		StringBuffer filePath = new StringBuffer();
+		String[] fps = sPath.split("/");
+		if(fps.length>1){
+			fileName.append(fps[fps.length-2]);
+			fileName.append(".");
+			fileName.append(fps[fps.length-1]);
+		}
+		for(int i=0;i<fps.length-2;i++){
+			filePath.append(fps[i]);
+			filePath.append("/");
+		}
+		
+		HttpHeaders headers = new HttpHeaders();  
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);  
+		headers.setContentDispositionFormData("attachment", fileName.toString());  
+
+		ResponseEntity<byte[]> imgf = null;
+		try {
+			imgf = new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(new File(imgPath+filePath.toString()+fileName.toString())),  
+					headers, HttpStatus.CREATED);
+		} catch (IOException e) {
+//							e.printStackTrace();
+		}
+		return  imgf;
 	}
 	
 }

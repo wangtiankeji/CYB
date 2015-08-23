@@ -44,16 +44,15 @@
     <div data-role="content">
     
    <div data-role="none" data-theme="f" class="ui-content-f" id="container">
-    
     <!-- 焦点轮播图-->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
-                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
-                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <c:forEach items="${indeximgs}" var="indeximg" varStatus="status">
+             		<div class="swiper-slide"><img src="${indeximg.noticeStr}" alt=""/></div>
+            		</c:forEach>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
-        </div>
         
         <div class="content-item">
             <ul>
@@ -252,11 +251,13 @@
 	});
 	
 	//焦点轮播图
-	var swiper = new Swiper('.swiper-container', {
-		autoplay : 3000,
-		pagination : '.swiper-pagination',
-		paginationClickable : true
-	});
+	$(function(){ var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        centeredSlides: true,
+	        autoplay: 2500,
+	        autoplayDisableOnInteraction: false
+	}); })
 	
 
 </script>

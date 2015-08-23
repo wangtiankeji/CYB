@@ -20,4 +20,6 @@ public interface PubinfoService {
 
 	int updatePubinfoByKey(Pubinfo pubinfo);
 
+	List<Pubinfo> getPubinfoList(Pubinfo pubinfo);
+
 }

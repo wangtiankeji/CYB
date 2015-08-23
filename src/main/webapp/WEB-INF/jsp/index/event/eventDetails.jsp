@@ -24,7 +24,7 @@
 <!--活动详情页-->
     <div id="financing-details" data-role="page" data-theme="f" class="ui-body-f">
         <div class="common-bg">
-            <img src="${ctx }/img/incubator-header.jpg" alt=""/>
+            <img src="${event.eventImg }" alt=""/>
             <div class="incubator-innerbox incubator-title">
                 <h2>${event.eventName }</h2>
                 <div>

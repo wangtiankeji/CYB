@@ -36,10 +36,10 @@
 	}
 	
 	function addPubinfo(){
-		openDialog({url:"/pubinfo/addInit",callback:"savePubinfo"});
+		openDialog({url:"/pubinfo/addInit",callback:"savePubinfo",width:"450px"});
 	}
 	function updatePubinfo(id){
-		openDialog({url:"/pubinfo/updateInit/"+id,callback:"updatePubinfo"});
+		openDialog({url:"/pubinfo/updateInit/"+id,callback:"updatePubinfo",width:"450px"});
 	}
 	
 

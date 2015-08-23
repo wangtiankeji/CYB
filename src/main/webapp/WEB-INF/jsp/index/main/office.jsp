@@ -26,9 +26,9 @@
     <!-- 焦点轮播图-->
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
+            <c:forEach items="${pageimgs}" var="pageimg" varStatus="status">
+             	<div class="swiper-slide"><img src="${pageimg.noticeStr}" alt=""/></div>
+            </c:forEach>
         </div>
         <div class="swiper-pagination"></div>
     </div>

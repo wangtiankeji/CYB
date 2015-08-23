@@ -9,6 +9,8 @@ public class Pubinfo {
 
     private String valueKey;
 
+    private String keyName;
+
     public Integer getInfoId() {
         return infoId;
     }
@@ -39,5 +41,13 @@ public class Pubinfo {
 
     public void setValueKey(String valueKey) {
         this.valueKey = valueKey == null ? null : valueKey.trim();
+    }
+
+    public String getKeyName() {
+        return keyName;
+    }
+
+    public void setKeyName(String keyName) {
+        this.keyName = keyName == null ? null : keyName.trim();
     }
 }

@@ -39,6 +39,11 @@ public class PubinfoServiceImpl implements PubinfoService {
 	}
 	
 	@Override
+	public List<Pubinfo> getPubinfoList(Pubinfo pubinfo){
+		return pubinfoDao.getPubinfos(pubinfo);
+	}
+	
+	@Override
 	public List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page) throws DaoException{
 		return pubinfoDao.getPage(pubinfo, page);
 	}

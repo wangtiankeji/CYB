@@ -6,9 +6,10 @@
     <result column="NOTICE_STR" property="noticeStr" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="VALUE_KEY" property="valueKey" jdbcType="VARCHAR" />
+    <result column="KEY_NAME" property="keyName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    INFO_ID, NOTICE_STR, TYPE, VALUE_KEY
+     INFO_ID, NOTICE_STR, TYPE, VALUE_KEY, KEY_NAME
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -45,49 +46,18 @@
     </where>
   </select>
   
-  
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from td_cyb_pubinfo
     where INFO_ID = #{infoId,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Pubinfo" >
-    insert into td_cyb_pubinfo ( NOTICE_STR, TYPE, 
-      VALUE_KEY)
-    values ( #{noticeStr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{valueKey,jdbcType=VARCHAR})
+    insert into td_cyb_pubinfo (INFO_ID, NOTICE_STR, TYPE, 
+      VALUE_KEY, KEY_NAME)
+    values (#{infoId,jdbcType=INTEGER}, #{noticeStr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{valueKey,jdbcType=VARCHAR}, #{keyName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.greatwall.ideas.dto.Pubinfo" >
-    insert into td_cyb_pubinfo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="infoId != null" >
-        INFO_ID,
-      </if>
-      <if test="noticeStr != null" >
-        NOTICE_STR,
-      </if>
-      <if test="type != null" >
-        TYPE,
-      </if>
-      <if test="valueKey != null" >
-        VALUE_KEY,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="infoId != null" >
-        #{infoId,jdbcType=INTEGER},
-      </if>
-      <if test="noticeStr != null" >
-        #{noticeStr,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="valueKey != null" >
-        #{valueKey,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Pubinfo" >
     update td_cyb_pubinfo
     <set >
@@ -99,6 +69,9 @@
       </if>
       <if test="valueKey != null" >
         VALUE_KEY = #{valueKey,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName != null" >
+        KEY_NAME = #{keyName,jdbcType=VARCHAR},
       </if>
     </set>
     where INFO_ID = #{infoId,jdbcType=INTEGER}

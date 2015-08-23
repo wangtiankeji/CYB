@@ -6,11 +6,13 @@
 <head>
 <title>创客邦</title>
 
-<%@ include file="../../common/head.jsp"%>
 
-<script type="text/javascript" src="${ctx}/js/validationEngine/jquery.validationEngine.js"></script>
-<script type="text/javascript" src="${ctx}/js/validationEngine/jquery.validationEngine-zh_CN.js"></script>
-<link rel="stylesheet" href="${ctx}/js/validationEngine/css/validationEngine.jquery.css" type="text/css">
+<%@ include file="../../common/head.jsp"%>
+<script type="text/javascript"
+	src="${ctx}/js/validationEngine/jquery.validationEngine.js"></script>
+<script type="text/javascript"
+	src="${ctx}/js/validationEngine/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 
 <script type="text/javascript">
 
@@ -45,16 +47,45 @@
 	}
 
 	$(document).ready(function() {
+		
 		$("#pubinfoForm").validationEngine({
 			scroll : false,
 			//binded:false,
 			showArrow : false,
 			showOneMessage : true
 		//addPromptClass:"formError-noArrow formError-text"
-		});
-	});
-	
+		}); 
+		
+		//选择文件之后执行上传  
+		$("#fileToUpload").on("change",	function() {
+					$.ajaxFileUpload({
+								url : "${ctx}/con/upload",
+								secureuri : false,
+								fileElementId : 'fileToUpload',//file标签的id  
+								dataType : 'json',//返回数据的类型  
+								data : {
+									fileType : "pubinfo"
+								},//一同上传的数据  
+								success : function(data, status) {
+									//把图片替换  
+									var obj = jQuery.parseJSON(data);
+									if (typeof (obj.status) != "undefined") {
+										if (obj.status == "success") {
+											$("#noticeStr").text(obj.filePath);
+										} else {
+											alert(obj.msg);
+										}
+									}
 
+								},
+								error : function(data, status, e) {
+									alert(e);
+								}
+							});
+				});
+		
+	})
+	
 </script>
 </head>
 
@@ -70,12 +101,20 @@
 			</tr>
 			<tr>
 				<td align="right">关键字:</td>
-				<td><input type="text" id="valueKey" name="valueKey" value="${pubinfo.valueKey }" class="validate[required,maxSize[30]]"/></td>
+				<td><input type="text" id="valueKey" name="valueKey" value="${pubinfo.valueKey }" class="validate[required,maxSize[50]]"/></td>
+			</tr>
+			<tr>
+				<td align="right">关键字名称:</td>
+				<td><input type="text" id="keyName" name="keyName" value="${pubinfo.keyName }" class="validate[required,maxSize[50]]"/></td>
 			</tr>
 			<tr>
 				<td align="right">显示内容:</td>
-				<td><textarea rows="10" cols="20" name="noticeStr" id="noticeStr" class="validate[maxSize[500]]">${pubinfo.noticeStr}</textarea>
+				<td><textarea rows="8" cols="30" name="noticeStr" id="noticeStr" class="validate[maxSize[500]]">${pubinfo.noticeStr}</textarea>
 				</td>
+			</tr>
+			<tr>
+				<td align="right">图片上传:</td>
+				<td><input id="fileToUpload" type="file" name="upfile" ></td>
 			</tr>
 		</table>
 	</form>
