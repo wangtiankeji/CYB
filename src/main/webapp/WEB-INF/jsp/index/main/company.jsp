@@ -27,8 +27,6 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
-            <div class="swiper-slide"><img src="${ctx}/img/banner-2.png" alt=""/></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
