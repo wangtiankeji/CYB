@@ -40,7 +40,15 @@ public class IndexController {
 	private void getImgs(Model model,String type){
 		Pubinfo pubinfo = new Pubinfo();
 		pubinfo.setType(type);
+		pubinfo.setValueKey("imgs");
 		model.addAttribute("pageimgs", pubinfoService.getPubinfoList(pubinfo));
+		
+		pubinfo.setValueKey("hit");
+		pubinfoService.addHits(pubinfo);
+		
+		pubinfo.setValueKey("");
+		model.addAttribute("infoParams", pubinfoService.getPubinfos(pubinfo));
+		
 	}
 	
 	@RequestMapping("/office")

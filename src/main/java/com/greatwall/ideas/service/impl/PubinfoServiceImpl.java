@@ -27,12 +27,12 @@ public class PubinfoServiceImpl implements PubinfoService {
 	private PubinfoDao pubinfoDao;
 
 	@Override
-	public Map<String,String> getPubinfos(Pubinfo pubinfo){
-		Map<String,String> map = new HashMap<String,String>();
+	public Map<String,Object> getPubinfos(Pubinfo pubinfo){
+		Map<String,Object> map = new HashMap<String,Object>();
 		List<Pubinfo>  pubinfos = pubinfoDao.getPubinfos(pubinfo);
 		if(pubinfos!=null){
 			for(Pubinfo info : pubinfos){
-				map.put(info.getValueKey(), info.getNoticeStr());
+				map.put(info.getValueKey(), info.getNoticeStr()==null?info.getHit():info.getNoticeStr());
 			}
 		}
 		return map;
@@ -63,5 +63,9 @@ public class PubinfoServiceImpl implements PubinfoService {
 		return pubinfoDao.updateByPrimaryKey(pubinfo);
 	}
 	
+	@Override
+	public int addHits(Pubinfo pubinfo){
+		return pubinfoDao.addHits(pubinfo);
+	}
 	
 }

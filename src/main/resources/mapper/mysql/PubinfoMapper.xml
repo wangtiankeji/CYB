@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="PubinfoMapper" >
   <resultMap id="BaseResultMap" type="com.greatwall.ideas.dto.Pubinfo" >
-    <id column="INFO_ID" property="infoId" jdbcType="INTEGER" />
+     <id column="INFO_ID" property="infoId" jdbcType="INTEGER" />
     <result column="NOTICE_STR" property="noticeStr" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="VALUE_KEY" property="valueKey" jdbcType="VARCHAR" />
     <result column="KEY_NAME" property="keyName" jdbcType="VARCHAR" />
+    <result column="HIT" property="hit" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-     INFO_ID, NOTICE_STR, TYPE, VALUE_KEY, KEY_NAME
+      INFO_ID, NOTICE_STR, TYPE, VALUE_KEY, KEY_NAME, HIT
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,11 +24,11 @@
     <include refid="Base_Column_List" />
     from td_cyb_pubinfo
     <where>
-    	<if test="type != null" >
+    	<if test="type != null and type != ''" >
     		TYPE = #{type,jdbcType=VARCHAR}
     	</if>
-    	<if test="valueKey != null" >
-    		VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
+    	<if test="valueKey != null and valueKey != ''" >
+    		and VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
     	</if>
     </where>
   </select>
@@ -41,7 +42,7 @@
     		TYPE = #{type,jdbcType=VARCHAR}
     	</if>
     	<if test="valueKey != null and valueKey != ''" >
-    		VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
+    		and VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
     	</if>
     </where>
   </select>
@@ -53,10 +54,20 @@
   
   <insert id="insert" parameterType="com.greatwall.ideas.dto.Pubinfo" >
     insert into td_cyb_pubinfo (INFO_ID, NOTICE_STR, TYPE, 
-      VALUE_KEY, KEY_NAME)
+      VALUE_KEY, KEY_NAME, HIT
+      )
     values (#{infoId,jdbcType=INTEGER}, #{noticeStr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{valueKey,jdbcType=VARCHAR}, #{keyName,jdbcType=VARCHAR})
+      #{valueKey,jdbcType=VARCHAR}, #{keyName,jdbcType=VARCHAR}, #{hit,jdbcType=INTEGER}
+      )
   </insert>
+  
+   <update id="addHits" parameterType="java.lang.Integer" >
+   	update td_cyb_pubinfo set hit = hit + 1 
+   	<where>
+   		TYPE = #{type,jdbcType=VARCHAR}
+   		and VALUE_KEY = #{valueKey,jdbcType=VARCHAR}
+   	</where>
+   </update>
   
   <update id="updateByPrimaryKeySelective" parameterType="com.greatwall.ideas.dto.Pubinfo" >
     update td_cyb_pubinfo
@@ -72,6 +83,9 @@
       </if>
       <if test="keyName != null" >
         KEY_NAME = #{keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="hit != null" >
+        HIT = #{hit,jdbcType=INTEGER},
       </if>
     </set>
     where INFO_ID = #{infoId,jdbcType=INTEGER}

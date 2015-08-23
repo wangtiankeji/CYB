@@ -9,7 +9,7 @@ import com.greatwall.platform.domain.PageParameter;
 
 public interface PubinfoService {
 
-	Map<String, String> getPubinfos(Pubinfo pubinfo);
+	Map<String, Object> getPubinfos(Pubinfo pubinfo);
 
 	List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page)
 			throws DaoException;
@@ -21,5 +21,7 @@ public interface PubinfoService {
 	int updatePubinfoByKey(Pubinfo pubinfo);
 
 	List<Pubinfo> getPubinfoList(Pubinfo pubinfo);
+
+	int addHits(Pubinfo pubinfo);
 
 }

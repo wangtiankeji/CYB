@@ -11,6 +11,8 @@ public class Pubinfo {
 
     private String keyName;
 
+    private Integer hit;
+
     public Integer getInfoId() {
         return infoId;
     }
@@ -49,5 +51,13 @@ public class Pubinfo {
 
     public void setKeyName(String keyName) {
         this.keyName = keyName == null ? null : keyName.trim();
+    }
+
+    public Integer getHit() {
+        return hit;
+    }
+
+    public void setHit(Integer hit) {
+        this.hit = hit;
     }
 }

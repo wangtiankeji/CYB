@@ -36,7 +36,7 @@
         <div class="index-common-innner index-common-price">
             <h2>办公室</h2>
             <ul style="margin-top:0.5rem;">
-                <li>浏览量:<span>1.2</span>万</li>
+                <li>浏览量:<span>${infoParams.hit }</span></li>
                 <li>购买人数:<span>768</span>人</li>
             </ul>
 

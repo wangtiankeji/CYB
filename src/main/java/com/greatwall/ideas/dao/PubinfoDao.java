@@ -20,4 +20,6 @@ public interface PubinfoDao {
 	
 	public List<Pubinfo> getPage(Pubinfo pubinfo, PageParameter page)
 			throws DaoException;
+
+	int addHits(Pubinfo pubinfo);
 }
