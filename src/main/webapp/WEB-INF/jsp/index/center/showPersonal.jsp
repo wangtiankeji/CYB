@@ -25,14 +25,14 @@
 <div data-role="page" data-theme="f" class="ui-body-f" id="page-pcenter">
     <div data-role="header" data-theme="f" class="pcenter-header">
         <div class="pcenter-pic">
-            <a href="#"><img src="${ctx}/img/icon_add_pre.png" alt=""/></a>
+            <a href="#"><img src="${user.userAddress}" alt=""/></a>
         </div>
+        <input id="fileToUpload" style="display: none" type="file" name="upfile">
         <p id="pcenter-tel">18612531150</p>
     </div>
     <div data-role="content" data-theme="f" class="ui-content-f3">
         <ul>
             <li class="pcenter-tietm-bg1"><a href="${ctx}/concern/showConcerns" data-ajax=“false” data-transition="slide">我的收藏<span></span></a></li>
-            <li class="pcenter-tietm-bg2"><a href="#pcenter-appointment" data-transition="slide">我的预约<span></span></a></li>
             <li class="pcenter-tietm-bg3"><a href="${ctx}/index/event/showIndexEvents/activity/?concernType=signup" data-ajax=“false”  data-transition="slide">我的活动<span></span></a></li>
             <li class="pcenter-tietm-bg4"><a href="#pcenter-complaint" data-transition="slide">平台投诉<span></span></a></li>
             <li class="pcenter-tietm-bg5"><a href="#pcenter-policy" data-transition="slide">平台政策<span></span></a></li>
@@ -92,6 +92,8 @@ $(document).bind("mobileinit", function() {
 <script src="${ctx}/js/iscroll.js"></script>
 <script src="${ctx}/js/dateutil.js"></script>
 <script src="${ctx}/js/paginationis-iscroll.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
 //手机号加密
 var telnumber=$("#pcenter-tel").html();
@@ -142,7 +144,51 @@ function updatePassword() {
 		}
 	});
 }
-    
+
+$(".pcenter-pic").click(function() {
+	$("#fileToUpload").click();
+});
+
+//选择文件之后执行上传  
+$("#fileToUpload").on(
+		"change",
+		function() {
+			$.ajaxFileUpload({
+				url : "${ctx}/con/upload",
+				secureuri : false,
+				fileElementId : 'fileToUpload',//file标签的id  
+				dataType : 'json',//返回数据的类型  
+				data : {
+					fileType : "personal"
+				},//一同上传的数据  
+				success : function(data, status) {
+					//把图片替换  
+					var obj = jQuery.parseJSON(data);
+					if (typeof (obj.status) != "undefined") {
+						if (obj.status == "success") {
+							$(".pcenter-pic img").attr("src","${ctx}" + obj.filePath);
+							saveUserImg(obj.filePath);
+						} else {
+							alert(obj.msg);
+						}
+					}
+
+				},
+				error : function(data, status, e) {
+					alert(e);
+				}
+			});
+		});
+    function saveUserImg(imgpath){
+    	$.ajax({
+    		type : "POST",
+    		url : "${ctx}/system/user/updateUserImg",
+    		data : {imgPath:imgpath},
+    		success : function(msg) {
+
+    		}
+    	});
+    }
 </script>
 </body>
 </html>

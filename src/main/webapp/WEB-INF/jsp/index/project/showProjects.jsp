@@ -101,8 +101,8 @@
     	
 				<ul class="activity-box" id="thelist">
 				</ul>
-				<div id="pullUp" >
-					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+				<div id="pullUp" style="display: none">
+					<span class="pullUpIcon"></span><span class="pullUpLabel" >上拉加载更多...</span>
 				</div>
     </div>
 </div>

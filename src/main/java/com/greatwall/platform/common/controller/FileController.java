@@ -65,10 +65,12 @@ public class FileController {
 		
 		String filest =  new Date().getTime()+"";
 		String fileend = fileName.substring(fileName.indexOf(".")+1, fileName.length());
+		String path = imgPath;
 		StringBuffer fpsb = new StringBuffer();
 		fpsb.append("/con/getImg/");
 		if(StringUtils.isNotBlank(fileType)){
 			fpsb.append(fileType);
+			path += "/"+fileType+"/";
 		}
 		fpsb.append("/");
 		fpsb.append(filest);
@@ -76,7 +78,7 @@ public class FileController {
 		fpsb.append(fileend);
 		
 		fileName =filest+"."+fileend;  
-		File targetFile = new File(imgPath+"/"+fileType==null?"":fileType, fileName);  
+		File targetFile = new File(path, fileName);  
 		if(!targetFile.exists()){  
 			targetFile.mkdirs();  
 		}  

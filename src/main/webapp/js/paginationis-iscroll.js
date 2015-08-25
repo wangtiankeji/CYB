@@ -90,12 +90,14 @@ function loaded() {
 				//useTransition: false, 
 				//topOffset: pullDownOffset,
 				onRefresh : function() {
+					$(pullUpEl).hide();
 					if (pullUpEl.className.match('loading')) {
 						pullUpEl.className = '';
 						pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
 					}
 				},
 				onScrollMove : function() {
+					$(pullUpEl).show();
 					if (this.y < (this.maxScrollY - 5)
 							&& !pullUpEl.className.match('flip')) {
 						pullUpEl.className = 'flip';

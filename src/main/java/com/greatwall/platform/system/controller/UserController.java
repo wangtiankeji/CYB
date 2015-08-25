@@ -176,4 +176,22 @@ public class UserController {
 		}
 
 	}
+	
+	@RequestMapping("/updateUserImg")
+	public @ResponseBody	String updateUserImg(String imgPath,HttpSession session) {
+		User u = (User) session.getAttribute("user");
+		User uimg = new User();
+		uimg.setUserAddress(imgPath);
+		uimg.setUserId(u.getUserId());
+		if (userService.updateUser(uimg) == 1) {
+			u.setUserAddress(imgPath);
+			session.setAttribute("user", u);
+			return "success";
+		} else {
+			return "保存失败";
+		}
+		
+	}
+	
+	
 }

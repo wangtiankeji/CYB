@@ -17,7 +17,6 @@ b{font-weight: normal;}
 #header { min-width: 320px; }
 #container { min-width: 320px;}
 #footer { min-width: 320px; }
-.ui-body-f{min-width: 320px; height: 100%;max-width: 1080px;}
 /*头部设置*/
 .ui-bar-f{width: 100%;overflow: hidden;border: none;}
 .logo-bar{background-color: rgba(0,0,0,0.5);height:2.5rem;width:100%;
@@ -55,7 +54,7 @@ b{font-weight: normal;}
 
 /*底部信息*/
 .ui-footer-f{border: none;text-align: center;margin:0.8rem 0;}
-.ui-footer-f p{margin:0;font-size: 0.7rem;color:#999999;}
+.ui-footer-f p{margin:0;font-size: 0.7rem;color:#999999;text-align:center;}
 
 
 /*login页面样式*/

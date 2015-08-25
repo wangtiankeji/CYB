@@ -22,7 +22,7 @@
 </head>
 <body>
 <!-- 首页-->
-<div data-role="page" id="page-index" data-theme="f" class="ui-body-f" id="page-home">
+<div data-role="page" id="page-index" data-theme="f" id="page-home">
     <div data-role="header" data-theme="f" class="ui-bar-f" id="header">
         <div class="logo-bar">
             <div class="logo"><a href="#page-index" id="a-index" data-transition="slide"><img src="${ctx}/img/logo.png" alt=""/></a></div>
@@ -38,14 +38,11 @@
             
             </form>
         </div>
-        
+ 
     </div>
-    
-    <div data-role="content">
-    
-   <div data-role="none" data-theme="f" class="ui-content-f" id="container">
-    <!-- 焦点轮播图-->
-            <div class="swiper-container">
+   <div data-role="content" data-theme="f" class="ui-content-f"  id="container" style="overflow-y:scroll;">
+    	<!-- 焦点轮播图-->
+        <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <c:forEach items="${indeximgs}" var="indeximg" varStatus="status">
              		<div class="swiper-slide"><img src="${indeximg.noticeStr}" alt=""/></div>
@@ -53,7 +50,6 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-        
         <div class="content-item">
             <ul>
                 <li><a href="${ctx}/index/project/showProjects" data-ajax="false"><img src="${ctx}/img/btn_project_pre.png" alt="找项目"/></a><h2>找项目</h2></li>
@@ -180,16 +176,10 @@
                 <li>
                    <a href="${cxt }/index/copyright">
                         <img src="${ctx}/img/icon_apply.png" alt=""/>
-                        <h2>专利申请</h2>
+                        <h2>专利/著作权申请</h2>
                         <p>保护技术研发成果</p>
                         <span>${ infoParams.patentApplication}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="${cxt }/index/copyright">
-                        <img src="${ctx}/img/icon_book.png" alt=""/>
-                        <h2>著作权</h2>
-                        <p>保护作品版权</p>
+                        <span style="color:#5cce49" font-size:0.9rem;>/</span>
                         <span>${ infoParams.copyright}</span>
                     </a>
                 </li>
@@ -202,11 +192,11 @@
         <div class="business-content">
             <ul>
                 <li>
-                    <a href="#">
-                        <img src="${ctx}/img/icon_continuer.png" alt=""/>
-                        <h2>办理社保</h2>
-                        <p>为新员工办理五险一金</p>
-                        <span>${ infoParams.socialSecurity}</span>
+                    <a href="${cxt }/index/partner">
+                        <img src="${ctx}/img/icon_book.png" alt=""/>
+                        <h2>人才外包</h2>
+                        <p>不再为找合伙人而烦恼</p>
+                        <span>${ infoParams.outsourcing}</span>
                     </a>
                 </li>
                 <li>
@@ -217,18 +207,11 @@
                         <span>${ infoParams.personnel}</span>
                     </a>
                 </li>
-                <li>
-                    <a href="${cxt }/index/partner">
-                        <img src="${ctx}/img/icon_book.png" alt=""/>
-                        <h2>人才外包</h2>
-                        <p>不再为找合伙人而烦恼</p>
-                        <span>${ infoParams.outsourcing}</span>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
-    </div>
+
     <div data-role="footer" data-theme="f" class="ui-footer-f">
         <p>创客邦科技（北京）有限公司</p>
     </div>

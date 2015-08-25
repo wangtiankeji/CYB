@@ -46,4 +46,6 @@ public interface UserService {
 	public Boolean updatePassowrd(Integer userId,String oldPassword,String newPassword);
 	
 	public void saveUser(User user);
+	
+	public int updateUser(User user);
 }

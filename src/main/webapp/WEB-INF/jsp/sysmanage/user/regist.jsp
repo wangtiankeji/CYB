@@ -76,10 +76,6 @@
 		});
 	}
 
-	function creatUUID() {
-		var uuid = UUID.prototype.createUUID();
-		$("#sessionKey").val(uuid);
-	}
 </script>
 </head>
 <body>
@@ -87,14 +83,14 @@
 		method="post">
 		<table>
 			<tr>
-				<td align="right">企业名:</td>
+				<td align="right">昵称</td>
 				<td colspan="3"><input type="text" id="userName"
 					name="userName" value="${updateUser.userName }" size="52"
 					class="validate[required,maxSize[50]]" /> <input type="hidden"
 					name="userId" value="${updateUser.userId }" /></td>
 			</tr>
 			<tr>
-				<td align="right">登录名(手机):</td>
+				<td align="right">登录名:</td>
 				<td><input type="text" id="loginName" name="loginName"
 					value="${updateUser.loginName }" class="validate[required,custom[phone]]" /></td>
 				<td align="right">密码:</td>
@@ -103,34 +99,22 @@
 					class="validate[required,minSize[6],maxSize[50]]" /></td>
 			</tr>
 			<tr>
-				<td align="right">平台用户KEY:</td>
-				<td><input type="text" id="platId" name="platId"
-					value="${updateUser.platId }"
-					class="validate[required,minSize[4],maxSize[50]]" /></td>
 				<td align="right">KEY:</td>
 				<td><input type="text" id="sessionKey" name="sessionKey"
-					value="${updateUser.sessionKey }" class="validate[required]" /> <input
-					type="button" onclick="creatUUID()" value="生成KEY" /></td>
+					value="${updateUser.sessionKey }" class="validate[required]" /></td>
 			</tr>
 			<tr>
 				<td align="right">邮箱:</td>
 				<td><input type="text" id="userEmail" name="userEmail"
 					value="${updateUser.userEmail }" class="validate[custom[email]]" /></td>
-				<td align="right">QQ:</td>
-				<td><input type="text" id="userQq" name="userQq"
-					value="${updateUser.userQq}" class="validate[maxSize[50]]" /></td>
 			</tr>
 			<tr>
-				<td align="right">地址:</td>
+				<td align="right">头像</td>
 				<td colspan="3"><input type="text" id="userAddress"
 					name="userAddress" size="52" value="${updateUser.userAddress}"
 					class="validate[maxSize[500]]" /></td>
 			</tr>
 			<tr>
-				<td align="right">绑定IP:</td>
-				<td><input type="text" id="permitIp" name="permitIp"
-					value="${updateUser.permitIp}"
-					class="validate[required,maxSize[100]]" /></td>
 				<td align="right"><c:if test="${empty updateUser }">角色:</c:if></td>
 				<td><c:if test="${empty updateUser && fn:contains(roleIds,'1,') }">
 						<select name="roleId" id="roleId">
@@ -150,56 +134,6 @@
 				<td colspan="3"><textarea name="remark" rows="3" cols="53"
 						class="validate[maxSize[500]]">${updateUser.remark}</textarea></td>
 			</tr>
-			<tr>
-				<td align="right">话费折扣:</td>
-				<td><input type="text" id="discountPhone" name="discountPhone"
-					value="${updateUser.discountPhone }" class="validate[required,maxSize[3],custom[integer]]" /></td>
-				<td align="right">流量折扣:</td>
-				<td><input type="text" id="discountFlow" name="discountFlow"
-					value="${updateUser.discountFlow}" class="validate[required,maxSize[3],custom[integer]]" /></td>
-			</tr>
-			<c:if test="${fn:contains(roleIds,'1,') }">
-			<tr>
-				<td align="right">话费通道：</td>
-				<td colspan="3">移动：<select name="cm" id="cm"
-					class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CM }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select> 联通： <select name="cu" id="cu" class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CU }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select> 电信： <select name="ct" id="ct" class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CT }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<td align="right">流量通道：</td>
-				<td colspan="3">移动：<select name="cmflow" id="cmflow"
-					class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CMflow }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select> 联通： <select name="cuflow" id="cuflow" class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CUflow }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select> 电信： <select name="ctflow" id="ctflow" class="validate[required]">
-						<option value="">请选择</option>
-						<c:forEach items="${CTflow }" var="channel">
-							<option value="${channel.channelId }">${channel.channelName }</option>
-						</c:forEach>
-				</select></td>
-			</tr>
-			</c:if>
 		</table>
 	</form>
 

@@ -24,8 +24,7 @@
 
 <div data-role="page" data-theme="f" class="ui-body-f" id="activity">
 
-		<div data-role="content" data-theme="f" class="pcenter-ac-content"
-			id="wrapper">
+		<div data-role="content" data-theme="f" class="pcenter-ac-content"	id="wrapper">
 				<ul id="thelist">
 				</ul>
 				<div id="pullUp">
@@ -71,6 +70,7 @@ $(document).bind("mobileinit", function() {
 		var content = '';
 		
 		if(event.eventType == 'skill' || event.eventType ==  'operate'){
+			$("#wrapper").removeClass();
 			content = content + '<li class="common-bg">';
 			content = content + '   <a href="${ctx }/index/event/getIndexEvent/'+event.type+'/'+ event.eventId +'" data-transition="slide">';
 			content = content + '        <div class="common-innerbox">';
@@ -83,10 +83,10 @@ $(document).bind("mobileinit", function() {
 			content = content + '                    <span class="havesure">'+((event.auth=="certified")?"已认证":"未认证")+'</span>';
 			content = content + '                </div>';
 			content = content + '                <div class="common-star">';
-			content = content + '                    <b>星级评价&nbsp;</b>';
+			content = content + '                    <b>星级评价</b>';
 			content = content + '                    <ul>';
 			for(var i=0;i<event.commentLevel;i++){
-				content = content + '<li>&nbsp;</li>';
+				content = content + '<li></li>';
 			}
 			content = content + '                    </ul>';
 			content = content + '                    <p>浏览量 <b>'+event.hits+'</b></p>';

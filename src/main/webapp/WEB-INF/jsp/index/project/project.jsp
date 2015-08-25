@@ -37,7 +37,7 @@
                 <ul>
                     <li><span>项目名称</span><input type="text" class="project-name" data-role="none" placeholder="输入项目名称（限10个字）"/></li>
                     <li class="project-progress-nav"><span>项目阶段</span><div class="right-arrow">请选择项目阶段</div></li>
-                    <li class="project-location-nav"><span>项目地区</span><div class="right-arrow">请选择项目地区</div></li>
+                    <li class="location-nav"><span>项目地区</span><div class="right-arrow">请选择项目地区</div></li>
                     <li class="project-direction-nav"><span>项目方向</span><div class="right-arrow">请选择项目方向</div></li>
                     <li><span>团队人数</span><input type="tel" class="project-team-select" data-role="none" placeholder="请输入现有团队人数"/></li>
                 </ul>
@@ -54,11 +54,10 @@
                 </div>
             </div>
             <!-- 项目地区-->
-            <div class="project-location-select" style="left:100%;">
+            <div class="project-location-select" style="left:100%;" id="location-select">
                 <div class="project-location-right">
                     <div class="project-location-header">
                         <span>项目地点</span>
-                        <b>确定</b>
                     </div>
                     <div class="project-location-content">
                         <ul class="location-province">
@@ -305,11 +304,8 @@
 							var obj = jQuery.parseJSON(data);
 							if (typeof (obj.status) != "undefined") {
 								if (obj.status == "success") {
-									//projectObj.projectImg = obj.filePath;
-									//$("#eventImg").val("${ctx}"+obj.filePath);
 									$(".project-img img").attr("src","${ctx}" + obj.filePath);
 									$(".project-img").attr("imgPath",obj.filePath);
-									alert(obj.filePath)
 								} else {
 									alert(obj.msg);
 								}

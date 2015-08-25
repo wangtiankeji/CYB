@@ -224,56 +224,12 @@ $(document).ready(function () {
     }
     $('.location-city li').click(function () {
         $(this).addClass('location-city-active').siblings().removeClass('location-city-active')
-        $('.project-location-header b').addClass('location-city-active')
-        $('.talent-location-header b').addClass('location-city-active')
+        /*$('.project-location-header b').addClass('location-city-active')
+        $('.talent-location-header b').addClass('location-city-active')*/
         provinceValue = '北京';
         cityValue = $(this).html();
     });
-        //项目地区显示
-    $('.project-location-nav').click(function () {
-        $('.project-location-select').animate({
-            left: '0'
-        }, 500)
-    })
-        //发项目---点击省市切换
-
-    $('.location-province li').click(function () {
-        $(this).addClass('location-province-active').siblings().removeClass('location-province-active');
-
-        provinceValue = $(this).html();
-        $(".location-city").empty();
-
-
-        var cities = city[$(this).text()];
-        for (var j = 0; j < cities.length; j++) {
-            $('.location-city').append("<li>" + cities[j] + "</li>");
-        }
-        //发项目---城市选择点击样式切换
-        $('.location-city li').click(function () {
-            $(this).addClass('location-city-active').siblings().removeClass('location-city-active')
-            $('.project-location-header b').addClass('location-city-active')
-            $('.talent-location-header b').addClass('location-city-active')
-            if(cityValue==undefined){
-                cityValue = $(this).html();
-            }
-
-        });
-    });
-        //点击隐藏地区选择
-    $('.project-location-header b').click(function(){
-        //将获得的省市添加到页面
-        if(cityValue==undefined){
-            provinceValue='北京';
-            cityValue='东城区'
-        }
-        $('.project-location-nav div').html(provinceValue+' '+cityValue).css({
-            'color':'#333'
-        });
-        //省市页面切入过度效果
-        $('.project-location-select').animate({
-            left:'100%'
-        },500)
-    })
+  
 
     //发项目---项目方向
     $('.project-direction-nav').click(function(){
@@ -732,8 +688,8 @@ $(document).ready(function () {
     //工作区域选择
 
     //项目地区显示
-    $('.talent-location-nav').click(function () {
-        $('.talent-location-select').animate({
+    $('.location-nav').click(function () {
+        $('#location-select').animate({
             left: '0'
         }, 500)
     })
@@ -750,33 +706,25 @@ $(document).ready(function () {
         for (var j = 0; j < cities.length; j++) {
             $('.location-city').append("<li>" + cities[j] + "</li>");
         }
-        //发项目---城市选择点击样式切换
+      //发项目---城市选择点击样式切换
         $('.location-city li').click(function () {
             $(this).addClass('location-city-active').siblings().removeClass('location-city-active')
-            $('.project-location-header b').addClass('location-city-active')
-            $('.talent-location-header b').addClass('location-city-active')
+             cityValue = $(this).html();
+            
             if(cityValue==undefined){
-                cityValue = $(this).html();
+                provinceValue='北京';
+                cityValue='东城区'
             }
-
+            $('.location-nav div').html(provinceValue+' '+cityValue).css({
+                'color':'#333'
+            });
+            talentAreaValue = provinceValue+' '+cityValue;
+        	 $('#location-select').animate({
+                 left:'100%'
+             },500)
         });
     });
-    //点击隐藏地区选择
-    $('.talent-location-header b').click(function(){
-        //将获得的省市添加到页面
-        if(cityValue==undefined){
-            provinceValue='北京';
-            cityValue='东城区'
-        }
-        $('.talent-location-nav div').html(provinceValue+' '+cityValue).css({
-            'color':'#333'
-        });
-        talentAreaValue = provinceValue+' '+cityValue;
-        //省市页面切入过度效果
-        $('.talent-location-select').animate({
-            left:'100%'
-        },500)
-    })
+    
 
     //性别选择
     $('.talent-sex-nav').click(function(){

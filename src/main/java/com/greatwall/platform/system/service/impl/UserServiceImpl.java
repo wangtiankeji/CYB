@@ -70,6 +70,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
+	public int updateUser(User user){
+		return userDao.updateUser(user);
+	}
 	
 	@Transactional
 	public void updateUserAndChannel(User user,ChannelCondition channelCondition) throws DaoException{
