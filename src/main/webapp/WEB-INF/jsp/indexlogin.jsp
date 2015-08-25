@@ -56,7 +56,7 @@
                 </ul>
             </div>
             <button type="button" data-role="none" class="btn-regist">提交</button>
-            <a class="regist-item" href="#" class="forget-password">提交注册即表示您同意<span style="color:#4b89dc">《创客邦服务条款》</span></a>
+            <a class="regist-item" href="serviceterms.html" class="forget-password">提交注册即表示您同意<span style="color:#4b89dc">《创客邦服务条款》</span></a>
             <div class="regist-format error" style="display: none"><p></p></div>
         </form>
     </div>
