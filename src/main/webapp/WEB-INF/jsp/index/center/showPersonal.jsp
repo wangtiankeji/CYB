@@ -27,8 +27,9 @@
         <div class="pcenter-pic">
             <a href="#"><img src="${user.userAddress}" alt=""/></a>
         </div>
-        <input id="fileToUpload" style="display: none" type="file" name="upfile">
-        <p id="pcenter-tel">18612531150</p>
+        <div style="display: none"><input id="fileToUpload" style="display: none" type="file" name="upfile"></div>
+        
+        <p id="pcenter-tel">${user.loginName }</p>
     </div>
     <div data-role="content" data-theme="f" class="ui-content-f3">
         <ul>

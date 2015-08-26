@@ -33,7 +33,7 @@
         </ul>
         <div class="project-sort-drop" style="display: none">
             <ul>
-                <li class="comprehensive-sort">综合排序<span></span></li>
+                <!-- <li class="comprehensive-sort">综合排序<span></span></li> -->
                 <li class="time-sort" id="project-time-sort">时间排序<span></span></li>
                 <li class="hot-sort" id="project-hot-sort">热度排序<span></span></li>
             </ul>

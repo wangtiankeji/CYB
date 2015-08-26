@@ -54,7 +54,7 @@ b{font-weight: normal;}
 
 /*底部信息*/
 .ui-footer-f{border: none;text-align: center;margin:0.8rem 0;}
-.ui-footer-f p{margin:0;font-size: 0.7rem;color:#999999;text-align:center;}
+.ui-footer-f p{margin:0;font-size: 0.7rem;color:#999999;}
 
 
 /*login页面样式*/
@@ -389,7 +389,7 @@ b{font-weight: normal;}
 .project-details-collection span{padding-left:1.2rem;background: url("../img/icon_star_pre.png")left center no-repeat;background-size: 1rem;}
 
 /*找人才*/
-.talent-left>div{width:4rem;height:4rem;border-radius: 4rem;background-size: 4rem;}
+.talent-left>div{width:4rem;height:4rem;border-radius: 4rem;background: url("../img/pcenter-pic-i.jpg")center no-repeat;background-size: 4rem;}
 .talent-right>p{margin:0.3rem 0;}
     /*发简历*/
 .publish-talent-img{width:5rem;height:5rem;border-radius: 5rem;margin:0.5rem auto;margin-top:1rem;background: url("../img/btn_addpicure.png")center no-repeat;background-size: 5rem;}
@@ -583,7 +583,7 @@ table tr td:first-child{color:#666;}
 .index-content-process ul li{margin-bottom: 20.5px;height:50px;}
 
 .index-content-process ul li p{padding-left:1rem;font-size:0.8rem;height:2rem;}
-.index-content-class{margin:1.5rem;overflow: hidden}
+.index-content-class{margin:1rem;overflow: hidden}
 .index-content-class li{border-bottom:1px solid #bbb;overflow: hidden;padding:0.5rem 0;}
 .index-content-class li span{float:left;width:30%;font-size:0.9rem;height:2rem;line-height:2rem;border-right:1px solid #bbb;margin-top:1rem;}
 .index-content-class li p{float:left;margin-left:0.5rem;width:65%;margin-top:1rem;}
@@ -602,13 +602,30 @@ table tr td:first-child{color:#666;}
 .index-copyright-box2 h2{font-weight: normal!important;font-size:0.9rem!important;height: 1.5rem;}
 .index-copyright-box2{float:left;width:40%;overflow: hidden;padding-left:1rem;border-left:1px solid #bbb;}
 .index-office-inner div{padding:1rem 0;border-bottom:1px solid #bbb;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*代理记账*/
 .accounting-content ul{overflow: hidden;}
 .accounting-content ul li{float:left;width:24%;}
 .accounting-content ul li p{text-align: center;font-size:0.7rem;}
 .index-content-class3{width:90%;margin:0 auto;}
 .index-content-class3>li{overflow: hidden;padding:1rem 0;border-bottom: 1px solid #bbb;}
-.index-content-class3>li>span{float:left;width:45%;padding-left:1.2rem;}
+.index-content-class3>li>span{float:left;width:45%;padding-left:1.2rem;font-size:0.9rem;}
 .index-content-class3>li>p{float:left;padding-left:1rem;width:40%;border-left:1px solid #bbb;}
 .index-content-class3>li i{font-size:0.7rem;}
 .icon_account_a{background: url("../img/icon_account_%20(1).png")left center no-repeat;background-size: 1rem;}
@@ -649,4 +666,60 @@ table tr td:first-child{color:#666;}
 .regist-footer2-txt{width:90%;margin:2rem auto;}
 .regist-footer2-txt p{color:#333;}
 .regist-bottom{text-align: center;height: 3rem;line-height: 3rem;color:#333;border-top:1px solid #bbb;}
+
+/*底部浮动*/
+.index-foot{width: 100%;height: 2.5rem;position: fixed;left:0;bottom:0;background: #fff;border-top:1px solid #bbb;text-align: center;}
+.index-foot>button{width:60%;height:2rem;background: #5cce49;border:none;color:#fff;text-align: center;margin-top:0.25rem;}
+
+.foot-common-mask{background:rgba(0,0,0,0.6);position:fixed;width:100%;min-width:320px;height: 100%;top:0;left:0;z-index: 100;}
+.foot-mask-inner{width:80%;height:15rem;background:#fff;margin:5rem auto;position: relative;text-align: center;}
+.foot-mask-inner h2{height: 3rem;line-height: 3rem;}
+.foot-registration input{background: #f3f3f3;border: none;width: 80%;height:1.5rem;margin:0.5rem 0;padding:0.5rem;}
+.foot-common-registration{width:60%;height: 2.5rem;border:none;background: #5cce49;color:#fff;margin-top:0.8rem;}
+.foot-mask-close{width:1.5rem;position: absolute;top:-2rem;right:0;}
+.foot-mask-close img{width:100%;}
+#foot-red{color:red;}
 /*common-----end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

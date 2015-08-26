@@ -28,7 +28,8 @@
         <div data-role="none" data-theme="f" class="publish-talent-header">
             <div class="publish-talent-img"></div>
             <p style="text-align: center;">上传个人头像</p>
-            <input id="fileToUpload" style="display: none" type="file" name="upfile">
+            <div style="display: none">
+            <input id="fileToUpload" style="display: none" type="file" name="upfile"></div>
         </div>
         <div data-role="none" data-theme="f" class="submitproject-content">
             <form action="" method="post">
