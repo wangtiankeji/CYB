@@ -23,7 +23,7 @@
 <body>
 <!--项目列表-->
 <div data-role="page" data-theme="f" class="ui-body-f">
- <div data-role="none" data-theme="f" class="project-header">
+    <div data-role="none" data-theme="f" class="project-header">
         <ul>
             <li class="project-sort">综合排序</li>
             <li class="project-screening">筛选</li>
@@ -33,7 +33,7 @@
         </ul>
         <div class="project-sort-drop" style="display: none">
             <ul>
-                <!-- <li class="comprehensive-sort">综合排序<span></span></li> -->
+                <li class="comprehensive-sort" style="display: none">综合排序<span></span></li>
                 <li class="time-sort" id="project-time-sort">时间排序<span></span></li>
                 <li class="hot-sort" id="project-hot-sort">热度排序<span></span></li>
             </ul>
@@ -98,8 +98,8 @@
     
    
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
-    	
 				<ul id="thelist">
+				
 				</ul>
 				<div id="pullUp" style="display: none">
 					<span class="pullUpIcon"></span><span class="pullUpLabel" >上拉加载更多...</span>
@@ -133,7 +133,7 @@ $(document).bind("mobileinit", function() {
 
 	function getLiStr(project) {
 		var content = '';
-		var newTime = new Date(project.createTime)
+		/* var newTime = new Date(project.createTime)
 		content = content + '<li>';
 		content = content + '    <a href="${cxt}/index/project/getProject/'+ project.projectId +'" data-ajax="false">';
 		content = content + '        <div class="incubator-innerbox">';
@@ -150,15 +150,10 @@ $(document).bind("mobileinit", function() {
 		content = content + '                    <span><b>'+ newTime.format("MM月dd日")+'</b>发布</span>';
 		content = content + '                </div>';
 		content = content + '                <p>'+project.projectIntro+'</p>';
-/* 		content = content + '                <div class="project-label">';
-		content = content + '                    <ul>';
-		content = content + '                        <li>有市场</li>';
-		content = content + '                    </ul>';
-		content = content + '                </div>'; */
 		content = content + '            </div>';
 		content = content + '        </div>';
 		content = content + '    </a>';
-		content = content + '</li>';
+		content = content + '</li>'; */
 		return content;
 	}
 	

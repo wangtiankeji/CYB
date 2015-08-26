@@ -11,7 +11,7 @@ var IscrollPage = function (params,callback){
 	 var defaults = {
 			roleContent:"wrapper",  
 			pageul:"thelist",
-			data:{currentPage:0,pageSize:2}
+			data:{currentPage:0,pageSize:6}
 	}
 	 
 	 //jQuery.extend(defaultsPage, defaults, params);

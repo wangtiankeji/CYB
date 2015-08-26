@@ -144,7 +144,7 @@ public class FileController {
 			imgf = new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(new File(imgPath+filePath.toString()+fileName.toString())),  
 					headers, HttpStatus.CREATED);
 		} catch (IOException e) {
-//							e.printStackTrace();
+							e.printStackTrace();
 		}
 		return  imgf;
 	}

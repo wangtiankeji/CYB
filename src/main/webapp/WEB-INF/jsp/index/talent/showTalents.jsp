@@ -34,7 +34,7 @@
         <!-- 综合排序下拉菜单-->
         <div class="talent-sort-drop" style="display: none">
             <ul>
-                <li class="comprehensive-sort" id="talent-comprehensive-sort">综合排序<span></span></li>
+                <li class="comprehensive-sort" id="talent-comprehensive-sort" style="display: none">综合排序<span></span></li>
                 <li class="hot-sort" id="talent-hot-sort">热度排序<span></span></li>
             </ul>
         </div>
