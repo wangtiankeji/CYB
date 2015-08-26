@@ -99,7 +99,7 @@
    
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
     	
-				<ul class="activity-box" id="thelist">
+				<ul id="thelist">
 				</ul>
 				<div id="pullUp" style="display: none">
 					<span class="pullUpIcon"></span><span class="pullUpLabel" >上拉加载更多...</span>

@@ -5,6 +5,31 @@ var city = {北京:["东城区","西城区","崇文区","宣武区","朝阳区",
 
 $(document).ready(function () {
 	
+	//新增：首页二级页面预约功能
+
+    $('.index-foot button').click(function(){
+        $('.foot-common-mask').show();
+    })
+    $('.foot-mask-close').click(function(){
+        $('.foot-common-mask').hide();
+    })
+    //填写手机号前端验证
+    $('.index-tel').focus(function(){
+        $(".index-tel").css({
+            'border':'none'
+        })
+    })
+
+    $(".foot-common-registration").click(function(){
+        var sMobile = $(".index-tel").val();
+        if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(sMobile))){
+            $(".index-tel").css({
+                'border':'1px solid red'
+            })
+            return false;
+        }
+
+    });
 	//找项目排序功能实现------------------------start
 	var sortValue;
     $('.project-sort').click(function(){

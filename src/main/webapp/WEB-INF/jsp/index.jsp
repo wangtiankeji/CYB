@@ -44,9 +44,12 @@
     	<!-- 焦点轮播图-->
         <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <c:forEach items="${indeximgs}" var="indeximg" varStatus="status">
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+                <div class="swiper-slide"><img src="${ctx}/img/banner.png" alt=""/></div>
+                   <%--  <c:forEach items="${indeximgs}" var="indeximg" varStatus="status">
              		<div class="swiper-slide"><img src="${indeximg.noticeStr}" alt=""/></div>
-            		</c:forEach>
+            		</c:forEach> --%>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

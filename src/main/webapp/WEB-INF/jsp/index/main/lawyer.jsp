@@ -113,14 +113,28 @@
         </div>
     </div>
 
-
+<!-- foot-->
+    <div class="index-foot regist-company">
+        <button type="button" data-role="none">预约</button>
+    </div>
+    <div class="foot-common-mask" style="display: none">
+        <div class="foot-mask-inner">
+            <div class="foot-mask-close"><img src="${ctx}/img/icon_close_green_pre.png" alt=""/></div>
+            <h2>预约</h2>
+            <form action="" method="post" class="foot-registration">
+                <input type="text" data-role="none" name="name" placeholder="姓名"/>
+                <input type="tel" class="index-tel" data-role="none" name="tel" placeholder="电话"/>
+                <button type="button" data-role="none" class="foot-common-registration office-regist">提交</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 
 <script src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script src="${ctx}/js/jquery.mobile-1.4.5.min.js"></script>
 <script src="${ctx}/js/swiper.min.js"></script>
-
+<script src="${ctx}/js/common.js"></script>
 <script type="text/javascript">
 //焦点轮播图
 $(function(){ var swiper = new Swiper('.swiper-container', {
