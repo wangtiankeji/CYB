@@ -75,7 +75,7 @@
         </div>
     </div>
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
-				<ul class="activity-box" id="thelist">
+				<ul class="activity-box" id="thelist" style="position: relative;z-index: -1">
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>

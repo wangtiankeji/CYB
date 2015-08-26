@@ -98,7 +98,7 @@
     
    
     <div data-role="none" data-theme="f" class="project-content" id="wrapper">
-				<ul id="thelist">
+				<ul id="thelist" style="position: relative;z-index: -1">
 				
 				</ul>
 				<div id="pullUp" style="display: none">
@@ -133,7 +133,7 @@ $(document).bind("mobileinit", function() {
 
 	function getLiStr(project) {
 		var content = '';
-		/* var newTime = new Date(project.createTime)
+		var newTime = new Date(project.createTime)
 		content = content + '<li>';
 		content = content + '    <a href="${cxt}/index/project/getProject/'+ project.projectId +'" data-ajax="false">';
 		content = content + '        <div class="incubator-innerbox">';
@@ -153,7 +153,7 @@ $(document).bind("mobileinit", function() {
 		content = content + '            </div>';
 		content = content + '        </div>';
 		content = content + '    </a>';
-		content = content + '</li>'; */
+		content = content + '</li>';
 		return content;
 	}
 	
